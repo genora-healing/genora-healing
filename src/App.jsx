@@ -1,56 +1,39 @@
 import React, { useState, useEffect, useRef } from 'react';
-import './App.css';
 
 const App = () => {
-  const [lang, setLang] = useState('es');
-  const [activeTrack, setActiveTrack] = useState(null);
-  const [isPlaying, setIsPlaying] = useState(false);
   const [showSplash, setShowSplash] = useState(true);
-  const [timer, setTimer] = useState(0);
-  const [isInfinite, setIsInfinite] = useState(true);
+  const [lang, setLang] = useState('es');
+  const [isExpanded, setIsExpanded] = useState(false);
+  const [selectedTrack, setSelectedTrack] = useState(null);
+  const [isPlaying, setIsPlaying] = useState(false);
   const audioRef = useRef(null);
 
+  // --- CONFIGURACIÓN DE CONTENIDO ---
   const content = {
     es: {
       splash: "RESONANCIA ORIGEN",
       frecuencias: "Frecuencias",
-      meditaciones: "Meditaciones",
-      timerEnd: "Cerrando ciclo en",
-      infinite: "Repetición Infinita",
-      cycle: "Ciclo de 15 min",
-      alert: "Sesión de sanación completada ✨",
       tracks: [
-        { id: "01", name: "Alpha Integration", hz: "8-10 Hz", file: "/audio/alpha-integration.mp3", desc: "Sincroniza los hemisferios cerebrales para un estado de calma profunda." },
-        { id: "02", name: "Alpha Creator", hz: "8-12 Hz", file: "/audio/alpha-creator.mp3", desc: "Activa el estado de flujo creativo e idealiza proyectos desde el origen." },
-        { id: "03", name: "Alpha Void", hz: "8-13 Hz", file: "/audio/alpha-void.mp3", desc: "Punto cero de la consciencia. Silencio total para el reordenamiento genético." },
-        { id: "04", name: "Alpha Origen", hz: "8 Hz", file: "/audio/alpha-origen.mp3", desc: "Conexión directa con la frecuencia Schumann y la resonancia primordial." },
-        { id: "05", name: "Gaia Vision", hz: "8.3 Hz", file: "/audio/gaia-vision.mp3", desc: "Expansión de la percepción sensorial y conexión planetaria." },
-        { id: "06", name: "Alpha Voice", hz: "8,22 Hz", file: "/audio/alpha-voice.mp3", desc: "Sintoniza la expresión de tu verdad interna con tu campo vibratorio." }
-      ],
-      meds: [
-        { id: "M1", name: "Activación del Origen", duration: "15 min", file: "/audio/alpha-origen.mp3", desc: "Viaje guiado al centro de tu ADN ancestral." },
-        { id: "M2", name: "Coherencia del Ser", duration: "22 min", file: "/audio/alpha-integration.mp3", desc: "Sincroniza corazón y mente en una paz inquebrantable." }
+        { id: "01", name: "Alpha Integration", file: "/audio/alpha-integration.mp3" },
+        { id: "02", name: "Alpha Creator", file: "/audio/alpha-creator.mp3" },
+        { id: "03", name: "Alpha Void", file: "/audio/alpha-void.mp3" },
+        { id: "04", name: "Alpha Origen", file: "/audio/alpha-origen.mp3" },
+        { id: "05", name: "Gaia Vision", file: "/audio/gaia-vision.mp3" },
+        { id: "06", name: "Alpha Voice", file: "/audio/alpha-voice.mp3" },
+        { id: "M2", name: "Coherencia del Ser", file: "/audio/coherencia-ser.mp3" }
       ]
     },
     en: {
       splash: "ORIGIN RESONANCE",
       frecuencias: "Frequencies",
-      meditaciones: "Meditations",
-      timerEnd: "Closing cycle in",
-      infinite: "Infinite Loop",
-      cycle: "15 min Cycle",
-      alert: "Healing session completed ✨",
       tracks: [
-        { id: "01", name: "Alpha Integration", hz: "8-10 Hz", file: "/audio/alpha-integration.mp3", desc: "Synchronizes brain hemispheres for a state of deep calm." },
-        { id: "02", name: "Alpha Creator", hz: "8-12 Hz", file: "/audio/alpha-creator.mp3", desc: "Activates the creative flow state and idealizes projects from the origin." },
-        { id: "03", name: "Alpha Void", hz: "8-13 Hz", file: "/audio/alpha-void.mp3", desc: "Consciousness zero point. Total silence for genetic reordering." },
-        { id: "04", name: "Alpha Origin", hz: "8 Hz", file: "/audio/alpha-origen.mp3", desc: "Direct connection with the Schumann frequency and primordial resonance." },
-        { id: "05", name: "Gaia Vision", hz: "8.3 Hz", file: "/audio/gaia-vision.mp3", desc: "Expansion of sensory perception and planetary connection." },
-        { id: "06", name: "Alpha Voice", hz: "8.22 Hz", file: "/audio/alpha-voice.mp3", desc: "Tunes the expression of your inner truth with your vibratory field." }
-      ],
-      meds: [
-        { id: "M1", name: "Origin Activation", duration: "15 min", file: "/audio/alpha-origen.mp3", desc: "Guided journey to the center of your ancestral DNA." },
-        { id: "M2", name: "Coherence of Being", duration: "22 min", file: "/audio/alpha-integration.mp3", desc: "Synchronizes heart and mind in unshakable peace." }
+        { id: "01", name: "Alpha Integration", file: "/audio/alpha-integration.mp3" },
+        { id: "02", name: "Alpha Creator", file: "/audio/alpha-creator.mp3" },
+        { id: "03", name: "Alpha Void", file: "/audio/alpha-void.mp3" },
+        { id: "04", name: "Alpha Origin", file: "/audio/alpha-origen.mp3" },
+        { id: "05", name: "Gaia Vision", file: "/audio/gaia-vision.mp3" },
+        { id: "06", name: "Alpha Voice", file: "/audio/alpha-voice.mp3" },
+        { id: "M2", name: "Coherence of Being", file: "/audio/coherencia-ser.mp3" }
       ]
     }
   };
@@ -60,145 +43,105 @@ const App = () => {
     return () => clearTimeout(timer);
   }, []);
 
-  useEffect(() => {
-    let interval;
-    if (isPlaying && !isInfinite && timer > 0) {
-      interval = setInterval(() => {
-        setTimer((prev) => prev - 1);
-      }, 1000);
-    } else if (timer === 0 && !isInfinite && isPlaying) {
-      setIsPlaying(false);
+  const togglePlay = () => {
+    if (isPlaying) {
       audioRef.current.pause();
-      alert(content[lang].alert);
-    }
-    return () => clearInterval(interval);
-  }, [isPlaying, timer, isInfinite, lang]);
-
-  const togglePlay = (track) => {
-    if (activeTrack?.id === track.id) {
-      if (isPlaying) {
-        audioRef.current.pause();
-      } else {
-        audioRef.current.play();
-      }
-      setIsPlaying(!isPlaying);
     } else {
-      setActiveTrack(track);
-      setIsPlaying(true);
-      if (!isInfinite) setTimer(900); // 15 min
-      if (audioRef.current) {
-        audioRef.current.src = track.file;
-        audioRef.current.play();
-      }
+      audioRef.current.play();
     }
-  };
-
-  const formatTime = (seconds) => {
-    const mins = Math.floor(seconds / 60);
-    const secs = seconds % 60;
-    return `${mins}:${secs < 10 ? '0' : ''}${secs}`;
+    setIsPlaying(!isPlaying);
   };
 
   if (showSplash) {
     return (
-      <div className="splash">
-        <img src="/imagenes/genora-logo-white.png" alt="Genora Logo" className="splash-logo" />
-        <h1 className="splash-text">{content[lang].splash}</h1>
+      <div className="fixed inset-0 bg-[#020617] flex flex-col items-center justify-center z-50">
+        <img src="/imagenes/genora-logo-white.png" className="h-48 animate-pulse mb-8" alt="GENORA" />
+        <h1 className="text-white tracking-[0.3em] font-light text-sm opacity-50">{content[lang].splash}</h1>
       </div>
     );
   }
 
   return (
-    <div className="container">
-      <header className="header">
-        <img src="/imagenes/adn-icon.png" alt="ADN" className="header-icon" />
-        <div className="lang-switch">
-          <button onClick={() => setLang('es')} className={lang === 'es' ? 'active' : ''}>ES</button>
-          <button onClick={() => setLang('en')} className={lang === 'en' ? 'active' : ''}>EN</button>
-        </div>
-      </header>
+    <div className="min-h-screen bg-[#020617] text-slate-200 font-sans p-6 overflow-x-hidden">
+      {/* HEADER */}
+      <div className="flex justify-between items-center mb-12 max-w-md mx-auto">
+        <img src="/imagenes/genora-logo-white.png" className="h-10 opacity-80" alt="Logo" />
+        <button 
+          onClick={() => setLang(lang === 'es' ? 'en' : 'es')}
+          className="text-xs tracking-widest border border-white/20 px-4 py-1 rounded-full uppercase hover:bg-white/10 transition-all"
+        >
+          {lang === 'es' ? 'EN' : 'ES'}
+        </button>
+      </div>
 
-      <main className="main-content">
-        <section className="section">
-          <h2 className="section-title">{content[lang].frecuencias}</h2>
-          <div className="grid">
-            {content[lang].tracks.map((track) => (
-              <div 
-                key={track.id} 
-                className={`card ${activeTrack?.id === track.id ? 'active-card' : ''}`}
-                onClick={() => togglePlay(track)}
-              >
-                <div className="card-info">
-                  <span className="track-hz">{track.hz}</span>
-                  <h3 className="track-name">{track.name}</h3>
-                </div>
-                <button className="play-button">
-                  {activeTrack?.id === track.id && isPlaying ? '⏸' : '▶'}
-                </button>
-              </div>
-            ))}
-          </div>
-        </section>
+      <h2 className="text-3xl font-extralight tracking-tight mb-10 text-center text-white/90 italic">
+        {content[lang].frecuencias}
+      </h2>
 
-        <section className="section">
-          <h2 className="section-title">{content[lang].meditaciones}</h2>
-          <div className="grid">
-            {content[lang].meds.map((med) => (
-              <div 
-                key={med.id} 
-                className={`card med-card ${activeTrack?.id === med.id ? 'active-card' : ''}`}
-                onClick={() => togglePlay(med)}
-              >
-                <div className="card-info">
-                  <span className="track-hz">{med.duration}</span>
-                  <h3 className="track-name">{med.name}</h3>
-                </div>
-                <button className="play-button">
-                  {activeTrack?.id === med.id && isPlaying ? '▶' : '🎧'}
-                </button>
-              </div>
-            ))}
-          </div>
-        </section>
-      </main>
+      {/* LISTA DE TRACKS */}
+      <div className="grid grid-cols-1 gap-4 w-full max-w-md mx-auto mb-20">
+        {content[lang].tracks.map((track) => (
+          <button 
+            key={track.id} 
+            onClick={() => { 
+              setSelectedTrack(track); 
+              setIsPlaying(false);
+              setIsExpanded(true); 
+            }}
+            className={`p-5 rounded-3xl border transition-all flex items-center gap-5 ${selectedTrack?.id === track.id ? 'border-cyan-500 bg-cyan-950/20' : 'border-white/5 bg-white/[0.02]'}`}
+          >
+            <div className="w-10 h-10 rounded-xl flex items-center justify-center text-[10px] text-cyan-400 border border-cyan-800/50 font-mono">
+              {track.id}
+            </div>
+            <div className="flex-1 text-left font-light text-base tracking-wide">
+              {track.name}
+            </div>
+            <div className="text-cyan-400 opacity-40">
+              <svg xmlns="http://www.w3.org/2003/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
+            </div>
+          </button>
+        ))}
+      </div>
 
-      {activeTrack && (
-        <footer className="player">
-          <div className="player-top">
-            <div className="track-details">
-              <h4>{activeTrack.name}</h4>
-              <p>{activeTrack.desc}</p>
-            </div>
-            <div className="controls">
-              <button 
-                className={`mode-btn ${isInfinite ? 'active' : ''}`}
-                onClick={() => setIsInfinite(true)}
-              >
-                ∞ {content[lang].infinite}
-              </button>
-              <button 
-                className={`mode-btn ${!isInfinite ? 'active' : ''}`}
-                onClick={() => {
-                  setIsInfinite(false);
-                  setTimer(900);
-                }}
-              >
-                ⏱ {content[lang].cycle}
-              </button>
-            </div>
+      {/* REPRODUCTOR EXPANDIDO */}
+      {isExpanded && selectedTrack && (
+        <div className="fixed inset-0 bg-[#020617] z-[60] flex flex-col items-center justify-center p-8 transition-all duration-500">
+          <button 
+            onClick={() => { setIsExpanded(false); setIsPlaying(false); audioRef.current.pause(); }}
+            className="absolute top-10 left-10 text-white/40 hover:text-white"
+          >
+            <svg xmlns="http://www.w3.org/2003/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round"><path d="m15 18-6-6 6-6"/></svg>
+          </button>
+
+          <div className="relative mb-16 flex items-center justify-center">
+            <div className={`absolute w-80 h-80 rounded-full border border-cyan-500/20 transition-all duration-[2000ms] ${isPlaying ? 'scale-150 opacity-0' : 'scale-100 opacity-100'}`}></div>
+            <img 
+              src="/imagenes/adn-icon.png" 
+              className={`h-64 w-64 relative z-10 rounded-full transition-all duration-700 ${isPlaying ? 'scale-110 shadow-[0_0_100px_rgba(34,211,238,0.3)]' : 'opacity-40 grayscale'}`} 
+              alt="ADN" 
+            />
           </div>
-          {!isInfinite && (
-            <div className="timer-display">
-              {content[lang].timerEnd}: {formatTime(timer)}
-            </div>
-          )}
+
+          <h3 className="text-2xl font-light tracking-[0.2em] mb-2 text-white text-center">{selectedTrack.name}</h3>
+          <p className="text-cyan-400 text-[10px] tracking-[0.5em] uppercase mb-12">Frecuencia Activa</p>
+
+          <button 
+            onClick={togglePlay}
+            className="w-24 h-24 rounded-full border border-white/10 flex items-center justify-center bg-white/5 hover:bg-white/10 transition-all active:scale-95"
+          >
+            {isPlaying ? (
+              <svg xmlns="http://www.w3.org/2003/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/></svg>
+            ) : (
+              <svg xmlns="http://www.w3.org/2003/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="ml-2"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
+            )}
+          </button>
+
           <audio 
             ref={audioRef} 
-            src={activeTrack.file} 
-            loop={isInfinite}
-            onEnded={() => !isInfinite && setIsPlaying(false)}
+            src={selectedTrack.file} 
+            onEnded={() => setIsPlaying(false)}
           />
-        </footer>
+        </div>
       )}
     </div>
   );
