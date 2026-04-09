@@ -29,19 +29,17 @@ const App = () => {
     return () => clearTimeout(timer);
   }, []);
 
-  // Lógica de Reproducción y Temporizador
+  // Control de reproducción y temporizador
   useEffect(() => {
     if (audioRef.current) {
       if (isPlaying) {
-        audioRef.current.play().catch(e => console.log("Esperando interacción de audio..."));
+        audioRef.current.play().catch(e => console.log("Iniciando frecuencia..."));
         
-        // Si hay un tiempo seleccionado (y no es infinito), programamos el apagado
         if (selectedTime && selectedTime !== '∞') {
           if (timerRef.current) clearTimeout(timerRef.current);
           timerRef.current = setTimeout(() => {
             setIsPlaying(false);
-            alert(`Sesión de ${selectedTime} minutos completada.`);
-          }, selectedTime * 60000); // Convertir minutos a milisegundos
+          }, selectedTime * 60000);
         }
       } else {
         audioRef.current.pause();
@@ -50,22 +48,22 @@ const App = () => {
     }
   }, [isPlaying, selectedTrack, selectedTime]);
 
-  // Lista de frecuencias con sus archivos (Asegúrate de que coincidan con public/sonidos/)
+  // 🔊 RUTAS SINCRONIZADAS CON TU GIT LOG
   const tracks = [
-    { id: "01", name: "Alpha Integración", hz: "8 – 10 Hz", type: "frecuencias", desc: "Sincroniza los hemisferios cerebrales para un estado de calma profunda.", url: "/sonidos/alpha-integracion.mp3" },
-    { id: "02", name: "Alpha Creator", hz: "8 – 12 Hz", type: "frecuencias", desc: "Activa el estado de flujo creativo e idealiza proyectos desde el origen.", url: "/sonidos/alpha-creator.mp3" },
-    { id: "03", name: "Alpha Void", hz: "8 – 13 Hz", type: "frecuencias", desc: "Punto cero de la consciencia. Silencio total para el reordenamiento genético.", url: "/sonidos/alpha-void.mp3" },
-    { id: "04", name: "Alpha Origen", hz: "8 Hz", type: "frecuencias", desc: "Conexión directa con la frecuencia Schumann y la resonancia primordial.", url: "/sonidos/alpha-origen.mp3" },
-    { id: "05", name: "Gaia Vision", hz: "8,3 Hz", type: "frecuencias", desc: "Expansión de la percepción sensorial.", url: "/sonidos/gaia-vision.mp3" },
-    { id: "06", name: "Alpha Voice", hz: "8,22 Hz", type: "frecuencias", desc: "Sintoniza la expresión de tu verdad interna.", url: "/sonidos/alpha-voice.mp3" },
-    { id: "M1", name: "Coherencia del Ser", hz: "963 Hz", type: "meditaciones", desc: "Sincroniza corazón y mente en una paz inquebrantable.", url: "/sonidos/coherencia.mp3" }
+    { id: "01", name: "Alpha Integración", hz: "8 – 10 Hz", type: "frecuencias", desc: "Sincroniza los hemisferios cerebrales para un estado de calma profunda.", url: "/audio/alpha-integration.mp3" },
+    { id: "02", name: "Alpha Creator", hz: "8 – 12 Hz", type: "frecuencias", desc: "Activa el estado de flujo creativo e idealiza proyectos desde el origen.", url: "/audio/alpha-creator.mp3" },
+    { id: "03", name: "Alpha Void", hz: "8 – 13 Hz", type: "frecuencias", desc: "Punto cero de la consciencia. Silencio total.", url: "/audio/alpha-void.mp3" },
+    { id: "04", name: "Alpha Origen", hz: "8 Hz", type: "frecuencias", desc: "Conexión directa con la frecuencia Schumann.", url: "/audio/alpha-origen.mp3" },
+    { id: "05", name: "Gaia Vision", hz: "8,3 Hz", type: "frecuencias", desc: "Expansión de la percepción sensorial.", url: "/audio/gaia-vision.mp3" },
+    { id: "06", name: "Alpha Voice", hz: "8,22 Hz", type: "frecuencias", desc: "Sintoniza la expresión de tu verdad interna.", url: "/audio/alpha-voice.mp3" },
+    { id: "M1", name: "Coherencia del Ser", hz: "963 Hz", type: "meditaciones", desc: "Sincroniza corazón y mente.", url: "/audio/alpha-integration.mp3" } // Ejemplo usando ruta existente
   ];
 
   const accentColor = activeTab === 'frecuencias' ? '#22d3ee' : '#a855f7';
 
   if (showSplash) {
     return (
-      <div className="fade-in-smooth" style={{ backgroundColor: '#020617', minHeight: '100vh', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', textAlign: 'center', padding: '20px' }}>
+      <div className="fade-in-smooth" style={{ backgroundColor: '#020617', minHeight: '100vh', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', textAlign: 'center' }}>
         <style>{inlineStyles}</style>
         <img src="/imagenes/genora-logo-white.png" style={{ width: '200px', maxWidth: '80%', animation: 'breathe 3s infinite ease-in-out' }} alt="Logo" />
         <h1 style={{ fontSize: '18px', fontWeight: '300', letterSpacing: '4px', color: '#22d3ee', textTransform: 'uppercase', marginTop: '30px' }}>RESONANCIA ORIGEN</h1>
