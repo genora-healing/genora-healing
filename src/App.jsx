@@ -48,45 +48,47 @@ const App = () => {
     );
   }
 
-  // --- REPRODUCTOR (REPRODUCTOR CON AJUSTES DE ALTURA) ---
+  // --- REPRODUCTOR (EQUILIBRIO VERTICAL) ---
   if (selectedTrack) {
     return (
-      <div className="fade-in" style={{ backgroundColor: '#020617', minHeight: '100vh', color: 'white', padding: '15px', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', textAlign: 'center', position: 'relative' }}>
+      <div className="fade-in" style={{ backgroundColor: '#020617', minHeight: '100vh', color: 'white', padding: '20px', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'flex-start', textAlign: 'center', position: 'relative' }}>
         <style>{inlineStyles}</style>
         <button onClick={() => { setSelectedTrack(null); setIsPlaying(false); }} style={{ position: 'absolute', top: '25px', left: '25px', background: 'none', border: 'none', color: 'white', fontSize: '24px', opacity: 0.4 }}>✕</button>
         
-        {/* TÍTULO: SUBIDO "DOS PUESTOS MÁS" */}
-        <p style={{ fontSize: '9px', letterSpacing: '3px', color: '#fdfcf5', opacity: 0.6, marginBottom: '60px', textTransform: 'uppercase', marginTop: '-65px' }}>
+        {/* TÍTULO: Manteniendo altura pero dando un respiro */}
+        <p style={{ fontSize: '9px', letterSpacing: '3px', color: '#fdfcf5', opacity: 0.6, marginBottom: '40px', textTransform: 'uppercase', marginTop: '20px' }}>
           Resonancia Origen • Álbum Alpha 1
         </p>
 
-        <div style={{ position: 'relative', width: '170px', height: '170px', marginBottom: '45px', borderRadius: '50%', border: `4px solid #001a33`, display: 'flex', alignItems: 'center', justifyContent: 'center', backgroundColor: '#020617', boxShadow: `0 0 40px ${accentColor}33`, animation: isPlaying ? 'breathe 4s infinite ease-in-out' : 'none' }}>
+        {/* ADN BAJADO */}
+        <div style={{ position: 'relative', width: '170px', height: '170px', marginBottom: '50px', borderRadius: '50%', border: `4px solid #001a33`, display: 'flex', alignItems: 'center', justifyContent: 'center', backgroundColor: '#020617', boxShadow: `0 0 40px ${accentColor}33`, animation: isPlaying ? 'breathe 4s infinite ease-in-out' : 'none' }}>
           <img src="/imagenes/adn-icon.png" style={{ width: '130%', height: '130%', objectFit: 'cover', borderRadius: '50%', filter: `drop-shadow(0 0 12px ${accentColor}) drop-shadow(0 0 35px ${accentColor}88)` }} alt="ADN" />
         </div>
 
-        {/* NOMBRE DE FRECUENCIA: BAJADO UN POQUITÍN */}
-        <h2 style={{ fontSize: '22px', fontWeight: '200', letterSpacing: '4px', textTransform: 'uppercase', marginBottom: '8px' }}>{selectedTrack.name}</h2>
-        <p style={{ color: accentColor, fontSize: '11px', letterSpacing: '3px', fontWeight: 'bold', marginBottom: '25px' }}>{selectedTrack.hz}</p>
+        {/* NOMBRE Y HZ: BAJADOS PARA USAR EL ESPACIO INFERIOR */}
+        <h2 style={{ fontSize: '24px', fontWeight: '200', letterSpacing: '4px', textTransform: 'uppercase', marginBottom: '8px' }}>{selectedTrack.name}</h2>
+        <p style={{ color: accentColor, fontSize: '12px', letterSpacing: '3px', fontWeight: 'bold', marginBottom: '30px' }}>{selectedTrack.hz}</p>
         
-        <p style={{ fontSize: '12px', color: '#fdfcf5', opacity: 0.7, maxWidth: '280px', lineHeight: '1.4', marginBottom: '35px' }}>"{selectedTrack.desc}"</p>
+        <p style={{ fontSize: '13px', color: '#fdfcf5', opacity: 0.7, maxWidth: '300px', lineHeight: '1.5', marginBottom: '45px' }}>"{selectedTrack.desc}"</p>
         
-        <div style={{ display: 'flex', gap: '10px', marginBottom: '40px' }}>
+        <div style={{ display: 'flex', gap: '15px', marginBottom: '45px' }}>
           {[15, 30, 60, '∞'].map((time) => (
-            <button key={time} onClick={() => setSelectedTime(time)} className="time-button" style={{ width: '55px', padding: '8px 0', border: `1px solid ${selectedTime === time ? accentColor : 'rgba(255,255,255,0.1)'}`, background: selectedTime === time ? `${accentColor}22` : 'none', color: 'white', fontSize: '11px' }}>{time === '∞' ? time : `${time}'`}</button>
+            <button key={time} onClick={() => setSelectedTime(time)} className="time-button" style={{ width: '60px', padding: '10px 0', border: `1px solid ${selectedTime === time ? accentColor : 'rgba(255,255,255,0.1)'}`, background: selectedTime === time ? `${accentColor}22` : 'none', color: 'white', fontSize: '12px' }}>{time === '∞' ? time : `${time}'`}</button>
           ))}
         </div>
-        <button onClick={() => setIsPlaying(!isPlaying)} style={{ width: '75px', height: '75px', borderRadius: '50%', border: `1px solid ${accentColor}`, background: isPlaying ? `${accentColor}11` : 'none', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-          <span style={{ fontSize: '24px', color: 'white' }}>{isPlaying ? '||' : '▶'}</span>
+        
+        <button onClick={() => setIsPlaying(!isPlaying)} style={{ width: '80px', height: '80px', borderRadius: '50%', border: `1px solid ${accentColor}`, background: isPlaying ? `${accentColor}11` : 'none', display: 'flex', alignItems: 'center', justifyContent: 'center', marginTop: '10px' }}>
+          <span style={{ fontSize: '26px', color: 'white' }}>{isPlaying ? '||' : '▶'}</span>
         </button>
       </div>
     );
   }
 
-  // --- PANTALLA DE LISTA ---
+  // --- LISTA ---
   return (
     <div className="fade-in" style={{ backgroundColor: '#020617', minHeight: '100vh', color: 'white', padding: '15px', fontFamily: 'sans-serif' }}>
       <style>{inlineStyles}</style>
-      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '5px' }}>
+      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '10px' }}>
         <img src="/imagenes/genora-logo-white.png" style={{ height: '140px', width: 'auto', marginLeft: '-10px' }} alt="Logo" />
         <div style={{ fontSize: '11px', letterSpacing: '2px', color: accentColor, fontWeight: 'bold', border: `1px solid ${accentColor}33`, padding: '4px 12px', borderRadius: '20px' }}>ES | EN</div>
       </div>
@@ -96,8 +98,7 @@ const App = () => {
           <img src="/imagenes/adn-icon.png" style={{ width: '130%', height: '130%', objectFit: 'cover', borderRadius: '50%', filter: `drop-shadow(0 0 15px ${accentColor}) drop-shadow(0 0 40px ${accentColor}88)` }} alt="ADN" />
         </div>
         
-        {/* BUSCADOR: BAJADO A LA ALTURA DE LA "LÍNEA AMARILLA" */}
-        <div style={{ width: '100%', display: 'flex', justifyContent: 'center', marginTop: '40px', marginBottom: '65px' }}>
+        <div style={{ width: '100%', display: 'flex', justifyContent: 'center', marginTop: '30px', marginBottom: '60px' }}>
           <input type="text" placeholder="BUSCAR..." value={searchTerm} onChange={(e) => setSearchTerm(e.target.value)} style={{ width: '90%', maxWidth: '400px', background: 'rgba(255,255,255,0.03)', border: '1px solid rgba(255,255,255,0.1)', borderRadius: '25px', padding: '12px 20px', color: 'white', fontSize: '12px', textAlign: 'center', letterSpacing: '3px', outline: 'none' }} />
         </div>
 
