@@ -48,25 +48,24 @@ const App = () => {
     );
   }
 
-  // --- REPRODUCTOR (AJUSTADO) ---
   if (selectedTrack) {
     return (
       <div className="fade-in" style={{ backgroundColor: '#020617', minHeight: '100vh', color: 'white', padding: '15px', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', textAlign: 'center', position: 'relative' }}>
         <style>{inlineStyles}</style>
         <button onClick={() => { setSelectedTrack(null); setIsPlaying(false); }} style={{ position: 'absolute', top: '25px', left: '25px', background: 'none', border: 'none', color: 'white', fontSize: '24px', opacity: 0.4 }}>✕</button>
         
-        {/* TÍTULO SUBIDO (Más espacio arriba) */}
-        <p style={{ fontSize: '9px', letterSpacing: '3px', color: '#fdfcf5', opacity: 0.6, marginBottom: '35px', textTransform: 'uppercase', marginTop: '-20px' }}>
+        {/* TÍTULO BIEN ARRIBA */}
+        <p style={{ fontSize: '9px', letterSpacing: '3px', color: '#fdfcf5', opacity: 0.6, marginBottom: '50px', textTransform: 'uppercase', marginTop: '-45px' }}>
           Resonancia Origen • Álbum Alpha 1
         </p>
 
-        <div style={{ position: 'relative', width: '170px', height: '170px', marginBottom: '30px', borderRadius: '50%', border: `4px solid #001a33`, display: 'flex', alignItems: 'center', justifyContent: 'center', backgroundColor: '#020617', boxShadow: `0 0 40px ${accentColor}33`, animation: isPlaying ? 'breathe 4s infinite ease-in-out' : 'none' }}>
+        <div style={{ position: 'relative', width: '170px', height: '170px', marginBottom: '35px', borderRadius: '50%', border: `4px solid #001a33`, display: 'flex', alignItems: 'center', justifyContent: 'center', backgroundColor: '#020617', boxShadow: `0 0 40px ${accentColor}33`, animation: isPlaying ? 'breathe 4s infinite ease-in-out' : 'none' }}>
           <img src="/imagenes/adn-icon.png" style={{ width: '130%', height: '130%', objectFit: 'cover', borderRadius: '50%', filter: `drop-shadow(0 0 12px ${accentColor}) drop-shadow(0 0 35px ${accentColor}88)` }} alt="ADN" />
         </div>
 
-        {/* TÍTULO Y HZ CERCANOS */}
-        <h2 style={{ fontSize: '22px', fontWeight: '200', letterSpacing: '4px', textTransform: 'uppercase', marginBottom: '2px' }}>{selectedTrack.name}</h2>
-        <p style={{ color: accentColor, fontSize: '11px', letterSpacing: '3px', fontWeight: 'bold', marginBottom: '20px' }}>{selectedTrack.hz}</p>
+        {/* ESPACIADO MILIMÉTRICO */}
+        <h2 style={{ fontSize: '22px', fontWeight: '200', letterSpacing: '4px', textTransform: 'uppercase', marginBottom: '6px' }}>{selectedTrack.name}</h2>
+        <p style={{ color: accentColor, fontSize: '11px', letterSpacing: '3px', fontWeight: 'bold', marginBottom: '25px' }}>{selectedTrack.hz}</p>
         
         <p style={{ fontSize: '12px', color: '#fdfcf5', opacity: 0.7, maxWidth: '280px', lineHeight: '1.4', marginBottom: '35px' }}>"{selectedTrack.desc}"</p>
         
@@ -82,7 +81,6 @@ const App = () => {
     );
   }
 
-  // --- LISTA (AJUSTADA) ---
   return (
     <div className="fade-in" style={{ backgroundColor: '#020617', minHeight: '100vh', color: 'white', padding: '15px', fontFamily: 'sans-serif' }}>
       <style>{inlineStyles}</style>
@@ -96,12 +94,12 @@ const App = () => {
           <img src="/imagenes/adn-icon.png" style={{ width: '130%', height: '130%', objectFit: 'cover', borderRadius: '50%', filter: `drop-shadow(0 0 15px ${accentColor}) drop-shadow(0 0 40px ${accentColor}88)` }} alt="ADN" />
         </div>
         
-        {/* BUSCADOR CENTRADO Y CON ESPACIO */}
-        <div style={{ width: '100%', display: 'flex', justifyContent: 'center', marginBottom: '45px' }}>
+        {/* BUSCADOR BAJADO (Margen de 60px para que no suba) */}
+        <div style={{ width: '100%', display: 'flex', justifyContent: 'center', marginTop: '20px', marginBottom: '50px' }}>
           <input type="text" placeholder="BUSCAR..." value={searchTerm} onChange={(e) => setSearchTerm(e.target.value)} style={{ width: '90%', maxWidth: '400px', background: 'rgba(255,255,255,0.03)', border: '1px solid rgba(255,255,255,0.1)', borderRadius: '25px', padding: '12px 20px', color: 'white', fontSize: '12px', textAlign: 'center', letterSpacing: '3px', outline: 'none' }} />
         </div>
 
-        <div style={{ display: 'flex', gap: '30px', marginBottom: '35px' }}>
+        <div style={{ display: 'flex', gap: '30px', marginBottom: '30px' }}>
           <span onClick={() => setActiveTab('frecuencias')} style={{ cursor: 'pointer', fontSize: '12px', letterSpacing: '2px', color: activeTab === 'frecuencias' ? '#22d3ee' : '#444', borderBottom: activeTab === 'frecuencias' ? '2px solid #22d3ee' : 'none', paddingBottom: '6px', textTransform: 'uppercase' }}>Frecuencias</span>
           <span onClick={() => setActiveTab('meditaciones')} style={{ cursor: 'pointer', fontSize: '12px', letterSpacing: '2px', color: activeTab === 'meditaciones' ? '#a855f7' : '#444', borderBottom: activeTab === 'meditaciones' ? '2px solid #a855f7' : 'none', paddingBottom: '6px', textTransform: 'uppercase' }}>Meditaciones</span>
         </div>
@@ -110,7 +108,7 @@ const App = () => {
           {tracks.filter(t => t.type === activeTab && t.name.toLowerCase().includes(searchTerm.toLowerCase())).map(track => (
             <div key={track.id} onClick={() => setSelectedTrack(track)} className="frecuencia-card" style={{ padding: '16px 8px', borderRadius: '40px', border: `1px solid ${accentColor}33`, background: 'rgba(255,255,255,0.02)', textAlign: 'center', cursor: 'pointer' }}>
               <div style={{ fontSize: '13px', fontWeight: '300', color: 'white' }}>{track.name}</div>
-              <div style={{ fontSize: '9px', color: accentColor, marginTop: '6px', fontWeight: 'bold' }}>{track.hz}</div>
+              <div style={{ fontSize: '9px', color: accentColor, marginTop: '8px', fontWeight: 'bold' }}>{track.hz}</div>
             </div>
           ))}
         </div>
