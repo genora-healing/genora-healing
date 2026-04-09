@@ -48,23 +48,24 @@ const App = () => {
     );
   }
 
+  // --- REPRODUCTOR (REPRODUCTOR CON AJUSTES DE ALTURA) ---
   if (selectedTrack) {
     return (
       <div className="fade-in" style={{ backgroundColor: '#020617', minHeight: '100vh', color: 'white', padding: '15px', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', textAlign: 'center', position: 'relative' }}>
         <style>{inlineStyles}</style>
         <button onClick={() => { setSelectedTrack(null); setIsPlaying(false); }} style={{ position: 'absolute', top: '25px', left: '25px', background: 'none', border: 'none', color: 'white', fontSize: '24px', opacity: 0.4 }}>✕</button>
         
-        {/* TÍTULO BIEN ARRIBA */}
-        <p style={{ fontSize: '9px', letterSpacing: '3px', color: '#fdfcf5', opacity: 0.6, marginBottom: '50px', textTransform: 'uppercase', marginTop: '-45px' }}>
+        {/* TÍTULO: SUBIDO "DOS PUESTOS MÁS" */}
+        <p style={{ fontSize: '9px', letterSpacing: '3px', color: '#fdfcf5', opacity: 0.6, marginBottom: '60px', textTransform: 'uppercase', marginTop: '-65px' }}>
           Resonancia Origen • Álbum Alpha 1
         </p>
 
-        <div style={{ position: 'relative', width: '170px', height: '170px', marginBottom: '35px', borderRadius: '50%', border: `4px solid #001a33`, display: 'flex', alignItems: 'center', justifyContent: 'center', backgroundColor: '#020617', boxShadow: `0 0 40px ${accentColor}33`, animation: isPlaying ? 'breathe 4s infinite ease-in-out' : 'none' }}>
+        <div style={{ position: 'relative', width: '170px', height: '170px', marginBottom: '45px', borderRadius: '50%', border: `4px solid #001a33`, display: 'flex', alignItems: 'center', justifyContent: 'center', backgroundColor: '#020617', boxShadow: `0 0 40px ${accentColor}33`, animation: isPlaying ? 'breathe 4s infinite ease-in-out' : 'none' }}>
           <img src="/imagenes/adn-icon.png" style={{ width: '130%', height: '130%', objectFit: 'cover', borderRadius: '50%', filter: `drop-shadow(0 0 12px ${accentColor}) drop-shadow(0 0 35px ${accentColor}88)` }} alt="ADN" />
         </div>
 
-        {/* ESPACIADO MILIMÉTRICO */}
-        <h2 style={{ fontSize: '22px', fontWeight: '200', letterSpacing: '4px', textTransform: 'uppercase', marginBottom: '6px' }}>{selectedTrack.name}</h2>
+        {/* NOMBRE DE FRECUENCIA: BAJADO UN POQUITÍN */}
+        <h2 style={{ fontSize: '22px', fontWeight: '200', letterSpacing: '4px', textTransform: 'uppercase', marginBottom: '8px' }}>{selectedTrack.name}</h2>
         <p style={{ color: accentColor, fontSize: '11px', letterSpacing: '3px', fontWeight: 'bold', marginBottom: '25px' }}>{selectedTrack.hz}</p>
         
         <p style={{ fontSize: '12px', color: '#fdfcf5', opacity: 0.7, maxWidth: '280px', lineHeight: '1.4', marginBottom: '35px' }}>"{selectedTrack.desc}"</p>
@@ -81,6 +82,7 @@ const App = () => {
     );
   }
 
+  // --- PANTALLA DE LISTA ---
   return (
     <div className="fade-in" style={{ backgroundColor: '#020617', minHeight: '100vh', color: 'white', padding: '15px', fontFamily: 'sans-serif' }}>
       <style>{inlineStyles}</style>
@@ -94,8 +96,8 @@ const App = () => {
           <img src="/imagenes/adn-icon.png" style={{ width: '130%', height: '130%', objectFit: 'cover', borderRadius: '50%', filter: `drop-shadow(0 0 15px ${accentColor}) drop-shadow(0 0 40px ${accentColor}88)` }} alt="ADN" />
         </div>
         
-        {/* BUSCADOR BAJADO (Margen de 60px para que no suba) */}
-        <div style={{ width: '100%', display: 'flex', justifyContent: 'center', marginTop: '20px', marginBottom: '50px' }}>
+        {/* BUSCADOR: BAJADO A LA ALTURA DE LA "LÍNEA AMARILLA" */}
+        <div style={{ width: '100%', display: 'flex', justifyContent: 'center', marginTop: '40px', marginBottom: '65px' }}>
           <input type="text" placeholder="BUSCAR..." value={searchTerm} onChange={(e) => setSearchTerm(e.target.value)} style={{ width: '90%', maxWidth: '400px', background: 'rgba(255,255,255,0.03)', border: '1px solid rgba(255,255,255,0.1)', borderRadius: '25px', padding: '12px 20px', color: 'white', fontSize: '12px', textAlign: 'center', letterSpacing: '3px', outline: 'none' }} />
         </div>
 
