@@ -3,15 +3,10 @@ import React, { useState, useEffect } from 'react';
 const inlineStyles = `
   @keyframes breathe {
     0%, 100% { transform: scale(1); opacity: 0.95; }
-    50% { transform: scale(1.03); opacity: 1; }
+    50% { transform: scale(1.05); opacity: 1; }
   }
   .frecuencia-card {
     transition: all 0.3s ease-in-out;
-  }
-  .search-input::placeholder {
-    color: rgba(255,255,255,0.2);
-    letter-spacing: 2px;
-    text-align: center;
   }
 `;
 
@@ -37,7 +32,7 @@ const App = () => {
 
   if (showSplash) {
     return (
-      <div style={{ backgroundColor: '#020617', minHeight: '100vh', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', padding: '20px', textAlign: 'center' }}>
+      <div style={{ backgroundColor: '#020617', minHeight: '100vh', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', textAlign: 'center' }}>
         <style>{inlineStyles}</style>
         <img src="/imagenes/genora-logo-white.png" style={{ width: '200px', maxWidth: '80%', animation: 'breathe 3s infinite ease-in-out' }} alt="Logo" />
         <h1 style={{ fontSize: '18px', fontWeight: '300', letterSpacing: '4px', color: '#22d3ee', textTransform: 'uppercase', marginTop: '30px' }}>RESONANCIA ORIGEN</h1>
@@ -46,9 +41,7 @@ const App = () => {
     );
   }
 
-  // 💎 DEFINICIÓN DE COLOR DINÁMICO
   const accentColor = activeTab === 'frecuencias' ? '#22d3ee' : '#a855f7';
-
   const filteredTracks = tracks
     .filter(t => t.type === activeTab)
     .filter(t => t.name.toLowerCase().includes(searchTerm.toLowerCase()));
@@ -57,32 +50,37 @@ const App = () => {
     <div style={{ backgroundColor: '#020617', minHeight: '100vh', color: 'white', padding: '15px', fontFamily: 'sans-serif', overflowX: 'hidden' }}>
       <style>{inlineStyles}</style>
       
-      {/* HEADER: LOGO 160px */}
+      {/* HEADER LOGO 160px */}
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '5px' }}>
-        <img src="/imagenes/genora-logo-white.png" style={{ height: '160px', width: 'auto', marginLeft: '-10px' }} alt="Logo Header" />
+        <img src="/imagenes/genora-logo-white.png" style={{ height: '160px', width: 'auto', marginLeft: '-10px' }} alt="Logo" />
         <div style={{ fontSize: '11px', letterSpacing: '2px', color: accentColor, fontWeight: 'bold', border: `1px solid ${accentColor}33`, padding: '4px 12px', borderRadius: '20px' }}>ES | EN</div>
       </div>
 
       <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
         
-        {/* ADN: RESPLANDOR DINÁMICO (Cambia según la pestaña) */}
+        {/* 🧱 ADN CON RESPLANDOR INTERNO ACTIVADO (drop-shadow) */}
         <div style={{ 
           position: 'relative', width: '170px', height: '170px', marginBottom: '75px', 
-          borderRadius: '50%', border: '4px solid #001a33', display: 'flex', 
-          alignItems: 'center', justifyContent: 'center', backgroundColor: '#020617', 
-          // 💎 EL RESPLANDOR AHORA USA accentColor PARA SER MORADO EN MEDITACIONES
-          boxShadow: `
-            0 0 60px ${accentColor}, 
-            0 0 150px ${accentColor}88, 
-            0 0 250px ${accentColor}44, 
-            0 0 400px ${accentColor}22
-          `,
-          animation: 'breathe 4s infinite ease-in-out'
+          borderRadius: '50%', border: `4px solid #001a33`, display: 'flex', 
+          alignItems: 'center', justifyContent: 'center', backgroundColor: '#020617',
+          animation: 'breathe 4s infinite ease-in-out',
+          boxShadow: `0 0 40px ${accentColor}33` // Un suave toque exterior para suavizar
         }}>
-          <img src="/imagenes/adn-icon.png" style={{ width: '130%', height: '130%', objectFit: 'cover', borderRadius: '50%' }} alt="ADN" />
+          <img 
+            src="/imagenes/adn-icon.png" 
+            style={{ 
+              width: '130%', 
+              height: '130%', 
+              objectFit: 'cover', 
+              borderRadius: '50%',
+              // 💡 EL TRUCO: Resplandor directo sobre la imagen
+              filter: `drop-shadow(0 0 15px ${accentColor}) drop-shadow(0 0 30px ${accentColor}88)`
+            }} 
+            alt="ADN Radiante" 
+          />
         </div>
 
-        {/* BUSCADOR: CENTRADO FORZADO */}
+        {/* BUSCADOR CENTRADO */}
         <div style={{ width: '100%', marginBottom: '45px', display: 'flex', justifyContent: 'center' }}>
           <input 
             type="text" 
@@ -90,10 +88,9 @@ const App = () => {
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
             style={{ 
-              width: '90%', maxWidth: '400px', 
-              background: 'rgba(255,255,255,0.03)', border: '1px solid rgba(255,255,255,0.1)', 
-              borderRadius: '25px', padding: '12px 20px', color: 'white', fontSize: '12px', outline: 'none',
-              textAlign: 'center', letterSpacing: '3px'
+              width: '90%', maxWidth: '400px', background: 'rgba(255,255,255,0.03)', 
+              border: '1px solid rgba(255,255,255,0.1)', borderRadius: '25px', 
+              padding: '12px 20px', color: 'white', fontSize: '12px', textAlign: 'center', letterSpacing: '3px'
             }} 
           />
         </div>
@@ -113,9 +110,8 @@ const App = () => {
                    padding: '16px 8px', borderRadius: '40px', border: `1px solid ${accentColor}33`,
                    background: 'rgba(255,255,255,0.02)', textAlign: 'center', cursor: 'pointer',
                  }}
-                 // Efecto de brillo manual al pasar el mouse
                  onMouseEnter={(e) => {
-                   e.currentTarget.style.boxShadow = `0 0 25px ${accentColor}88`;
+                   e.currentTarget.style.boxShadow = `0 0 20px ${accentColor}66`;
                    e.currentTarget.style.borderColor = accentColor;
                  }}
                  onMouseLeave={(e) => {
