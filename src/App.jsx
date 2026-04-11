@@ -10,6 +10,19 @@ const inlineStyles = `
   .frecuencia-card { transition: all 0.3s ease; }
   .time-button { transition: all 0.2s ease; cursor: pointer; border-radius: 40px !important; }
   body, html { overflow-x: hidden; background-color: #020617; margin: 0; padding: 0; }
+  
+  /* Media query para asegurar coherencia en celulares */
+  @media (max-width: 768px) {
+    .genora-title {
+      font-size: 15px !important;
+      letter-spacing: 3px !important;
+    }
+    .genora-subtitle {
+      font-size: 10px !important;
+      letter-spacing: 4px !important;
+      max-width: 90%;
+    }
+  }
 `;
 
 const App = () => {
@@ -60,16 +73,16 @@ const App = () => {
 
   const accentColor = activeTab === 'frecuencias' ? '#22d3ee' : '#a855f7';
 
-  // --- RESTAURACIÓN DE LA PORTADA GENORA EQUILIBRADA (Paso 2.1 - Intento 3) ---
+  // --- RESTAURACIÓN DE LA PORTADA GENORA ESTABILIZADA PARA MÓVIL (Paso 2.1.1) ---
   if (showSplash) {
     return (
       <div className="fade-in-smooth" style={{ backgroundColor: '#020617', minHeight: '100vh', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', textAlign: 'center', padding: '20px' }}>
         <style>{inlineStyles}</style>
         <img src="/imagenes/genora-logo-white.png" style={{ width: '200px', maxWidth: '80%', animation: 'breathe 3s infinite ease-in-out' }} alt="Logo" />
         
-        {/* TÍTULO POTENTE (RESONANCIA ORIGEN) */}
-        <h1 style={{ 
-          fontSize: '18px', // Mantenemos el tamaño que está muy bien
+        {/* TÍTULO POTENTE Y ESTABILIZADO (genora-title) */}
+        <h1 className="genora-title" style={{ 
+          fontSize: '15px', // Reducción de 18px a 15px para coherencia móvil
           fontWeight: '300', 
           letterSpacing: '4px', // Espaciado elegante y centrado
           color: '#22d3ee', 
@@ -80,15 +93,17 @@ const App = () => {
           RESONANCIA ORIGEN
         </h1>
         
-        {/* SUBTÍTULO MÍSTICO Y EQUILIBRADO (Paso 2.1 - Intento 3) */}
-        <p style={{ 
-          fontSize: '11px', // Tamaño más pequeño y elegante
+        {/* SUBTÍTULO MÍSTICO Y ESTABILIZADO (genora-subtitle) */}
+        <p className="genora-subtitle" style={{ 
+          fontSize: '10px', // Reducción de 11px a 10px para finura
           fontWeight: '200', // Súper fino
-          letterSpacing: '4px', // Mismo espaciado elegante que el título
+          letterSpacing: '4px', // Espaciado suave y equilibrado
           color: '#fdfcf5', 
           opacity: 0.6, // Transparencia mística
           marginTop: '5px', // Coherencia visual pegada
-          textTransform: 'uppercase'
+          textTransform: 'uppercase',
+          maxWidth: '90%', // Asegura márgenes limpios en móvil
+          margin: '5px auto 0 auto' // Centrado absoluto
         }}>
           ACTIVANDO TU CONSCIENCIA GENÉTICA
         </p>
