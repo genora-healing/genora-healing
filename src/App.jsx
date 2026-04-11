@@ -1,20 +1,35 @@
 import React, { useState, useEffect, useRef } from 'react';
 
 const inlineStyles = `
-  @keyframes breathe {
-    0%, 100% { transform: scale(1); opacity: 0.95; }
-    50% { transform: scale(1.02); opacity: 1; }
+  @keyframes latido-genora {
+    0%, 100% { 
+      transform: scale(1); 
+      box-shadow: 0 0 40px rgba(34, 211, 238, 0.2); 
+    }
+    50% { 
+      transform: scale(1.02); 
+      box-shadow: 0 0 70px rgba(34, 211, 238, 0.5); 
+    }
   }
   .fade-in-smooth { animation: fadeIn 0.8s ease-in forwards; }
   @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+  
   .frecuencia-card { transition: all 0.3s ease; }
   .time-button { transition: all 0.2s ease; cursor: pointer; border-radius: 40px !important; }
   body, html { overflow-x: hidden; background-color: #020617; margin: 0; padding: 0; }
   
-  /* Efecto de aro azul profundo para el reproductor */
-  .glow-circle {
-    box-shadow: 0 0 60px rgba(34, 211, 238, 0.4);
-    border: 1px solid rgba(34, 211, 238, 0.3);
+  .circulo-central {
+    background-color: #000;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    /* Sin bordes extra, solo la sombra que le da vida */
+  }
+
+  .activo-respirando {
+    animation: latido-genora 4s infinite ease-in-out;
   }
 `;
 
@@ -25,7 +40,6 @@ const App = () => {
   const [selectedTrack, setSelectedTrack] = useState(null);
   const [isPlaying, setIsPlaying] = useState(false);
   const [selectedTime, setSelectedTime] = useState(null);
-  const [adnLoaded, setAdnLoaded] = useState(false); 
   
   const audioRef = useRef(null);
   const timerRef = useRef(null);
@@ -65,7 +79,7 @@ const App = () => {
     return (
       <div className="fade-in-smooth" style={{ backgroundColor: '#020617', minHeight: '100vh', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', textAlign: 'center', padding: '20px' }}>
         <style>{inlineStyles}</style>
-        <img src="/imagenes/genora-logo-white.png" style={{ width: '200px', maxWidth: '80%', animation: 'breathe 3s infinite ease-in-out' }} alt="Logo" />
+        <img src="/imagenes/genora-logo-white.png" style={{ width: '200px', maxWidth: '80%', animation: 'latido-genora 4s infinite ease-in-out' }} alt="Logo" />
         <h1 style={{ fontSize: '18px', fontWeight: '300', letterSpacing: '4px', color: '#22d3ee', textTransform: 'uppercase', marginTop: '30px', marginBottom: '5px' }}>RESONANCIA ORIGEN</h1>
         <p style={{ fontSize: '10px', fontWeight: '200', letterSpacing: '3px', color: '#fdfcf5', opacity: 0.7, marginTop: '0px', textTransform: 'uppercase' }}>ACTIVANDO TU CONSCIENCIA GENÉTICA</p>
       </div>
@@ -77,16 +91,12 @@ const App = () => {
       <div className="fade-in-smooth" style={{ backgroundColor: '#020617', minHeight: '100vh', color: 'white', padding: '15px', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', textAlign: 'center', position: 'relative' }}>
         <style>{inlineStyles}</style>
         <audio ref={audioRef} src={selectedTrack.url} loop={selectedTime === '∞'} />
-        <button onClick={() => { setSelectedTrack(null); setIsPlaying(false); setAdnLoaded(false); }} style={{ position: 'absolute', top: '25px', left: '25px', background: 'none', border: 'none', color: 'white', fontSize: '24px', opacity: 0.4, cursor: 'pointer' }}>✕</button>
+        <button onClick={() => { setSelectedTrack(null); setIsPlaying(false); }} style={{ position: 'absolute', top: '25px', left: '25px', background: 'none', border: 'none', color: 'white', fontSize: '24px', opacity: 0.4, cursor: 'pointer' }}>✕</button>
         <p style={{ fontSize: '9px', letterSpacing: '3px', color: '#fdfcf5', opacity: 0.6, marginBottom: '60px', textTransform: 'uppercase', marginTop: '-75px' }}>Resonancia Origen • Álbum Alpha 1</p>
         
-        {/* Círculo con Aro Azul Profundo Activado */}
-        <div className="glow-circle" style={{ 
-          position: 'relative', width: '220px', height: '220px', marginBottom: '40px', borderRadius: '50%', 
-          display: 'flex', alignItems: 'center', justifyContent: 'center', backgroundColor: '#000', 
-          animation: isPlaying ? 'breathe 4s infinite ease-in-out' : 'none' 
-        }}>
-          <img src="/imagenes/adn-icon.png" onLoad={() => setAdnLoaded(true)} style={{ width: '130%', height: '130%', objectFit: 'cover', borderRadius: '50%', filter: `drop-shadow(0 0 15px ${accentColor})` }} alt="ADN" />
+        {/* Círculo Negro Reducido y con Latido Limpio */}
+        <div className={`circulo-central ${isPlaying ? 'activo-respirando' : ''}`} style={{ width: '210px', height: '210px', marginBottom: '40px' }}>
+          <img src="/imagenes/adn-icon.png" style={{ width: '120%', height: '120%', objectFit: 'cover', borderRadius: '50%', filter: `drop-shadow(0 0 15px ${accentColor})` }} alt="ADN" />
         </div>
 
         <h2 style={{ fontSize: '24px', fontWeight: '200', letterSpacing: '4px', textTransform: 'uppercase', marginBottom: '4px' }}>{selectedTrack.name}</h2>
@@ -112,8 +122,9 @@ const App = () => {
         <div style={{ fontSize: '11px', letterSpacing: '2px', color: accentColor, fontWeight: 'bold', border: `1px solid ${accentColor}33`, padding: '4px 12px', borderRadius: '20px' }}>ES | EN</div>
       </div>
       <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-        <div className="glow-circle" style={{ position: 'relative', width: '180px', height: '180px', marginBottom: '40px', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', backgroundColor: '#000' }}>
-          <img src="/imagenes/adn-icon.png" onLoad={() => setAdnLoaded(true)} style={{ width: '130%', height: '130%', objectFit: 'cover', borderRadius: '50%', filter: `drop-shadow(0 0 10px ${accentColor})` }} alt="ADN" />
+        {/* Círculo Negro Ajustado en la Lista */}
+        <div className="circulo-central activo-respirando" style={{ width: '160px', height: '160px', marginBottom: '40px' }}>
+          <img src="/imagenes/adn-icon.png" style={{ width: '125%', height: '125%', objectFit: 'cover', borderRadius: '50%', filter: `drop-shadow(0 0 10px ${accentColor})` }} alt="ADN" />
         </div>
         <div style={{ width: '100%', display: 'flex', justifyContent: 'center', marginTop: '30px', marginBottom: '70px' }}>
           <input type="text" placeholder="BUSCAR..." value={searchTerm} onChange={(e) => setSearchTerm(e.target.value)} style={{ width: '90%', maxWidth: '400px', background: 'rgba(255,255,255,0.03)', border: '1px solid rgba(255,255,255,0.1)', borderRadius: '25px', padding: '12px 20px', color: 'white', fontSize: '12px', textAlign: 'center', letterSpacing: '3px', outline: 'none', margin: '0 auto', display: 'block' }} />
