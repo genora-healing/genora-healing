@@ -29,7 +29,7 @@ const App = () => {
     return () => clearTimeout(timer);
   }, []);
 
-  // Lógica de Reproducción y Temporizador (Nivel 1 Blindado)
+  // Lógica de Reproducción y Temporizador
   useEffect(() => {
     if (audioRef.current) {
       if (isPlaying) {
@@ -48,7 +48,6 @@ const App = () => {
     }
   }, [isPlaying, selectedTrack, selectedTime]);
 
-  // Lista de frecuencias sincronizadas con tu Git public/audio/
   const tracks = [
     { id: "01", name: "Alpha Integración", hz: "8 – 10 Hz", type: "frecuencias", desc: "Sincroniza los hemisferios cerebrales.", url: "/audio/alpha-integration.mp3" },
     { id: "02", name: "Alpha Creator", hz: "8 – 12 Hz", type: "frecuencias", desc: "Activa el estado de flujo creativo.", url: "/audio/alpha-creator.mp3" },
@@ -61,7 +60,7 @@ const App = () => {
 
   const accentColor = activeTab === 'frecuencias' ? '#22d3ee' : '#a855f7';
 
-  // --- RESTAURACIÓN DE LA PORTADA GENORA MÍSTICA (Paso 2.1) ---
+  // --- RESTAURACIÓN DE LA PORTADA GENORA EQUILIBRADA (Paso 2.1 - Intento 3) ---
   if (showSplash) {
     return (
       <div className="fade-in-smooth" style={{ backgroundColor: '#020617', minHeight: '100vh', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', textAlign: 'center', padding: '20px' }}>
@@ -69,18 +68,27 @@ const App = () => {
         <img src="/imagenes/genora-logo-white.png" style={{ width: '200px', maxWidth: '80%', animation: 'breathe 3s infinite ease-in-out' }} alt="Logo" />
         
         {/* TÍTULO POTENTE (RESONANCIA ORIGEN) */}
-        <h1 style={{ fontSize: '18px', fontWeight: '300', letterSpacing: '4px', color: '#22d3ee', textTransform: 'uppercase', marginTop: '30px' }}>
+        <h1 style={{ 
+          fontSize: '18px', // Mantenemos el tamaño que está muy bien
+          fontWeight: '300', 
+          letterSpacing: '4px', // Espaciado elegante y centrado
+          color: '#22d3ee', 
+          textTransform: 'uppercase', 
+          marginTop: '30px',
+          marginBottom: '5px' // Separación sutil
+        }}>
           RESONANCIA ORIGEN
         </h1>
         
-        {/* SUBTÍTULO ETÉREO (Paso 2.1 - REDUCIDO Y FINO COMO EL ORIGINAL) */}
+        {/* SUBTÍTULO MÍSTICO Y EQUILIBRADO (Paso 2.1 - Intento 3) */}
         <p style={{ 
-          fontSize: '9px', // Micro-ajuste de tamaño
+          fontSize: '11px', // Tamaño más pequeño y elegante
           fontWeight: '200', // Súper fino
-          letterSpacing: '2px', // Espaciado místico
+          letterSpacing: '4px', // Mismo espaciado elegante que el título
           color: '#fdfcf5', 
-          opacity: 0.7, 
-          marginTop: '10px' 
+          opacity: 0.6, // Transparencia mística
+          marginTop: '5px', // Coherencia visual pegada
+          textTransform: 'uppercase'
         }}>
           ACTIVANDO TU CONSCIENCIA GENÉTICA
         </p>
