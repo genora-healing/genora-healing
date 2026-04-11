@@ -11,11 +11,11 @@ const inlineStyles = `
   @keyframes latido-frecuencia {
     0%, 100% { 
       transform: scale(1); 
-      box-shadow: 0 0 40px rgba(34, 211, 238, 0.25); 
+      box-shadow: 0 0 50px rgba(34, 211, 238, 0.3); /* Base sutil */
     }
     50% { 
       transform: scale(1.03); 
-      box-shadow: 0 0 80px rgba(34, 211, 238, 0.65); /* Aumentamos la potencia del glow */
+      box-shadow: 0 0 100px rgba(34, 211, 238, 0.7); /* Expansión máxima exterior */
     }
   }
 
@@ -69,7 +69,7 @@ const App = () => {
 
   const accentColor = activeTab === 'frecuencias' ? '#22d3ee' : '#a855f7';
 
-  // --- PANTALLA 1: SPLASH (INTOCABLE / BLINDADA) ---
+  // --- PANTALLA 1: SPLASH (BLINDADA) ---
   if (showSplash) {
     return (
       <div className="fade-in-smooth" style={{ backgroundColor: '#020617', minHeight: '100vh', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', textAlign: 'center', padding: '20px' }}>
@@ -81,7 +81,7 @@ const App = () => {
     );
   }
 
-  // --- PANTALLA 2: REPRODUCTOR (REDUCCIÓN DEL CÍRCULO NEGRO A 210px / PULSO MAJESTUOSO) ---
+  // --- PANTALLA 2: REPRODUCTOR (210px / ADN EXPANSIVO PASO 2.2.1) ---
   if (selectedTrack) {
     return (
       <div className="fade-in-smooth" style={{ backgroundColor: '#020617', minHeight: '100vh', color: 'white', padding: '15px', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', textAlign: 'center', position: 'relative' }}>
@@ -90,15 +90,20 @@ const App = () => {
         <button onClick={() => { setSelectedTrack(null); setIsPlaying(false); }} style={{ position: 'absolute', top: '25px', left: '25px', background: 'none', border: 'none', color: 'white', fontSize: '24px', opacity: 0.4, cursor: 'pointer' }}>✕</button>
         <p style={{ fontSize: '9px', letterSpacing: '3px', color: '#fdfcf5', opacity: 0.6, marginBottom: '60px', textTransform: 'uppercase', marginTop: '-75px' }}>Resonancia Origen • Álbum Alpha 1</p>
         
-        {/* Círculo Negro Reducido a 210px para dar vida al resplandor */}
+        {/* Círculo Negro Perfecto a 210px */}
         <div style={{ 
           width: '210px', height: '210px', backgroundColor: '#000', borderRadius: '50%', 
           display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '40px',
           animation: isPlaying ? 'latido-frecuencia 4s infinite ease-in-out' : 'none',
-          boxShadow: '0 0 40px rgba(34, 211, 238, 0.25)',
+          boxShadow: '0 0 50px rgba(34, 211, 238, 0.3)', /* Sombra base exterior */
           transition: 'all 0.5s ease'
         }}>
-          <img src="/imagenes/adn-icon.png" style={{ width: '120%', height: '120%', objectFit: 'cover', borderRadius: '50%', filter: `drop-shadow(0 0 15px ${accentColor})` }} alt="ADN" />
+          {/* ADN EXPANSIVO: Aumentamos el resplandor nuclear */}
+          <img src="/imagenes/adn-icon.png" style={{ 
+            width: '120%', height: '120%', objectFit: 'cover', borderRadius: '50%', 
+            /* MICRO-AJUSTE: Triplicamos la potencia y radio del drop-shadow nucleico */
+            filter: `drop-shadow(0 0 45px ${accentColor}) drop-shadow(0 0 15px ${accentColor})` 
+          }} alt="ADN" />
         </div>
 
         <h2 style={{ fontSize: '24px', fontWeight: '200', letterSpacing: '4px', textTransform: 'uppercase', marginBottom: '4px' }}>{selectedTrack.name}</h2>
@@ -125,7 +130,6 @@ const App = () => {
         <div style={{ fontSize: '11px', letterSpacing: '2px', color: accentColor, fontWeight: 'bold', border: `1px solid ${accentColor}33`, padding: '4px 12px', borderRadius: '20px' }}>ES | EN</div>
       </div>
       <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-        {/* Círculo Negro Ajustado en la Lista (160px) */}
         <div style={{ width: '160px', height: '160px', backgroundColor: '#000', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '40px', animation: 'latido-frecuencia 6s infinite ease-in-out' }}>
           <img src="/imagenes/adn-icon.png" style={{ width: '125%', height: '125%', objectFit: 'cover', borderRadius: '50%', filter: `drop-shadow(0 0 10px ${accentColor})` }} alt="ADN" />
         </div>
