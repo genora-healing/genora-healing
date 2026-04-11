@@ -6,21 +6,21 @@ const inlineStyles = `
     50% { transform: scale(1.05); opacity: 1; }
   }
   
-  /* RECONSTRUCCIÓN DEL AURA EXPANSIVA PASO 2.2.4 */
-  @keyframes latido-frecuencia {
+  /* EL LATIDO DE LA IMAGEN 2: CAPAS DE LUZ EXPANSIVAS */
+  @keyframes aura-expansiva {
     0%, 100% { 
       transform: scale(1); 
       box-shadow: 
-        0 0 60px rgba(34, 211, 238, 0.4),
-        0 0 120px rgba(34, 211, 238, 0.2); 
+        0 0 100px rgba(34, 211, 238, 0.4),
+        0 0 200px rgba(34, 211, 238, 0.2); 
     }
     50% { 
-      transform: scale(1.02); 
-      /* EXPANSIÓN REAL: Capas de luz para que se note el radio de 350px */
+      transform: scale(1.03); 
+      /* EXPANSIÓN TOTAL: Tres capas para crear el efecto de nube de la imagen 2 */
       box-shadow: 
-        0 0 40px rgba(34, 211, 238, 0.8), 
-        0 0 150px rgba(34, 211, 238, 0.4),
-        0 0 350px rgba(34, 211, 238, 0.3); /* Esta es la nube que viste en la imagen 2 */
+        0 0 80px rgba(34, 211, 238, 0.8), 
+        0 0 250px rgba(34, 211, 238, 0.5),
+        0 0 450px rgba(34, 211, 238, 0.3); 
     }
   }
 
@@ -50,7 +50,7 @@ const App = () => {
   useEffect(() => {
     if (audioRef.current) {
       if (isPlaying) {
-        audioRef.current.play().catch(e => console.log("Sintonizando..."));
+        audioRef.current.play().catch(e => console.log("Frecuencia activa..."));
         if (selectedTime && selectedTime !== '∞') {
           if (timerRef.current) clearTimeout(timerRef.current);
           timerRef.current = setTimeout(() => setIsPlaying(false), selectedTime * 60000);
@@ -92,17 +92,18 @@ const App = () => {
         <button onClick={() => { setSelectedTrack(null); setIsPlaying(false); }} style={{ position: 'absolute', top: '25px', left: '25px', background: 'none', border: 'none', color: 'white', fontSize: '24px', opacity: 0.4, cursor: 'pointer' }}>✕</button>
         <p style={{ fontSize: '9px', letterSpacing: '3px', color: '#fdfcf5', opacity: 0.6, marginBottom: '60px', textTransform: 'uppercase', marginTop: '-75px' }}>Resonancia Origen • Álbum Alpha 1</p>
         
+        {/* Círculo 210px con Aura Expansiva Nivel Imagen 2 */}
         <div style={{ 
           width: '210px', height: '210px', backgroundColor: '#000', borderRadius: '50%', 
           display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '40px',
-          animation: isPlaying ? 'latido-frecuencia 4s infinite ease-in-out' : 'none',
-          boxShadow: '0 0 60px rgba(34, 211, 238, 0.3)',
+          animation: isPlaying ? 'aura-expansiva 4s infinite ease-in-out' : 'none',
+          boxShadow: '0 0 120px rgba(34, 211, 238, 0.3)',
           transition: 'all 0.5s ease',
           position: 'relative', zIndex: 1
         }}>
           <img src="/imagenes/adn-icon.png" style={{ 
             width: '120%', height: '120%', objectFit: 'cover', borderRadius: '50%', 
-            filter: `drop-shadow(0 0 50px ${accentColor})` 
+            filter: `drop-shadow(0 0 40px ${accentColor})` 
           }} alt="ADN" />
         </div>
 
@@ -129,7 +130,7 @@ const App = () => {
         <div style={{ fontSize: '11px', letterSpacing: '2px', color: accentColor, fontWeight: 'bold', border: `1px solid ${accentColor}33`, padding: '4px 12px', borderRadius: '20px' }}>ES | EN</div>
       </div>
       <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-        <div style={{ width: '160px', height: '160px', backgroundColor: '#000', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '40px', animation: 'latido-frecuencia 6s infinite ease-in-out' }}>
+        <div style={{ width: '160px', height: '160px', backgroundColor: '#000', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '40px', animation: 'aura-expansiva 6s infinite ease-in-out' }}>
           <img src="/imagenes/adn-icon.png" style={{ width: '125%', height: '125%', objectFit: 'cover', borderRadius: '50%', filter: `drop-shadow(0 0 10px ${accentColor})` }} alt="ADN" />
         </div>
         <div style={{ width: '100%', display: 'flex', justifyContent: 'center', marginTop: '30px', marginBottom: '70px' }}>
