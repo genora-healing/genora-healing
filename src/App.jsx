@@ -1,26 +1,24 @@
 import React, { useState, useEffect, useRef } from 'react';
 
 const inlineStyles = `
+  /* CAJA FUERTE: ANIMACIONES INDEPENDIENTES */
   @keyframes logo-breathe {
     0%, 100% { transform: scale(1); opacity: 0.95; }
     50% { transform: scale(1.05); opacity: 1; }
   }
   
-  /* EL LATIDO DE LA IMAGEN 2: CAPAS DE LUZ EXPANSIVAS */
-  @keyframes aura-expansiva {
+  @keyframes aura-supernova {
     0%, 100% { 
       transform: scale(1); 
-      box-shadow: 
-        0 0 100px rgba(34, 211, 238, 0.4),
-        0 0 200px rgba(34, 211, 238, 0.2); 
+      box-shadow: 0 0 80px rgba(34, 211, 238, 0.4), 0 0 150px rgba(34, 211, 238, 0.2); 
     }
     50% { 
       transform: scale(1.03); 
-      /* EXPANSIÓN TOTAL: Tres capas para crear el efecto de nube de la imagen 2 */
       box-shadow: 
-        0 0 80px rgba(34, 211, 238, 0.8), 
-        0 0 250px rgba(34, 211, 238, 0.5),
-        0 0 450px rgba(34, 211, 238, 0.3); 
+        0 0 50px rgba(34, 211, 238, 0.9),
+        0 0 120px rgba(34, 211, 238, 0.6),
+        0 0 250px rgba(34, 211, 238, 0.4),
+        0 0 450px rgba(34, 211, 238, 0.2);
     }
   }
 
@@ -73,6 +71,7 @@ const App = () => {
 
   const accentColor = activeTab === 'frecuencias' ? '#22d3ee' : '#a855f7';
 
+  // --- BLOQUE 1: SPLASH (REGLA DE ORO 18px / 10px / TRACKING 3px) ---
   if (showSplash) {
     return (
       <div className="fade-in-smooth" style={{ backgroundColor: '#020617', minHeight: '100vh', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', textAlign: 'center', padding: '20px' }}>
@@ -84,6 +83,7 @@ const App = () => {
     );
   }
 
+  // --- BLOQUE 2: REPRODUCTOR (CÍRCULO 210px / AURA SUPERNOVA) ---
   if (selectedTrack) {
     return (
       <div className="fade-in-smooth" style={{ backgroundColor: '#020617', minHeight: '100vh', color: 'white', padding: '15px', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', textAlign: 'center', position: 'relative' }}>
@@ -91,22 +91,9 @@ const App = () => {
         <audio ref={audioRef} src={selectedTrack.url} loop={selectedTime === '∞'} />
         <button onClick={() => { setSelectedTrack(null); setIsPlaying(false); }} style={{ position: 'absolute', top: '25px', left: '25px', background: 'none', border: 'none', color: 'white', fontSize: '24px', opacity: 0.4, cursor: 'pointer' }}>✕</button>
         <p style={{ fontSize: '9px', letterSpacing: '3px', color: '#fdfcf5', opacity: 0.6, marginBottom: '60px', textTransform: 'uppercase', marginTop: '-75px' }}>Resonancia Origen • Álbum Alpha 1</p>
-        
-        {/* Círculo 210px con Aura Expansiva Nivel Imagen 2 */}
-        <div style={{ 
-          width: '210px', height: '210px', backgroundColor: '#000', borderRadius: '50%', 
-          display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '40px',
-          animation: isPlaying ? 'aura-expansiva 4s infinite ease-in-out' : 'none',
-          boxShadow: '0 0 120px rgba(34, 211, 238, 0.3)',
-          transition: 'all 0.5s ease',
-          position: 'relative', zIndex: 1
-        }}>
-          <img src="/imagenes/adn-icon.png" style={{ 
-            width: '120%', height: '120%', objectFit: 'cover', borderRadius: '50%', 
-            filter: `drop-shadow(0 0 40px ${accentColor})` 
-          }} alt="ADN" />
+        <div style={{ width: '210px', height: '210px', backgroundColor: '#000', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '40px', animation: isPlaying ? 'aura-supernova 4s infinite ease-in-out' : 'none', boxShadow: '0 0 100px rgba(34, 211, 238, 0.3)', transition: 'all 0.5s ease', position: 'relative', zIndex: 1 }}>
+          <img src="/imagenes/adn-icon.png" style={{ width: '120%', height: '120%', objectFit: 'cover', borderRadius: '50%', filter: `drop-shadow(0 0 40px ${accentColor})` }} alt="ADN" />
         </div>
-
         <h2 style={{ fontSize: '24px', fontWeight: '200', letterSpacing: '4px', textTransform: 'uppercase', marginBottom: '4px' }}>{selectedTrack.name}</h2>
         <p style={{ color: accentColor, fontSize: '12px', letterSpacing: '3px', fontWeight: 'bold', marginBottom: '20px' }}>{selectedTrack.hz}</p>
         <p style={{ fontSize: '13px', color: '#fdfcf5', opacity: 0.7, maxWidth: '300px', lineHeight: '1.4', marginBottom: '40px' }}>"{selectedTrack.desc}"</p>
@@ -122,6 +109,7 @@ const App = () => {
     );
   }
 
+  // --- BLOQUE 3: LISTA (BARRA DE BÚSQUEDA EQUILIBRADA) ---
   return (
     <div className="fade-in-smooth" style={{ backgroundColor: '#020617', minHeight: '100vh', color: 'white', padding: '15px', fontFamily: 'sans-serif' }}>
       <style>{inlineStyles}</style>
@@ -130,7 +118,7 @@ const App = () => {
         <div style={{ fontSize: '11px', letterSpacing: '2px', color: accentColor, fontWeight: 'bold', border: `1px solid ${accentColor}33`, padding: '4px 12px', borderRadius: '20px' }}>ES | EN</div>
       </div>
       <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-        <div style={{ width: '160px', height: '160px', backgroundColor: '#000', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '40px', animation: 'aura-expansiva 6s infinite ease-in-out' }}>
+        <div style={{ width: '160px', height: '160px', backgroundColor: '#000', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '40px', animation: 'aura-supernova 6s infinite ease-in-out' }}>
           <img src="/imagenes/adn-icon.png" style={{ width: '125%', height: '125%', objectFit: 'cover', borderRadius: '50%', filter: `drop-shadow(0 0 10px ${accentColor})` }} alt="ADN" />
         </div>
         <div style={{ width: '100%', display: 'flex', justifyContent: 'center', marginTop: '30px', marginBottom: '70px' }}>
