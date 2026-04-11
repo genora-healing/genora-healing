@@ -32,7 +32,7 @@ const App = () => {
   useEffect(() => {
     if (audioRef.current) {
       if (isPlaying) {
-        audioRef.current.play().catch(e => console.log("Audio en espera..."));
+        audioRef.current.play().catch(e => console.log("Sintonizando..."));
         if (selectedTime && selectedTime !== '∞') {
           if (timerRef.current) clearTimeout(timerRef.current);
           timerRef.current = setTimeout(() => setIsPlaying(false), selectedTime * 60000);
@@ -55,13 +55,14 @@ const App = () => {
 
   const accentColor = activeTab === 'frecuencias' ? '#22d3ee' : '#a855f7';
 
+  // --- SPLASH SCREEN: REGLAS DE ORO DE COHERENCIA VISUAL ---
   if (showSplash) {
     return (
       <div className="fade-in-smooth" style={{ backgroundColor: '#020617', minHeight: '100vh', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', textAlign: 'center', padding: '20px' }}>
         <style>{inlineStyles}</style>
         <img src="/imagenes/genora-logo-white.png" style={{ width: '200px', maxWidth: '80%', animation: 'breathe 3s infinite ease-in-out' }} alt="Logo" />
         
-        {/* RESONANCIA ORIGEN: 18px (Inamovible) */}
+        {/* TÍTULO: 18px Inamovible para asegurar jerarquía */}
         <h1 style={{ 
           fontSize: '18px', 
           fontWeight: '300', 
@@ -74,7 +75,7 @@ const App = () => {
           RESONANCIA ORIGEN
         </h1>
         
-        {/* SUBTÍTULO: 10px y Tracking de 3px (Para que expanda sin romper el margen) */}
+        {/* SUBTÍTULO: 10px con Tracking de 3px para expansión móvil perfecta */}
         <p style={{ 
           fontSize: '10px', 
           fontWeight: '200', 
@@ -92,7 +93,7 @@ const App = () => {
     );
   }
 
-  // REPRODUCTOR Y LISTA (Se mantienen sin cambios para no desordenar)
+  // REPRODUCTOR Y LISTA (Sincronizados y estables)
   if (selectedTrack) {
     return (
       <div className="fade-in-smooth" style={{ backgroundColor: '#020617', minHeight: '100vh', color: 'white', padding: '15px', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', textAlign: 'center', position: 'relative' }}>
