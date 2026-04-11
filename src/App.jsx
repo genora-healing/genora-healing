@@ -10,19 +10,6 @@ const inlineStyles = `
   .frecuencia-card { transition: all 0.3s ease; }
   .time-button { transition: all 0.2s ease; cursor: pointer; border-radius: 40px !important; }
   body, html { overflow-x: hidden; background-color: #020617; margin: 0; padding: 0; }
-  
-  /* Media query para asegurar coherencia en celulares */
-  @media (max-width: 768px) {
-    .genora-title {
-      font-size: 15px !important;
-      letter-spacing: 3px !important;
-    }
-    .genora-subtitle {
-      font-size: 10px !important;
-      letter-spacing: 4px !important;
-      max-width: 90%;
-    }
-  }
 `;
 
 const App = () => {
@@ -67,22 +54,22 @@ const App = () => {
     { id: "03", name: "Alpha Void", hz: "8 – 13 Hz", type: "frecuencias", desc: "Punto cero de la consciencia.", url: "/audio/alpha-void.mp3" },
     { id: "04", name: "Alpha Origen", hz: "8 Hz", type: "frecuencias", desc: "Frecuencia Schumann y resonancia primordial.", url: "/audio/alpha-origen.mp3" },
     { id: "05", name: "Gaia Vision", hz: "8,3 Hz", type: "frecuencias", desc: "Expansión sensorial planetaria.", url: "/audio/gaia-vision.mp3" },
-    { id: "06", name: "Alpha Voice", hz: "8,22 Hz", type: "frecuencias", desc: "Sintoniza la expresión de tu verdad.", url: "/audio/alpha-voice.mp3" },
+    { id: "06", name: "Alpha Voice", hz: "8,22 Hz", type: "frecuencias", desc: "Sintoniza la expresión de tu truth.", url: "/audio/alpha-voice.mp3" },
     { id: "M1", name: "Coherencia del Ser", hz: "963 Hz", type: "meditaciones", desc: "Paz inquebrantable.", url: "/audio/alpha-integration.mp3" }
   ];
 
   const accentColor = activeTab === 'frecuencias' ? '#22d3ee' : '#a855f7';
 
-  // --- RESTAURACIÓN DE LA PORTADA GENORA ESTABILIZADA PARA MÓVIL (Paso 2.1.1) ---
+  // --- RESTAURACIÓN DE LA PORTADA GENORA COHERENTE (Paso 2.1.2) ---
   if (showSplash) {
     return (
       <div className="fade-in-smooth" style={{ backgroundColor: '#020617', minHeight: '100vh', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', textAlign: 'center', padding: '20px' }}>
         <style>{inlineStyles}</style>
         <img src="/imagenes/genora-logo-white.png" style={{ width: '200px', maxWidth: '80%', animation: 'breathe 3s infinite ease-in-out' }} alt="Logo" />
         
-        {/* TÍTULO POTENTE Y ESTABILIZADO (genora-title) */}
-        <h1 className="genora-title" style={{ 
-          fontSize: '15px', // Reducción de 18px a 15px para coherencia móvil
+        {/* TÍTULO REY (RESONANCIA ORIGEN) - TAMAÑO IMPONENTE INTOCABLE */}
+        <h1 style={{ 
+          fontSize: '18px', // TAMAÑO ORIGINAL MAJESTUOSO INTOCABLE
           fontWeight: '300', 
           letterSpacing: '4px', // Espaciado elegante y centrado
           color: '#22d3ee', 
@@ -93,17 +80,17 @@ const App = () => {
           RESONANCIA ORIGEN
         </h1>
         
-        {/* SUBTÍTULO MÍSTICO Y ESTABILIZADO (genora-subtitle) */}
-        <p className="genora-subtitle" style={{ 
-          fontSize: '10px', // Reducción de 11px a 10px para finura
+        {/* SUBTÍTULO DRÁSTICAMENTE MÁS PEQUEÑO Y EXPANSIVO (Paso 2.1.2) */}
+        <p style={{ 
+          fontSize: '11px', // REDUCCIÓN DRÁSTICA DE TAMAÑO PARA FINURA
           fontWeight: '200', // Súper fino
-          letterSpacing: '4px', // Espaciado suave y equilibrado
+          letterSpacing: '8.5px', // ESPACIADO MASIVO Y EXPANSIVO (Toque místico Genora)
           color: '#fdfcf5', 
-          opacity: 0.6, // Transparencia mística
-          marginTop: '5px', // Coherencia visual pegada
+          opacity: 0.7, // Transparencia mística
+          marginTop: '0px', // Pegado arriba para la coherencia visual
           textTransform: 'uppercase',
           maxWidth: '90%', // Asegura márgenes limpios en móvil
-          margin: '5px auto 0 auto' // Centrado absoluto
+          margin: '0 auto' // Centrado absoluto
         }}>
           ACTIVANDO TU CONSCIENCIA GENÉTICA
         </p>
