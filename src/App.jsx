@@ -29,17 +29,13 @@ const App = () => {
     return () => clearTimeout(timer);
   }, []);
 
-  // Lógica de Reproducción y Temporizador
   useEffect(() => {
     if (audioRef.current) {
       if (isPlaying) {
-        audioRef.current.play().catch(e => console.log("Frecuencia activada..."));
-        
+        audioRef.current.play().catch(e => console.log("Audio en espera..."));
         if (selectedTime && selectedTime !== '∞') {
           if (timerRef.current) clearTimeout(timerRef.current);
-          timerRef.current = setTimeout(() => {
-            setIsPlaying(false);
-          }, selectedTime * 60000);
+          timerRef.current = setTimeout(() => setIsPlaying(false), selectedTime * 60000);
         }
       } else {
         audioRef.current.pause();
@@ -54,43 +50,41 @@ const App = () => {
     { id: "03", name: "Alpha Void", hz: "8 – 13 Hz", type: "frecuencias", desc: "Punto cero de la consciencia.", url: "/audio/alpha-void.mp3" },
     { id: "04", name: "Alpha Origen", hz: "8 Hz", type: "frecuencias", desc: "Frecuencia Schumann y resonancia primordial.", url: "/audio/alpha-origen.mp3" },
     { id: "05", name: "Gaia Vision", hz: "8,3 Hz", type: "frecuencias", desc: "Expansión sensorial planetaria.", url: "/audio/gaia-vision.mp3" },
-    { id: "06", name: "Alpha Voice", hz: "8,22 Hz", type: "frecuencias", desc: "Sintoniza la expresión de tu truth.", url: "/audio/alpha-voice.mp3" },
-    { id: "M1", name: "Coherencia del Ser", hz: "963 Hz", type: "meditaciones", desc: "Paz inquebrantable.", url: "/audio/alpha-integration.mp3" }
+    { id: "06", name: "Alpha Voice", hz: "8,22 Hz", type: "frecuencias", desc: "Sintoniza la expresión de tu verdad.", url: "/audio/alpha-voice.mp3" }
   ];
 
   const accentColor = activeTab === 'frecuencias' ? '#22d3ee' : '#a855f7';
 
-  // --- RESTAURACIÓN DE LA PORTADA GENORA COHERENTE (Paso 2.1.2) ---
   if (showSplash) {
     return (
       <div className="fade-in-smooth" style={{ backgroundColor: '#020617', minHeight: '100vh', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', textAlign: 'center', padding: '20px' }}>
         <style>{inlineStyles}</style>
         <img src="/imagenes/genora-logo-white.png" style={{ width: '200px', maxWidth: '80%', animation: 'breathe 3s infinite ease-in-out' }} alt="Logo" />
         
-        {/* TÍTULO REY (RESONANCIA ORIGEN) - TAMAÑO IMPONENTE INTOCABLE */}
+        {/* RESONANCIA ORIGEN: 18px (Inamovible) */}
         <h1 style={{ 
-          fontSize: '18px', // TAMAÑO ORIGINAL MAJESTUOSO INTOCABLE
+          fontSize: '18px', 
           fontWeight: '300', 
-          letterSpacing: '4px', // Espaciado elegante y centrado
+          letterSpacing: '4px', 
           color: '#22d3ee', 
           textTransform: 'uppercase', 
           marginTop: '30px',
-          marginBottom: '5px' // Separación sutil
+          marginBottom: '5px' 
         }}>
           RESONANCIA ORIGEN
         </h1>
         
-        {/* SUBTÍTULO DRÁSTICAMENTE MÁS PEQUEÑO Y EXPANSIVO (Paso 2.1.2) */}
+        {/* SUBTÍTULO: 10px y Tracking de 3px (Para que expanda sin romper el margen) */}
         <p style={{ 
-          fontSize: '11px', // REDUCCIÓN DRÁSTICA DE TAMAÑO PARA FINURA
-          fontWeight: '200', // Súper fino
-          letterSpacing: '8.5px', // ESPACIADO MASIVO Y EXPANSIVO (Toque místico Genora)
+          fontSize: '10px', 
+          fontWeight: '200', 
+          letterSpacing: '3px', 
           color: '#fdfcf5', 
-          opacity: 0.7, // Transparencia mística
-          marginTop: '0px', // Pegado arriba para la coherencia visual
+          opacity: 0.7, 
+          marginTop: '0px', 
           textTransform: 'uppercase',
-          maxWidth: '90%', // Asegura márgenes limpios en móvil
-          margin: '0 auto' // Centrado absoluto
+          width: '100%',
+          textAlign: 'center'
         }}>
           ACTIVANDO TU CONSCIENCIA GENÉTICA
         </p>
@@ -98,7 +92,7 @@ const App = () => {
     );
   }
 
-  // --- REPRODUCTOR (MANTENIENDO LO VALIDADO) ---
+  // REPRODUCTOR Y LISTA (Se mantienen sin cambios para no desordenar)
   if (selectedTrack) {
     return (
       <div className="fade-in-smooth" style={{ backgroundColor: '#020617', minHeight: '100vh', color: 'white', padding: '15px', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', textAlign: 'center', position: 'relative' }}>
@@ -116,7 +110,6 @@ const App = () => {
     );
   }
 
-  // --- LISTA (MANTENIENDO LO VALIDADO) ---
   return (
     <div className="fade-in-smooth" style={{ backgroundColor: '#020617', minHeight: '100vh', color: 'white', padding: '15px', fontFamily: 'sans-serif' }}>
       <style>{inlineStyles}</style>
