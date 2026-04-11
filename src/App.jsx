@@ -7,15 +7,17 @@ const inlineStyles = `
     50% { transform: scale(1.05); opacity: 1; }
   }
   
-  /* Animación exclusiva para el REPRODUCTOR (El Latido Expansivo) */
+  /* Animación exclusiva para el REPRODUCTOR (La Expansión Maestra PASO 2.2.2) */
   @keyframes latido-frecuencia {
     0%, 100% { 
       transform: scale(1); 
-      box-shadow: 0 0 50px rgba(34, 211, 238, 0.3); /* Base sutil */
+      /* Base expansiva ya potente */
+      box-shadow: 0 0 80px rgba(34, 211, 238, 0.4); 
     }
     50% { 
       transform: scale(1.03); 
-      box-shadow: 0 0 100px rgba(34, 211, 238, 0.7); /* Expansión máxima exterior */
+      /* MICRO-AJUSTE: EXPANSIÓN MASIVA SIN MIEDO (Radio de 160px) */
+      box-shadow: 0 0 160px rgba(34, 211, 238, 0.8), inset 0 0 50px rgba(34, 211, 238, 0.3);
     }
   }
 
@@ -81,7 +83,7 @@ const App = () => {
     );
   }
 
-  // --- PANTALLA 2: REPRODUCTOR (210px / ADN EXPANSIVO PASO 2.2.1) ---
+  // --- PANTALLA 2: REPRODUCTOR (210px / EXPANSIÓN MAESTRA PASO 2.2.2) ---
   if (selectedTrack) {
     return (
       <div className="fade-in-smooth" style={{ backgroundColor: '#020617', minHeight: '100vh', color: 'white', padding: '15px', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', textAlign: 'center', position: 'relative' }}>
@@ -95,14 +97,16 @@ const App = () => {
           width: '210px', height: '210px', backgroundColor: '#000', borderRadius: '50%', 
           display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '40px',
           animation: isPlaying ? 'latido-frecuencia 4s infinite ease-in-out' : 'none',
-          boxShadow: '0 0 50px rgba(34, 211, 238, 0.3)', /* Sombra base exterior */
-          transition: 'all 0.5s ease'
+          boxShadow: '0 0 80px rgba(34, 211, 238, 0.4)', /* Sombra base exterior potente */
+          transition: 'all 0.5s ease',
+          position: 'relative',
+          zIndex: 1
         }}>
-          {/* ADN EXPANSIVO: Aumentamos el resplandor nuclear */}
+          {/* ADN EXPANSIVO: Aumentamos el resplandor nuclear SIN MIEDO */}
           <img src="/imagenes/adn-icon.png" style={{ 
             width: '120%', height: '120%', objectFit: 'cover', borderRadius: '50%', 
-            /* MICRO-AJUSTE: Triplicamos la potencia y radio del drop-shadow nucleico */
-            filter: `drop-shadow(0 0 45px ${accentColor}) drop-shadow(0 0 15px ${accentColor})` 
+            /* MICRO-AJUSTE: EXPANSIÓN MASIVA DEL DROP-SHADOW (Radio de 90px) */
+            filter: `drop-shadow(0 0 90px ${accentColor}) drop-shadow(0 0 20px ${accentColor})` 
           }} alt="ADN" />
         </div>
 
@@ -130,7 +134,7 @@ const App = () => {
         <div style={{ fontSize: '11px', letterSpacing: '2px', color: accentColor, fontWeight: 'bold', border: `1px solid ${accentColor}33`, padding: '4px 12px', borderRadius: '20px' }}>ES | EN</div>
       </div>
       <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-        <div style={{ width: '160px', height: '160px', backgroundColor: '#000', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '40px', animation: 'latido-frecuencia 6s infinite ease-in-out' }}>
+        <div style={{ width: '160px', height: '160px', backgroundColor: '#000', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '40px', animation: 'latido-frecuencia 6s infinite ease-in-out', boxShadow: '0 0 40px rgba(34, 211, 238, 0.2)' }}>
           <img src="/imagenes/adn-icon.png" style={{ width: '125%', height: '125%', objectFit: 'cover', borderRadius: '50%', filter: `drop-shadow(0 0 10px ${accentColor})` }} alt="ADN" />
         </div>
         <div style={{ width: '100%', display: 'flex', justifyContent: 'center', marginTop: '30px', marginBottom: '70px' }}>
