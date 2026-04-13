@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 
 const inlineStyles = `
-  /* CAJA FUERTE: ANIMACIONES PANTALLA 1 Y 2 (INTOCABLES) */
+  /* CAJA FUERTE: ANIMACIONES PANTALLA 1 Y 2 (RESTABLECIDAS) */
   @keyframes logo-breathe { 0%, 100% { transform: scale(1); opacity: 0.95; } 50% { transform: scale(1.05); opacity: 1; } }
   @keyframes aura-supernova {
     0%, 100% { transform: scale(1); box-shadow: 0 0 80px rgba(34, 211, 238, 0.4), 0 0 150px rgba(34, 211, 238, 0.2); }
@@ -9,49 +9,9 @@ const inlineStyles = `
   }
   .fade-in-smooth { animation: fadeIn 0.8s ease-in forwards; }
   @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+  .frecuencia-card { transition: all 0.3s ease; }
   .time-button { transition: all 0.2s ease; cursor: pointer; border-radius: 40px !important; }
   body, html { overflow-x: hidden; background-color: #020617; margin: 0; padding: 0; }
-
-  /* --- AJUSTE QUIRÚRGICO DE BOTONES (PANTALLA 3) --- */
-  .frecuencia-card {
-    transition: all 0.3s ease; 
-    padding: 6px 4px !important; /* REDUCCIÓN DE AIRE INTERNO */
-    border-radius: 25px; /* Más sutil */
-    border: 1px solid rgba(34, 211, 238, 0.15); 
-    background: rgba(255,255,255,0.015);
-    text-align: center;
-    cursor: pointer;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    min-height: 55px !important; /* REDUCCIÓN DE ALTO TOTAL */
-    height: 55px !important;
-  }
-
-  /* TIPOGRAFÍA FINA PARA MÓVIL */
-  @media (max-width: 768px) {
-    .frecuencia-name-text {
-      font-size: 9px !important; /* MÁS PEQUEÑO Y ELEGANTE */
-      letter-spacing: 1.2px !important;
-      font-weight: 300;
-      text-transform: uppercase;
-      color: white;
-    }
-    .frecuencia-hz-text {
-      font-size: 7px !important;
-      color: #22d3ee;
-      margin-top: 2px !important;
-      opacity: 0.6;
-    }
-    .categoria-header span {
-      font-size: 10px !important;
-      letter-spacing: 2px;
-    }
-    .categoria-header {
-      padding: 12px 18px !important; /* Acordeones más delgados */
-    }
-  }
 `;
 
 const App = () => {
@@ -59,7 +19,6 @@ const App = () => {
   const [selectedTrack, setSelectedTrack] = useState(null);
   const [isPlaying, setIsPlaying] = useState(false);
   const [selectedTime, setSelectedTime] = useState(null);
-  const [openCat, setOpenCat] = useState(null);
   const [searchTerm, setSearchTerm] = useState("");
   
   const audioRef = useRef(null);
@@ -85,14 +44,17 @@ const App = () => {
     }
   }, [isPlaying, selectedTrack, selectedTime]);
 
-  // Lista simplificada para validación
+  // Lista Original de Frecuencias
   const tracks = [
-    { id: "01", cat: "Mente", name: "Alpha Integración", hz: "8 – 10 Hz" },
-    { id: "02", cat: "Mente", name: "Alpha Creator", hz: "8 – 12 Hz" }
+    { id: "01", name: "Alpha Integración", hz: "8 – 10 Hz", desc: "Sincroniza los hemisferios cerebrales." },
+    { id: "02", name: "Alpha Creator", hz: "8 – 12 Hz", desc: "Activa el estado de flujo creativo." },
+    { id: "03", name: "Alpha Void", hz: "8 – 13 Hz", desc: "Punto cero de la consciencia." },
+    { id: "04", name: "Alpha Origen", hz: "8 Hz", desc: "Resonancia primordial Schumann." },
+    { id: "05", name: "Gaia Vision", hz: "8,3 Hz", desc: "Expansión sensorial planetaria." },
+    { id: "06", name: "Alpha Voice", hz: "8,22 Hz", desc: "Sintoniza la expresión de tu verdad." }
   ];
 
-  const categorias = ["Mente", "Cuerpo", "Emociones", "Expansión"];
-
+  // --- PANTALLA 1: SPLASH (REGLA DE ORO) ---
   if (showSplash) {
     return (
       <div className="fade-in-smooth" style={{ backgroundColor: '#020617', minHeight: '100vh', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', textAlign: 'center', padding: '20px' }}>
@@ -104,19 +66,20 @@ const App = () => {
     );
   }
 
+  // --- PANTALLA 2: REPRODUCTOR (BLINDADO - CÍRCULO 210px / SUPERNOVA) ---
   if (selectedTrack) {
     return (
       <div className="fade-in-smooth" style={{ backgroundColor: '#020617', minHeight: '100vh', color: 'white', padding: '15px', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', textAlign: 'center', position: 'relative' }}>
-        <style>{inlineStyles}</style>
+        <style>{inlineStylesStyles}</style>
         <audio ref={audioRef} src={`/audio/${selectedTrack.id}.mp3`} loop={selectedTime === '∞'} />
         <button onClick={() => { setSelectedTrack(null); setIsPlaying(false); }} style={{ position: 'absolute', top: '25px', left: '25px', background: 'none', border: 'none', color: 'white', fontSize: '24px', opacity: 0.4 }}>✕</button>
-        <p style={{ fontSize: '9px', letterSpacing: '3px', color: '#fdfcf5', opacity: 0.6, marginBottom: '60px', textTransform: 'uppercase', marginTop: '-75px' }}>Genora • {selectedTrack.cat}</p>
+        <p style={{ fontSize: '9px', letterSpacing: '3px', color: '#fdfcf5', opacity: 0.6, marginBottom: '60px', textTransform: 'uppercase', marginTop: '-75px' }}>Genora • Alpha 1</p>
         <div style={{ width: '210px', height: '210px', backgroundColor: '#000', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '40px', animation: isPlaying ? 'aura-supernova 4s infinite ease-in-out' : 'none', boxShadow: '0 0 100px rgba(34, 211, 238, 0.3)', position: 'relative', zIndex: 1 }}>
           <img src="/imagenes/adn-icon.png" style={{ width: '120%', height: '120%', objectFit: 'cover', borderRadius: '50%', filter: `drop-shadow(0 0 40px #22d3ee)` }} alt="ADN" />
         </div>
         <h2 style={{ fontSize: '22px', fontWeight: '200', letterSpacing: '4px', textTransform: 'uppercase', marginBottom: '4px' }}>{selectedTrack.name}</h2>
         <p style={{ color: '#22d3ee', fontSize: '12px', letterSpacing: '3px', fontWeight: 'bold', marginBottom: '20px' }}>{selectedTrack.hz}</p>
-        <p style={{ fontSize: '13px', color: '#fdfcf5', opacity: 0.7, maxWidth: '300px', lineHeight: '1.4', marginBottom: '40px' }}>"Frecuencia sintonizada para tu evolución."</p>
+        <p style={{ fontSize: '13px', color: '#fdfcf5', opacity: 0.7, maxWidth: '300px', lineHeight: '1.4', marginBottom: '40px' }}>"{selectedTrack.desc}"</p>
         <div style={{ display: 'flex', gap: '12px', marginBottom: '40px' }}>
           {[15, 30, 60, '∞'].map((time) => (
             <button key={time} onClick={() => setSelectedTime(time)} className="time-button" style={{ width: '58px', padding: '9px 0', border: `1px solid ${selectedTime === time ? '#22d3ee' : 'rgba(255,255,255,0.1)'}`, background: selectedTime === time ? '#22d3ee22' : 'none', color: 'white', fontSize: '12px' }}>{time === '∞' ? time : `${time}'`}</button>
@@ -129,41 +92,35 @@ const App = () => {
     );
   }
 
+  // --- PANTALLA 3: LISTA ORIGINAL (RESTABLECIDA A LOS GUANTES DE SEDA PASO 2.1.1) ---
   return (
-    <div className="fade-in-smooth" style={{ backgroundColor: '#020617', minHeight: '100vh', color: 'white', padding: '15px', paddingBottom: '50px' }}>
+    <div className="fade-in-smooth" style={{ backgroundColor: '#020617', minHeight: '100vh', color: 'white', padding: '15px', paddingBottom: '50px', fontFamily: 'sans-serif' }}>
       <style>{inlineStyles}</style>
-      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '40px', paddingTop: '10px' }}>
-        <img src="/imagenes/genora-logo-white.png" style={{ height: '100px', width: 'auto' }} alt="Logo" />
+      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '15px', paddingTop: '10px' }}>
+        <img src="/imagenes/genora-logo-white.png" style={{ height: '140px', width: 'auto' }} alt="Logo" />
         <div style={{ fontSize: '11px', letterSpacing: '2px', color: '#22d3ee', fontWeight: 'bold' }}>BIBLIOTECA</div>
       </div>
-
-      <input 
-        type="text" 
-        placeholder="¿QUÉ NECESITAS ACTIVAR?" 
-        value={searchTerm}
-        onChange={(e) => setSearchTerm(e.target.value)}
-        style={{ width: '100%', background: 'rgba(255,255,255,0.03)', border: '1px solid rgba(255,255,255,0.1)', borderRadius: '25px', padding: '12px', color: 'white', textAlign: 'center', fontSize: '11px', letterSpacing: '2px', marginBottom: '30px', outline: 'none' }} 
-      />
-
-      {categorias.map(cat => (
-        <div key={cat} style={{ marginBottom: '8px' }}>
-          <div className="categoria-header" onClick={() => setOpenCat(openCat === cat ? null : cat)}>
-            <span style={{ textTransform: 'uppercase', fontWeight: '300' }}>{cat}</span>
-            <span style={{ opacity: 0.5 }}>{openCat === cat ? '−' : '+'}</span>
-          </div>
-          
-          {openCat === cat && (
-            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '8px', padding: '10px 0' }}>
-              {tracks.filter(t => t.cat === cat).map(track => (
-                <div key={track.id} onClick={() => setSelectedTrack(track)} className="frecuencia-card">
-                  <div className="frecuencia-name-text">{track.name}</div>
-                  <div className="frecuencia-hz-text">{track.hz}</div>
-                </div>
-              ))}
-            </div>
-          )}
+      
+      <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+        {/* ADN Pulsante sutil en la Lista */}
+        <div style={{ width: '160px', height: '160px', backgroundColor: '#000', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '40px', animation: 'aura-supernova 6s infinite ease-in-out' }}>
+          <img src="/imagenes/adn-icon.png" style={{ width: '125%', height: '125%', objectFit: 'cover', borderRadius: '50%', filter: `drop-shadow(0 0 10px #22d3ee)` }} alt="ADN" />
         </div>
-      ))}
+        
+        <div style={{ width: '100%', display: 'flex', justifyContent: 'center', marginTop: '30px', marginBottom: '70px' }}>
+          <input type="text" placeholder="BUSCAR..." value={searchTerm} onChange={(e) => setSearchTerm(e.target.value)} style={{ width: '90%', maxWidth: '400px', background: 'rgba(255,255,255,0.03)', border: '1px solid rgba(255,255,255,0.1)', borderRadius: '25px', padding: '12px 20px', color: 'white', fontSize: '12px', textAlign: 'center', letterSpacing: '3px', outline: 'none' }} />
+        </div>
+        
+        {/* GRILLA DE FRECUENCIAS ORIGINAL (Directa, sin categorías) */}
+        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '15px', width: '100%', maxWidth: '480px', paddingBottom: '30px' }}>
+          {tracks.filter(t => t.name.toLowerCase().includes(searchTerm.toLowerCase())).map(track => (
+            <div key={track.id} onClick={() => setSelectedTrack(track)} style={{ transition: 'all 0.3s ease', padding: '20px 10px', borderRadius: '40px', border: '1px solid rgba(34, 211, 238, 0.15)', background: 'rgba(255,255,255,0.015)', textAlign: 'center', cursor: 'pointer', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', minHeight: '90px' }}>
+              <div style={{ fontSize: '13px', fontWeight: '300', color: 'white', textTransform: 'uppercase', letterSpacing: '2px' }}>{track.name}</div>
+              <div style={{ fontSize: '9px', color: '#22d3ee', marginTop: '8px', fontWeight: 'bold', letterSpacing: '1px' }}>{track.hz}</div>
+            </div>
+          ))}
+        </div>
+      </div>
     </div>
   );
 };
