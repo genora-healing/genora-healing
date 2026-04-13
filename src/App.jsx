@@ -1,17 +1,62 @@
 import React, { useState, useEffect, useRef } from 'react';
 
 const inlineStyles = `
-  /* CAJA FUERTE: ANIMACIONES PANTALLA 1 Y 2 (RESTABLECIDAS) */
-  @keyframes logo-breathe { 0%, 100% { transform: scale(1); opacity: 0.95; } 50% { transform: scale(1.05); opacity: 1; } }
-  @keyframes aura-supernova {
-    0%, 100% { transform: scale(1); box-shadow: 0 0 80px rgba(34, 211, 238, 0.4), 0 0 150px rgba(34, 211, 238, 0.2); }
-    50% { transform: scale(1.03); box-shadow: 0 0 50px rgba(34, 211, 238, 0.9), 0 0 120px rgba(34, 211, 238, 0.6), 0 0 250px rgba(34, 211, 238, 0.4), 0 0 450px rgba(34, 211, 238, 0.2); }
+  /* --- CAJA FUERTE MAESTRA: INTOCABLE --- */
+  @keyframes logo-breathe {
+    0%, 100% { transform: scale(1); opacity: 0.95; }
+    50% { transform: scale(1.05); opacity: 1; }
   }
+  
+  @keyframes aura-supernova {
+    0%, 100% { 
+      transform: scale(1); 
+      box-shadow: 0 0 80px rgba(34, 211, 238, 0.4), 0 0 150px rgba(34, 211, 238, 0.2); 
+    }
+    50% { 
+      transform: scale(1.03); 
+      box-shadow: 
+        0 0 50px rgba(34, 211, 238, 0.9),
+        0 0 120px rgba(34, 211, 238, 0.6),
+        0 0 250px rgba(34, 211, 238, 0.4),
+        0 0 450px rgba(34, 211, 238, 0.2);
+    }
+  }
+
   .fade-in-smooth { animation: fadeIn 0.8s ease-in forwards; }
   @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
-  .frecuencia-card { transition: all 0.3s ease; }
   .time-button { transition: all 0.2s ease; cursor: pointer; border-radius: 40px !important; }
   body, html { overflow-x: hidden; background-color: #020617; margin: 0; padding: 0; }
+
+  /* --- MICRO-AJUSTE AUTORIZADO: TAMAÑO DE BOTONES --- */
+  .frecuencia-card {
+    transition: all 0.3s ease;
+    padding: 8px 5px !important; /* Reducción de aire interno */
+    border-radius: 35px;
+    border: 1px solid rgba(34, 211, 238, 0.15); /* Grosor original */
+    background: rgba(255,255,255,0.015);
+    text-align: center;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 58px !important; /* Botón más fino y elegante */
+  }
+
+  @media (max-width: 768px) {
+    .frecuencia-name-text {
+      font-size: 10px !important; /* Tipografía sutil */
+      letter-spacing: 1.2px !important;
+      text-transform: uppercase;
+      font-weight: 300;
+      color: white;
+    }
+    .frecuencia-hz-text {
+      font-size: 7px !important;
+      color: #22d3ee;
+      margin-top: 3px;
+    }
+  }
 `;
 
 const App = () => {
@@ -44,7 +89,6 @@ const App = () => {
     }
   }, [isPlaying, selectedTrack, selectedTime]);
 
-  // Lista Original de Frecuencias
   const tracks = [
     { id: "01", name: "Alpha Integración", hz: "8 – 10 Hz", desc: "Sincroniza los hemisferios cerebrales." },
     { id: "02", name: "Alpha Creator", hz: "8 – 12 Hz", desc: "Activa el estado de flujo creativo." },
@@ -54,7 +98,7 @@ const App = () => {
     { id: "06", name: "Alpha Voice", hz: "8,22 Hz", desc: "Sintoniza la expresión de tu verdad." }
   ];
 
-  // --- PANTALLA 1: SPLASH (REGLA DE ORO) ---
+  // --- PANTALLA 1: SPLASH (RESTAURADO) ---
   if (showSplash) {
     return (
       <div className="fade-in-smooth" style={{ backgroundColor: '#020617', minHeight: '100vh', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', textAlign: 'center', padding: '20px' }}>
@@ -66,11 +110,11 @@ const App = () => {
     );
   }
 
-  // --- PANTALLA 2: REPRODUCTOR (BLINDADO - CÍRCULO 210px / SUPERNOVA) ---
+  // --- PANTALLA 2: REPRODUCTOR (RESTAURADO Y BLINDADO) ---
   if (selectedTrack) {
     return (
       <div className="fade-in-smooth" style={{ backgroundColor: '#020617', minHeight: '100vh', color: 'white', padding: '15px', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', textAlign: 'center', position: 'relative' }}>
-        <style>{inlineStylesStyles}</style>
+        <style>{inlineStyles}</style>
         <audio ref={audioRef} src={`/audio/${selectedTrack.id}.mp3`} loop={selectedTime === '∞'} />
         <button onClick={() => { setSelectedTrack(null); setIsPlaying(false); }} style={{ position: 'absolute', top: '25px', left: '25px', background: 'none', border: 'none', color: 'white', fontSize: '24px', opacity: 0.4 }}>✕</button>
         <p style={{ fontSize: '9px', letterSpacing: '3px', color: '#fdfcf5', opacity: 0.6, marginBottom: '60px', textTransform: 'uppercase', marginTop: '-75px' }}>Genora • Alpha 1</p>
@@ -92,31 +136,30 @@ const App = () => {
     );
   }
 
-  // --- PANTALLA 3: LISTA ORIGINAL (RESTABLECIDA A LOS GUANTES DE SEDA PASO 2.1.1) ---
+  // --- PANTALLA 3: LISTA (RESTAURADA CON ES|EN Y AJUSTE DE BOTONES) ---
   return (
-    <div className="fade-in-smooth" style={{ backgroundColor: '#020617', minHeight: '100vh', color: 'white', padding: '15px', paddingBottom: '50px', fontFamily: 'sans-serif' }}>
+    <div className="fade-in-smooth" style={{ backgroundColor: '#020617', minHeight: '100vh', color: 'white', padding: '15px', paddingBottom: '50px' }}>
       <style>{inlineStyles}</style>
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '15px', paddingTop: '10px' }}>
-        <img src="/imagenes/genora-logo-white.png" style={{ height: '140px', width: 'auto' }} alt="Logo" />
-        <div style={{ fontSize: '11px', letterSpacing: '2px', color: '#22d3ee', fontWeight: 'bold' }}>BIBLIOTECA</div>
+        <img src="/imagenes/genora-logo-white.png" style={{ height: '120px', width: 'auto' }} alt="Logo" />
+        <div style={{ fontSize: '11px', letterSpacing: '2px', color: '#22d3ee', fontWeight: 'bold', border: '1px solid rgba(34, 211, 238, 0.2)', padding: '5px 15px', borderRadius: '20px' }}>ES | EN</div>
       </div>
-      
       <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-        {/* ADN Pulsante sutil en la Lista */}
-        <div style={{ width: '160px', height: '160px', backgroundColor: '#000', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '40px', animation: 'aura-supernova 6s infinite ease-in-out' }}>
+        <div style={{ width: '160px', height: '160px', backgroundColor: '#000', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '40px', animation: 'aura-supernova 8s infinite ease-in-out' }}>
           <img src="/imagenes/adn-icon.png" style={{ width: '125%', height: '125%', objectFit: 'cover', borderRadius: '50%', filter: `drop-shadow(0 0 10px #22d3ee)` }} alt="ADN" />
         </div>
-        
-        <div style={{ width: '100%', display: 'flex', justifyContent: 'center', marginTop: '30px', marginBottom: '70px' }}>
-          <input type="text" placeholder="BUSCAR..." value={searchTerm} onChange={(e) => setSearchTerm(e.target.value)} style={{ width: '90%', maxWidth: '400px', background: 'rgba(255,255,255,0.03)', border: '1px solid rgba(255,255,255,0.1)', borderRadius: '25px', padding: '12px 20px', color: 'white', fontSize: '12px', textAlign: 'center', letterSpacing: '3px', outline: 'none' }} />
-        </div>
-        
-        {/* GRILLA DE FRECUENCIAS ORIGINAL (Directa, sin categorías) */}
-        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '15px', width: '100%', maxWidth: '480px', paddingBottom: '30px' }}>
+        <input 
+          type="text" 
+          placeholder="BUSCAR..." 
+          value={searchTerm} 
+          onChange={(e) => setSearchTerm(e.target.value)} 
+          style={{ width: '90%', maxWidth: '400px', background: 'rgba(255,255,255,0.03)', border: '1px solid rgba(255,255,255,0.1)', borderRadius: '25px', padding: '12px', color: 'white', fontSize: '12px', textAlign: 'center', letterSpacing: '3px', marginBottom: '45px', outline: 'none' }} 
+        />
+        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '15px', width: '100%', maxWidth: '480px' }}>
           {tracks.filter(t => t.name.toLowerCase().includes(searchTerm.toLowerCase())).map(track => (
-            <div key={track.id} onClick={() => setSelectedTrack(track)} style={{ transition: 'all 0.3s ease', padding: '20px 10px', borderRadius: '40px', border: '1px solid rgba(34, 211, 238, 0.15)', background: 'rgba(255,255,255,0.015)', textAlign: 'center', cursor: 'pointer', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', minHeight: '90px' }}>
-              <div style={{ fontSize: '13px', fontWeight: '300', color: 'white', textTransform: 'uppercase', letterSpacing: '2px' }}>{track.name}</div>
-              <div style={{ fontSize: '9px', color: '#22d3ee', marginTop: '8px', fontWeight: 'bold', letterSpacing: '1px' }}>{track.hz}</div>
+            <div key={track.id} onClick={() => setSelectedTrack(track)} className="frecuencia-card">
+              <div className="frecuencia-name-text">{track.name}</div>
+              <div className="frecuencia-hz-text">{track.hz}</div>
             </div>
           ))}
         </div>
