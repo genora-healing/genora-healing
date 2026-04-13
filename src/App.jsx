@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 
 const inlineStyles = `
-  /* CAJA FUERTE: ANIMACIONES PANTALLA 1 Y 2 */
+  /* CAJA FUERTE PANTALLA 1 Y 2 (INTOCABLES) */
   @keyframes logo-breathe { 0%, 100% { transform: scale(1); opacity: 0.95; } 50% { transform: scale(1.05); opacity: 1; } }
   @keyframes aura-supernova {
     0%, 100% { transform: scale(1); box-shadow: 0 0 80px rgba(34, 211, 238, 0.4), 0 0 150px rgba(34, 211, 238, 0.2); }
@@ -12,26 +12,24 @@ const inlineStyles = `
   .time-button { transition: all 0.2s ease; cursor: pointer; border-radius: 40px !important; }
   body, html { overflow-x: hidden; background-color: #020617; margin: 0; padding: 0; }
 
-  /* BOTÓN VOLVER Y LOGO CIRCULAR */
-  .header-circle {
-    width: 45px; height: 45px; border-radius: 50%;
-    border: 1px solid rgba(34, 211, 238, 0.3);
-    background: rgba(34, 211, 238, 0.05);
-    display: flex; align-items: center; justify-content: center;
-    cursor: pointer; overflow: hidden;
-  }
-
-  /* BOTONES FINOS */
   .frecuencia-card {
-    transition: all 0.3s ease; padding: 12px 8px !important; border-radius: 35px;
-    border: 1px solid rgba(34, 211, 238, 0.15); background: rgba(255,255,255,0.015);
-    text-align: center; cursor: pointer; min-height: 60px !important;
-    display: flex; flex-direction: column; justify-content: center;
+    transition: all 0.3s ease;
+    padding: 10px 8px;
+    border-radius: 35px;
+    border: 1px solid rgba(34, 211, 238, 0.15);
+    background: rgba(255,255,255,0.015);
+    text-align: center;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 60px;
   }
 
   @media (max-width: 768px) {
-    .frecuencia-name-text { font-size: 10px !important; letter-spacing: 1.2px !important; text-transform: uppercase; font-weight: 300; color: white; }
-    .frecuencia-hz-text { font-size: 7px !important; color: #22d3ee; margin-top: 3px; opacity: 0.6; }
+    .frecuencia-name-text { font-size: 10px; letter-spacing: 1.2px; text-transform: uppercase; font-weight: 300; color: white; }
+    .frecuencia-hz-text { font-size: 7px; color: #22d3ee; margin-top: 3px; }
   }
 `;
 
@@ -73,10 +71,7 @@ const App = () => {
 
   const tracks = [
     { id: "01", category: "MENTE", name: "Alpha Integración", hz: "8 – 10 Hz", url: "/audio/alpha-integration.mp3" },
-    { id: "02", category: "MENTE", name: "Alpha Creator", hz: "8 – 12 Hz", url: "/audio/alpha-creator.mp3" },
-    { id: "03", category: "EMOCIONES", name: "Theta Healing", hz: "4 – 7 Hz", url: "/audio/theta.mp3" },
-    { id: "04", category: "CUERPO", name: "Delta Repair", hz: "1 – 4 Hz", url: "/audio/delta.mp3" },
-    { id: "05", category: "EXPANSIÓN", name: "Gaia Vision", hz: "8,3 Hz", url: "/audio/gaia-vision.mp3" }
+    { id: "02", category: "MENTE", name: "Alpha Creator", hz: "8 – 12 Hz", url: "/audio/alpha-creator.mp3" }
   ];
 
   const categories = ["MENTE", "EMOCIONES", "CUERPO", "EXPANSIÓN"];
@@ -97,12 +92,9 @@ const App = () => {
       <div className="fade-in-smooth" style={{ backgroundColor: '#020617', minHeight: '100vh', color: 'white', padding: '15px', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', textAlign: 'center', position: 'relative' }}>
         <style>{inlineStyles}</style>
         <audio ref={audioRef} src={selectedTrack.url} loop={selectedTime === '∞'} />
-        <div onClick={() => { setSelectedTrack(null); setIsPlaying(false); }} className="header-circle" style={{ position: 'absolute', top: '25px', left: '25px' }}>
-             <span style={{ color: 'white', fontSize: '20px', marginLeft: '-2px' }}>‹</span>
-        </div>
-        <p style={{ fontSize: '9px', letterSpacing: '3px', color: '#fdfcf5', opacity: 0.6, marginBottom: '60px', textTransform: 'uppercase', marginTop: '-75px' }}>GENORA • {selectedTrack.category}</p>
+        <button onClick={() => { setSelectedTrack(null); setIsPlaying(false); }} style={{ position: 'absolute', top: '25px', left: '25px', background: 'none', border: 'none', color: 'white', fontSize: '24px', opacity: 0.4 }}>✕</button>
         <div style={{ width: '210px', height: '210px', backgroundColor: '#000', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '40px', animation: isPlaying ? 'aura-supernova 4s infinite ease-in-out' : 'none', boxShadow: '0 0 100px rgba(34, 211, 238, 0.3)' }}>
-          <img src="/imagenes/adn-icon.png" style={{ width: '120%', filter: 'drop-shadow(0 0 40px #22d3ee)' }} alt="ADN" />
+          <img src="/imagenes/adn-icon.png" style={{ width: '120%' }} />
         </div>
         <h2 style={{ fontSize: '24px', fontWeight: '200', letterSpacing: '4px', textTransform: 'uppercase' }}>{selectedTrack.name}</h2>
         <p style={{ color: '#22d3ee', fontSize: '12px', letterSpacing: '3px', fontWeight: 'bold' }}>{selectedTrack.hz}</p>
@@ -122,32 +114,18 @@ const App = () => {
     <div className="fade-in-smooth" style={{ backgroundColor: '#020617', minHeight: '100vh', color: 'white', padding: '15px' }}>
       <style>{inlineStyles}</style>
       
-      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '25px', paddingTop: '10px' }}>
-        {view === 'list' ? (
-          <div onClick={() => setView('categories')} className="header-circle">
-             <span style={{ color: '#22d3ee', fontSize: '20px', marginLeft: '-2px' }}>‹</span>
-          </div>
-        ) : (
-          /* LOGO DENTRO DE CÍRCULO */
-          <div className="header-circle" style={{ padding: '5px' }}>
-            <img src="/imagenes/genora-logo-white.png" style={{ width: '80%', height: '80%', objectFit: 'contain' }} alt="Logo" />
-          </div>
-        )}
+      {/* CABECERA: LOGO RESTAURADO (SIN CÍRCULO) */}
+      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '15px', paddingTop: '10px' }}>
+        <img src="/imagenes/genora-logo-white.png" style={{ height: '100px', width: 'auto', objectFit: 'contain' }} alt="Logo" />
         <div style={{ fontSize: '11px', letterSpacing: '2px', color: '#22d3ee', border: '1px solid rgba(34, 211, 238, 0.2)', padding: '5px 15px', borderRadius: '20px', fontWeight: 'bold' }}>ES | EN</div>
       </div>
 
       <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-        {/* TITULO SECCIÓN CON MÁS AIRE */}
-        {view === 'list' && <p style={{ fontSize: '10px', letterSpacing: '5px', color: '#22d3ee', marginBottom: '25px', textTransform: 'uppercase', fontWeight: 'bold' }}>{activeCategory}</p>}
-        
         <div style={{ width: '150px', height: '150px', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '30px', animation: 'aura-supernova 8s infinite ease-in-out' }}>
-          <img src="/imagenes/adn-icon.png" style={{ width: '125%', filter: 'drop-shadow(0 0 10px #22d3ee)' }} alt="ADN" />
+          <img src="/imagenes/adn-icon.png" style={{ width: '125%' }} />
         </div>
 
-        <input 
-          type="text" placeholder="BUSCAR..." value={searchTerm} onChange={(e) => setSearchTerm(e.target.value)} 
-          style={{ width: '90%', maxWidth: '400px', background: 'rgba(255,255,255,0.03)', border: '1px solid rgba(255,255,255,0.1)', borderRadius: '25px', padding: '12px', color: 'white', fontSize: '12px', textAlign: 'center', letterSpacing: '3px', marginBottom: '45px', marginTop: '10px', outline: 'none' }} 
-        />
+        <input type="text" placeholder="BUSCAR..." value={searchTerm} onChange={(e) => setSearchTerm(e.target.value)} style={{ width: '90%', maxWidth: '400px', background: 'rgba(255,255,255,0.03)', border: '1px solid rgba(255,255,255,0.1)', borderRadius: '25px', padding: '12px', color: 'white', fontSize: '12px', textAlign: 'center', letterSpacing: '3px', marginBottom: '45px', outline: 'none' }} />
 
         <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '15px', width: '100%', maxWidth: '480px' }}>
           {view === 'categories' ? (
