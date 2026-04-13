@@ -20,10 +20,10 @@ const inlineStyles = `
   }
 
   .frecuencia-card {
-    transition: all 0.3s ease; padding: 10px 6px; border-radius: 35px;
+    transition: all 0.3s ease; padding: 12px 10px; border-radius: 35px;
     border: 1px solid rgba(34, 211, 238, 0.15); background: rgba(255,255,255,0.015);
-    text-align: center; cursor: pointer; min-height: 60px;
-    display: flex; flex-direction: column; justify-content: center;
+    text-align: center; cursor: pointer; min-height: 65px;
+    display: flex; flex-direction: column; justify-content: center; align-items: center;
   }
 `;
 
@@ -39,45 +39,54 @@ const App = () => {
   const audioRef = useRef(null);
 
   useEffect(() => {
-    const timer = setTimeout(() => setShowSplash(false), 3000);
+    const timer = setTimeout(() => setShowSplash(false), 4500);
     return () => clearTimeout(timer);
   }, []);
 
+  // Base de datos de frecuencias (Asegúrate que los .mp3 existan en /public/audio/)
   const tracks = [
-    { id: "01", category: "MENTE", name: "Alpha Integración", hz: "8 – 10 Hz" },
-    { id: "02", category: "MENTE", name: "Alpha Creator", hz: "8 – 12 Hz" }
+    { id: "01", category: "MENTE", name: "Alpha Integración", hz: "8 – 10 Hz", url: "/audio/alpha-integration.mp3" },
+    { id: "02", category: "MENTE", name: "Alpha Creator", hz: "8 – 12 Hz", url: "/audio/alpha-creator.mp3" }
   ];
 
   const categories = ["MENTE", "EMOCIONES", "CUERPO", "EXPANSIÓN"];
 
+  // Lógica de Audio
+  useEffect(() => {
+    if (audioRef.current) {
+      if (isPlaying) {
+        audioRef.current.play().catch(e => console.log("Error de audio"));
+      } else {
+        audioRef.current.pause();
+      }
+    }
+  }, [isPlaying, selectedTrack]);
+
   if (showSplash) {
     return (
-      <div className="fade-in-smooth" style={{ backgroundColor: '#020617', minHeight: '100vh', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }}>
+      <div className="fade-in-smooth" style={{ backgroundColor: '#020617', minHeight: '100vh', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', textAlign: 'center', padding: '20px' }}>
         <style>{inlineStyles}</style>
-        <img src="/imagenes/genora-logo-white.png" style={{ width: '200px', animation: 'logo-breathe 3s infinite ease-in-out' }} alt="Logo" />
+        <img src="/imagenes/genora-logo-white.png" style={{ width: '200px', maxWidth: '80%', animation: 'logo-breathe 3s infinite ease-in-out' }} alt="Logo" />
+        <h1 style={{ fontSize: '18px', fontWeight: '300', letterSpacing: '4px', color: '#22d3ee', textTransform: 'uppercase', marginTop: '30px' }}>RESONANCIA ORIGEN</h1>
+        <p style={{ fontSize: '10px', fontWeight: '200', letterSpacing: '3px', color: '#fdfcf5', opacity: 0.7 }}>ACTIVANDO TU CONSCIENCIA GENÉTICA</p>
       </div>
     );
   }
 
   if (selectedTrack) {
     return (
-      <div className="fade-in-smooth" style={{ backgroundColor: '#020617', minHeight: '100vh', color: 'white', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', textAlign: 'center', position: 'relative' }}>
+      <div className="fade-in-smooth" style={{ backgroundColor: '#020617', minHeight: '100vh', color: 'white', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', textAlign: 'center', position: 'relative', padding: '15px' }}>
         <style>{inlineStyles}</style>
-        
-        {/* FLECHA GOBACK EN CIAN */}
-        <div onClick={() => setSelectedTrack(null)} className="back-button-genora" style={{ position: 'absolute', top: '25px', left: '25px', border: '1px solid rgba(255,255,255,0.2)' }}>
+        <audio ref={audioRef} src={selectedTrack.url} loop={selectedTime === '∞'} />
+        <div onClick={() => { setSelectedTrack(null); setIsPlaying(false); }} className="back-button-genora" style={{ position: 'absolute', top: '25px', left: '25px', border: '1px solid rgba(255,255,255,0.2)' }}>
              <span style={{ color: '#22d3ee', fontSize: '20px' }}>‹</span>
         </div>
-
-        {/* CONTENEDOR ADN (Aquí brillará tu nueva imagen circular) */}
+        <p style={{ fontSize: '9px', letterSpacing: '3px', color: '#fdfcf5', opacity: 0.6, marginBottom: '60px', textTransform: 'uppercase', marginTop: '-75px' }}>GENORA • {selectedTrack.category}</p>
         <div style={{ width: '210px', height: '210px', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '40px', animation: isPlaying ? 'aura-supernova 4s infinite ease-in-out' : 'none' }}>
-          <img src="/imagenes/adn-icon.png" style={{ width: '100%', height: '100%', objectFit: 'contain' }} />
+          <img src="/imagenes/adn-icon.png.jpg" style={{ width: '100%', height: '100%', objectFit: 'contain' }} alt="ADN" />
         </div>
-        
         <h2 style={{ fontSize: '24px', fontWeight: '200', letterSpacing: '4px', textTransform: 'uppercase' }}>{selectedTrack.name}</h2>
         <p style={{ color: '#22d3ee', fontWeight: 'bold' }}>{selectedTrack.hz}</p>
-        
-        {/* BOTÓN PLAY CON ICONO BLANCO */}
         <button onClick={() => setIsPlaying(!isPlaying)} style={{ width: '80px', height: '80px', borderRadius: '50%', border: '1px solid #22d3ee', background: 'none', marginTop: '40px' }}>
           <span style={{ fontSize: '26px', color: '#ffffff' }}>{isPlaying ? '||' : '▶'}</span>
         </button>
@@ -86,41 +95,36 @@ const App = () => {
   }
 
   return (
-    <div className="fade-in-smooth" style={{ backgroundColor: '#020617', minHeight: '100vh', color: 'white', padding: '15px' }}>
+    <div className="fade-in-smooth" style={{ backgroundColor: '#020617', minHeight: '100vh', color: 'white', padding: '20px' }}>
       <style>{inlineStyles}</style>
-      
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '25px' }}>
         {view === 'list' ? (
           <div onClick={() => setView('categories')} className="back-button-genora">
              <span style={{ color: '#22d3ee', fontSize: '20px' }}>‹</span>
           </div>
         ) : (
-          <img src="/imagenes/genora-logo-white.png" style={{ height: '90px', objectFit: 'contain' }} />
+          <img src="/imagenes/genora-logo-white.png" style={{ height: '100px', objectFit: 'contain' }} alt="Logo" />
         )}
         <div style={{ fontSize: '11px', color: '#22d3ee', border: '1px solid rgba(34, 211, 238, 0.2)', padding: '5px 15px', borderRadius: '20px' }}>ES | EN</div>
       </div>
-
       <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-        {view === 'list' && <p style={{ fontSize: '10px', letterSpacing: '5px', color: '#22d3ee', marginBottom: '25px', textTransform: 'uppercase' }}>{activeCategory}</p>}
-        
+        {view === 'list' && <p style={{ fontSize: '11px', letterSpacing: '5px', color: '#22d3ee', marginBottom: '35px', textTransform: 'uppercase', fontWeight: 'bold' }}>{activeCategory}</p>}
         <div style={{ width: '150px', height: '150px', marginBottom: '30px', animation: 'aura-supernova 8s infinite ease-in-out' }}>
-          <img src="/imagenes/adn-icon.png" style={{ width: '100%', height: '100%', objectFit: 'contain' }} />
+          <img src="/imagenes/adn-icon.png.jpg" style={{ width: '100%', height: '100%', objectFit: 'contain' }} alt="ADN" />
         </div>
-
-        <input type="text" placeholder="BUSCAR..." value={searchTerm} onChange={(e) => setSearchTerm(e.target.value)} style={{ width: '90%', background: 'rgba(255,255,255,0.03)', border: '1px solid rgba(255,255,255,0.1)', borderRadius: '25px', padding: '12px', color: 'white', textAlign: 'center', marginBottom: '45px', outline: 'none' }} />
-
+        <input type="text" placeholder="BUSCAR..." value={searchTerm} onChange={(e) => setSearchTerm(e.target.value)} style={{ width: '90%', maxWidth: '400px', background: 'rgba(255,255,255,0.03)', border: '1px solid rgba(255,255,255,0.1)', borderRadius: '25px', padding: '12px', color: 'white', textAlign: 'center', marginBottom: '40px', marginTop: '10px', outline: 'none', letterSpacing: '3px' }} />
         <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '15px', width: '100%', maxWidth: '480px' }}>
           {view === 'categories' ? (
             categories.map(cat => (
               <div key={cat} onClick={() => { setActiveCategory(cat); setView('list'); }} className="frecuencia-card">
-                <div style={{ fontSize: '12px', letterSpacing: '2px' }}>{cat}</div>
+                <div style={{ fontSize: '12px', letterSpacing: '2px', textTransform: 'uppercase' }}>{cat}</div>
               </div>
             ))
           ) : (
             tracks.filter(t => t.category === activeCategory).map(track => (
               <div key={track.id} onClick={() => setSelectedTrack(track)} className="frecuencia-card">
-                <div style={{ fontSize: '10px' }}>{track.name}</div>
-                <div style={{ fontSize: '7px', color: '#22d3ee' }}>{track.hz}</div>
+                <div style={{ fontSize: '11px', letterSpacing: '1px', textTransform: 'uppercase' }}>{track.name}</div>
+                <div style={{ fontSize: '8px', color: '#22d3ee', marginTop: '4px' }}>{track.hz}</div>
               </div>
             ))
           )}
