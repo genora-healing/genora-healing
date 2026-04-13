@@ -33,8 +33,11 @@ const App = () => {
   const [activeCategory, setActiveCategory] = useState(null);
   const [selectedTrack, setSelectedTrack] = useState(null);
   const [isPlaying, setIsPlaying] = useState(false);
+  const [selectedTime, setSelectedTime] = useState(null);
   const [searchTerm, setSearchTerm] = useState("");
   
+  const audioRef = useRef(null);
+
   useEffect(() => {
     const timer = setTimeout(() => setShowSplash(false), 3000);
     return () => clearTimeout(timer);
@@ -61,17 +64,20 @@ const App = () => {
       <div className="fade-in-smooth" style={{ backgroundColor: '#020617', minHeight: '100vh', color: 'white', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', textAlign: 'center', position: 'relative' }}>
         <style>{inlineStyles}</style>
         
+        {/* FLECHA GOBACK EN CIAN */}
         <div onClick={() => setSelectedTrack(null)} className="back-button-genora" style={{ position: 'absolute', top: '25px', left: '25px', border: '1px solid rgba(255,255,255,0.2)' }}>
              <span style={{ color: '#22d3ee', fontSize: '20px' }}>‹</span>
         </div>
 
+        {/* CONTENEDOR ADN (Aquí brillará tu nueva imagen circular) */}
         <div style={{ width: '210px', height: '210px', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '40px', animation: isPlaying ? 'aura-supernova 4s infinite ease-in-out' : 'none' }}>
-          <img src="/imagenes/adn-icon.png" style={{ width: '100%', height: '100%', objectFit: 'contain' }} alt="ADN Circular" />
+          <img src="/imagenes/adn-icon.png" style={{ width: '100%', height: '100%', objectFit: 'contain' }} />
         </div>
         
         <h2 style={{ fontSize: '24px', fontWeight: '200', letterSpacing: '4px', textTransform: 'uppercase' }}>{selectedTrack.name}</h2>
         <p style={{ color: '#22d3ee', fontWeight: 'bold' }}>{selectedTrack.hz}</p>
         
+        {/* BOTÓN PLAY CON ICONO BLANCO */}
         <button onClick={() => setIsPlaying(!isPlaying)} style={{ width: '80px', height: '80px', borderRadius: '50%', border: '1px solid #22d3ee', background: 'none', marginTop: '40px' }}>
           <span style={{ fontSize: '26px', color: '#ffffff' }}>{isPlaying ? '||' : '▶'}</span>
         </button>
@@ -89,7 +95,7 @@ const App = () => {
              <span style={{ color: '#22d3ee', fontSize: '20px' }}>‹</span>
           </div>
         ) : (
-          <img src="/imagenes/genora-logo-white.png" style={{ height: '90px', objectFit: 'contain' }} alt="Genora" />
+          <img src="/imagenes/genora-logo-white.png" style={{ height: '90px', objectFit: 'contain' }} />
         )}
         <div style={{ fontSize: '11px', color: '#22d3ee', border: '1px solid rgba(34, 211, 238, 0.2)', padding: '5px 15px', borderRadius: '20px' }}>ES | EN</div>
       </div>
@@ -98,7 +104,7 @@ const App = () => {
         {view === 'list' && <p style={{ fontSize: '10px', letterSpacing: '5px', color: '#22d3ee', marginBottom: '25px', textTransform: 'uppercase' }}>{activeCategory}</p>}
         
         <div style={{ width: '150px', height: '150px', marginBottom: '30px', animation: 'aura-supernova 8s infinite ease-in-out' }}>
-          <img src="/imagenes/adn-icon.png" style={{ width: '100%', height: '100%', objectFit: 'contain' }} alt="ADN Circular" />
+          <img src="/imagenes/adn-icon.png" style={{ width: '100%', height: '100%', objectFit: 'contain' }} />
         </div>
 
         <input type="text" placeholder="BUSCAR..." value={searchTerm} onChange={(e) => setSearchTerm(e.target.value)} style={{ width: '90%', background: 'rgba(255,255,255,0.03)', border: '1px solid rgba(255,255,255,0.1)', borderRadius: '25px', padding: '12px', color: 'white', textAlign: 'center', marginBottom: '45px', outline: 'none' }} />
