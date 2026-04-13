@@ -8,10 +8,8 @@ const inlineStyles = `
   }
   .fade-in-smooth { animation: fadeIn 0.8s ease-in forwards; }
   @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
-  .time-button { transition: all 0.2s ease; cursor: pointer; border-radius: 40px !important; }
   body, html { overflow-x: hidden; background-color: #020617; margin: 0; padding: 0; }
 
-  /* BOTÓN VOLVER CIRCULAR */
   .back-button-circular {
     width: 42px; height: 42px; border-radius: 50%;
     border: 1px solid rgba(34, 211, 238, 0.4);
@@ -20,7 +18,6 @@ const inlineStyles = `
     cursor: pointer; transition: all 0.3s ease;
   }
 
-  /* BOTONES PEQUEÑOS (PASO 2.3.5 BLINDADO) */
   .frecuencia-card {
     transition: all 0.3s ease; padding: 8px 5px !important; border-radius: 35px;
     border: 1px solid rgba(34, 211, 238, 0.15); background: rgba(255,255,255,0.015);
@@ -34,17 +31,21 @@ const App = () => {
   const [view, setView] = useState('categories');
   const [activeCategory, setActiveCategory] = useState(null);
   const [selectedTrack, setSelectedTrack] = useState(null);
-  const [isPlaying, setIsPlaying] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
 
   const categories = ["MENTE", "EMOCIONES", "CUERPO", "EXPANSIÓN"];
   
+  // Datos de ejemplo para que puedas ver la lista
+  const tracks = [
+    { id: "01", category: "MENTE", name: "Alpha Integración", hz: "8 – 10 Hz" },
+    { id: "02", category: "MENTE", name: "Alpha Creator", hz: "8 – 12 Hz" }
+  ];
+
   useEffect(() => {
     const timer = setTimeout(() => setShowSplash(false), 4500);
     return () => clearTimeout(timer);
   }, []);
 
-  // --- PANTALLA 1: SPLASH (CON FRASE RESTAURADA) ---
   if (showSplash) {
     return (
       <div className="fade-in-smooth" style={{ backgroundColor: '#020617', minHeight: '100vh', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', textAlign: 'center', padding: '20px' }}>
@@ -56,35 +57,54 @@ const App = () => {
     );
   }
 
-  // --- PANTALLA DE LISTA Y CATEGORÍAS ---
   return (
     <div className="fade-in-smooth" style={{ backgroundColor: '#020617', minHeight: '100vh', color: 'white', padding: '15px' }}>
       <style>{inlineStyles}</style>
       
-      {/* CABECERA: LOGO Y ES|EN */}
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '15px', paddingTop: '10px' }}>
-        <img src="/imagenes/genora-logo-white.png" style={{ height: '100px', width: 'auto', objectFit: 'contain' }} alt="Logo" />
+        {view === 'list' ? (
+          <div onClick={() => setView('categories')} className="back-button-circular">
+             <span style={{ color: '#22d3ee', fontSize: '20px', marginLeft: '-2px' }}>‹</span>
+          </div>
+        ) : (
+          <img src="/imagenes/genora-logo-white.png" style={{ height: '100px', width: 'auto', objectFit: 'contain' }} alt="Logo" />
+        )}
         <div style={{ fontSize: '11px', letterSpacing: '2px', color: '#22d3ee', border: '1px solid rgba(34, 211, 238, 0.2)', padding: '5px 15px', borderRadius: '20px', fontWeight: 'bold' }}>ES | EN</div>
       </div>
 
       <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-        {/* ADN CIRCULAR CON RESPLANDOR */}
-        <div style={{ width: '150px', height: '150px', backgroundColor: '#000', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '50px', animation: 'aura-supernova 8s infinite ease-in-out', overflow: 'hidden' }}>
+        {/* TÍTULO: Subido para que no toque el ADN */}
+        {view === 'list' && (
+          <p style={{ fontSize: '10px', letterSpacing: '5px', color: '#22d3ee', marginBottom: '35px', textTransform: 'uppercase', fontWeight: 'bold', marginTop: '0px' }}>
+            {activeCategory}
+          </p>
+        )}
+        
+        <div style={{ width: '150px', height: '150px', backgroundColor: '#000', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '30px', animation: 'aura-supernova 8s infinite ease-in-out', overflow: 'hidden' }}>
           <img src="/imagenes/adn-icon.png" style={{ width: '125%', height: '125%', objectFit: 'cover', borderRadius: '50%', filter: 'drop-shadow(0 0 10px #22d3ee)' }} alt="ADN" />
         </div>
 
-        {/* BUSCADOR: BAJADO PARA DAR MÁS AIRE AL LOGOTIPO */}
+        {/* BUSCADOR: Bajado casi pegado a los botones */}
         <input 
           type="text" placeholder="BUSCAR..." value={searchTerm} onChange={(e) => setSearchTerm(e.target.value)} 
-          style={{ width: '90%', maxWidth: '400px', background: 'rgba(255,255,255,0.03)', border: '1px solid rgba(255,255,255,0.1)', borderRadius: '25px', padding: '12px', color: 'white', fontSize: '12px', textAlign: 'center', letterSpacing: '3px', marginBottom: '60px', marginTop: '10px', outline: 'none' }} 
+          style={{ width: '90%', maxWidth: '400px', background: 'rgba(255,255,255,0.03)', border: '1px solid rgba(255,255,255,0.1)', borderRadius: '25px', padding: '12px', color: 'white', fontSize: '12px', textAlign: 'center', letterSpacing: '3px', marginBottom: '20px', marginTop: '35px', outline: 'none' }} 
         />
 
         <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '15px', width: '100%', maxWidth: '480px' }}>
-          {categories.map(cat => (
-            <div key={cat} className="frecuencia-card">
-              <div style={{ fontSize: '12px', letterSpacing: '2px', fontWeight: '300', color: 'white' }}>{cat}</div>
-            </div>
-          ))}
+          {view === 'categories' ? (
+            categories.map(cat => (
+              <div key={cat} onClick={() => { setActiveCategory(cat); setView('list'); }} className="frecuencia-card">
+                <div style={{ fontSize: '12px', letterSpacing: '2px', fontWeight: '300' }}>{cat}</div>
+              </div>
+            ))
+          ) : (
+            tracks.filter(t => t.category === activeCategory).map(track => (
+              <div key={track.id} className="frecuencia-card">
+                <div style={{ fontSize: '10px', letterSpacing: '1.2px', textTransform: 'uppercase' }}>{track.name}</div>
+                <div style={{ fontSize: '7px', color: '#22d3ee', marginTop: '3px' }}>{track.hz}</div>
+              </div>
+            ))
+          )}
         </div>
       </div>
     </div>
