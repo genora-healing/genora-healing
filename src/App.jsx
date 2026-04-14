@@ -1,7 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 
 const inlineStyles = `
-  /* --- CAJA FUERTE MAESTRA: INTOCABLE --- */
   @keyframes logo-breathe { 0%, 100% { transform: scale(1); opacity: 0.95; } 50% { transform: scale(1.05); opacity: 1; } }
   @keyframes aura-supernova {
     0%, 100% { transform: scale(1); box-shadow: 0 0 80px rgba(34, 211, 238, 0.4), 0 0 150px rgba(34, 211, 238, 0.2); }
@@ -17,7 +16,7 @@ const inlineStyles = `
     border: 1px solid rgba(34, 211, 238, 0.4);
     background: rgba(34, 211, 238, 0.05);
     display: flex; align-items: center; justify-content: center;
-    cursor: pointer; transition: all 0.3s ease;
+    cursor: pointer;
   }
 
   .frecuencia-card {
@@ -41,13 +40,12 @@ const App = () => {
   const startupAudioRef = useRef(null);
   const timerRef = useRef(null);
 
-  // EFECTO: SPLASH 3s + SONIDO STARTUP
   useEffect(() => {
     if (startupAudioRef.current) {
       startupAudioRef.current.volume = 0.6;
-      startupAudioRef.current.play().catch(e => console.log("Audio esperando interacción"));
+      startupAudioRef.current.play().catch(e => console.log("Interacción necesaria"));
     }
-    const timer = setTimeout(() => setShowSplash(false), 3000);
+    const timer = setTimeout(() => setShowSplash(false), 3000); // 3 segundos de Splash
     return () => clearTimeout(timer);
   }, []);
 
@@ -100,7 +98,8 @@ const App = () => {
         </div>
         <p style={{ fontSize: '9px', letterSpacing: '3px', color: '#fdfcf5', opacity: 0.6, marginBottom: '60px', textTransform: 'uppercase', marginTop: '-75px' }}>GENORA • {selectedTrack.category}</p>
         <div style={{ width: '210px', height: '210px', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '40px', animation: isPlaying ? 'aura-supernova 4s infinite ease-in-out' : 'none' }}>
-          <img src="/imagenes/adn-icon.png.jpg" style={{ width: '100%', height: '100%', objectFit: 'contain' }} alt="ADN" />
+          {/* RUTA CORREGIDA A .PNG */}
+          <img src="/imagenes/adn-icon.png" style={{ width: '100%', height: '100%', objectFit: 'contain' }} alt="ADN" />
         </div>
         <h2 style={{ fontSize: '24px', fontWeight: '200', letterSpacing: '4px', textTransform: 'uppercase' }}>{selectedTrack.name}</h2>
         <p style={{ color: '#22d3ee', fontSize: '12px', letterSpacing: '3px', fontWeight: 'bold' }}>{selectedTrack.hz}</p>
@@ -132,7 +131,8 @@ const App = () => {
       <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
         {view === 'list' && <p style={{ fontSize: '10px', letterSpacing: '5px', color: '#22d3ee', marginBottom: '25px', textTransform: 'uppercase', fontWeight: 'bold', marginTop: '0px' }}>{activeCategory}</p>}
         <div style={{ width: '150px', height: '150px', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '30px', animation: 'aura-supernova 8s infinite ease-in-out' }}>
-          <img src="/imagenes/adn-icon.png.jpg" style={{ width: '100%', height: '100%', objectFit: 'contain' }} alt="ADN" />
+          {/* RUTA CORREGIDA A .PNG */}
+          <img src="/imagenes/adn-icon.png" style={{ width: '100%', height: '100%', objectFit: 'contain' }} alt="ADN" />
         </div>
         <input type="text" placeholder="BUSCAR..." value={searchTerm} onChange={(e) => setSearchTerm(e.target.value)} style={{ width: '90%', maxWidth: '400px', background: 'rgba(255,255,255,0.03)', border: '1px solid rgba(255,255,255,0.1)', borderRadius: '25px', padding: '12px', color: 'white', fontSize: '12px', textAlign: 'center', letterSpacing: '3px', marginBottom: '45px', marginTop: '10px', outline: 'none' }} />
         <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '15px', width: '100%', maxWidth: '480px' }}>
