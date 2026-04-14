@@ -2,10 +2,13 @@ import React, { useState, useEffect, useRef } from 'react';
 
 const inlineStyles = `
   @keyframes logo-breathe { 0%, 100% { transform: scale(1); opacity: 0.95; } 50% { transform: scale(1.05); opacity: 1; } }
+  
+  /* EL RESPLANDOR AHORA ES LIBRE (SIN CUADROS) */
   @keyframes aura-supernova {
-    0%, 100% { transform: scale(1); box-shadow: 0 0 80px rgba(34, 211, 238, 0.4), 0 0 150px rgba(34, 211, 238, 0.2); }
-    50% { transform: scale(1.03); box-shadow: 0 0 50px rgba(34, 211, 238, 0.9), 0 0 120px rgba(34, 211, 238, 0.6), 0 0 250px rgba(34, 211, 238, 0.4), 0 0 450px rgba(34, 211, 238, 0.2); }
+    0%, 100% { filter: drop-shadow(0 0 30px rgba(34, 211, 238, 0.4)); transform: scale(1); }
+    50% { filter: drop-shadow(0 0 60px rgba(34, 211, 238, 0.8)); transform: scale(1.02); }
   }
+
   .fade-in-smooth { animation: fadeIn 0.8s ease-in forwards; }
   @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
   .time-button { transition: all 0.2s ease; cursor: pointer; border-radius: 40px !important; }
@@ -38,35 +41,15 @@ const App = () => {
   
   const audioRef = useRef(null);
   const startupAudioRef = useRef(null);
-  const timerRef = useRef(null);
 
   useEffect(() => {
     if (startupAudioRef.current) {
-      startupAudioRef.current.volume = 0.6;
-      startupAudioRef.current.play().catch(e => console.log("Interacción necesaria"));
+      startupAudioRef.current.volume = 0.8;
+      startupAudioRef.current.play().catch(e => console.log("Sonido zen en espera de clic"));
     }
-    const timer = setTimeout(() => setShowSplash(false), 3000); // 3 segundos de Splash
+    const timer = setTimeout(() => setShowSplash(false), 3000);
     return () => clearTimeout(timer);
   }, []);
-
-  useEffect(() => {
-    if (audioRef.current && selectedTrack) {
-      audioRef.current.load();
-      if (isPlaying) audioRef.current.play().catch(e => console.log(e));
-    }
-  }, [selectedTrack]);
-
-  useEffect(() => {
-    if (audioRef.current) {
-      if (isPlaying) {
-        audioRef.current.play();
-        if (selectedTime && selectedTime !== '∞') {
-          if (timerRef.current) clearTimeout(timerRef.current);
-          timerRef.current = setTimeout(() => setIsPlaying(false), selectedTime * 60000);
-        }
-      } else { audioRef.current.pause(); }
-    }
-  }, [isPlaying, selectedTime]);
 
   const tracks = [
     { id: "01", category: "MENTE", name: "Alpha Integración", hz: "8 – 10 Hz", url: "/audio/alpha-integration.mp3" },
@@ -80,10 +63,10 @@ const App = () => {
     return (
       <div className="fade-in-smooth" style={{ backgroundColor: '#020617', minHeight: '100vh', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', textAlign: 'center', padding: '20px' }}>
         <style>{inlineStyles}</style>
-        <audio ref={startupAudioRef} src="/audio/startup-genora.mp3" />
+        <audio ref={startupAudioRef} src="/audio/startup-genora.mp3" autoPlay />
         <img src="/imagenes/genora-logo-white.png" style={{ width: '200px', maxWidth: '80%', animation: 'logo-breathe 3s infinite ease-in-out' }} alt="Logo" />
-        <h1 style={{ fontSize: '18px', fontWeight: '300', letterSpacing: '4px', color: '#22d3ee', textTransform: 'uppercase', marginTop: '30px', marginBottom: '5px' }}>RESONANCIA ORIGEN</h1>
-        <p style={{ fontSize: '10px', fontWeight: '200', letterSpacing: '3px', color: '#fdfcf5', opacity: 0.7, textTransform: 'uppercase' }}>ACTIVANDO TU CONSCIENCIA GENÉTICA</p>
+        <h1 style={{ fontSize: '18px', fontWeight: '300', letterSpacing: '4px', color: '#22d3ee', textTransform: 'uppercase', marginTop: '30px' }}>RESONANCIA ORIGEN</h1>
+        <p style={{ fontSize: '10px', fontWeight: '200', letterSpacing: '3px', color: '#fdfcf5', opacity: 0.7 }}>ACTIVANDO TU CONSCIENCIA GENÉTICA</p>
       </div>
     );
   }
@@ -97,18 +80,15 @@ const App = () => {
              <span style={{ color: '#22d3ee', fontSize: '20px', marginLeft: '-2px' }}>‹</span>
         </div>
         <p style={{ fontSize: '9px', letterSpacing: '3px', color: '#fdfcf5', opacity: 0.6, marginBottom: '60px', textTransform: 'uppercase', marginTop: '-75px' }}>GENORA • {selectedTrack.category}</p>
-        <div style={{ width: '210px', height: '210px', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '40px', animation: isPlaying ? 'aura-supernova 4s infinite ease-in-out' : 'none' }}>
-          {/* RUTA CORREGIDA A .PNG */}
+        
+        {/* ADN SIN CUADROS: SOLO TU IMAGEN CON RESPLANDOR */}
+        <div style={{ width: '210px', height: '210px', marginBottom: '40px', animation: isPlaying ? 'aura-supernova 4s infinite ease-in-out' : 'none' }}>
           <img src="/imagenes/adn-icon.png" style={{ width: '100%', height: '100%', objectFit: 'contain' }} alt="ADN" />
         </div>
+
         <h2 style={{ fontSize: '24px', fontWeight: '200', letterSpacing: '4px', textTransform: 'uppercase' }}>{selectedTrack.name}</h2>
         <p style={{ color: '#22d3ee', fontSize: '12px', letterSpacing: '3px', fontWeight: 'bold' }}>{selectedTrack.hz}</p>
-        <div style={{ display: 'flex', gap: '12px', margin: '40px 0' }}>
-          {[15, 30, 60, '∞'].map((t) => (
-            <button key={t} onClick={() => setSelectedTime(t)} className="time-button" style={{ width: '58px', padding: '9px 0', border: `1px solid ${selectedTime === t ? '#22d3ee' : 'rgba(255,255,255,0.1)'}`, background: selectedTime === t ? '#22d3ee22' : 'none', color: 'white' }}>{t === '∞' ? t : `${t}'`}</button>
-          ))}
-        </div>
-        <button onClick={() => setIsPlaying(!isPlaying)} style={{ width: '80px', height: '80px', borderRadius: '50%', border: '1px solid #22d3ee', background: 'none' }}>
+        <button onClick={() => setIsPlaying(!isPlaying)} style={{ width: '80px', height: '80px', borderRadius: '50%', border: '1px solid #22d3ee', background: 'none', marginTop: '40px' }}>
           <span style={{ fontSize: '26px', color: '#ffffff' }}>{isPlaying ? '||' : '▶'}</span>
         </button>
       </div>
@@ -130,10 +110,12 @@ const App = () => {
       </div>
       <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
         {view === 'list' && <p style={{ fontSize: '10px', letterSpacing: '5px', color: '#22d3ee', marginBottom: '25px', textTransform: 'uppercase', fontWeight: 'bold', marginTop: '0px' }}>{activeCategory}</p>}
-        <div style={{ width: '150px', height: '150px', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '30px', animation: 'aura-supernova 8s infinite ease-in-out' }}>
-          {/* RUTA CORREGIDA A .PNG */}
+        
+        {/* ADN EN LISTAS SIN CUADROS */}
+        <div style={{ width: '150px', height: '150px', marginBottom: '30px', animation: 'aura-supernova 8s infinite ease-in-out' }}>
           <img src="/imagenes/adn-icon.png" style={{ width: '100%', height: '100%', objectFit: 'contain' }} alt="ADN" />
         </div>
+
         <input type="text" placeholder="BUSCAR..." value={searchTerm} onChange={(e) => setSearchTerm(e.target.value)} style={{ width: '90%', maxWidth: '400px', background: 'rgba(255,255,255,0.03)', border: '1px solid rgba(255,255,255,0.1)', borderRadius: '25px', padding: '12px', color: 'white', fontSize: '12px', textAlign: 'center', letterSpacing: '3px', marginBottom: '45px', marginTop: '10px', outline: 'none' }} />
         <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '15px', width: '100%', maxWidth: '480px' }}>
           {view === 'categories' ? (
