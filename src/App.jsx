@@ -6,9 +6,8 @@ const inlineStyles = `
     0%, 100% { transform: scale(1); box-shadow: 0 0 80px rgba(34, 211, 238, 0.4), 0 0 150px rgba(34, 211, 238, 0.2); }
     50% { transform: scale(1.03); box-shadow: 0 0 50px rgba(34, 211, 238, 0.9), 0 0 120px rgba(34, 211, 238, 0.6), 0 0 250px rgba(34, 211, 238, 0.4), 0 0 450px rgba(34, 211, 238, 0.2); }
   }
-  .fade-in-smooth { animation: fadeIn 0.8s ease-in forwards; }
+  .fade-in-smooth { animation: fadeIn 1s ease-in forwards; }
   @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
-  .time-button { transition: all 0.2s ease; cursor: pointer; border-radius: 40px !important; }
   body, html { overflow-x: hidden; background-color: #020617; margin: 0; padding: 0; }
 
   .back-button-genora {
@@ -33,17 +32,21 @@ const App = () => {
   const [activeCategory, setActiveCategory] = useState(null);
   const [selectedTrack, setSelectedTrack] = useState(null);
   const [isPlaying, setIsPlaying] = useState(false);
-  const [selectedTime, setSelectedTime] = useState(null);
   const [searchTerm, setSearchTerm] = useState("");
   
   const audioRef = useRef(null);
+  const startupAudioRef = useRef(null);
 
+  // EFECTO: SPLASH 3s + SONIDO STARTUP-GENORA
   useEffect(() => {
-    const timer = setTimeout(() => setShowSplash(false), 4500);
+    if (startupAudioRef.current) {
+      startupAudioRef.current.volume = 0.6;
+      startupAudioRef.current.play().catch(e => console.log("Esperando interacción para sonar..."));
+    }
+    const timer = setTimeout(() => setShowSplash(false), 3000);
     return () => clearTimeout(timer);
   }, []);
 
-  // Base de datos de frecuencias (Asegúrate que los .mp3 existan en /public/audio/)
   const tracks = [
     { id: "01", category: "MENTE", name: "Alpha Integración", hz: "8 – 10 Hz", url: "/audio/alpha-integration.mp3" },
     { id: "02", category: "MENTE", name: "Alpha Creator", hz: "8 – 12 Hz", url: "/audio/alpha-creator.mp3" }
@@ -51,21 +54,13 @@ const App = () => {
 
   const categories = ["MENTE", "EMOCIONES", "CUERPO", "EXPANSIÓN"];
 
-  // Lógica de Audio
-  useEffect(() => {
-    if (audioRef.current) {
-      if (isPlaying) {
-        audioRef.current.play().catch(e => console.log("Error de audio"));
-      } else {
-        audioRef.current.pause();
-      }
-    }
-  }, [isPlaying, selectedTrack]);
-
   if (showSplash) {
     return (
       <div className="fade-in-smooth" style={{ backgroundColor: '#020617', minHeight: '100vh', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', textAlign: 'center', padding: '20px' }}>
         <style>{inlineStyles}</style>
+        {/* AUDIO DE INICIO ACTUALIZADO */}
+        <audio ref={startupAudioRef} src="/audio/startup-genora.mp3" />
+        
         <img src="/imagenes/genora-logo-white.png" style={{ width: '200px', maxWidth: '80%', animation: 'logo-breathe 3s infinite ease-in-out' }} alt="Logo" />
         <h1 style={{ fontSize: '18px', fontWeight: '300', letterSpacing: '4px', color: '#22d3ee', textTransform: 'uppercase', marginTop: '30px' }}>RESONANCIA ORIGEN</h1>
         <p style={{ fontSize: '10px', fontWeight: '200', letterSpacing: '3px', color: '#fdfcf5', opacity: 0.7 }}>ACTIVANDO TU CONSCIENCIA GENÉTICA</p>
@@ -77,7 +72,7 @@ const App = () => {
     return (
       <div className="fade-in-smooth" style={{ backgroundColor: '#020617', minHeight: '100vh', color: 'white', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', textAlign: 'center', position: 'relative', padding: '15px' }}>
         <style>{inlineStyles}</style>
-        <audio ref={audioRef} src={selectedTrack.url} loop={selectedTime === '∞'} />
+        <audio ref={audioRef} src={selectedTrack.url} />
         <div onClick={() => { setSelectedTrack(null); setIsPlaying(false); }} className="back-button-genora" style={{ position: 'absolute', top: '25px', left: '25px', border: '1px solid rgba(255,255,255,0.2)' }}>
              <span style={{ color: '#22d3ee', fontSize: '20px' }}>‹</span>
         </div>
@@ -112,7 +107,7 @@ const App = () => {
         <div style={{ width: '150px', height: '150px', marginBottom: '30px', animation: 'aura-supernova 8s infinite ease-in-out' }}>
           <img src="/imagenes/adn-icon.png.jpg" style={{ width: '100%', height: '100%', objectFit: 'contain' }} alt="ADN" />
         </div>
-        <input type="text" placeholder="BUSCAR..." value={searchTerm} onChange={(e) => setSearchTerm(e.target.value)} style={{ width: '90%', maxWidth: '400px', background: 'rgba(255,255,255,0.03)', border: '1px solid rgba(255,255,255,0.1)', borderRadius: '25px', padding: '12px', color: 'white', textAlign: 'center', marginBottom: '40px', marginTop: '10px', outline: 'none', letterSpacing: '3px' }} />
+        <input type="text" placeholder="BUSCAR..." value={searchTerm} onChange={(e) => setSearchTerm(e.target.value)} style={{ width: '90%', maxWidth: '400px', background: 'rgba(255,255,255,0.03)', border: '1px solid rgba(255,255,255,0.1)', borderRadius: '25px', padding: '12px', color: 'white', textAlign: 'center', marginBottom: '40px', marginTop: '10px', outline: 'none' }} />
         <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '15px', width: '100%', maxWidth: '480px' }}>
           {view === 'categories' ? (
             categories.map(cat => (
@@ -123,7 +118,7 @@ const App = () => {
           ) : (
             tracks.filter(t => t.category === activeCategory).map(track => (
               <div key={track.id} onClick={() => setSelectedTrack(track)} className="frecuencia-card">
-                <div style={{ fontSize: '11px', letterSpacing: '1px', textTransform: 'uppercase' }}>{track.name}</div>
+                <div style={{ fontSize: '11px', letterSpacing: '1px' }}>{track.name}</div>
                 <div style={{ fontSize: '8px', color: '#22d3ee', marginTop: '4px' }}>{track.hz}</div>
               </div>
             ))
