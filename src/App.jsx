@@ -3,10 +3,10 @@ import React, { useState, useEffect, useRef } from 'react';
 const inlineStyles = `
   @keyframes logo-breathe { 0%, 100% { transform: scale(1); opacity: 0.95; } 50% { transform: scale(1.05); opacity: 1; } }
   
-  /* EL ESCÁNDALO DE LUZ: Supernova de 450px restaurada */
+  /* ESCÁNDALO DE LUZ: Filtro directo para evitar el cuadro azul */
   @keyframes aura-supernova {
-    0%, 100% { transform: scale(1); box-shadow: 0 0 80px rgba(34, 211, 238, 0.4), 0 0 150px rgba(34, 211, 238, 0.2); }
-    50% { transform: scale(1.03); box-shadow: 0 0 50px rgba(34, 211, 238, 0.9), 0 0 120px rgba(34, 211, 238, 0.6), 0 0 250px rgba(34, 211, 238, 0.4), 0 0 450px rgba(34, 211, 238, 0.2); }
+    0%, 100% { filter: drop-shadow(0 0 40px rgba(34, 211, 238, 0.4)) drop-shadow(0 0 100px rgba(34, 211, 238, 0.1)); transform: scale(1); }
+    50% { filter: drop-shadow(0 0 60px rgba(34, 211, 238, 0.9)) drop-shadow(0 0 200px rgba(34, 211, 238, 0.4)); transform: scale(1.03); }
   }
 
   .fade-in-smooth { animation: fadeIn 0.8s ease-in forwards; }
@@ -21,11 +21,19 @@ const inlineStyles = `
     cursor: pointer;
   }
 
-  /* BOTONES FINOS: Restaurados a 60px de alto y estilizados */
-  .frecuencia-card {
-    transition: all 0.3s ease; padding: 10px 6px !important; border-radius: 35px;
+  /* BOTONES DE CATEGORÍAS (Pantalla 2) */
+  .categoria-card {
+    transition: all 0.3s ease; padding: 10px 6px; border-radius: 35px;
     border: 1px solid rgba(34, 211, 238, 0.15); background: rgba(255,255,255,0.015);
-    text-align: center; cursor: pointer; min-height: 60px !important;
+    text-align: center; cursor: pointer; min-height: 60px;
+    display: flex; flex-direction: column; justify-content: center; align-items: center;
+  }
+
+  /* BOTONES DE LISTA (Pantalla 3) - MÁS PEQUEÑOS Y FINOS */
+  .frecuencia-card-mini {
+    transition: all 0.3s ease; padding: 6px 4px; border-radius: 25px;
+    border: 1px solid rgba(34, 211, 238, 0.12); background: rgba(255,255,255,0.01);
+    text-align: center; cursor: pointer; min-height: 45px;
     display: flex; flex-direction: column; justify-content: center; align-items: center;
   }
 
@@ -96,7 +104,7 @@ const App = () => {
         <audio ref={startupAudioRef} src="/audio/startup-genora.mp3" preload="auto" />
         <img src="/imagenes/genora-logo-white.png" style={{ width: '200px', maxWidth: '80%', animation: 'logo-breathe 3s infinite ease-in-out' }} alt="Logo" />
         <h1 style={{ fontSize: '18px', fontWeight: '300', letterSpacing: '4px', color: '#22d3ee', textTransform: 'uppercase', marginTop: '30px', marginBottom: '5px' }}>RESONANCIA ORIGEN</h1>
-        <p style={{ fontSize: '10px', fontWeight: '200', letterSpacing: '3px', color: '#fdfcf5', opacity: 0.7, textTransform: 'uppercase' }}>ACTIVANDO TU CONSCIENCIA GENÉTICA</p>
+        <p style={{ fontSize: '10px', fontWeight: '200', letterSpacing: '3px', color: '#fdfcf5', opacity: 0.7 }}>ACTIVANDO TU CONSCIENCIA GENÉTICA</p>
       </div>
     );
   }
@@ -111,8 +119,8 @@ const App = () => {
         </div>
         <p style={{ fontSize: '9px', letterSpacing: '3px', color: '#fdfcf5', opacity: 0.6, marginBottom: '60px', textTransform: 'uppercase', marginTop: '-75px' }}>GENORA • {selectedTrack.category}</p>
         
-        <div style={{ width: '210px', height: '210px', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '40px', animation: isPlaying ? 'aura-supernova 4s infinite ease-in-out' : 'none' }}>
-          <img src="/imagenes/adn-icon.png" style={{ width: '100%', height: '100%', objectFit: 'contain' }} alt="ADN" />
+        <div style={{ width: '210px', height: '210px', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '40px' }}>
+          <img src="/imagenes/adn-icon.png" style={{ width: '100%', height: '100%', objectFit: 'contain', animation: isPlaying ? 'aura-supernova 4s infinite ease-in-out' : 'none' }} alt="ADN" />
         </div>
 
         <h2 style={{ fontSize: '24px', fontWeight: '200', letterSpacing: '4px', textTransform: 'uppercase', marginBottom: '4px' }}>{selectedTrack.name}</h2>
@@ -145,23 +153,23 @@ const App = () => {
       <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
         {view === 'list' && <p style={{ fontSize: '10px', letterSpacing: '5px', color: '#22d3ee', marginBottom: '25px', textTransform: 'uppercase', fontWeight: 'bold', marginTop: '0px' }}>{activeCategory}</p>}
         
-        <div style={{ width: '150px', height: '150px', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '30px', animation: 'aura-supernova 8s infinite ease-in-out' }}>
-          <img src="/imagenes/adn-icon.png" style={{ width: '100%', height: '100%', objectFit: 'contain' }} alt="ADN" />
+        <div style={{ width: '150px', height: '150px', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '30px' }}>
+          <img src="/imagenes/adn-icon.png" style={{ width: '100%', height: '100%', objectFit: 'contain', animation: 'aura-supernova 8s infinite ease-in-out' }} alt="ADN" />
         </div>
 
         <input type="text" placeholder="BUSCAR..." value={searchTerm} onChange={(e) => setSearchTerm(e.target.value)} style={{ width: '90%', maxWidth: '400px', background: 'rgba(255,255,255,0.03)', border: '1px solid rgba(255,255,255,0.1)', borderRadius: '25px', padding: '12px', color: 'white', fontSize: '12px', textAlign: 'center', letterSpacing: '3px', marginBottom: '45px', marginTop: '10px', outline: 'none' }} />
         <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '15px', width: '100%', maxWidth: '480px' }}>
           {view === 'categories' ? (
             categories.map(cat => (
-              <div key={cat} onClick={() => { setActiveCategory(cat); setView('list'); }} className="frecuencia-card">
+              <div key={cat} onClick={() => { setActiveCategory(cat); setView('list'); }} className="categoria-card">
                 <div style={{ fontSize: '13px', letterSpacing: '2px', fontWeight: 'bold', textTransform: 'uppercase' }}>{cat}</div>
               </div>
             ))
           ) : (
             tracks.filter(t => t.category === activeCategory).map(track => (
-              <div key={track.id} onClick={() => setSelectedTrack(track)} className="frecuencia-card">
-                <div style={{ fontSize: '11px', letterSpacing: '1.2px', textTransform: 'uppercase', color: 'white' }}>{track.name}</div>
-                <div style={{ fontSize: '7px', color: '#22d3ee', marginTop: '3px' }}>{track.hz}</div>
+              <div key={track.id} onClick={() => setSelectedTrack(track)} className="frecuencia-card-mini">
+                <div style={{ fontSize: '10px', letterSpacing: '1px', textTransform: 'uppercase', color: 'white' }}>{track.name}</div>
+                <div style={{ fontSize: '7px', color: '#22d3ee', marginTop: '2px' }}>{track.hz}</div>
               </div>
             ))
           )}
