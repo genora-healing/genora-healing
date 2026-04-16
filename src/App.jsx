@@ -3,18 +3,19 @@ import React, { useState, useEffect, useRef } from 'react';
 const inlineStyles = `
   @keyframes logo-breathe { 0%, 100% { transform: scale(1); opacity: 0.95; } 50% { transform: scale(1.05); opacity: 1; } }
   
-  /* RESPLANDOR POTENCIADO: Capas múltiples de luz cian */
+  /* TU RESPLANDOR ESCANDALOSO INTEGRADO */
   @keyframes aura-supernova {
     0%, 100% { 
-      filter: drop-shadow(0 0 20px rgba(34, 211, 238, 0.6)) 
-              drop-shadow(0 0 50px rgba(34, 211, 238, 0.3)); 
       transform: scale(1); 
+      box-shadow: 0 0 80px rgba(34, 211, 238, 0.4), 0 0 150px rgba(34, 211, 238, 0.2); 
     }
-    50% { 
-      filter: drop-shadow(0 0 50px rgba(34, 211, 238, 1)) 
-              drop-shadow(0 0 120px rgba(34, 211, 238, 0.6))
-              drop-shadow(0 0 250px rgba(34, 211, 238, 0.2)); 
-      transform: scale(1.04); 
+    50% {
+      transform: scale(1.03); 
+      box-shadow: 
+        0 0 50px rgba(34, 211, 238, 0.9),
+        0 0 120px rgba(34, 211, 238, 0.6),
+        0 0 250px rgba(34, 211, 238, 0.4),
+        0 0 450px rgba(34, 211, 238, 0.2);
     }
   }
 
@@ -60,12 +61,10 @@ const App = () => {
   const startupAudioRef = useRef(null);
   const timerRef = useRef(null);
 
-  // --- TRUCO MAESTRO DE SONIDO ---
   useEffect(() => {
     const attemptPlay = () => {
       if (startupAudioRef.current) {
         startupAudioRef.current.play().catch(() => {
-          // Si falla, activamos un disparador global para el primer toque
           const forcePlay = () => {
             startupAudioRef.current.play();
             document.removeEventListener('click', forcePlay);
@@ -131,8 +130,14 @@ const App = () => {
         </div>
         <p style={{ fontSize: '9px', letterSpacing: '3px', color: '#fdfcf5', opacity: 0.6, marginBottom: '60px', textTransform: 'uppercase', marginTop: '-75px' }}>GENORA • {selectedTrack.category}</p>
         
-        <div style={{ width: '210px', height: '210px', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '40px' }}>
-          <img src="/imagenes/adn-icon.png" style={{ width: '100%', height: '100%', objectFit: 'contain', animation: isPlaying ? 'aura-supernova 4s infinite ease-in-out' : 'none' }} alt="ADN" />
+        {/* ADN REPRODUCTOR CON TU RESPLANDOR BOX-SHADOW */}
+        <div style={{ 
+          width: '210px', height: '210px', 
+          borderRadius: '50%', // Necesario para que el resplandor sea circular
+          display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '40px',
+          animation: isPlaying ? 'aura-supernova 4s infinite ease-in-out' : 'none'
+        }}>
+          <img src="/imagenes/adn-icon.png" style={{ width: '100%', height: '100%', objectFit: 'contain' }} alt="ADN" />
         </div>
 
         <h2 style={{ fontSize: '24px', fontWeight: '200', letterSpacing: '4px', textTransform: 'uppercase', marginBottom: '4px' }}>{selectedTrack.name}</h2>
@@ -165,8 +170,14 @@ const App = () => {
       <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
         {view === 'list' && <p style={{ fontSize: '10px', letterSpacing: '5px', color: '#22d3ee', marginBottom: '25px', textTransform: 'uppercase', fontWeight: 'bold', marginTop: '0px' }}>{activeCategory}</p>}
         
-        <div style={{ width: '150px', height: '150px', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '30px' }}>
-          <img src="/imagenes/adn-icon.png" style={{ width: '100%', height: '100%', objectFit: 'contain', animation: 'aura-supernova 8s infinite ease-in-out' }} alt="ADN" />
+        {/* ADN LISTA CON TU RESPLANDOR BOX-SHADOW */}
+        <div style={{ 
+          width: '150px', height: '150px', 
+          borderRadius: '50%',
+          display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '30px', 
+          animation: 'aura-supernova 8s infinite ease-in-out' 
+        }}>
+          <img src="/imagenes/adn-icon.png" style={{ width: '100%', height: '100%', objectFit: 'contain' }} alt="ADN" />
         </div>
 
         <input type="text" placeholder="BUSCAR..." value={searchTerm} onChange={(e) => setSearchTerm(e.target.value)} style={{ width: '90%', maxWidth: '400px', background: 'rgba(255,255,255,0.03)', border: '1px solid rgba(255,255,255,0.1)', borderRadius: '25px', padding: '12px', color: 'white', fontSize: '12px', textAlign: 'center', letterSpacing: '3px', marginBottom: '45px', marginTop: '10px', outline: 'none' }} />
