@@ -3,18 +3,18 @@ import React, { useState, useEffect, useRef } from 'react';
 const inlineStyles = `
   @keyframes logo-breathe { 0%, 100% { transform: scale(1); opacity: 0.95; } 50% { transform: scale(1.05); opacity: 1; } }
   
-  /* ESCÁNDALO DE LUZ POTENCIADO: Resplandor Multinivel */
+  /* RESPLANDOR POTENCIADO: Capas múltiples de luz cian */
   @keyframes aura-supernova {
     0%, 100% { 
-      filter: drop-shadow(0 0 25px rgba(34, 211, 238, 0.5)) 
-              drop-shadow(0 0 50px rgba(34, 211, 238, 0.2)); 
+      filter: drop-shadow(0 0 20px rgba(34, 211, 238, 0.6)) 
+              drop-shadow(0 0 50px rgba(34, 211, 238, 0.3)); 
       transform: scale(1); 
     }
     50% { 
-      filter: drop-shadow(0 0 45px rgba(34, 211, 238, 1)) 
-              drop-shadow(0 0 130px rgba(34, 211, 238, 0.7))
-              drop-shadow(0 0 300px rgba(34, 211, 238, 0.4)); 
-      transform: scale(1.05); 
+      filter: drop-shadow(0 0 50px rgba(34, 211, 238, 1)) 
+              drop-shadow(0 0 120px rgba(34, 211, 238, 0.6))
+              drop-shadow(0 0 250px rgba(34, 211, 238, 0.2)); 
+      transform: scale(1.04); 
     }
   }
 
@@ -60,7 +60,24 @@ const App = () => {
   const startupAudioRef = useRef(null);
   const timerRef = useRef(null);
 
+  // --- TRUCO MAESTRO DE SONIDO ---
   useEffect(() => {
+    const attemptPlay = () => {
+      if (startupAudioRef.current) {
+        startupAudioRef.current.play().catch(() => {
+          // Si falla, activamos un disparador global para el primer toque
+          const forcePlay = () => {
+            startupAudioRef.current.play();
+            document.removeEventListener('click', forcePlay);
+            document.removeEventListener('touchstart', forcePlay);
+          };
+          document.addEventListener('click', forcePlay);
+          document.addEventListener('touchstart', forcePlay);
+        });
+      }
+    };
+
+    attemptPlay();
     const timer = setTimeout(() => setShowSplash(false), 3000);
     return () => clearTimeout(timer);
   }, []);
@@ -96,6 +113,7 @@ const App = () => {
     return (
       <div className="fade-in-smooth" style={{ backgroundColor: '#020617', minHeight: '100vh', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', textAlign: 'center', padding: '20px' }}>
         <style>{inlineStyles}</style>
+        <audio ref={startupAudioRef} src="/audio/startup-genora.mp3" preload="auto" />
         <img src="/imagenes/genora-logo-white.png" style={{ width: '200px', maxWidth: '80%', animation: 'logo-breathe 3s infinite ease-in-out' }} alt="Logo" />
         <h1 style={{ fontSize: '18px', fontWeight: '300', letterSpacing: '4px', color: '#22d3ee', textTransform: 'uppercase', marginTop: '30px', marginBottom: '5px' }}>RESONANCIA ORIGEN</h1>
         <p style={{ fontSize: '10px', fontWeight: '200', letterSpacing: '3px', color: '#fdfcf5', opacity: 0.7 }}>ACTIVANDO TU CONSCIENCIA GENÉTICA</p>
@@ -113,7 +131,6 @@ const App = () => {
         </div>
         <p style={{ fontSize: '9px', letterSpacing: '3px', color: '#fdfcf5', opacity: 0.6, marginBottom: '60px', textTransform: 'uppercase', marginTop: '-75px' }}>GENORA • {selectedTrack.category}</p>
         
-        {/* REPRODUCCIÓN: Brillo Intenso Activo */}
         <div style={{ width: '210px', height: '210px', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '40px' }}>
           <img src="/imagenes/adn-icon.png" style={{ width: '100%', height: '100%', objectFit: 'contain', animation: isPlaying ? 'aura-supernova 4s infinite ease-in-out' : 'none' }} alt="ADN" />
         </div>
@@ -148,7 +165,6 @@ const App = () => {
       <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
         {view === 'list' && <p style={{ fontSize: '10px', letterSpacing: '5px', color: '#22d3ee', marginBottom: '25px', textTransform: 'uppercase', fontWeight: 'bold', marginTop: '0px' }}>{activeCategory}</p>}
         
-        {/* LISTA: Brillo Suave pero Presente */}
         <div style={{ width: '150px', height: '150px', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '30px' }}>
           <img src="/imagenes/adn-icon.png" style={{ width: '100%', height: '100%', objectFit: 'contain', animation: 'aura-supernova 8s infinite ease-in-out' }} alt="ADN" />
         </div>
