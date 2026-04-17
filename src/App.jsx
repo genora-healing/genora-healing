@@ -26,7 +26,6 @@ const inlineStyles = `
     cursor: pointer; transition: all 0.4s ease;
   }
 
-  /* BOTONES DE SUB-CATEGORÍA CON MÁS AIRE INTERNO */
   .sub-category-card {
     transition: all 0.3s ease; padding: 10px 4px; border-radius: 35px;
     border: 1px solid rgba(34, 211, 238, 0.15); background: rgba(255,255,255,0.015);
@@ -106,7 +105,6 @@ const App = () => {
             <p style={{ fontSize: '11px', letterSpacing: '5px', color: '#22d3ee', textAlign: 'center', marginBottom: '35px', textTransform: 'uppercase', fontWeight: 'bold' }}>
               {mainMode}
             </p>
-            {/* ESPACIADO FIJO FORZADO: GAP DE 24PX */}
             <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '24px', justifyContent: 'center', width: '100%' }}>
               {subCategories[mainMode].map(sub => (
                 <div key={sub} onClick={() => setActiveSub(sub)} className="sub-category-card">
