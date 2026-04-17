@@ -18,7 +18,8 @@ const inlineStyles = `
   @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
   body, html { overflow-x: hidden; background-color: #020617; margin: 0; padding: 0; font-family: sans-serif; color: white; }
 
-  .main-choice-button {
+  /* BOTÓN MAESTRO: FRECUENCIAS (CIAN) */
+  .frecuencias-choice-button {
     width: 90%; max-width: 320px; padding: 20px; margin: 10px 0;
     border-radius: 40px; border: 1px solid rgba(34, 211, 238, 0.3);
     background: rgba(34, 211, 238, 0.03); color: white;
@@ -26,7 +27,18 @@ const inlineStyles = `
     cursor: pointer; transition: all 0.4s ease;
   }
 
-  /* BOTÓN PREMIUM: EXPERIENCIAS GENORA */
+  /* BOTÓN MAESTRO: MEDITACIONES (MORADO AMATISTA) - Recuperado */
+  .meditaciones-choice-button {
+    width: 90%; max-width: 320px; padding: 20px; margin: 10px 0;
+    border-radius: 40px; border: 1px solid rgba(168, 85, 247, 0.3); /* Morado suave */
+    background: rgba(168, 85, 247, 0.03); color: white;
+    font-size: 13px; letter-spacing: 4px; text-transform: uppercase;
+    cursor: pointer; transition: all 0.4s ease;
+    box-shadow: 0 0 10px rgba(168, 85, 247, 0.05);
+  }
+  .meditaciones-choice-button:active { background: rgba(168, 85, 247, 0.1); transform: scale(0.98); }
+
+  /* BOTÓN MAESTRO: EXPERIENCIAS GENORA (DORADO PREMIUM) */
   .premium-choice-button {
     width: 90%; max-width: 320px; padding: 20px; margin: 10px 0;
     border-radius: 40px; 
@@ -38,10 +50,20 @@ const inlineStyles = `
     display: flex; align-items: center; justify-content: center; gap: 10px;
   }
 
+  /* BOTONES DE SUB-CATEGORÍA (CIAN POR DEFECTO) */
   .sub-category-card {
     transition: all 0.3s ease; padding: 10px 4px; border-radius: 35px;
     border: 1px solid rgba(34, 211, 238, 0.15); background: rgba(255,255,255,0.015);
     text-align: center; cursor: pointer; min-height: 52px;
+    display: flex; flex-direction: column; justify-content: center; align-items: center;
+    width: 100%; max-width: 175px; margin: 0 auto;
+  }
+
+  /* CLASE ESPECIAL PARA SUB-CATEGORÍAS DE MEDITACIÓN (MORADAS) */
+  .sub-category-card-purple {
+    border: 1px solid rgba(168, 85, 247, 0.15);
+    transition: all 0.3s ease; padding: 10px 4px; border-radius: 35px;
+    background: rgba(255,255,255,0.015); text-align: center; cursor: pointer; min-height: 52px;
     display: flex; flex-direction: column; justify-content: center; align-items: center;
     width: 100%; max-width: 175px; margin: 0 auto;
   }
@@ -110,22 +132,34 @@ const App = () => {
         {!mainMode ? (
           <div className="fade-in-smooth" style={{ width: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
             <h2 style={{ fontSize: '10px', letterSpacing: '5px', color: '#22d3ee', opacity: 0.8, marginBottom: '20px', textTransform: 'uppercase' }}>ELIGE TU CAMINO</h2>
-            <button className="main-choice-button" onClick={() => setMainMode('frecuencias')}>Frecuencias</button>
-            <button className="main-choice-button" onClick={() => setMainMode('meditaciones')}>Meditaciones</button>
             
-            {/* EL BOTÓN PREMIUM */}
+            {/* Pilares con diferenciación de color */}
+            <button className="frecuencias-choice-button" onClick={() => setMainMode('frecuencias')}>Frecuencias</button>
+            <button className="meditaciones-choice-button" onClick={() => setMainMode('meditaciones')}>Meditaciones</button>
             <button className="premium-choice-button" onClick={() => setMainMode('experiencias')}>
               <span style={{ fontSize: '16px' }}>💎</span> EXPERIENCIAS GENORA
             </button>
           </div>
         ) : (
           <div className="fade-in-smooth" style={{ width: '100%', maxWidth: '390px' }}>
-            <p style={{ fontSize: '11px', letterSpacing: '5px', color: mainMode === 'experiencias' ? '#d4af37' : '#22d3ee', textAlign: 'center', marginBottom: '30px', textTransform: 'uppercase', fontWeight: 'bold' }}>
+            <p style={{ 
+              fontSize: '11px', 
+              letterSpacing: '5px', 
+              color: mainMode === 'experiencias' ? '#d4af37' : (mainMode === 'meditaciones' ? '#a855f7' : '#22d3ee'), 
+              textAlign: 'center', marginBottom: '35px', textTransform: 'uppercase', fontWeight: 'bold' 
+            }}>
               {mainMode === 'experiencias' ? '💎 EXPERIENCIAS GENORA' : mainMode}
             </p>
             <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '24px', justifyContent: 'center', width: '100%' }}>
               {subCategories[mainMode].map(sub => (
-                <div key={sub} onClick={() => setActiveSub(sub)} className="sub-category-card" style={{ borderColor: mainMode === 'experiencias' ? 'rgba(212, 175, 55, 0.3)' : 'rgba(34, 211, 238, 0.15)' }}>
+                <div 
+                  key={sub} 
+                  onClick={() => setActiveSub(sub)} 
+                  className={mainMode === 'meditaciones' ? "sub-category-card-purple" : "sub-category-card"}
+                  style={{ 
+                    borderColor: mainMode === 'experiencias' ? 'rgba(212, 175, 55, 0.3)' : (mainMode === 'meditaciones' ? 'rgba(168, 85, 247, 0.15)' : 'rgba(34, 211, 238, 0.15)') 
+                  }}
+                >
                   <span style={{ fontSize: '9px', letterSpacing: '2px', fontWeight: 'bold' }}>{sub}</span>
                 </div>
               ))}
