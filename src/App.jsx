@@ -55,7 +55,14 @@ const App = () => {
 
   const subCategories = {
     frecuencias: ["MENTE", "CUERPO", "EXPANSIÓN", "COHERENCIA"],
-    meditaciones: ["MENTE", "CUERPO", "RELACIONES", "ABUNDANCIA", "ANCESTRAL"]
+    meditaciones: [
+      "MENTE", 
+      "CUERPO", 
+      "RELACIONES", 
+      "ABUNDANCIA", 
+      "LINAJE ANCESTRAL", 
+      "RECALIBRACIÓN" // LA SEXTA SECCIÓN MAESTRA
+    ]
   };
 
   if (showSplash) {
@@ -77,23 +84,21 @@ const App = () => {
     <div className="fade-in-smooth" style={{ backgroundColor: '#020617', minHeight: '100vh', color: 'white', padding: '20px' }}>
       <style>{inlineStyles}</style>
       
-      {/* HEADER: Logotipo con tamaño restaurado */}
+      {/* HEADER: Logotipo MAJESTUOSO (105px) */}
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '60px', paddingTop: '10px' }}>
         {mainMode ? (
           <div onClick={() => { activeSub ? setActiveSub(null) : setMainMode(null) }} className="back-button-genora">
              <span style={{ color: '#22d3ee', fontSize: '20px' }}>‹</span>
           </div>
         ) : (
-          /* Tamaño del logo aumentado aquí */
-          <img src="/imagenes/genora-logo-white.png" style={{ height: '75px', objectFit: 'contain' }} alt="Logo" />
+          <img src="/imagenes/genora-logo-white.png" style={{ height: '105px', objectFit: 'contain' }} alt="Logo" />
         )}
         <div style={{ fontSize: '11px', letterSpacing: '2px', color: '#22d3ee', border: '1px solid rgba(34, 211, 238, 0.4)', padding: '6px 16px', borderRadius: '20px', fontWeight: 'bold' }}>ES | EN</div>
       </div>
 
       <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-        {/* ADN: Con espacio para respirar */}
         <div style={{ 
-          width: mainMode ? '150px' : '180px', height: mainMode ? '150px' : '180px', 
+          width: mainMode ? '140px' : '180px', height: mainMode ? '140px' : '180px', 
           borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', 
           marginBottom: '50px', transition: 'all 0.5s ease',
           animation: 'aura-supernova 8s infinite ease-in-out' 
@@ -115,7 +120,7 @@ const App = () => {
             <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '15px', justifyContent: 'center' }}>
               {subCategories[mainMode].map(sub => (
                 <div key={sub} onClick={() => setActiveSub(sub)} className="sub-category-card">
-                  <span style={{ fontSize: '12px', letterSpacing: '2px', fontWeight: 'bold' }}>{sub}</span>
+                  <span style={{ fontSize: '10px', letterSpacing: '2px', fontWeight: 'bold' }}>{sub}</span>
                 </div>
               ))}
             </div>
