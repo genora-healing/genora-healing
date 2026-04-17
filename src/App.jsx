@@ -4,92 +4,126 @@ const inlineStyles = `
   @keyframes logo-breathe { 0%, 100% { transform: scale(1); opacity: 0.95; } 50% { transform: scale(1.05); opacity: 1; } }
   
   @keyframes aura-supernova {
-    0%, 100% { transform: scale(1); box-shadow: 0 0 80px rgba(34, 211, 238, 0.4), 0 0 150px rgba(34, 211, 238, 0.2); }
-    50% { transform: scale(1.03); box-shadow: 0 0 50px rgba(34, 211, 238, 0.9), 0 0 120px rgba(34, 211, 238, 0.6), 0 0 250px rgba(34, 211, 238, 0.4), 0 0 450px rgba(34, 211, 238, 0.2); }
+    0%, 100% { 
+      transform: scale(1); 
+      box-shadow: 0 0 80px rgba(34, 211, 238, 0.4), 0 0 150px rgba(34, 211, 238, 0.2); 
+    }
+    50% {
+      transform: scale(1.03); 
+      box-shadow: 0 0 50px rgba(34, 211, 238, 0.9), 0 0 120px rgba(34, 211, 238, 0.6), 0 0 250px rgba(34, 211, 238, 0.4), 0 0 450px rgba(34, 211, 238, 0.2);
+    }
   }
 
   .fade-in-smooth { animation: fadeIn 0.8s ease-in forwards; }
   @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
   body, html { overflow-x: hidden; background-color: #020617; margin: 0; padding: 0; font-family: sans-serif; color: white; }
 
-  /* BOTONES MAESTROS: GRANDES Y ELEGANTES */
   .main-choice-button {
-    width: 90%; max-width: 400px; padding: 25px; margin: 10px 0;
+    width: 90%; max-width: 320px; padding: 22px; margin: 12px 0;
     border-radius: 40px; border: 1px solid rgba(34, 211, 238, 0.3);
     background: rgba(34, 211, 238, 0.03); color: white;
-    font-size: 16px; letter-spacing: 4px; text-transform: uppercase;
+    font-size: 14px; letter-spacing: 4px; text-transform: uppercase;
     cursor: pointer; transition: all 0.4s ease;
   }
-  .main-choice-button:active { background: rgba(34, 211, 238, 0.2); transform: scale(0.98); }
 
-  /* ACORDEÓN / SUB-CATEGORÍAS */
-  .sub-category-item {
-    width: 85%; padding: 15px; margin: 5px 0;
-    border-radius: 30px; border: 1px solid rgba(255, 255, 255, 0.1);
-    background: rgba(255, 255, 255, 0.02);
-    font-size: 12px; letter-spacing: 2px; text-transform: uppercase;
-    animation: fadeIn 0.5s ease-out;
+  .sub-category-card {
+    transition: all 0.3s ease; padding: 12px 6px; border-radius: 35px;
+    border: 1px solid rgba(34, 211, 238, 0.15); background: rgba(255,255,255,0.015);
+    text-align: center; cursor: pointer; min-height: 55px;
+    display: flex; flex-direction: column; justify-content: center; align-items: center;
+    width: 100%; max-width: 180px; margin: 0 auto;
+  }
+
+  .back-button-genora {
+    width: 42px; height: 42px; border-radius: 50%;
+    border: 1px solid rgba(34, 211, 238, 0.4);
+    background: rgba(34, 211, 238, 0.05);
+    display: flex; align-items: center; justify-content: center;
+    cursor: pointer;
   }
 `;
 
 const App = () => {
   const [showSplash, setShowSplash] = useState(true);
-  const [mainMode, setMainMode] = useState(null); // 'frecuencias' o 'meditaciones'
+  const [mainMode, setMainMode] = useState(null); 
   const [activeSub, setActiveSub] = useState(null);
-  const [selectedTrack, setSelectedTrack] = useState(null);
 
   useEffect(() => {
-    const timer = setTimeout(() => setShowSplash(false), 3000);
+    const timer = setTimeout(() => setShowSplash(false), 4500);
     return () => clearTimeout(timer);
   }, []);
 
+  const subCategories = {
+    frecuencias: ["MENTE", "CUERPO", "EXPANSIÓN", "COHERENCIA"],
+    meditaciones: ["MENTE", "CUERPO", "RELACIONES", "ABUNDANCIA", "ANCESTRAL"]
+  };
+
   if (showSplash) {
     return (
-      <div className="fade-in-smooth" style={{ backgroundColor: '#020617', minHeight: '100vh', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }}>
+      <div className="fade-in-smooth" style={{ backgroundColor: '#020617', minHeight: '100vh', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', textAlign: 'center', padding: '20px' }}>
         <style>{inlineStyles}</style>
-        <img src="/imagenes/genora-logo-white.png" style={{ width: '200px', animation: 'logo-breathe 3s infinite' }} alt="Logo" />
+        {/* LOGO */}
+        <img src="/imagenes/genora-logo-white.png" style={{ width: '200px', animation: 'logo-breathe 3s infinite ease-in-out' }} alt="Logo" />
+        
+        {/* FRASE 1: RESONANCIA ORIGEN */}
+        <h1 style={{ fontSize: '18px', fontWeight: '300', letterSpacing: '4px', color: '#22d3ee', textTransform: 'uppercase', marginTop: '35px', marginBottom: '8px' }}>
+          RESONANCIA ORIGEN
+        </h1>
+        
+        {/* FRASE 2: ACTIVANDO TU CONSCIENCIA GENÉTICA */}
+        <p style={{ fontSize: '10px', fontWeight: '200', letterSpacing: '3px', color: '#fdfcf5', opacity: 0.7, textTransform: 'uppercase' }}>
+          ACTIVANDO TU CONSCIENCIA GENÉTICA
+        </p>
       </div>
     );
   }
 
   return (
-    <div className="fade-in-smooth" style={{ padding: '20px', textAlign: 'center' }}>
+    <div className="fade-in-smooth" style={{ backgroundColor: '#020617', minHeight: '100vh', color: 'white', padding: '20px' }}>
       <style>{inlineStyles}</style>
       
-      {/* ADN SIEMPRE PRESENTE Y BRILLANTE */}
-      <div style={{ display: 'flex', justifyContent: 'center', margin: '40px 0' }}>
-        <div style={{ width: '150px', height: '150px', borderRadius: '50%', animation: 'aura-supernova 8s infinite ease-in-out' }}>
-          <img src="/imagenes/adn-icon.png" style={{ width: '100%', height: '100%', objectFit: 'contain' }} alt="ADN" />
-        </div>
+      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '50px', paddingTop: '10px' }}>
+        {mainMode ? (
+          <div onClick={() => { activeSub ? setActiveSub(null) : setMainMode(null) }} className="back-button-genora">
+             <span style={{ color: '#22d3ee', fontSize: '20px' }}>‹</span>
+          </div>
+        ) : (
+          <img src="/imagenes/genora-logo-white.png" style={{ height: '50px', objectFit: 'contain' }} alt="Logo" />
+        )}
+        <div style={{ fontSize: '11px', letterSpacing: '2px', color: '#22d3ee', border: '1px solid rgba(34, 211, 238, 0.4)', padding: '6px 16px', borderRadius: '20px', fontWeight: 'bold' }}>ES | EN</div>
       </div>
 
-      {!mainMode ? (
-        /* PANTALLA DE DECISIÓN MAESTRA */
-        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', marginTop: '20px' }}>
-          <button className="main-choice-button" onClick={() => setMainMode('frecuencias')}>Frecuencias</button>
-          <button className="main-choice-button" onClick={() => setMainMode('meditaciones')}>Meditaciones</button>
+      <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+        <div style={{ 
+          width: mainMode ? '150px' : '180px', height: mainMode ? '150px' : '180px', 
+          borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', 
+          marginBottom: '40px', transition: 'all 0.5s ease',
+          animation: 'aura-supernova 8s infinite ease-in-out' 
+        }}>
+          <img src="/imagenes/adn-icon.png" style={{ width: '100%', objectFit: 'contain' }} alt="ADN" />
         </div>
-      ) : (
-        /* PANTALLA DE ACORDEÓN */
-        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-          <p style={{ color: '#22d3ee', letterSpacing: '3px', fontSize: '10px', marginBottom: '20px' }}>
-            SELECCIONA CATEGORÍA DE {mainMode.toUpperCase()}
-          </p>
-          
-          {['MENTE', 'CUERPO', 'RELACIONES', 'ABUNDANCIA', 'EXPANSIÓN'].map(sub => (
-            <div key={sub} className="sub-category-item" onClick={() => setActiveSub(sub)}>
-              {sub}
-            </div>
-          ))}
 
-          <button 
-            onClick={() => setMainMode(null)} 
-            style={{ marginTop: '30px', background: 'none', border: 'none', color: 'rgba(255,255,255,0.4)', fontSize: '10px', letterSpacing: '2px' }}
-          >
-            ‹ VOLVER AL INICIO
-          </button>
-        </div>
-      )}
+        {!mainMode ? (
+          <div className="fade-in-smooth" style={{ width: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+            <h2 style={{ fontSize: '10px', letterSpacing: '5px', color: '#22d3ee', opacity: 0.8, marginBottom: '20px', textTransform: 'uppercase' }}>ELIGE TU CAMINO</h2>
+            <button className="main-choice-button" onClick={() => setMainMode('frecuencias')}>Frecuencias</button>
+            <button className="main-choice-button" onClick={() => setMainMode('meditaciones')}>Meditaciones</button>
+          </div>
+        ) : (
+          <div className="fade-in-smooth" style={{ width: '100%', maxWidth: '400px' }}>
+            <p style={{ fontSize: '11px', letterSpacing: '5px', color: '#22d3ee', textAlign: 'center', marginBottom: '30px', textTransform: 'uppercase', fontWeight: 'bold' }}>
+              {mainMode}
+            </p>
+            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '15px', justifyContent: 'center' }}>
+              {subCategories[mainMode].map(sub => (
+                <div key={sub} onClick={() => setActiveSub(sub)} className="sub-category-card">
+                  <span style={{ fontSize: '12px', letterSpacing: '2px', fontWeight: 'bold' }}>{sub}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
+      </div>
     </div>
   );
 };
