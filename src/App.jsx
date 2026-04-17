@@ -26,8 +26,9 @@ const inlineStyles = `
     cursor: pointer; transition: all 0.4s ease;
   }
 
+  /* SUB-CATEGORÍAS: Ajuste de espaciado para que no se peguen en móvil */
   .sub-category-card {
-    transition: all 0.3s ease; padding: 12px 6px; border-radius: 35px;
+    transition: all 0.3s ease; padding: 12px 8px; border-radius: 35px;
     border: 1px solid rgba(34, 211, 238, 0.15); background: rgba(255,255,255,0.015);
     text-align: center; cursor: pointer; min-height: 55px;
     display: flex; flex-direction: column; justify-content: center; align-items: center;
@@ -55,14 +56,7 @@ const App = () => {
 
   const subCategories = {
     frecuencias: ["MENTE", "CUERPO", "EXPANSIÓN", "COHERENCIA"],
-    meditaciones: [
-      "MENTE", 
-      "CUERPO", 
-      "RELACIONES", 
-      "ABUNDANCIA", 
-      "LINAJE ANCESTRAL", 
-      "RECALIBRACIÓN" // LA SEXTA SECCIÓN MAESTRA
-    ]
+    meditaciones: ["MENTE", "CUERPO", "RELACIONES", "ABUNDANCIA", "LINAJE ANCESTRAL", "RECALIBRACIÓN"]
   };
 
   if (showSplash) {
@@ -84,19 +78,20 @@ const App = () => {
     <div className="fade-in-smooth" style={{ backgroundColor: '#020617', minHeight: '100vh', color: 'white', padding: '20px' }}>
       <style>{inlineStyles}</style>
       
-      {/* HEADER: Logotipo MAJESTUOSO (105px) */}
+      {/* HEADER: Logotipo MAJESTUOSO bloqueado en 105px */}
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '60px', paddingTop: '10px' }}>
         {mainMode ? (
           <div onClick={() => { activeSub ? setActiveSub(null) : setMainMode(null) }} className="back-button-genora">
              <span style={{ color: '#22d3ee', fontSize: '20px' }}>‹</span>
           </div>
         ) : (
-          <img src="/imagenes/genora-logo-white.png" style={{ height: '105px', objectFit: 'contain' }} alt="Logo" />
+          <img src="/imagenes/genora-logo-white.png" style={{ height: '105px', width: 'auto', objectFit: 'contain' }} alt="Logo" />
         )}
         <div style={{ fontSize: '11px', letterSpacing: '2px', color: '#22d3ee', border: '1px solid rgba(34, 211, 238, 0.4)', padding: '6px 16px', borderRadius: '20px', fontWeight: 'bold' }}>ES | EN</div>
       </div>
 
       <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+        {/* ADN: Respirando con aura supernova */}
         <div style={{ 
           width: mainMode ? '140px' : '180px', height: mainMode ? '140px' : '180px', 
           borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', 
@@ -113,14 +108,15 @@ const App = () => {
             <button className="main-choice-button" onClick={() => setMainMode('meditaciones')}>Meditaciones</button>
           </div>
         ) : (
-          <div className="fade-in-smooth" style={{ width: '100%', maxWidth: '400px' }}>
+          <div className="fade-in-smooth" style={{ width: '100%', maxWidth: '420px' }}>
             <p style={{ fontSize: '11px', letterSpacing: '5px', color: '#22d3ee', textAlign: 'center', marginBottom: '35px', textTransform: 'uppercase', fontWeight: 'bold' }}>
               {mainMode}
             </p>
-            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '15px', justifyContent: 'center' }}>
+            {/* GRILLA CON GAP DE 20PX: Asegura espacio entre botones en celular */}
+            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '20px', justifyContent: 'center', width: '100%' }}>
               {subCategories[mainMode].map(sub => (
                 <div key={sub} onClick={() => setActiveSub(sub)} className="sub-category-card">
-                  <span style={{ fontSize: '10px', letterSpacing: '2px', fontWeight: 'bold' }}>{sub}</span>
+                  <span style={{ fontSize: '9px', letterSpacing: '2px', fontWeight: 'bold' }}>{sub}</span>
                 </div>
               ))}
             </div>
