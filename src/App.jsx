@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect } from 'react';
 
 const inlineStyles = `
   @keyframes logo-breathe { 0%, 100% { transform: scale(1); opacity: 0.95; } 50% { transform: scale(1.05); opacity: 1; } }
@@ -19,11 +19,23 @@ const inlineStyles = `
   body, html { overflow-x: hidden; background-color: #020617; margin: 0; padding: 0; font-family: sans-serif; color: white; }
 
   .main-choice-button {
-    width: 90%; max-width: 320px; padding: 22px; margin: 12px 0;
+    width: 90%; max-width: 320px; padding: 20px; margin: 10px 0;
     border-radius: 40px; border: 1px solid rgba(34, 211, 238, 0.3);
     background: rgba(34, 211, 238, 0.03); color: white;
-    font-size: 14px; letter-spacing: 4px; text-transform: uppercase;
+    font-size: 13px; letter-spacing: 4px; text-transform: uppercase;
     cursor: pointer; transition: all 0.4s ease;
+  }
+
+  /* BOTÓN PREMIUM: EXPERIENCIAS GENORA */
+  .premium-choice-button {
+    width: 90%; max-width: 320px; padding: 20px; margin: 10px 0;
+    border-radius: 40px; 
+    border: 1px solid #d4af37; /* Dorado Mate */
+    background: rgba(212, 175, 55, 0.05); color: #fdfcf5;
+    font-size: 13px; letter-spacing: 4px; text-transform: uppercase;
+    cursor: pointer; transition: all 0.4s ease;
+    box-shadow: 0 0 15px rgba(212, 175, 55, 0.1);
+    display: flex; align-items: center; justify-content: center; gap: 10px;
   }
 
   .sub-category-card {
@@ -55,7 +67,8 @@ const App = () => {
 
   const subCategories = {
     frecuencias: ["MENTE", "CUERPO", "EXPANSIÓN", "COHERENCIA"],
-    meditaciones: ["MENTE", "CUERPO", "RELACIONES", "ABUNDANCIA", "LINAJE ANCESTRAL", "RECALIBRACIÓN"]
+    meditaciones: ["MENTE", "CUERPO", "RELACIONES", "ABUNDANCIA", "LINAJE ANCESTRAL", "RECALIBRACIÓN"],
+    experiencias: ["ACTIVACIÓN DONES", "ABUNDANCIA G5", "ESTADOS PROFUNDOS", "PROTOCOLOS ÉLITE"]
   };
 
   if (showSplash) {
@@ -73,7 +86,7 @@ const App = () => {
     <div className="fade-in-smooth" style={{ backgroundColor: '#020617', minHeight: '100vh', color: 'white', padding: '20px' }}>
       <style>{inlineStyles}</style>
       
-      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '60px', paddingTop: '10px' }}>
+      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '40px', paddingTop: '10px' }}>
         {mainMode ? (
           <div onClick={() => { activeSub ? setActiveSub(null) : setMainMode(null) }} className="back-button-genora">
              <span style={{ color: '#22d3ee', fontSize: '20px' }}>‹</span>
@@ -86,9 +99,9 @@ const App = () => {
 
       <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
         <div style={{ 
-          width: mainMode ? '140px' : '180px', height: mainMode ? '140px' : '180px', 
+          width: mainMode ? '130px' : '170px', height: mainMode ? '130px' : '170px', 
           borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', 
-          marginBottom: '50px', transition: 'all 0.5s ease',
+          marginBottom: '35px', transition: 'all 0.5s ease',
           animation: 'aura-supernova 8s infinite ease-in-out' 
         }}>
           <img src="/imagenes/adn-icon.png" style={{ width: '100%', objectFit: 'contain' }} alt="ADN" />
@@ -96,19 +109,24 @@ const App = () => {
 
         {!mainMode ? (
           <div className="fade-in-smooth" style={{ width: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-            <h2 style={{ fontSize: '10px', letterSpacing: '5px', color: '#22d3ee', opacity: 0.8, marginBottom: '25px', textTransform: 'uppercase' }}>ELIGE TU CAMINO</h2>
+            <h2 style={{ fontSize: '10px', letterSpacing: '5px', color: '#22d3ee', opacity: 0.8, marginBottom: '20px', textTransform: 'uppercase' }}>ELIGE TU CAMINO</h2>
             <button className="main-choice-button" onClick={() => setMainMode('frecuencias')}>Frecuencias</button>
             <button className="main-choice-button" onClick={() => setMainMode('meditaciones')}>Meditaciones</button>
+            
+            {/* EL BOTÓN PREMIUM */}
+            <button className="premium-choice-button" onClick={() => setMainMode('experiencias')}>
+              <span style={{ fontSize: '16px' }}>💎</span> EXPERIENCIAS GENORA
+            </button>
           </div>
         ) : (
           <div className="fade-in-smooth" style={{ width: '100%', maxWidth: '390px' }}>
-            <p style={{ fontSize: '11px', letterSpacing: '5px', color: '#22d3ee', textAlign: 'center', marginBottom: '35px', textTransform: 'uppercase', fontWeight: 'bold' }}>
-              {mainMode}
+            <p style={{ fontSize: '11px', letterSpacing: '5px', color: mainMode === 'experiencias' ? '#d4af37' : '#22d3ee', textAlign: 'center', marginBottom: '30px', textTransform: 'uppercase', fontWeight: 'bold' }}>
+              {mainMode === 'experiencias' ? '💎 EXPERIENCIAS GENORA' : mainMode}
             </p>
             <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '24px', justifyContent: 'center', width: '100%' }}>
               {subCategories[mainMode].map(sub => (
-                <div key={sub} onClick={() => setActiveSub(sub)} className="sub-category-card">
-                  <span style={{ fontSize: '9.5px', letterSpacing: '2px', fontWeight: 'bold' }}>{sub}</span>
+                <div key={sub} onClick={() => setActiveSub(sub)} className="sub-category-card" style={{ borderColor: mainMode === 'experiencias' ? 'rgba(212, 175, 55, 0.3)' : 'rgba(34, 211, 238, 0.15)' }}>
+                  <span style={{ fontSize: '9px', letterSpacing: '2px', fontWeight: 'bold' }}>{sub}</span>
                 </div>
               ))}
             </div>
