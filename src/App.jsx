@@ -3,7 +3,7 @@ import React, { useState, useEffect, useRef } from 'react';
 const inlineStyles = `
   @keyframes logo-breathe { 0%, 100% { transform: scale(1); opacity: 0.95; } 50% { transform: scale(1.05); opacity: 1; } }
   
-  /* TU RESPLANDOR ESCANDALOSO INTEGRADO */
+  /* RESPLANDOR ESCANDALOSO - BLOQUEADO PARA NO MOVER EL DISEÑO */
   @keyframes aura-supernova {
     0%, 100% { 
       transform: scale(1); 
@@ -23,6 +23,7 @@ const inlineStyles = `
   @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
   body, html { overflow-x: hidden; background-color: #020617; margin: 0; padding: 0; font-family: sans-serif; }
 
+  /* ESTILOS DE BOTONES - BLINDADOS */
   .back-button-genora {
     width: 42px; height: 42px; border-radius: 50%;
     border: 1px solid rgba(34, 211, 238, 0.4);
@@ -61,26 +62,29 @@ const App = () => {
   const startupAudioRef = useRef(null);
   const timerRef = useRef(null);
 
+  // --- LÓGICA DE AUDIO - NO AFECTA EL DISEÑO ---
   useEffect(() => {
-    const attemptPlay = () => {
+    const playStartup = () => {
       if (startupAudioRef.current) {
+        startupAudioRef.current.volume = 0.8;
         startupAudioRef.current.play().catch(() => {
           const forcePlay = () => {
-            startupAudioRef.current.play();
-            document.removeEventListener('click', forcePlay);
-            document.removeEventListener('touchstart', forcePlay);
+            if (startupAudioRef.current) startupAudioRef.current.play();
+            window.removeEventListener('click', forcePlay);
+            window.removeEventListener('touchstart', forcePlay);
           };
-          document.addEventListener('click', forcePlay);
-          document.addEventListener('touchstart', forcePlay);
+          window.addEventListener('click', forcePlay);
+          window.addEventListener('touchstart', forcePlay);
         });
       }
     };
 
-    attemptPlay();
+    playStartup();
     const timer = setTimeout(() => setShowSplash(false), 3000);
     return () => clearTimeout(timer);
   }, []);
 
+  // Control de audio de pistas
   useEffect(() => {
     if (audioRef.current && selectedTrack) {
       audioRef.current.load();
@@ -112,6 +116,7 @@ const App = () => {
     return (
       <div className="fade-in-smooth" style={{ backgroundColor: '#020617', minHeight: '100vh', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', textAlign: 'center', padding: '20px' }}>
         <style>{inlineStyles}</style>
+        {/* REFERENCIA DE AUDIO SIN AFECTAR ELEMENTOS VISUALES */}
         <audio ref={startupAudioRef} src="/audio/startup-genora.mp3" preload="auto" />
         <img src="/imagenes/genora-logo-white.png" style={{ width: '200px', maxWidth: '80%', animation: 'logo-breathe 3s infinite ease-in-out' }} alt="Logo" />
         <h1 style={{ fontSize: '18px', fontWeight: '300', letterSpacing: '4px', color: '#22d3ee', textTransform: 'uppercase', marginTop: '30px', marginBottom: '5px' }}>RESONANCIA ORIGEN</h1>
@@ -120,6 +125,7 @@ const App = () => {
     );
   }
 
+  // REPRODUCTOR
   if (selectedTrack) {
     return (
       <div className="fade-in-smooth" style={{ backgroundColor: '#020617', minHeight: '100vh', color: 'white', padding: '15px', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', textAlign: 'center', position: 'relative' }}>
@@ -130,13 +136,7 @@ const App = () => {
         </div>
         <p style={{ fontSize: '9px', letterSpacing: '3px', color: '#fdfcf5', opacity: 0.6, marginBottom: '60px', textTransform: 'uppercase', marginTop: '-75px' }}>GENORA • {selectedTrack.category}</p>
         
-        {/* ADN REPRODUCTOR CON TU RESPLANDOR BOX-SHADOW */}
-        <div style={{ 
-          width: '210px', height: '210px', 
-          borderRadius: '50%', // Necesario para que el resplandor sea circular
-          display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '40px',
-          animation: isPlaying ? 'aura-supernova 4s infinite ease-in-out' : 'none'
-        }}>
+        <div style={{ width: '210px', height: '210px', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '40px', animation: isPlaying ? 'aura-supernova 4s infinite ease-in-out' : 'none' }}>
           <img src="/imagenes/adn-icon.png" style={{ width: '100%', height: '100%', objectFit: 'contain' }} alt="ADN" />
         </div>
 
@@ -154,6 +154,7 @@ const App = () => {
     );
   }
 
+  // LISTAS
   return (
     <div className="fade-in-smooth" style={{ backgroundColor: '#020617', minHeight: '100vh', color: 'white', padding: '15px' }}>
       <style>{inlineStyles}</style>
@@ -170,13 +171,7 @@ const App = () => {
       <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
         {view === 'list' && <p style={{ fontSize: '10px', letterSpacing: '5px', color: '#22d3ee', marginBottom: '25px', textTransform: 'uppercase', fontWeight: 'bold', marginTop: '0px' }}>{activeCategory}</p>}
         
-        {/* ADN LISTA CON TU RESPLANDOR BOX-SHADOW */}
-        <div style={{ 
-          width: '150px', height: '150px', 
-          borderRadius: '50%',
-          display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '30px', 
-          animation: 'aura-supernova 8s infinite ease-in-out' 
-        }}>
+        <div style={{ width: '150px', height: '150px', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '30px', animation: 'aura-supernova 8s infinite ease-in-out' }}>
           <img src="/imagenes/adn-icon.png" style={{ width: '100%', height: '100%', objectFit: 'contain' }} alt="ADN" />
         </div>
 
