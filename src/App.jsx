@@ -62,15 +62,10 @@ const App = () => {
     return (
       <div className="fade-in-smooth" style={{ backgroundColor: '#020617', minHeight: '100vh', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', textAlign: 'center', padding: '20px' }}>
         <style>{inlineStyles}</style>
-        {/* LOGO */}
         <img src="/imagenes/genora-logo-white.png" style={{ width: '200px', animation: 'logo-breathe 3s infinite ease-in-out' }} alt="Logo" />
-        
-        {/* FRASE 1: RESONANCIA ORIGEN */}
         <h1 style={{ fontSize: '18px', fontWeight: '300', letterSpacing: '4px', color: '#22d3ee', textTransform: 'uppercase', marginTop: '35px', marginBottom: '8px' }}>
           RESONANCIA ORIGEN
         </h1>
-        
-        {/* FRASE 2: ACTIVANDO TU CONSCIENCIA GENÉTICA */}
         <p style={{ fontSize: '10px', fontWeight: '200', letterSpacing: '3px', color: '#fdfcf5', opacity: 0.7, textTransform: 'uppercase' }}>
           ACTIVANDO TU CONSCIENCIA GENÉTICA
         </p>
@@ -82,22 +77,25 @@ const App = () => {
     <div className="fade-in-smooth" style={{ backgroundColor: '#020617', minHeight: '100vh', color: 'white', padding: '20px' }}>
       <style>{inlineStyles}</style>
       
-      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '50px', paddingTop: '10px' }}>
+      {/* HEADER: Logotipo con tamaño restaurado */}
+      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '60px', paddingTop: '10px' }}>
         {mainMode ? (
           <div onClick={() => { activeSub ? setActiveSub(null) : setMainMode(null) }} className="back-button-genora">
              <span style={{ color: '#22d3ee', fontSize: '20px' }}>‹</span>
           </div>
         ) : (
-          <img src="/imagenes/genora-logo-white.png" style={{ height: '50px', objectFit: 'contain' }} alt="Logo" />
+          /* Tamaño del logo aumentado aquí */
+          <img src="/imagenes/genora-logo-white.png" style={{ height: '75px', objectFit: 'contain' }} alt="Logo" />
         )}
         <div style={{ fontSize: '11px', letterSpacing: '2px', color: '#22d3ee', border: '1px solid rgba(34, 211, 238, 0.4)', padding: '6px 16px', borderRadius: '20px', fontWeight: 'bold' }}>ES | EN</div>
       </div>
 
       <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+        {/* ADN: Con espacio para respirar */}
         <div style={{ 
           width: mainMode ? '150px' : '180px', height: mainMode ? '150px' : '180px', 
           borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', 
-          marginBottom: '40px', transition: 'all 0.5s ease',
+          marginBottom: '50px', transition: 'all 0.5s ease',
           animation: 'aura-supernova 8s infinite ease-in-out' 
         }}>
           <img src="/imagenes/adn-icon.png" style={{ width: '100%', objectFit: 'contain' }} alt="ADN" />
@@ -105,13 +103,13 @@ const App = () => {
 
         {!mainMode ? (
           <div className="fade-in-smooth" style={{ width: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-            <h2 style={{ fontSize: '10px', letterSpacing: '5px', color: '#22d3ee', opacity: 0.8, marginBottom: '20px', textTransform: 'uppercase' }}>ELIGE TU CAMINO</h2>
+            <h2 style={{ fontSize: '10px', letterSpacing: '5px', color: '#22d3ee', opacity: 0.8, marginBottom: '25px', textTransform: 'uppercase' }}>ELIGE TU CAMINO</h2>
             <button className="main-choice-button" onClick={() => setMainMode('frecuencias')}>Frecuencias</button>
             <button className="main-choice-button" onClick={() => setMainMode('meditaciones')}>Meditaciones</button>
           </div>
         ) : (
           <div className="fade-in-smooth" style={{ width: '100%', maxWidth: '400px' }}>
-            <p style={{ fontSize: '11px', letterSpacing: '5px', color: '#22d3ee', textAlign: 'center', marginBottom: '30px', textTransform: 'uppercase', fontWeight: 'bold' }}>
+            <p style={{ fontSize: '11px', letterSpacing: '5px', color: '#22d3ee', textAlign: 'center', marginBottom: '35px', textTransform: 'uppercase', fontWeight: 'bold' }}>
               {mainMode}
             </p>
             <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '15px', justifyContent: 'center' }}>
