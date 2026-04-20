@@ -19,26 +19,20 @@ const inlineStyles = `
   body, html { overflow-x: hidden; background-color: #020617; margin: 0; padding: 0; font-family: sans-serif; color: white; }
 
   .choice-button {
-    width: 90%; max-width: 320px; padding: 20px; margin: 10px 0; border-radius: 40px; 
-    text-transform: uppercase; letter-spacing: 4px; font-size: 13px; cursor: pointer; transition: all 0.4s ease; background: rgba(255,255,255,0.03);
-  }
-
-  .sub-category-card {
-    transition: all 0.3s ease; padding: 12px; border-radius: 35px; border: 1px solid rgba(34, 211, 238, 0.15);
-    background: rgba(255,255,255,0.015); text-align: center; cursor: pointer; width: 100%; max-width: 175px; margin: 0 auto;
+    width: 90%; max-width: 320px; padding: 22px; margin: 12px 0; border-radius: 40px; 
+    text-transform: uppercase; letter-spacing: 4px; font-size: 13px; cursor: pointer; transition: all 0.4s ease;
   }
 
   .track-card {
-    width: 100%; max-width: 400px; padding: 15px 25px; margin: 8px 0; border-radius: 20px;
-    border: 1px solid rgba(34, 211, 238, 0.1); background: rgba(255,255,255,0.02);
-    display: flex; justify-content: space-between; align-items: center; cursor: pointer;
+    width: 100%; max-width: 400px; padding: 18px 25px; margin: 10px 0; border-radius: 40px;
+    background: rgba(255,255,255,0.02); display: flex; justify-content: space-between; 
+    align-items: center; cursor: pointer; transition: 0.3s;
   }
 
   .time-btn {
-    width: 55px; height: 35px; border-radius: 20px; border: 1px solid rgba(255,255,255,0.2);
-    background: none; color: white; font-size: 12px; cursor: pointer; transition: 0.3s;
+    width: 58px; padding: 10px 0; border-radius: 20px; border: 1px solid rgba(255,255,255,0.1);
+    background: none; color: white; font-size: 12px; cursor: pointer;
   }
-  .time-btn.active { border-color: #22d3ee; background: rgba(34, 211, 238, 0.1); color: #22d3ee; }
 `;
 
 const App = () => {
@@ -47,7 +41,7 @@ const App = () => {
   const [activeSub, setActiveSub] = useState(null);
   const [selectedTrack, setSelectedTrack] = useState(null);
   const [isPlaying, setIsPlaying] = useState(false);
-  const [duration, setDuration] = useState('∞');
+  const [selectedTime, setSelectedTime] = useState('15');
   
   const audioRef = useRef(null);
 
@@ -56,12 +50,20 @@ const App = () => {
     return () => clearTimeout(timer);
   }, []);
 
-  // Simulación de tracks para MENTE (Aquí anidaremos tus nombres reales)
-  const menteTracks = [
-    { id: 1, name: "ALPHA ORIGEN", hz: "8-12 Hz", url: "/audio/alpha.mp3" },
-    { id: 2, name: "FOCO TOTAL", hz: "14-30 Hz", url: "/audio/beta.mp3" },
-    { id: 3, name: "RECALIBRACIÓN MENTAL", hz: "40 Hz", url: "/audio/gamma.mp3" }
+  // 🔊 TUS RUTAS DE SONIDO REALES
+  const tracks = [
+    { id: "01", category: "MENTE", name: "Alpha Integración", hz: "8 – 10 Hz", url: "/audio/alpha-integration.mp3", desc: "Sincroniza los hemisferios cerebrales." },
+    { id: "02", category: "MENTE", name: "Alpha Creator", hz: "8 – 12 Hz", url: "/audio/alpha-creator.mp3", desc: "Activa el estado de flujo creativo." },
+    { id: "03", category: "MENTE", name: "Alpha Void", hz: "8 – 13 Hz", url: "/audio/alpha-void.mp3", desc: "Punto cero de la consciencia." },
+    { id: "M1", category: "MEDITACIONES", name: "Coherencia del Ser", hz: "963 Hz", url: "/audio/alpha-integration.mp3", desc: "Sincroniza corazón y mente." }
   ];
+
+  useEffect(() => {
+    if (audioRef.current) {
+      if (isPlaying) { audioRef.current.play().catch(() => console.log("Play blocked")); }
+      else { audioRef.current.pause(); }
+    }
+  }, [isPlaying, selectedTrack]);
 
   if (showSplash) {
     return (
@@ -73,28 +75,31 @@ const App = () => {
     );
   }
 
-  // PANTALLA DE REPRODUCTOR
+  // PANTALLA REPRODUCTOR
   if (selectedTrack) {
+    const accent = mainMode === 'meditaciones' ? '#a855f7' : '#22d3ee';
     return (
-      <div className="fade-in-smooth" style={{ backgroundColor: '#020617', minHeight: '100vh', color: 'white', padding: '30px', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }}>
+      <div className="fade-in-smooth" style={{ backgroundColor: '#020617', minHeight: '100vh', color: 'white', padding: '20px', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', textAlign: 'center' }}>
         <style>{inlineStyles}</style>
-        <div onClick={() => { setSelectedTrack(null); setIsPlaying(false); }} style={{ position: 'absolute', top: '40px', left: '30px', cursor: 'pointer', fontSize: '30px', color: '#22d3ee' }}>‹</div>
+        <audio ref={audioRef} src={selectedTrack.url} loop={selectedTime === '∞'} />
+        <div onClick={() => { setSelectedTrack(null); setIsPlaying(false); }} style={{ position: 'absolute', top: '40px', left: '30px', cursor: 'pointer', fontSize: '35px', color: accent }}>‹</div>
         
-        <div style={{ width: '200px', height: '200px', borderRadius: '50%', marginBottom: '50px', animation: isPlaying ? 'aura-supernova 4s infinite ease-in-out' : 'none', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-          <img src="/imagenes/adn-icon.png" style={{ width: '100%' }} alt="ADN" />
+        <div style={{ width: '180px', height: '180px', borderRadius: '50%', marginBottom: '40px', animation: isPlaying ? 'aura-supernova 4s infinite' : 'none', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+          <img src="/imagenes/adn-icon.png" style={{ width: '120%', filter: `drop-shadow(0 0 10px ${accent})` }} alt="ADN" />
         </div>
 
-        <h2 style={{ fontSize: '20px', letterSpacing: '5px', marginBottom: '5px' }}>{selectedTrack.name}</h2>
-        <p style={{ color: '#22d3ee', fontSize: '12px', letterSpacing: '3px', marginBottom: '40px' }}>{selectedTrack.hz}</p>
+        <h2 style={{ fontSize: '24px', letterSpacing: '4px', marginBottom: '5px' }}>{selectedTrack.name}</h2>
+        <p style={{ color: accent, fontSize: '12px', letterSpacing: '3px', marginBottom: '30px', fontWeight: 'bold' }}>{selectedTrack.hz}</p>
+        <p style={{ fontSize: '13px', opacity: 0.7, maxWidth: '280px', marginBottom: '40px' }}>{selectedTrack.desc}</p>
 
-        <div style={{ display: 'flex', gap: '15px', marginBottom: '50px' }}>
-          {['15', '30', '∞'].map(t => (
-            <button key={t} onClick={() => setDuration(t)} className={`time-btn ${duration === t ? 'active' : ''}`}>{t}{t !== '∞' ? "'" : ""}</button>
+        <div style={{ display: 'flex', gap: '12px', marginBottom: '40px' }}>
+          {['15', '30', '60', '∞'].map(t => (
+            <button key={t} onClick={() => setSelectedTime(t)} className="time-btn" style={{ borderColor: selectedTime === t ? accent : 'rgba(255,255,255,0.1)', background: selectedTime === t ? `${accent}22` : 'none' }}>{t}{t !== '∞' ? "'" : ""}</button>
           ))}
         </div>
 
-        <button onClick={() => setIsPlaying(!isPlaying)} style={{ width: '80px', height: '80px', borderRadius: '50%', border: '1px solid #22d3ee', background: 'none', color: 'white', fontSize: '30px' }}>
-          {isPlaying ? 'Ⅱ' : '▶'}
+        <button onClick={() => setIsPlaying(!isPlaying)} style={{ width: '80px', height: '80px', borderRadius: '50%', border: `1px solid ${accent}`, background: 'none', color: 'white', fontSize: '30px' }}>
+          {isPlaying ? '||' : '▶'}
         </button>
       </div>
     );
@@ -103,11 +108,9 @@ const App = () => {
   return (
     <div className="fade-in-smooth" style={{ backgroundColor: '#020617', minHeight: '100vh', color: 'white', padding: '20px' }}>
       <style>{inlineStyles}</style>
-      
-      {/* HEADER */}
-      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '40px' }}>
+      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '50px' }}>
         {mainMode ? (
-          <div onClick={() => { activeSub ? setActiveSub(null) : setMainMode(null) }} style={{ color: '#22d3ee', fontSize: '30px', cursor: 'pointer' }}>‹</div>
+          <div onClick={() => { activeSub ? setActiveSub(null) : setMainMode(null) }} style={{ color: activeSub ? (mainMode === 'meditaciones' ? '#a855f7' : '#22d3ee') : '#22d3ee', fontSize: '35px', cursor: 'pointer' }}>‹</div>
         ) : (
           <img src="/imagenes/genora-logo-white.png" style={{ height: '100px' }} alt="Logo" />
         )}
@@ -115,40 +118,35 @@ const App = () => {
       </div>
 
       <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-        <div style={{ width: '160px', height: '160px', borderRadius: '50%', marginBottom: '40px', animation: 'aura-supernova 8s infinite ease-in-out', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-          <img src="/imagenes/adn-icon.png" style={{ width: '100%' }} alt="ADN" />
+        <div style={{ width: '170px', height: '170px', borderRadius: '50%', marginBottom: '45px', animation: 'aura-supernova 8s infinite', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+          <img src="/imagenes/adn-icon.png" style={{ width: '120%' }} alt="ADN" />
         </div>
 
         {!mainMode ? (
           <div style={{ width: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-            <h2 style={{ fontSize: '10px', letterSpacing: '5px', color: '#22d3ee', marginBottom: '20px' }}>ELIGE TU CAMINO</h2>
+            <h2 style={{ fontSize: '10px', letterSpacing: '5px', color: '#22d3ee', marginBottom: '25px' }}>ELIGE TU CAMINO</h2>
             <button className="choice-button" style={{ border: '1px solid #22d3ee55' }} onClick={() => setMainMode('frecuencias')}>Frecuencias</button>
             <button className="choice-button" style={{ border: '1px solid #a855f755' }} onClick={() => setMainMode('meditaciones')}>Meditaciones</button>
             <button className="choice-button" style={{ border: '1px solid #d4af37' }} onClick={() => setMainMode('experiencias')}>💎 Experiencias Genora</button>
           </div>
-        ) : activeSub === 'MENTE' ? (
+        ) : activeSub === 'MENTE' || mainMode === 'meditaciones' ? (
           <div className="fade-in-smooth" style={{ width: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-             <p style={{ fontSize: '11px', letterSpacing: '5px', color: '#22d3ee', marginBottom: '30px' }}>FRECUENCIAS > MENTE</p>
-             {menteTracks.map(track => (
-               <div key={track.id} className="track-card" onClick={() => setSelectedTrack(track)}>
+             <p style={{ fontSize: '11px', letterSpacing: '5px', color: mainMode === 'meditaciones' ? '#a855f7' : '#22d3ee', marginBottom: '30px' }}>{mainMode.toUpperCase()} {activeSub ? `> ${activeSub}` : ''}</p>
+             {tracks.filter(t => t.category === (activeSub || 'MEDITACIONES')).map(track => (
+               <div key={track.id} className="track-card" style={{ border: `1px solid ${mainMode === 'meditaciones' ? '#a855f733' : '#22d3ee33'}` }} onClick={() => setSelectedTrack(track)}>
                  <div style={{ textAlign: 'left' }}>
-                   <div style={{ fontSize: '13px', letterSpacing: '2px' }}>{track.name}</div>
-                   <div style={{ fontSize: '10px', color: '#22d3ee', marginTop: '4px' }}>{track.hz}</div>
+                   <div style={{ fontSize: '14px', letterSpacing: '2px' }}>{track.name}</div>
+                   <div style={{ fontSize: '10px', color: mainMode === 'meditaciones' ? '#a855f7' : '#22d3ee', marginTop: '4px' }}>{track.hz}</div>
                  </div>
-                 <div style={{ color: '#22d3ee' }}>▶</div>
+                 <div style={{ color: mainMode === 'meditaciones' ? '#a855f7' : '#22d3ee' }}>▶</div>
                </div>
              ))}
           </div>
         ) : (
-          <div className="fade-in-smooth" style={{ width: '100%', maxWidth: '400px' }}>
-            <p style={{ fontSize: '11px', letterSpacing: '5px', color: '#22d3ee', textAlign: 'center', marginBottom: '30px' }}>{mainMode.toUpperCase()}</p>
-            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '24px' }}>
-              {(mainMode === 'frecuencias' ? ['MENTE', 'CUERPO', 'EXPANSIÓN', 'COHERENCIA'] : []).map(sub => (
-                <div key={sub} onClick={() => setActiveSub(sub)} className="sub-category-card">
-                  <span style={{ fontSize: '10px', letterSpacing: '2px', fontWeight: 'bold' }}>{sub}</span>
-                </div>
-              ))}
-            </div>
+          <div className="fade-in-smooth" style={{ width: '100%', maxWidth: '420px', display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '24px' }}>
+            {['MENTE', 'CUERPO', 'EXPANSIÓN', 'COHERENCIA'].map(sub => (
+              <div key={sub} onClick={() => setActiveSub(sub)} style={{ padding: '15px', borderRadius: '35px', border: '1px solid rgba(34, 211, 238, 0.2)', textAlign: 'center', cursor: 'pointer', fontSize: '10px', letterSpacing: '2px' }}>{sub}</div>
+            ))}
           </div>
         )}
       </div>
