@@ -10,7 +10,7 @@ const inlineStyles = `
     }
     50% {
       transform: scale(1.03); 
-      box-shadow: 0 0 50px rgba(34, 211, 238, 0.9), 0 0 120px rgba(34, 211, 238, 0.6), 0 0 250px rgba(34, 211, 238, 0.4), 0 0 450px rgba(34, 211, 238, 0.2);
+      box-shadow: 0 0 50px rgba(34, 211, 238, 0.9), 0 0 120px rgba(34, 211, 238, 0.6), 0 0 250px rgba(34, 211, 238, 0.4);
     }
   }
 
@@ -18,61 +18,41 @@ const inlineStyles = `
   @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
   body, html { overflow-x: hidden; background-color: #020617; margin: 0; padding: 0; font-family: sans-serif; color: white; }
 
-  /* BOTONES HOME */
+  /* BOTONES HOME ESTILIZADOS */
   .frecuencias-choice-button {
-    width: 90%; max-width: 320px; padding: 20px; margin: 10px 0;
-    border-radius: 40px; border: 1px solid rgba(34, 211, 238, 0.3);
-    background: rgba(34, 211, 238, 0.03); color: white;
-    font-size: 13px; letter-spacing: 4px; text-transform: uppercase;
+    width: 85%; max-width: 280px; padding: 18px; margin: 10px 0;
+    border-radius: 40px; border: 1.5px solid rgba(34, 211, 238, 0.6);
+    background: rgba(34, 211, 238, 0.05); color: white;
+    font-size: 12px; letter-spacing: 4px; text-transform: uppercase;
     cursor: pointer; transition: all 0.4s ease;
   }
   .meditaciones-choice-button {
-    width: 90%; max-width: 320px; padding: 20px; margin: 10px 0;
-    border-radius: 40px; border: 1px solid rgba(168, 85, 247, 0.4);
-    background: rgba(168, 85, 247, 0.03); color: white;
-    font-size: 13px; letter-spacing: 4px; text-transform: uppercase;
+    width: 85%; max-width: 280px; padding: 18px; margin: 10px 0;
+    border-radius: 40px; border: 1.5px solid rgba(168, 85, 247, 0.6);
+    background: rgba(168, 85, 247, 0.05); color: white;
+    font-size: 12px; letter-spacing: 4px; text-transform: uppercase;
     cursor: pointer; transition: all 0.4s ease;
-  }
-  .premium-choice-button {
-    width: 90%; max-width: 320px; padding: 20px; margin: 10px 0;
-    border-radius: 40px; border: 1px solid #d4af37;
-    background: rgba(212, 175, 55, 0.05); color: #fdfcf5;
-    font-size: 13px; letter-spacing: 4px; text-transform: uppercase;
-    cursor: pointer; transition: all 0.4s ease;
-    display: flex; align-items: center; justify-content: center; gap: 10px;
   }
 
-  /* --- CORRECCIÓN PANTALLA 2: NAVEGACIÓN VERTICAL --- */
+  /* NAVEGACIÓN VERTICAL PANTALLA 2 ESTILIZADA */
   .category-stack {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 15px;
-    width: 100%;
-    max-width: 350px;
-    margin: 0 auto;
+    display: flex; flex-direction: column; align-items: center; gap: 12px;
+    width: 100%; margin: 0 auto;
   }
 
   .sub-category-card {
-    width: 100%;
-    padding: 22px;
-    border-radius: 40px;
-    background: rgba(255,255,255,0.02);
-    text-align: center;
-    cursor: pointer;
-    font-size: 12px;
-    letter-spacing: 3px;
-    text-transform: uppercase;
-    transition: all 0.3s ease;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    width: 80%; max-width: 260px; padding: 20px; border-radius: 40px;
+    background: rgba(34, 211, 238, 0.02);
+    border: 1.5px solid rgba(34, 211, 238, 0.5);
+    text-align: center; cursor: pointer;
+    font-size: 11px; letter-spacing: 3px; text-transform: uppercase;
+    transition: all 0.3s ease; color: white;
   }
 
   .back-button-genora {
     width: 42px; height: 42px; border-radius: 50%;
-    border: 1px solid rgba(34, 211, 238, 0.4);
-    background: rgba(34, 211, 238, 0.05);
+    border: 1.5px solid rgba(34, 211, 238, 0.6);
+    background: rgba(34, 211, 238, 0.1);
     display: flex; align-items: center; justify-content: center; cursor: pointer;
   }
 `;
@@ -95,11 +75,11 @@ const App = () => {
 
   if (showSplash) {
     return (
-      <div className="fade-in-smooth" style={{ backgroundColor: '#020617', minHeight: '100vh', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', textAlign: 'center', padding: '20px' }}>
+      <div className="fade-in-smooth" style={{ backgroundColor: '#020617', minHeight: '100vh', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', textAlign: 'center' }}>
         <style>{inlineStyles}</style>
-        <img src="/imagenes/genora-logo-white.png" style={{ width: '200px', animation: 'logo-breathe 3s infinite ease-in-out' }} alt="Logo" />
+        <img src="/imagenes/genora-logo-white.png" style={{ width: '180px', animation: 'logo-breathe 3s infinite ease-in-out' }} alt="Logo" />
         <h1 style={{ fontSize: '18px', fontWeight: '300', letterSpacing: '4px', color: '#22d3ee', textTransform: 'uppercase', marginTop: '35px', marginBottom: '8px' }}>RESONANCIA ORIGEN</h1>
-        <p style={{ fontSize: '10px', fontWeight: '200', letterSpacing: '3px', color: '#fdfcf5', opacity: 0.7, textTransform: 'uppercase' }}>ACTIVANDO TU CONSCIENCIA GENÉTICA</p>
+        <p style={{ fontSize: '10px', fontWeight: '200', letterSpacing: '3px', color: '#fdfcf5', opacity: 0.8 }}>ACTIVANDO TU CONSCIENCIA GENÉTICA</p>
       </div>
     );
   }
@@ -111,43 +91,42 @@ const App = () => {
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '40px', paddingTop: '10px' }}>
         {mainMode ? (
           <div onClick={() => { activeSub ? setActiveSub(null) : setMainMode(null) }} className="back-button-genora">
-             <span style={{ color: '#22d3ee', fontSize: '20px' }}>‹</span>
+             <span style={{ color: '#22d3ee', fontSize: '20px', fontWeight: 'bold' }}>‹</span>
           </div>
         ) : (
-          <img src="/imagenes/genora-logo-white.png" style={{ height: '105px', width: 'auto', objectFit: 'contain' }} alt="Logo" />
+          <img src="/imagenes/genora-logo-white.png" style={{ height: '95px', width: 'auto' }} alt="Logo" />
         )}
-        <div style={{ fontSize: '11px', letterSpacing: '2px', color: '#22d3ee', border: '1px solid rgba(34, 211, 238, 0.4)', padding: '6px 16px', borderRadius: '20px', fontWeight: 'bold' }}>ES | EN</div>
+        <div style={{ fontSize: '10px', letterSpacing: '2px', color: '#22d3ee', border: '1px solid rgba(34, 211, 238, 0.6)', padding: '5px 14px', borderRadius: '20px', fontWeight: 'bold' }}>ES | EN</div>
       </div>
 
       <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
         <div style={{ 
-          width: mainMode ? '130px' : '170px', height: mainMode ? '130px' : '170px', 
+          width: mainMode ? '120px' : '160px', height: mainMode ? '120px' : '160px', 
           borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', 
-          marginBottom: '35px', transition: 'all 0.5s ease',
-          animation: 'aura-supernova 8s infinite ease-in-out' 
+          marginBottom: '35px', animation: 'aura-supernova 8s infinite ease-in-out' 
         }}>
           <img src="/imagenes/adn-icon.png" style={{ width: '100%' }} alt="ADN" />
         </div>
 
         {!mainMode ? (
           <div className="fade-in-smooth" style={{ width: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-            <h2 style={{ fontSize: '10px', letterSpacing: '5px', color: '#22d3ee', opacity: 0.8, marginBottom: '20px', textTransform: 'uppercase' }}>ELIGE TU CAMINO</h2>
+            <h2 style={{ fontSize: '10px', letterSpacing: '5px', color: '#22d3ee', marginBottom: '20px', fontWeight: '300' }}>ELIGE TU CAMINO</h2>
             <button className="frecuencias-choice-button" onClick={() => setMainMode('frecuencias')}>Frecuencias</button>
             <button className="meditaciones-choice-button" onClick={() => setMainMode('meditaciones')}>Meditaciones</button>
-            <button className="premium-choice-button" onClick={() => setMainMode('experiencias')}>💎 EXPERIENCIAS GENORA</button>
+            <button style={{ width: '85%', maxWidth: '280px', padding: '18px', borderRadius: '40px', border: '1.5px solid #d4af37', background: 'rgba(212, 175, 55, 0.05)', color: '#fdfcf5', fontSize: '12px', letterSpacing: '4px' }} onClick={() => setMainMode('experiencias')}>
+              💎 EXPERIENCIAS
+            </button>
           </div>
         ) : (
           <div className="fade-in-smooth" style={{ width: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
             <p style={{ 
-              fontSize: '11px', 
-              letterSpacing: '5px', 
+              fontSize: '11px', letterSpacing: '5px', 
               color: mainMode === 'experiencias' ? '#d4af37' : (mainMode === 'meditaciones' ? '#a855f7' : '#22d3ee'), 
-              textAlign: 'center', marginBottom: '35px', textTransform: 'uppercase', fontWeight: 'bold' 
+              textAlign: 'center', marginBottom: '35px', fontWeight: 'bold' 
             }}>
-              {mainMode === 'experiencias' ? '💎 EXPERIENCIAS GENORA' : mainMode}
+              {mainMode.toUpperCase()}
             </p>
             
-            {/* AQUÍ ESTÁ EL CAMBIO: Lista vertical en lugar de cuadrícula */}
             <div className="category-stack">
               {subCategories[mainMode].map(sub => (
                 <div 
@@ -155,7 +134,7 @@ const App = () => {
                   onClick={() => setActiveSub(sub)} 
                   className="sub-category-card"
                   style={{ 
-                    borderColor: mainMode === 'experiencias' ? 'rgba(212, 175, 55, 0.4)' : (mainMode === 'meditaciones' ? 'rgba(168, 85, 247, 0.4)' : 'rgba(34, 211, 238, 0.4)') 
+                    borderColor: mainMode === 'experiencias' ? 'rgba(212, 175, 55, 0.5)' : (mainMode === 'meditaciones' ? 'rgba(168, 85, 247, 0.5)' : 'rgba(34, 211, 238, 0.5)') 
                   }}
                 >
                   <span style={{ fontWeight: 'bold' }}>{sub}</span>
