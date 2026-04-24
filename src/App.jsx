@@ -18,16 +18,16 @@ const inlineStyles = `
   @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
   body, html { overflow-x: hidden; background-color: #020617; margin: 0; padding: 0; font-family: sans-serif; color: white; }
 
-  /* BOTONES HOME ESTILIZADOS */
+  /* BOTONES HOME: MÁS ESTILIZADOS (ANCHO CORREGIDO) */
   .frecuencias-choice-button {
-    width: 85%; max-width: 280px; padding: 18px; margin: 10px 0;
+    width: 75%; max-width: 270px; padding: 18px; margin: 10px 0;
     border-radius: 40px; border: 1.5px solid rgba(34, 211, 238, 0.6);
     background: rgba(34, 211, 238, 0.05); color: white;
     font-size: 12px; letter-spacing: 4px; text-transform: uppercase;
     cursor: pointer; transition: all 0.4s ease;
   }
   .meditaciones-choice-button {
-    width: 85%; max-width: 280px; padding: 18px; margin: 10px 0;
+    width: 75%; max-width: 270px; padding: 18px; margin: 10px 0;
     border-radius: 40px; border: 1.5px solid rgba(168, 85, 247, 0.6);
     background: rgba(168, 85, 247, 0.05); color: white;
     font-size: 12px; letter-spacing: 4px; text-transform: uppercase;
@@ -39,8 +39,9 @@ const inlineStyles = `
     width: 100%; margin: 0 auto;
   }
 
+  /* BOTONES CATEGORÍA: MÁS ESTILIZADOS */
   .sub-category-card {
-    width: 80%; max-width: 260px; padding: 20px; border-radius: 40px;
+    width: 70%; max-width: 250px; padding: 18px; border-radius: 40px;
     background: rgba(34, 211, 238, 0.02);
     border: 1.5px solid rgba(34, 211, 238, 0.5);
     text-align: center; cursor: pointer;
@@ -48,9 +49,9 @@ const inlineStyles = `
     transition: all 0.3s ease; color: white;
   }
 
-  /* LISTA DE PISTAS CON RESALTADO IZQUIERDO */
+  /* LISTA DE PISTAS: MÁS ESTILIZADA */
   .track-card {
-    width: 90%; max-width: 340px; padding: 18px 25px; margin: 8px 0; border-radius: 35px;
+    width: 80%; max-width: 310px; padding: 18px 25px; margin: 8px 0; border-radius: 35px;
     background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.1);
     display: flex; justify-content: space-between; align-items: center; cursor: pointer;
   }
@@ -84,11 +85,10 @@ const App = () => {
     return () => clearTimeout(timer);
   }, []);
 
-  // MOTOR DE AUDIO BLINDADO
   useEffect(() => {
     if (audioRef.current) {
       if (isPlaying) {
-        audioRef.current.play().catch(() => console.log("Verificar archivo en /public/audio/"));
+        audioRef.current.play().catch(() => console.log("Verificar audio en /public/audio/"));
         if (selectedTime && selectedTime !== '∞') {
           if (timerRef.current) clearTimeout(timerRef.current);
           timerRef.current = setTimeout(() => setIsPlaying(false), selectedTime * 60000);
@@ -123,7 +123,7 @@ const App = () => {
     return (
       <div className="fade-in-smooth" style={{ backgroundColor: '#020617', minHeight: '100vh', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', textAlign: 'center' }}>
         <style>{inlineStyles}</style>
-        <img src="/imagenes/genora-logo-white.png" style={{ width: '180px', borderRadius: '50%', animation: 'logo-breathe 3s infinite ease-in-out', objectFit: 'contain' }} />
+        <img src="/imagenes/genora-logo-white.png" style={{ width: '180px', borderRadius: '50%', animation: 'logo-breathe 3s infinite ease-in-out', objectFit: 'contain' }} alt="Logo" />
         <h1 style={{ fontSize: '18px', fontWeight: '300', letterSpacing: '4px', color: '#22d3ee', textTransform: 'uppercase', marginTop: '35px', marginBottom: '8px' }}>RESONANCIA ORIGEN</h1>
         <p style={{ fontSize: '10px', fontWeight: '200', letterSpacing: '3px', color: '#fdfcf5', opacity: 0.8 }}>ACTIVANDO TU CONSCIENCIA GENÉTICA</p>
       </div>
@@ -185,8 +185,8 @@ const App = () => {
             <h2 style={{ fontSize: '10px', letterSpacing: '5px', color: '#22d3ee', marginBottom: '20px', fontWeight: '300' }}>ELIGE TU CAMINO</h2>
             <button className="frecuencias-choice-button" onClick={() => setMainMode('frecuencias')}>Frecuencias</button>
             <button className="meditaciones-choice-button" onClick={() => setMainMode('meditaciones')}>Meditaciones</button>
-            <button style={{ width: '85%', maxWidth: '280px', padding: '18px', borderRadius: '40px', border: '1.5px solid #d4af37', background: 'rgba(212, 175, 55, 0.05)', color: '#fdfcf5', fontSize: '12px', letterSpacing: '4px' }} onClick={() => setMainMode('experiencias')}>
-              💎 EXPERIENCIAS GENORA
+            <button style={{ width: '75%', maxWidth: '270px', padding: '18px', borderRadius: '40px', border: '1.5px solid #d4af37', background: 'rgba(212, 175, 55, 0.05)', color: '#fdfcf5', fontSize: '12px', letterSpacing: '4px' }} onClick={() => setMainMode('experiencias')}>
+              💎 EXPERIENCIAS
             </button>
           </div>
         ) : !activeSub ? (
