@@ -18,7 +18,7 @@ const inlineStyles = `
   @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
   body, html { overflow-x: hidden; background-color: #020617; margin: 0; padding: 0; font-family: sans-serif; color: white; }
 
-  /* BOTÓN MAESTRO: FRECUENCIAS (CIAN) */
+  /* BOTONES HOME */
   .frecuencias-choice-button {
     width: 90%; max-width: 320px; padding: 20px; margin: 10px 0;
     border-radius: 40px; border: 1px solid rgba(34, 211, 238, 0.3);
@@ -26,52 +26,54 @@ const inlineStyles = `
     font-size: 13px; letter-spacing: 4px; text-transform: uppercase;
     cursor: pointer; transition: all 0.4s ease;
   }
-
-  /* BOTÓN MAESTRO: MEDITACIONES (AMATISTA) */
   .meditaciones-choice-button {
     width: 90%; max-width: 320px; padding: 20px; margin: 10px 0;
     border-radius: 40px; border: 1px solid rgba(168, 85, 247, 0.4);
     background: rgba(168, 85, 247, 0.03); color: white;
     font-size: 13px; letter-spacing: 4px; text-transform: uppercase;
     cursor: pointer; transition: all 0.4s ease;
-    box-shadow: 0 0 15px rgba(168, 85, 247, 0.1);
   }
-
-  /* BOTÓN MAESTRO: EXPERIENCIAS (DORADO) */
   .premium-choice-button {
     width: 90%; max-width: 320px; padding: 20px; margin: 10px 0;
     border-radius: 40px; border: 1px solid #d4af37;
     background: rgba(212, 175, 55, 0.05); color: #fdfcf5;
     font-size: 13px; letter-spacing: 4px; text-transform: uppercase;
     cursor: pointer; transition: all 0.4s ease;
-    box-shadow: 0 0 15px rgba(212, 175, 55, 0.1);
     display: flex; align-items: center; justify-content: center; gap: 10px;
   }
 
-  /* SUB-CATEGORÍAS: ESTÁNDAR (CIAN) */
-  .sub-category-card {
-    transition: all 0.3s ease; padding: 10px 4px; border-radius: 35px;
-    border: 1px solid rgba(34, 211, 238, 0.15); background: rgba(255,255,255,0.015);
-    text-align: center; cursor: pointer; min-height: 52px;
-    display: flex; flex-direction: column; justify-content: center; align-items: center;
-    width: 100%; max-width: 175px; margin: 0 auto;
+  /* --- CORRECCIÓN PANTALLA 2: NAVEGACIÓN VERTICAL --- */
+  .category-stack {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+    width: 100%;
+    max-width: 350px;
+    margin: 0 auto;
   }
 
-  /* SUB-CATEGORÍAS: MEDITACIÓN (AMATISTA) */
-  .sub-category-card-purple {
-    transition: all 0.3s ease; padding: 10px 4px; border-radius: 35px;
-    border: 1px solid rgba(168, 85, 247, 0.3); background: rgba(255,255,255,0.015);
-    text-align: center; cursor: pointer; min-height: 52px;
-    display: flex; flex-direction: column; justify-content: center; align-items: center;
-    width: 100%; max-width: 175px; margin: 0 auto;
+  .sub-category-card {
+    width: 100%;
+    padding: 22px;
+    border-radius: 40px;
+    background: rgba(255,255,255,0.02);
+    text-align: center;
+    cursor: pointer;
+    font-size: 12px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    transition: all 0.3s ease;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 
   .back-button-genora {
     width: 42px; height: 42px; border-radius: 50%;
     border: 1px solid rgba(34, 211, 238, 0.4);
     background: rgba(34, 211, 238, 0.05);
-    display: flex; align-items: center; justify-content: center;
-    cursor: pointer;
+    display: flex; align-items: center; justify-content: center; cursor: pointer;
   }
 `;
 
@@ -124,7 +126,7 @@ const App = () => {
           marginBottom: '35px', transition: 'all 0.5s ease',
           animation: 'aura-supernova 8s infinite ease-in-out' 
         }}>
-          <img src="/imagenes/adn-icon.png" style={{ width: '100%', objectFit: 'contain' }} alt="ADN" />
+          <img src="/imagenes/adn-icon.png" style={{ width: '100%' }} alt="ADN" />
         </div>
 
         {!mainMode ? (
@@ -132,12 +134,10 @@ const App = () => {
             <h2 style={{ fontSize: '10px', letterSpacing: '5px', color: '#22d3ee', opacity: 0.8, marginBottom: '20px', textTransform: 'uppercase' }}>ELIGE TU CAMINO</h2>
             <button className="frecuencias-choice-button" onClick={() => setMainMode('frecuencias')}>Frecuencias</button>
             <button className="meditaciones-choice-button" onClick={() => setMainMode('meditaciones')}>Meditaciones</button>
-            <button className="premium-choice-button" onClick={() => setMainMode('experiencias')}>
-              <span style={{ fontSize: '16px' }}>💎</span> EXPERIENCIAS GENORA
-            </button>
+            <button className="premium-choice-button" onClick={() => setMainMode('experiencias')}>💎 EXPERIENCIAS GENORA</button>
           </div>
         ) : (
-          <div className="fade-in-smooth" style={{ width: '100%', maxWidth: '390px' }}>
+          <div className="fade-in-smooth" style={{ width: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
             <p style={{ 
               fontSize: '11px', 
               letterSpacing: '5px', 
@@ -146,17 +146,19 @@ const App = () => {
             }}>
               {mainMode === 'experiencias' ? '💎 EXPERIENCIAS GENORA' : mainMode}
             </p>
-            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '24px', justifyContent: 'center', width: '100%' }}>
+            
+            {/* AQUÍ ESTÁ EL CAMBIO: Lista vertical en lugar de cuadrícula */}
+            <div className="category-stack">
               {subCategories[mainMode].map(sub => (
                 <div 
                   key={sub} 
                   onClick={() => setActiveSub(sub)} 
-                  className={mainMode === 'meditaciones' ? "sub-category-card-purple" : "sub-category-card"}
+                  className="sub-category-card"
                   style={{ 
-                    borderColor: mainMode === 'experiencias' ? 'rgba(212, 175, 55, 0.3)' : (mainMode === 'meditaciones' ? 'rgba(168, 85, 247, 0.3)' : 'rgba(34, 211, 238, 0.15)') 
+                    borderColor: mainMode === 'experiencias' ? 'rgba(212, 175, 55, 0.4)' : (mainMode === 'meditaciones' ? 'rgba(168, 85, 247, 0.4)' : 'rgba(34, 211, 238, 0.4)') 
                   }}
                 >
-                  <span style={{ fontSize: '9px', letterSpacing: '2px', fontWeight: 'bold' }}>{sub}</span>
+                  <span style={{ fontWeight: 'bold' }}>{sub}</span>
                 </div>
               ))}
             </div>
