@@ -1,147 +1,170 @@
 import React, { useState, useEffect } from 'react';
 
+const inlineStyles = `
+  @keyframes logo-breathe { 0%, 100% { transform: scale(1); opacity: 0.95; } 50% { transform: scale(1.05); opacity: 1; } }
+  
+  @keyframes aura-supernova {
+    0%, 100% { 
+      transform: scale(1); 
+      box-shadow: 0 0 80px rgba(34, 211, 238, 0.4), 0 0 150px rgba(34, 211, 238, 0.2); 
+    }
+    50% {
+      transform: scale(1.03); 
+      box-shadow: 0 0 50px rgba(34, 211, 238, 0.9), 0 0 120px rgba(34, 211, 238, 0.6), 0 0 250px rgba(34, 211, 238, 0.4), 0 0 450px rgba(34, 211, 238, 0.2);
+    }
+  }
+
+  .fade-in-smooth { animation: fadeIn 0.8s ease-in forwards; }
+  @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+  body, html { overflow-x: hidden; background-color: #020617; margin: 0; padding: 0; font-family: sans-serif; color: white; }
+
+  /* BOTÓN MAESTRO: FRECUENCIAS (CIAN) */
+  .frecuencias-choice-button {
+    width: 90%; max-width: 320px; padding: 20px; margin: 10px 0;
+    border-radius: 40px; border: 1px solid rgba(34, 211, 238, 0.3);
+    background: rgba(34, 211, 238, 0.03); color: white;
+    font-size: 13px; letter-spacing: 4px; text-transform: uppercase;
+    cursor: pointer; transition: all 0.4s ease;
+  }
+
+  /* BOTÓN MAESTRO: MEDITACIONES (AMATISTA) */
+  .meditaciones-choice-button {
+    width: 90%; max-width: 320px; padding: 20px; margin: 10px 0;
+    border-radius: 40px; border: 1px solid rgba(168, 85, 247, 0.4);
+    background: rgba(168, 85, 247, 0.03); color: white;
+    font-size: 13px; letter-spacing: 4px; text-transform: uppercase;
+    cursor: pointer; transition: all 0.4s ease;
+    box-shadow: 0 0 15px rgba(168, 85, 247, 0.1);
+  }
+
+  /* BOTÓN MAESTRO: EXPERIENCIAS (DORADO) */
+  .premium-choice-button {
+    width: 90%; max-width: 320px; padding: 20px; margin: 10px 0;
+    border-radius: 40px; border: 1px solid #d4af37;
+    background: rgba(212, 175, 55, 0.05); color: #fdfcf5;
+    font-size: 13px; letter-spacing: 4px; text-transform: uppercase;
+    cursor: pointer; transition: all 0.4s ease;
+    box-shadow: 0 0 15px rgba(212, 175, 55, 0.1);
+    display: flex; align-items: center; justify-content: center; gap: 10px;
+  }
+
+  /* SUB-CATEGORÍAS: ESTÁNDAR (CIAN) */
+  .sub-category-card {
+    transition: all 0.3s ease; padding: 10px 4px; border-radius: 35px;
+    border: 1px solid rgba(34, 211, 238, 0.15); background: rgba(255,255,255,0.015);
+    text-align: center; cursor: pointer; min-height: 52px;
+    display: flex; flex-direction: column; justify-content: center; align-items: center;
+    width: 100%; max-width: 175px; margin: 0 auto;
+  }
+
+  /* SUB-CATEGORÍAS: MEDITACIÓN (AMATISTA) */
+  .sub-category-card-purple {
+    transition: all 0.3s ease; padding: 10px 4px; border-radius: 35px;
+    border: 1px solid rgba(168, 85, 247, 0.3); background: rgba(255,255,255,0.015);
+    text-align: center; cursor: pointer; min-height: 52px;
+    display: flex; flex-direction: column; justify-content: center; align-items: center;
+    width: 100%; max-width: 175px; margin: 0 auto;
+  }
+
+  .back-button-genora {
+    width: 42px; height: 42px; border-radius: 50%;
+    border: 1px solid rgba(34, 211, 238, 0.4);
+    background: rgba(34, 211, 238, 0.05);
+    display: flex; align-items: center; justify-content: center;
+    cursor: pointer;
+  }
+`;
+
 const App = () => {
   const [showSplash, setShowSplash] = useState(true);
+  const [mainMode, setMainMode] = useState(null); 
+  const [activeSub, setActiveSub] = useState(null);
 
   useEffect(() => {
-    const timer = setTimeout(() => setShowSplash(false), 3000);
+    const timer = setTimeout(() => setShowSplash(false), 4500);
     return () => clearTimeout(timer);
   }, []);
 
-  // 🧱 PASO 1: SPLASH SCREEN BLINDADO (Tu código original)
+  const subCategories = {
+    frecuencias: ["MENTE", "CUERPO", "EXPANSIÓN", "COHERENCIA"],
+    meditaciones: ["MENTE", "CUERPO", "RELACIONES", "ABUNDANCIA", "LINAJE ANCESTRAL", "RECALIBRACIÓN"],
+    experiencias: ["ACTIVACIÓN DONES", "ABUNDANCIA G5", "ESTADOS PROFUNDOS", "PROTOCOLOS ÉLITE"]
+  };
+
   if (showSplash) {
     return (
-      <div style={{
-        backgroundColor: '#020617',
-        minHeight: '100vh',
-        display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'center',
-        justifyContent: 'center',
-        color: 'white',
-        fontFamily: 'sans-serif',
-        padding: '20px'
-      }}>
-        <img 
-          src="/imagenes/genora-logo-white.png" 
-          style={{ width: '180px', height: 'auto', marginBottom: '30px' }} 
-          alt="Genora Logo" 
-        />
-        
-        <h1 style={{
-          fontSize: '20px',
-          fontWeight: '300',
-          letterSpacing: '5px',
-          textTransform: 'uppercase',
-          textAlign: 'center',
-          color: '#22d3ee', 
-          marginBottom: '15px'
-        }}>
-          RESONANCIA ORIGEN
-        </h1>
-
-        <p style={{
-          fontSize: '11px',
-          fontWeight: '300',
-          letterSpacing: '3px',
-          textTransform: 'uppercase',
-          textAlign: 'center',
-          color: '#22d3ee', 
-          opacity: 0.6
-        }}>
-          Activando tu consciencia genética
-        </p>
+      <div className="fade-in-smooth" style={{ backgroundColor: '#020617', minHeight: '100vh', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', textAlign: 'center', padding: '20px' }}>
+        <style>{inlineStyles}</style>
+        <img src="/imagenes/genora-logo-white.png" style={{ width: '200px', animation: 'logo-breathe 3s infinite ease-in-out' }} alt="Logo" />
+        <h1 style={{ fontSize: '18px', fontWeight: '300', letterSpacing: '4px', color: '#22d3ee', textTransform: 'uppercase', marginTop: '35px', marginBottom: '8px' }}>RESONANCIA ORIGEN</h1>
+        <p style={{ fontSize: '10px', fontWeight: '200', letterSpacing: '3px', color: '#fdfcf5', opacity: 0.7, textTransform: 'uppercase' }}>ACTIVANDO TU CONSCIENCIA GENÉTICA</p>
       </div>
     );
   }
 
-  // 🧱 PASO 2: PANTALLA DE INICIO (HOME) RESTAURADA
   return (
-    <div style={{
-      backgroundColor: '#020617', 
-      minHeight: '100vh', 
-      color: 'white', 
-      padding: '20px', 
-      fontFamily: 'sans-serif'
-    }}>
+    <div className="fade-in-smooth" style={{ backgroundColor: '#020617', minHeight: '100vh', color: 'white', padding: '20px' }}>
+      <style>{inlineStyles}</style>
       
-      {/* HEADER GENORA BLINDADO */}
-      <div style={{
-        display: 'flex', 
-        justifyContent: 'space-between', 
-        alignItems: 'center', 
-        maxWidth: '500px', 
-        margin: '0 auto 50px',
-        width: '100%'
-      }}>
-        <img 
-          src="/imagenes/genora-logo-white.png" 
-          style={{ height: '35px', width: 'auto' }} 
-          alt="Logo Sutil" 
-        />
-        
-        <div style={{ display: 'flex', gap: '15px', fontSize: '12px', letterSpacing: '2px' }}>
-          <span style={{ color: '#22d3ee', cursor: 'pointer', fontWeight: 'bold' }}>ES</span>
-          <span style={{ color: '#444', cursor: 'pointer' }}>EN</span>
-        </div>
+      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '40px', paddingTop: '10px' }}>
+        {mainMode ? (
+          <div onClick={() => { activeSub ? setActiveSub(null) : setMainMode(null) }} className="back-button-genora">
+             <span style={{ color: '#22d3ee', fontSize: '20px' }}>‹</span>
+          </div>
+        ) : (
+          <img src="/imagenes/genora-logo-white.png" style={{ height: '105px', width: 'auto', objectFit: 'contain' }} alt="Logo" />
+        )}
+        <div style={{ fontSize: '11px', letterSpacing: '2px', color: '#22d3ee', border: '1px solid rgba(34, 211, 238, 0.4)', padding: '6px 16px', borderRadius: '20px', fontWeight: 'bold' }}>ES | EN</div>
       </div>
 
-      {/* CUERPO CENTRAL: ADN Y "ELIGE TU CAMINO" */}
-      <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', marginTop: '40px' }}>
-        
-        {/* ADN CENTRAL CON RESPLANDOR (Sin círculo azul oscuro) */}
+      <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
         <div style={{ 
-          width: '200px', 
-          height: '200px', 
-          marginBottom: '60px', 
-          display: 'flex', 
-          alignItems: 'center', 
-          justifyContent: 'center',
-          filter: 'drop-shadow(0 0 20px rgba(34, 211, 238, 0.4))'
+          width: mainMode ? '130px' : '170px', height: mainMode ? '130px' : '170px', 
+          borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', 
+          marginBottom: '35px', transition: 'all 0.5s ease',
+          animation: 'aura-supernova 8s infinite ease-in-out' 
         }}>
-          <img 
-            src="/imagenes/adn-icon.png" 
-            style={{ width: '90%', height: 'auto' }} 
-            alt="ADN Pulsante" 
-          />
+          <img src="/imagenes/adn-icon.png" style={{ width: '100%', objectFit: 'contain' }} alt="ADN" />
         </div>
 
-        <h2 style={{ 
-          fontSize: '11px', 
-          letterSpacing: '6px', 
-          color: '#22d3ee', 
-          marginBottom: '30px', 
-          textTransform: 'uppercase',
-          fontWeight: '300'
-        }}>
-          ELIGE TU CAMINO
-        </h2>
-
-        {/* BOTONES PRINCIPALES (Preparados para la siguiente fase) */}
-        <div style={{ display: 'flex', flexDirection: 'column', gap: '15px', width: '100%', alignItems: 'center' }}>
-          <button style={buttonStyle('#22d3ee')}>RESONANCIA</button>
-          <button style={buttonStyle('#a855f7')}>INMERSIÓN</button>
-          <button style={buttonStyle('#d4af37')}>💎 ALQUIMIA GENÉTICA</button>
-        </div>
+        {!mainMode ? (
+          <div className="fade-in-smooth" style={{ width: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+            <h2 style={{ fontSize: '10px', letterSpacing: '5px', color: '#22d3ee', opacity: 0.8, marginBottom: '20px', textTransform: 'uppercase' }}>ELIGE TU CAMINO</h2>
+            <button className="frecuencias-choice-button" onClick={() => setMainMode('frecuencias')}>Frecuencias</button>
+            <button className="meditaciones-choice-button" onClick={() => setMainMode('meditaciones')}>Meditaciones</button>
+            <button className="premium-choice-button" onClick={() => setMainMode('experiencias')}>
+              <span style={{ fontSize: '16px' }}>💎</span> EXPERIENCIAS GENORA
+            </button>
+          </div>
+        ) : (
+          <div className="fade-in-smooth" style={{ width: '100%', maxWidth: '390px' }}>
+            <p style={{ 
+              fontSize: '11px', 
+              letterSpacing: '5px', 
+              color: mainMode === 'experiencias' ? '#d4af37' : (mainMode === 'meditaciones' ? '#a855f7' : '#22d3ee'), 
+              textAlign: 'center', marginBottom: '35px', textTransform: 'uppercase', fontWeight: 'bold' 
+            }}>
+              {mainMode === 'experiencias' ? '💎 EXPERIENCIAS GENORA' : mainMode}
+            </p>
+            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '24px', justifyContent: 'center', width: '100%' }}>
+              {subCategories[mainMode].map(sub => (
+                <div 
+                  key={sub} 
+                  onClick={() => setActiveSub(sub)} 
+                  className={mainMode === 'meditaciones' ? "sub-category-card-purple" : "sub-category-card"}
+                  style={{ 
+                    borderColor: mainMode === 'experiencias' ? 'rgba(212, 175, 55, 0.3)' : (mainMode === 'meditaciones' ? 'rgba(168, 85, 247, 0.3)' : 'rgba(34, 211, 238, 0.15)') 
+                  }}
+                >
+                  <span style={{ fontSize: '9px', letterSpacing: '2px', fontWeight: 'bold' }}>{sub}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
       </div>
     </div>
   );
 };
-
-// Estilo base para los botones del Home
-const buttonStyle = (color) => ({
-  width: '90%',
-  maxWidth: '350px',
-  padding: '22px',
-  borderRadius: '50px',
-  textTransform: 'uppercase',
-  letterSpacing: '4px',
-  fontSize: '13px',
-  cursor: 'pointer',
-  color: 'white',
-  background: 'rgba(255,255,255,0.03)',
-  border: `1px solid ${color}66`, // Borde con color sutil
-  transition: '0.3s'
-});
 
 export default App;
