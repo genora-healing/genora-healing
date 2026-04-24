@@ -14,7 +14,6 @@ const inlineStyles = `
     border: 1px solid rgba(255,255,255,0.1);
   }
 
-  /* NAVEGACIÓN VERTICAL (Para que no se peguen en PC) */
   .vertical-stack {
     display: flex; flex-direction: column; align-items: center; gap: 15px; width: 100%;
   }
@@ -44,7 +43,6 @@ const App = () => {
   const [selectedTrack, setSelectedTrack] = useState(null);
   const [isPlaying, setIsPlaying] = useState(false);
   const [selectedTime, setSelectedTime] = useState(null);
-  const [adnLoaded, setAdnLoaded] = useState(false);
 
   const audioRef = useRef(null);
   const timerRef = useRef(null);
@@ -54,11 +52,10 @@ const App = () => {
     return () => clearTimeout(timer);
   }, []);
 
-  // MOTOR DE AUDIO BLINDADO
   useEffect(() => {
     if (audioRef.current) {
       if (isPlaying) {
-        audioRef.current.play().catch(() => console.log("Iniciando frecuencia..."));
+        audioRef.current.play().catch(() => console.log("Error al reproducir: verifica el nombre del archivo."));
         if (selectedTime && selectedTime !== '∞') {
           if (timerRef.current) clearTimeout(timerRef.current);
           timerRef.current = setTimeout(() => setIsPlaying(false), selectedTime * 60000);
@@ -70,12 +67,12 @@ const App = () => {
     }
   }, [isPlaying, selectedTrack, selectedTime]);
 
-  // RUTAS SINCRONIZADAS (Incluyendo Beta Attention)
   const tracks = [
     { id: "01", category: "CLARIDAD MENTAL", name: "Alpha Integración", hz: "8 – 10 Hz", url: "/audio/alpha-integration.mp3", desc: "Sincroniza los hemisferios cerebrales." },
     { id: "02", category: "CLARIDAD MENTAL", name: "Alpha Creator", hz: "8 – 12 Hz", url: "/audio/alpha-creator.mp3", desc: "Activa el estado de flujo creativo." },
     { id: "03", category: "CLARIDAD MENTAL", name: "Alpha Void", hz: "8 – 13 Hz", url: "/audio/alpha-void.mp3", desc: "Punto cero de la consciencia." },
-    { id: "04", category: "CLARIDAD MENTAL", name: "Beta Attention", hz: "12 – 15 Hz", url: "/audio/beta-attention.mp3", desc: "Enfoque activo y atención plena." },
+    // CORRECCIÓN DE RUTA: beta attention sin guión
+    { id: "04", category: "CLARIDAD MENTAL", name: "Beta Attention", hz: "12 – 15 Hz", url: "/audio/beta attention.mp3", desc: "Enfoque activo y atención plena." },
     { id: "M1", category: "BIO-REGENERACIÓN", name: "Coherencia del Ser", hz: "963 Hz", url: "/audio/alpha-integration.mp3", desc: "Sincroniza corazón y mente." }
   ];
 
@@ -97,23 +94,21 @@ const App = () => {
         <style>{inlineStyles}</style>
         <audio ref={audioRef} src={selectedTrack.url} loop={selectedTime === '∞'} />
         
-        <button onClick={() => { setSelectedTrack(null); setIsPlaying(false); setAdnLoaded(false); }} style={{ position: 'absolute', top: '35px', left: '30px', background: 'none', border: 'none', color: accent, fontSize: '40px', cursor: 'pointer' }}>‹</button>
+        <button onClick={() => { setSelectedTrack(null); setIsPlaying(false); }} style={{ position: 'absolute', top: '35px', left: '30px', background: 'none', border: 'none', color: accent, fontSize: '40px', cursor: 'pointer' }}>‹</button>
 
         <p style={{ fontSize: '9px', letterSpacing: '3px', color: '#fdfcf5', opacity: 0.6, marginBottom: '50px', textTransform: 'uppercase' }}>Resonancia Origen • Genora Healing</p>
 
-        {/* LOGO SIN CÍRCULO AZUL - RESPLANDOR LIBRE */}
         <div style={{ width: '220px', height: '220px', marginBottom: '40px', display: 'flex', alignItems: 'center', justifyContent: 'center', animation: isPlaying ? 'breathe 4s infinite ease-in-out' : 'none' }}>
-          <img src="/imagenes/adn-icon.png" onLoad={() => setAdnLoaded(true)} style={{ width: '100%', filter: `drop-shadow(0 0 15px ${accent}) drop-shadow(0 0 40px ${accent}66)` }} />
+          <img src="/imagenes/adn-icon.png" style={{ width: '100%', filter: `drop-shadow(0 0 15px ${accent}) drop-shadow(0 0 40px ${accent}66)` }} />
         </div>
 
         <h2 style={{ fontSize: '24px', letterSpacing: '4px', textTransform: 'uppercase', marginBottom: '5px' }}>{selectedTrack.name}</h2>
         <p style={{ color: accent, fontSize: '12px', letterSpacing: '3px', fontWeight: 'bold', marginBottom: '20px' }}>{selectedTrack.hz}</p>
         <p style={{ fontSize: '13px', color: '#fdfcf5', opacity: 0.7, maxWidth: '300px', marginBottom: '40px' }}>"{selectedTrack.desc}"</p>
 
-        {/* CONTEO DE TIEMPO RECUPERADO */}
         <div style={{ display: 'flex', gap: '12px', marginBottom: '45px' }}>
           {[15, 30, 60, '∞'].map((time) => (
-            <button key={time} onClick={() => setSelectedTime(time)} className="time-button" style={{ border: `1px solid ${selectedTime === time ? accent : 'rgba(255,255,255,0.1)'}`, background: selectedTime === time ? `${accent}22` : 'none' }}>
+            <button key={time} onClick={() => setSelectedTime(time)} className="time-button" style={{ border: `1px solid ${selectedTime === time ? accent : 'rgba(255,255,255,0.1)'}`, background: selectedTime === time ? `${accent}22` : 'none', color: 'white', fontSize: '12px' }}>
               {time === '∞' ? time : `${time}'`}
             </button>
           ))}
@@ -130,7 +125,7 @@ const App = () => {
     <div className="fade-in-smooth" style={{ backgroundColor: '#020617', minHeight: '100vh', padding: '20px' }}>
       <style>{inlineStyles}</style>
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '50px' }}>
-        <img src="/imagenes/genora-logo-white.png" style={{ height: '110px' }} onClick={() => {setMainMode(null); setActiveSub(null);}} />
+        <img src="/imagenes/genora-logo-white.png" style={{ height: '110px', cursor: 'pointer' }} onClick={() => {setMainMode(null); setActiveSub(null);}} />
         <div style={{ color: '#22d3ee', border: '1px solid #22d3ee44', padding: '6px 15px', borderRadius: '20px', fontSize: '12px' }}>ES | EN</div>
       </div>
 
