@@ -18,7 +18,7 @@ const inlineStyles = `
   @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
   body, html { overflow-x: hidden; background-color: #020617; margin: 0; padding: 0; font-family: sans-serif; color: white; }
 
-  /* BOTONES HOME: MÁS ESTILIZADOS (ANCHO CORREGIDO) */
+  /* BOTONES HOME: ANCHO ESTILIZADO BLINDADO */
   .frecuencias-choice-button {
     width: 75%; max-width: 270px; padding: 18px; margin: 10px 0;
     border-radius: 40px; border: 1.5px solid rgba(34, 211, 238, 0.6);
@@ -39,7 +39,7 @@ const inlineStyles = `
     width: 100%; margin: 0 auto;
   }
 
-  /* BOTONES CATEGORÍA: MÁS ESTILIZADOS */
+  /* BOTONES CATEGORÍA: ANCHO ESTILIZADO BLINDADO */
   .sub-category-card {
     width: 70%; max-width: 250px; padding: 18px; border-radius: 40px;
     background: rgba(34, 211, 238, 0.02);
@@ -49,7 +49,7 @@ const inlineStyles = `
     transition: all 0.3s ease; color: white;
   }
 
-  /* LISTA DE PISTAS: MÁS ESTILIZADA */
+  /* LISTA DE PISTAS: ANCHO ESTILIZADO BLINDADO */
   .track-card {
     width: 80%; max-width: 310px; padding: 18px 25px; margin: 8px 0; border-radius: 35px;
     background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.1);
@@ -85,6 +85,7 @@ const App = () => {
     return () => clearTimeout(timer);
   }, []);
 
+  // MOTOR DE AUDIO BLINDADO (REGLAS DE ORO)
   useEffect(() => {
     if (audioRef.current) {
       if (isPlaying) {
@@ -116,6 +117,13 @@ const App = () => {
     "CUERPO": [
       { name: "Alpha Eros", hz: "9 Hz", url: "/audio/alpha-eros.mp3" },
       { name: "Alpha Center", hz: "9.4 Hz", url: "/audio/alpha-center.mp3" }
+    ],
+    "EXPANSIÓN": [
+      { name: "Gaia Vision", hz: "8,3 Hz", url: "/audio/gaia-vision.mp3" },
+      { name: "Alpha Lucid Bridge", hz: "9 – 13 Hz", url: "/audio/alpha-lucid-bridge.mp3" }
+    ],
+    "COHERENCIA": [
+      { name: "Alpha Origen", hz: "8 Hz", url: "/audio/alpha-origen.mp3" }
     ]
   };
 
