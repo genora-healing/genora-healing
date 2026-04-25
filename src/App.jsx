@@ -194,8 +194,11 @@ const App = () => {
         </div>
 
         {!mainMode && (
-          <div className="category-stack">
-            <h2 style={{ fontSize: '10px', letterSpacing: '5px', color: '#22d3ee', marginBottom: '20px', fontWeight: '300' }}>ELIGE TU CAMINO</h2>
+          <div className="fade-in-smooth" style={{ width: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+            <h2 style={{ fontSize: '10px', letterSpacing: '5px', color: '#22d3ee', marginBottom: '8px', fontWeight: '300' }}>ELIGE TU CAMINO</h2>
+            {/* FRASE ICÓNICA RESTAURADA */}
+            <p style={{ fontSize: '10px', letterSpacing: '2.5px', color: '#fdfcf5', opacity: 0.8, marginBottom: '25px', fontWeight: '200' }}>ACTIVANDO TU CONSCIENCIA GENÉTICA</p>
+            
             <button className="frecuencias-choice-button" onClick={() => setMainMode('frecuencias')}>Frecuencias</button>
             <button className="meditaciones-choice-button" onClick={() => setMainMode('meditaciones')}>Meditaciones</button>
             <button style={{ width: '75%', maxWidth: '270px', padding: '18px', borderRadius: '40px', border: '1.5px solid #d4af37', background: 'rgba(212, 175, 55, 0.05)', color: '#fdfcf5', fontSize: '12px', letterSpacing: '4px' }} onClick={() => setMainMode('experiencias')}>
@@ -205,7 +208,7 @@ const App = () => {
         )}
 
         {mainMode && !activeCategory && (
-          <div className="category-stack">
+          <div className="fade-in-smooth" style={{ width: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
             <p style={{ fontSize: '11px', letterSpacing: '5px', color: accentColor, textAlign: 'center', marginBottom: '35px', fontWeight: 'bold' }}>{mainMode.toUpperCase()}</p>
             <div className="category-stack">
               {["MENTE", "CUERPO", "EXPANSIÓN", "COHERENCIA"].map(cat => (
@@ -236,8 +239,9 @@ const App = () => {
             {(tracks[activeSub] || []).map((track, i) => (
               <div key={i} className="track-card" onClick={() => setSelectedTrack(track)} style={{ borderLeft: `4px solid ${accentColor}` }}>
                 <div style={{ textAlign: 'left', width: '80%' }}>
-                  <div style={{ fontSize: '15px', color: 'white' }}>{track.name}</div>
-                  <div style={{ fontSize: '10px', color: accentColor, opacity: 0.9, marginTop: '5px', fontWeight: 'bold', textTransform: 'uppercase' }}>{track.desc}</div>
+                  <div style={{ fontSize: '15px', color: 'white', fontWeight: '400' }}>{track.name}</div>
+                  {/* DESCRIPCIÓN BLANCA, DELGADA Y SIN RESALTADO */}
+                  <div style={{ fontSize: '10px', color: '#fdfcf5', opacity: 0.7, marginTop: '5px', fontWeight: '200', letterSpacing: '1px' }}>{track.desc}</div>
                 </div>
                 <div style={{ textAlign: 'right' }}>
                   <div style={{ fontSize: '9px', color: accentColor, opacity: 0.7 }}>{track.hz}</div>
