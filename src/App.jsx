@@ -18,7 +18,6 @@ const inlineStyles = `
   @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
   body, html { overflow-x: hidden; background-color: #020617; margin: 0; padding: 0; font-family: sans-serif; color: white; }
 
-  /* BOTONES HOME: ANCHO ESTILIZADO BLINDADO */
   .frecuencias-choice-button {
     width: 75%; max-width: 270px; padding: 18px; margin: 10px 0;
     border-radius: 40px; border: 1.5px solid rgba(34, 211, 238, 0.6);
@@ -39,7 +38,6 @@ const inlineStyles = `
     width: 100%; margin: 0 auto;
   }
 
-  /* BOTONES CATEGORÍA: ANCHO ESTILIZADO BLINDADO */
   .sub-category-card {
     width: 70%; max-width: 250px; padding: 18px; border-radius: 40px;
     background: rgba(34, 211, 238, 0.02);
@@ -49,14 +47,12 @@ const inlineStyles = `
     transition: all 0.3s ease; color: white;
   }
 
-  /* LISTA DE PISTAS: DISEÑO CON DESCRIPCIÓN INTEGRADA */
   .track-card {
     width: 85%; max-width: 340px; padding: 20px 25px; margin: 8px 0; border-radius: 30px;
     background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.1);
     display: flex; justify-content: space-between; align-items: center; cursor: pointer;
     transition: 0.3s;
   }
-  .track-card:active { transform: scale(0.98); background: rgba(255, 255, 255, 0.07); }
 
   .back-button-genora {
     width: 42px; height: 42px; border-radius: 50%;
@@ -98,7 +94,7 @@ const App = () => {
   useEffect(() => {
     if (audioRef.current) {
       if (isPlaying) {
-        audioRef.current.play().catch(() => console.log("Verificar audio en /public/audio/"));
+        audioRef.current.play().catch(() => console.log("Error de audio"));
         if (selectedTime && selectedTime !== '∞') {
           if (timerRef.current) clearTimeout(timerRef.current);
           timerRef.current = setTimeout(() => setIsPlaying(false), selectedTime * 60000);
@@ -142,8 +138,7 @@ const App = () => {
       <div className="fade-in-smooth" style={{ backgroundColor: '#020617', minHeight: '100vh', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', textAlign: 'center' }}>
         <style>{inlineStyles}</style>
         <img src="/imagenes/genora-logo-white.png" style={{ width: '180px', borderRadius: '50%', animation: 'logo-breathe 3s infinite ease-in-out', objectFit: 'contain' }} alt="Logo" />
-        <h1 style={{ fontSize: '18px', fontWeight: '300', letterSpacing: '4px', color: '#22d3ee', textTransform: 'uppercase', marginTop: '35px', marginBottom: '8px' }}>RESONANCIA ORIGEN</h1>
-        <p style={{ fontSize: '10px', fontWeight: '200', letterSpacing: '3px', color: '#fdfcf5', opacity: 0.8 }}>ACTIVANDO TU CONSCIENCIA GENÉTICA</p>
+        <h1 style={{ fontSize: '18px', fontWeight: '300', letterSpacing: '4px', color: '#22d3ee', textTransform: 'uppercase', marginTop: '35px' }}>RESONANCIA ORIGEN</h1>
       </div>
     );
   }
@@ -198,8 +193,8 @@ const App = () => {
           <img src="/imagenes/adn-icon.png" style={{ width: '100%', borderRadius: '50%' }} alt="ADN" />
         </div>
 
-        {!mainMode ? (
-          <div className="fade-in-smooth" style={{ width: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+        {!mainMode && (
+          <div className="category-stack">
             <h2 style={{ fontSize: '10px', letterSpacing: '5px', color: '#22d3ee', marginBottom: '20px', fontWeight: '300' }}>ELIGE TU CAMINO</h2>
             <button className="frecuencias-choice-button" onClick={() => setMainMode('frecuencias')}>Frecuencias</button>
             <button className="meditaciones-choice-button" onClick={() => setMainMode('meditaciones')}>Meditaciones</button>
@@ -210,7 +205,7 @@ const App = () => {
         )}
 
         {mainMode && !activeCategory && (
-          <div className="fade-in-smooth" style={{ width: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+          <div className="category-stack">
             <p style={{ fontSize: '11px', letterSpacing: '5px', color: accentColor, textAlign: 'center', marginBottom: '35px', fontWeight: 'bold' }}>{mainMode.toUpperCase()}</p>
             <div className="category-stack">
               {["MENTE", "CUERPO", "EXPANSIÓN", "COHERENCIA"].map(cat => (
@@ -222,8 +217,8 @@ const App = () => {
           </div>
         )}
 
-        {!activeSub && activeCategory === "MENTE" && (
-          <div className="fade-in-smooth" style={{ width: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+        {activeCategory === "MENTE" && !activeSub && (
+          <div className="category-stack">
             <p style={{ fontSize: '11px', letterSpacing: '5px', color: accentColor, textAlign: 'center', marginBottom: '35px', fontWeight: 'bold' }}>RESONANCIA MENTE</p>
             <div className="category-stack">
               {Object.keys(subCategoryTitles).map(sub => (
