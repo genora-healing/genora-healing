@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 
+// Estilos Blindados para Genora
 const inlineStyles = `
   @keyframes logo-breathe { 0%, 100% { transform: scale(1); opacity: 0.95; } 50% { transform: scale(1.05); opacity: 1; } }
   @keyframes aura-supernova {
@@ -37,7 +38,6 @@ const inlineStyles = `
   }
 `;
 
-// Mapeo de nombres cortos a largos para los títulos internos
 const subCategoryTitles = {
   "APRENDIZAJE": "APRENDIZAJE & ENFOQUE",
   "CREATIVIDAD": "CREATIVIDAD & RESOLUCIÓN",
@@ -58,12 +58,31 @@ const App = () => {
     return () => clearTimeout(timer);
   }, []);
 
-  // Datos temporales para probar la estructura
-  const tempTracks = {
-    "APRENDIZAJE": [{ name: "Próximamente...", hz: "-- Hz", desc: "Espacio reservado para tus nuevas frecuencias de Aprendizaje." }],
-    "CREATIVIDAD": [{ name: "Próximamente...", hz: "-- Hz", desc: "Espacio reservado para tus nuevas frecuencias de Creatividad." }],
-    "CLARIDAD": [{ name: "Próximamente...", hz: "-- Hz", desc: "Espacio reservado para tus nuevas frecuencias de Claridad." }],
-    "RENDIMIENTO": [{ name: "Próximamente...", hz: "-- Hz", desc: "Espacio reservado para tus nuevas frecuencias de Rendimiento." }]
+  const tracks = {
+    "APRENDIZAJE": [
+      { name: "Alpha Integración", hz: "8 – 10 Hz", url: "/audio/alpha-integration.mp3", desc: "Facilita el aprendizaje y la integración de información desde un estado de calma y enfoque." },
+      { name: "Alpha Learning", hz: "12 – 14 Hz", url: "/audio/alpha-learning.mp3", desc: "Favorece la absorción pasiva de información y el aprendizaje sin esfuerzo." },
+      { name: "Alpha Intelligence", hz: "11,5 – 14,5 Hz", url: "/audio/alpha-intelligence.mp3", desc: "Estimula la eficiencia mental y mejora la capacidad de procesamiento cognitivo." },
+      { name: "Beta Focus", hz: "15 – 18 Hz", url: "/audio/beta-focus.mp3", desc: "Incrementa la concentración, la vigilancia y la claridad mental sostenida." }
+    ],
+    "CREATIVIDAD": [
+      { name: "Alpha Creator", hz: "8 – 12 Hz", url: "/audio/alpha-creator.mp3", desc: "Activa la creatividad, el pensamiento positivo y la resolución de problemas." },
+      { name: "Beta Solution", hz: "12 – 36 Hz", url: "/audio/beta-solution.mp3", desc: "Estimula la resolución analítica y la toma de decisiones estructuradas." },
+      { name: "Beta Logic", hz: "13 – 40 Hz", url: "/audio/beta-logic.mp3", desc: "Potencia el pensamiento lógico, analítico y la ejecución mental." }
+    ],
+    "CLARIDAD": [
+      { name: "Alpha Balance Mind", hz: "11 Hz", url: "/audio/alpha-balance-mind.mp3", desc: "Promueve alerta con relajación, reduciendo tensión y mejorando estabilidad mental." },
+      { name: "Alpha Center", hz: "12 Hz", url: "/audio/alpha-center.mp3", desc: "Favorece la centración, claridad mental y expresión consciente." },
+      { name: "Beta Decision", hz: "13,8 Hz", url: "/audio/beta-decision.mp3", desc: "Activa la toma de decisiones y la claridad en momentos clave." }
+    ],
+    "RENDIMIENTO": [
+      { name: "Beta Active Mind", hz: "13 – 27 Hz", url: "/audio/beta-active-mind.mp3", desc: "Aumenta la atención externa y la actividad mental en estado despierto." },
+      { name: "Beta High Performance", hz: "14 – 30 Hz", url: "/audio/beta-high-performance.mp3", desc: "Estimula el análisis lógico, cálculos mentales y funciones cognitivas complejas." },
+      { name: "Beta Vital Mind", hz: "14 Hz", url: "/audio/beta-vital-mind.mp3", desc: "Genera alerta, energía mental y enfoque en tareas." },
+      { name: "Beta Cortex", hz: "15,4 Hz", url: "/audio/beta-cortex.mp3", desc: "Estimula la actividad cerebral asociada a inteligencia y procesamiento avanzado." },
+      { name: "Alpha Focus", hz: "11 – 14 Hz", url: "/audio/alpha-focus.mp3", desc: "Activa Concentración y Enfoque Mental Sostenido." },
+      { name: "Beta Attention", hz: "12 – 15 Hz", url: "/audio/beta-attention.mp3", desc: "Activa la atención consciente y la capacidad de respuesta mental, permitiendo interactuar con el entorno de forma clara, ágil y enfocada." }
+    ]
   };
 
   if (showSplash) {
@@ -150,7 +169,7 @@ const App = () => {
         {activeSub && (
           <div className="fade-in-smooth" style={{ width: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
             <p style={{ fontSize: '11px', letterSpacing: '3px', color: accentColor, textAlign: 'center', marginBottom: '25px', fontWeight: 'bold' }}>{subCategoryTitles[activeSub]}</p>
-            {tempTracks[activeSub].map((track, i) => (
+            {(tracks[activeSub] || []).map((track, i) => (
               <div key={i} className="track-card" onClick={() => setSelectedTrack(track)} style={{ borderLeft: `4px solid ${accentColor}` }}>
                 <div style={{ textAlign: 'left' }}>
                   <div style={{ fontSize: '15px' }}>{track.name}</div>
