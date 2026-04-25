@@ -18,7 +18,7 @@ const inlineStyles = `
   @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
   body, html { overflow-x: hidden; background-color: #020617; margin: 0; padding: 0; font-family: sans-serif; color: white; }
 
-  /* BOTONES HOME: ANCHO ESTILIZADO BLINDADO */
+  /* BOTONES HOME ESTILIZADOS */
   .frecuencias-choice-button {
     width: 75%; max-width: 270px; padding: 18px; margin: 10px 0;
     border-radius: 40px; border: 1.5px solid rgba(34, 211, 238, 0.6);
@@ -39,7 +39,7 @@ const inlineStyles = `
     width: 100%; margin: 0 auto;
   }
 
-  /* BOTONES CATEGORÍA: ANCHO ESTILIZADO BLINDADO */
+  /* BOTONES CATEGORÍA ESTILIZADOS (PANTALLA NUEVA) */
   .sub-category-card {
     width: 70%; max-width: 250px; padding: 18px; border-radius: 40px;
     background: rgba(34, 211, 238, 0.02);
@@ -49,7 +49,7 @@ const inlineStyles = `
     transition: all 0.3s ease; color: white;
   }
 
-  /* LISTA DE PISTAS: ANCHO ESTILIZADO BLINDADO */
+  /* LISTA DE PISTAS CON RESALTADO IZQUIERDO */
   .track-card {
     width: 80%; max-width: 310px; padding: 18px 25px; margin: 8px 0; border-radius: 35px;
     background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.1);
@@ -72,7 +72,8 @@ const inlineStyles = `
 const App = () => {
   const [showSplash, setShowSplash] = useState(true);
   const [mainMode, setMainMode] = useState(null); 
-  const [activeSub, setActiveSub] = useState(null);
+  const [activeCategory, setActiveCategory] = useState(null); // MENTE, CUERPO, etc
+  const [activeSub, setActiveSub] = useState(null); // APRENDIZAJE, CREATIVIDAD, etc
   const [selectedTrack, setSelectedTrack] = useState(null);
   const [isPlaying, setIsPlaying] = useState(false);
   const [selectedTime, setSelectedTime] = useState(null);
@@ -85,11 +86,11 @@ const App = () => {
     return () => clearTimeout(timer);
   }, []);
 
-  // MOTOR DE AUDIO BLINDADO (REGLAS DE ORO)
+  // MOTOR DE AUDIO BLINDADO
   useEffect(() => {
     if (audioRef.current) {
       if (isPlaying) {
-        audioRef.current.play().catch(() => console.log("Verificar audio en /public/audio/"));
+        audioRef.current.play().catch(() => console.log("Verificar audio en /audio/"));
         if (selectedTime && selectedTime !== '∞') {
           if (timerRef.current) clearTimeout(timerRef.current);
           timerRef.current = setTimeout(() => setIsPlaying(false), selectedTime * 60000);
@@ -101,29 +102,37 @@ const App = () => {
     }
   }, [isPlaying, selectedTrack, selectedTime]);
 
-  const subCategories = {
+  const categoryMap = {
     frecuencias: ["MENTE", "CUERPO", "EXPANSIÓN", "COHERENCIA"],
-    meditaciones: ["MENTE", "CUERPO", "RELACIONES", "ABUNDANCIA", "LINAJE ANCESTRAL", "RECALIBRACIÓN"],
-    experiencias: ["ACTIVACIÓN DONES", "ABUNDANCIA G5", "ESTADOS PROFUNDOS", "PROTOCOLOS ÉLITE"]
+    meditaciones: ["MENTE", "CUERPO", "RELACIONES", "ABUNDANCIA"]
   };
 
+  const menteSubs = ["APRENDIZAJE", "CREATIVIDAD", "CLARIDAD", "RENDIMIENTO"];
+
   const tracks = {
-    "MENTE": [
+    "APRENDIZAJE": [
       { name: "Alpha Integración", hz: "8 – 10 Hz", url: "/audio/alpha-integration.mp3" },
+      { name: "Alpha Learning", hz: "12 – 14 Hz", url: "/audio/alpha-learning.mp3" },
+      { name: "Alpha Intelligence", hz: "11,5 – 14,5 Hz", url: "/audio/alpha-intelligence.mp3" },
+      { name: "Beta Focus", hz: "15 – 18 Hz", url: "/audio/beta-focus.mp3" }
+    ],
+    "CREATIVIDAD": [
       { name: "Alpha Creator", hz: "8 – 12 Hz", url: "/audio/alpha-creator.mp3" },
-      { name: "Alpha Void", hz: "8 – 13 Hz", url: "/audio/alpha-void.mp3" },
+      { name: "Beta Solution", hz: "12 – 36 Hz", url: "/audio/beta-solution.mp3" },
+      { name: "Beta Logic", hz: "13 – 40 Hz", url: "/audio/beta-logic.mp3" }
+    ],
+    "CLARIDAD": [
+      { name: "Alpha Balance Mind", hz: "11 Hz", url: "/audio/alpha-balance-mind.mp3" },
+      { name: "Alpha Center", hz: "12 Hz", url: "/audio/alpha-center.mp3" },
+      { name: "Beta Decision", hz: "13,8 Hz", url: "/audio/beta-decision.mp3" }
+    ],
+    "RENDIMIENTO": [
+      { name: "Beta Active Mind", hz: "13 – 27 Hz", url: "/audio/beta-active-mind.mp3" },
+      { name: "Beta High Performance", hz: "14 – 30 Hz", url: "/audio/beta-high-performance.mp3" },
+      { name: "Beta Vital Mind", hz: "14 Hz", url: "/audio/beta-vital-mind.mp3" },
+      { name: "Beta Cortex", hz: "15,4 Hz", url: "/audio/beta-cortex.mp3" },
+      { name: "Alpha Focus", hz: "11 – 14 Hz", url: "/audio/alpha-focus.mp3" },
       { name: "Beta Attention", hz: "12 – 15 Hz", url: "/audio/beta-attention.mp3" }
-    ],
-    "CUERPO": [
-      { name: "Alpha Eros", hz: "9 Hz", url: "/audio/alpha-eros.mp3" },
-      { name: "Alpha Center", hz: "9.4 Hz", url: "/audio/alpha-center.mp3" }
-    ],
-    "EXPANSIÓN": [
-      { name: "Gaia Vision", hz: "8,3 Hz", url: "/audio/gaia-vision.mp3" },
-      { name: "Alpha Lucid Bridge", hz: "9 – 13 Hz", url: "/audio/alpha-lucid-bridge.mp3" }
-    ],
-    "COHERENCIA": [
-      { name: "Alpha Origen", hz: "8 Hz", url: "/audio/alpha-origen.mp3" }
     ]
   };
 
@@ -142,7 +151,7 @@ const App = () => {
 
   if (selectedTrack) {
     return (
-      <div className="fade-in-smooth" style={{ backgroundColor: '#020617', minHeight: '100vh', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', textAlign: 'center', position: 'relative' }}>
+      <div className="fade-in-smooth" style={{ backgroundColor: '#020617', minHeight: '100vh', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', textAlign: 'center', position: 'relative', padding: '20px' }}>
         <style>{inlineStyles}</style>
         <audio ref={audioRef} src={selectedTrack.url} loop={selectedTime === '∞'} />
         <button onClick={() => { setSelectedTrack(null); setIsPlaying(false); }} style={{ position: 'absolute', top: '35px', left: '30px', background: 'none', border: 'none', color: accentColor, fontSize: '40px', cursor: 'pointer' }}>‹</button>
@@ -168,7 +177,7 @@ const App = () => {
       <style>{inlineStyles}</style>
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '40px', paddingTop: '10px' }}>
         {mainMode ? (
-          <div onClick={() => { activeSub ? setActiveSub(null) : setMainMode(null) }} className="back-button-genora" style={{ borderColor: accentColor }}>
+          <div onClick={() => { activeSub ? setActiveSub(null) : (activeCategory ? setActiveCategory(null) : setMainMode(null)) }} className="back-button-genora" style={{ borderColor: accentColor }}>
              <span style={{ color: accentColor, fontSize: '20px', fontWeight: 'bold' }}>‹</span>
           </div>
         ) : (
@@ -188,7 +197,8 @@ const App = () => {
           <img src="/imagenes/adn-icon.png" style={{ width: '100%', borderRadius: '50%' }} alt="ADN" />
         </div>
 
-        {!mainMode ? (
+        {/* PANTALLA 1: HOME */}
+        {!mainMode && (
           <div className="fade-in-smooth" style={{ width: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
             <h2 style={{ fontSize: '10px', letterSpacing: '5px', color: '#22d3ee', marginBottom: '20px', fontWeight: '300' }}>ELIGE TU CAMINO</h2>
             <button className="frecuencias-choice-button" onClick={() => setMainMode('frecuencias')}>Frecuencias</button>
@@ -197,18 +207,38 @@ const App = () => {
               💎 EXPERIENCIAS
             </button>
           </div>
-        ) : !activeSub ? (
+        )}
+
+        {/* PANTALLA 2: CATEGORÍAS (MENTE, CUERPO...) */}
+        {mainMode && !activeCategory && (
           <div className="fade-in-smooth" style={{ width: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
             <p style={{ fontSize: '11px', letterSpacing: '5px', color: accentColor, textAlign: 'center', marginBottom: '35px', fontWeight: 'bold' }}>{mainMode.toUpperCase()}</p>
             <div className="category-stack">
-              {subCategories[mainMode].map(sub => (
+              {categoryMap[mainMode]?.map(cat => (
+                <div key={cat} onClick={() => setActiveCategory(cat)} className="sub-category-card" style={{ borderColor: `${accentColor}88` }}>
+                  <span style={{ fontWeight: 'bold' }}>{cat}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
+
+        {/* PANTALLA 3: SUBCATEGORÍAS (NUEVA: APRENDIZAJE, CREATIVIDAD...) */}
+        {activeCategory === "MENTE" && !activeSub && (
+          <div className="fade-in-smooth" style={{ width: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+            <p style={{ fontSize: '11px', letterSpacing: '5px', color: accentColor, textAlign: 'center', marginBottom: '35px', fontWeight: 'bold' }}>RESONANCIA MENTE</p>
+            <div className="category-stack">
+              {menteSubs.map(sub => (
                 <div key={sub} onClick={() => setActiveSub(sub)} className="sub-category-card" style={{ borderColor: `${accentColor}88` }}>
                   <span style={{ fontWeight: 'bold' }}>{sub}</span>
                 </div>
               ))}
             </div>
           </div>
-        ) : (
+        )}
+
+        {/* PANTALLA 4: LISTA DE PISTAS */}
+        {activeSub && (
           <div className="fade-in-smooth" style={{ width: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
             <p style={{ fontSize: '11px', letterSpacing: '5px', color: accentColor, marginBottom: '25px', fontWeight: 'bold' }}>{activeSub}</p>
             {(tracks[activeSub] || []).map((track, i) => (
