@@ -39,7 +39,7 @@ const inlineStyles = `
     width: 100%; margin: 0 auto;
   }
 
-  /* BOTONES CATEGORÍA ESTILIZADOS (PANTALLA NUEVA) */
+  /* BOTONES CATEGORÍA ESTILIZADOS */
   .sub-category-card {
     width: 70%; max-width: 250px; padding: 18px; border-radius: 40px;
     background: rgba(34, 211, 238, 0.02);
@@ -69,11 +69,19 @@ const inlineStyles = `
   }
 `;
 
+// Títulos completos para la navegación interna
+const subCategoryTitles = {
+  "APRENDIZAJE": "APRENDIZAJE & ENFOQUE",
+  "CREATIVIDAD": "CREATIVIDAD & RESOLUCIÓN",
+  "CLARIDAD": "CLARIDAD MENTAL",
+  "RENDIMIENTO": "ACTIVACIÓN MENTAL & RENDIMIENTO"
+};
+
 const App = () => {
   const [showSplash, setShowSplash] = useState(true);
   const [mainMode, setMainMode] = useState(null); 
-  const [activeCategory, setActiveCategory] = useState(null); // MENTE, CUERPO, etc
-  const [activeSub, setActiveSub] = useState(null); // APRENDIZAJE, CREATIVIDAD, etc
+  const [activeCategory, setActiveCategory] = useState(null);
+  const [activeSub, setActiveSub] = useState(null);
   const [selectedTrack, setSelectedTrack] = useState(null);
   const [isPlaying, setIsPlaying] = useState(false);
   const [selectedTime, setSelectedTime] = useState(null);
@@ -90,7 +98,7 @@ const App = () => {
   useEffect(() => {
     if (audioRef.current) {
       if (isPlaying) {
-        audioRef.current.play().catch(() => console.log("Verificar audio en /audio/"));
+        audioRef.current.play().catch(() => console.log("Verificar audio en /public/audio/"));
         if (selectedTime && selectedTime !== '∞') {
           if (timerRef.current) clearTimeout(timerRef.current);
           timerRef.current = setTimeout(() => setIsPlaying(false), selectedTime * 60000);
@@ -102,37 +110,30 @@ const App = () => {
     }
   }, [isPlaying, selectedTrack, selectedTime]);
 
-  const categoryMap = {
-    frecuencias: ["MENTE", "CUERPO", "EXPANSIÓN", "COHERENCIA"],
-    meditaciones: ["MENTE", "CUERPO", "RELACIONES", "ABUNDANCIA"]
-  };
-
-  const menteSubs = ["APRENDIZAJE", "CREATIVIDAD", "CLARIDAD", "RENDIMIENTO"];
-
   const tracks = {
     "APRENDIZAJE": [
-      { name: "Alpha Integración", hz: "8 – 10 Hz", url: "/audio/alpha-integration.mp3" },
-      { name: "Alpha Learning", hz: "12 – 14 Hz", url: "/audio/alpha-learning.mp3" },
-      { name: "Alpha Intelligence", hz: "11,5 – 14,5 Hz", url: "/audio/alpha-intelligence.mp3" },
-      { name: "Beta Focus", hz: "15 – 18 Hz", url: "/audio/beta-focus.mp3" }
+      { name: "Alpha Integración", hz: "8 – 10 Hz", url: "/audio/alpha-integration.mp3", desc: "Facilita el aprendizaje y la integración de información desde un estado de calma y enfoque." },
+      { name: "Beta Learning", hz: "12 – 14 Hz", url: "/audio/beta-learning.mp3", desc: "Favorece la absorción pasiva de información y el aprendizaje sin esfuerzo." },
+      { name: "Alpha Intelligence", hz: "11,5 – 14,5 Hz", url: "/audio/alpha-intelligence.mp3", desc: "Estimula la eficiencia mental y mejora la capacidad de procesamiento cognitivo." },
+      { name: "Beta Focus", hz: "15 – 18 Hz", url: "/audio/beta-focus.mp3", desc: "Incrementa la concentración, la vigilancia y la claridad mental sostenida." }
     ],
     "CREATIVIDAD": [
-      { name: "Alpha Creator", hz: "8 – 12 Hz", url: "/audio/alpha-creator.mp3" },
-      { name: "Beta Solution", hz: "12 – 36 Hz", url: "/audio/beta-solution.mp3" },
-      { name: "Beta Logic", hz: "13 – 40 Hz", url: "/audio/beta-logic.mp3" }
+      { name: "Alpha Creator", hz: "8 – 12 Hz", url: "/audio/alpha-creator.mp3", desc: "Activa la creatividad, el pensamiento positivo y la resolución de problemas." },
+      { name: "Beta Solution", hz: "12 – 36 Hz", url: "/audio/beta-solution.mp3", desc: "Estimula la resolución analítica y la toma de decisiones estructuradas." },
+      { name: "Beta Logic", hz: "13 – 40 Hz", url: "/audio/beta-logic.mp3", desc: "Potencia el pensamiento lógico, analítico y la ejecución mental." }
     ],
     "CLARIDAD": [
-      { name: "Alpha Balance Mind", hz: "11 Hz", url: "/audio/alpha-balance-mind.mp3" },
-      { name: "Alpha Center", hz: "12 Hz", url: "/audio/alpha-center.mp3" },
-      { name: "Beta Decision", hz: "13,8 Hz", url: "/audio/beta-decision.mp3" }
+      { name: "Alpha Balance Mind", hz: "11 Hz", url: "/audio/alpha-balance-mind.mp3", desc: "Promueve alerta con relajación, reduciendo tensión y mejorando estabilidad mental." },
+      { name: "Alpha Center", hz: "12 Hz", url: "/audio/alpha-center.mp3", desc: "Favorece la centración, claridad mental y expresión consciente." },
+      { name: "Beta Decision", hz: "13,8 Hz", url: "/audio/beta-decision.mp3", desc: "Activa la toma de decisiones y la claridad en momentos clave." }
     ],
     "RENDIMIENTO": [
-      { name: "Beta Active Mind", hz: "13 – 27 Hz", url: "/audio/beta-active-mind.mp3" },
-      { name: "Beta High Performance", hz: "14 – 30 Hz", url: "/audio/beta-high-performance.mp3" },
-      { name: "Beta Vital Mind", hz: "14 Hz", url: "/audio/beta-vital-mind.mp3" },
-      { name: "Beta Cortex", hz: "15,4 Hz", url: "/audio/beta-cortex.mp3" },
-      { name: "Alpha Focus", hz: "11 – 14 Hz", url: "/audio/alpha-focus.mp3" },
-      { name: "Beta Attention", hz: "12 – 15 Hz", url: "/audio/beta-attention.mp3" }
+      { name: "Beta Active Mind", hz: "13 – 27 Hz", url: "/audio/beta-active-mind.mp3", desc: "Aumenta la atención externa y la actividad mental en estado despierto." },
+      { name: "Beta High Performance", hz: "14 – 30 Hz", url: "/audio/beta-high-performance.mp3", desc: "Estimula el análisis lógico, cálculos mentales y funciones cognitivas complejas." },
+      { name: "Beta Vital Mind", hz: "14 Hz", url: "/audio/beta-vital-mind.mp3", desc: "Genera alerta, energía mental y enfoque en tareas." },
+      { name: "Beta Cortex", hz: "15,4 Hz", url: "/audio/beta-cortex.mp3", desc: "Estimula la actividad cerebral asociada a inteligencia y procesamiento avanzado." },
+      { name: "Alpha Focus", hz: "11 – 14 Hz", url: "/audio/alpha-focus.mp3", desc: "Activa Concentración y Enfoque Mental Sostenido." },
+      { name: "Beta Attention", hz: "12 – 15 Hz", url: "/audio/beta-attention.mp3", desc: "Activa la atención consciente y la capacidad de respuesta mental, permitiendo interactuar con el entorno de forma clara, ágil y enfocada." }
     ]
   };
 
@@ -160,6 +161,7 @@ const App = () => {
         </div>
         <h2 style={{ fontSize: '24px', letterSpacing: '4px', textTransform: 'uppercase' }}>{selectedTrack.name}</h2>
         <p style={{ color: accentColor, fontSize: '12px', letterSpacing: '3px', fontWeight: 'bold', marginBottom: '20px' }}>{selectedTrack.hz}</p>
+        <p style={{ fontSize: '13px', opacity: 0.7, maxWidth: '300px', lineHeight: '1.5', marginBottom: '35px' }}>{selectedTrack.desc}</p>
         <div style={{ display: 'flex', gap: '12px', marginBottom: '45px' }}>
           {[15, 30, 60, '∞'].map((time) => (
             <button key={time} onClick={() => setSelectedTime(time)} className="time-button" style={{ border: `1px solid ${selectedTime === time ? accentColor : 'rgba(255,255,255,0.1)'}`, background: selectedTime === time ? `${accentColor}22` : 'none' }}>{time === '∞' ? time : `${time}'`}</button>
@@ -197,8 +199,7 @@ const App = () => {
           <img src="/imagenes/adn-icon.png" style={{ width: '100%', borderRadius: '50%' }} alt="ADN" />
         </div>
 
-        {/* PANTALLA 1: HOME */}
-        {!mainMode && (
+        {!mainMode ? (
           <div className="fade-in-smooth" style={{ width: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
             <h2 style={{ fontSize: '10px', letterSpacing: '5px', color: '#22d3ee', marginBottom: '20px', fontWeight: '300' }}>ELIGE TU CAMINO</h2>
             <button className="frecuencias-choice-button" onClick={() => setMainMode('frecuencias')}>Frecuencias</button>
@@ -207,40 +208,31 @@ const App = () => {
               💎 EXPERIENCIAS
             </button>
           </div>
-        )}
-
-        {/* PANTALLA 2: CATEGORÍAS (MENTE, CUERPO...) */}
-        {mainMode && !activeCategory && (
+        ) : !activeCategory ? (
           <div className="fade-in-smooth" style={{ width: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
             <p style={{ fontSize: '11px', letterSpacing: '5px', color: accentColor, textAlign: 'center', marginBottom: '35px', fontWeight: 'bold' }}>{mainMode.toUpperCase()}</p>
             <div className="category-stack">
-              {categoryMap[mainMode]?.map(cat => (
+              {["MENTE", "CUERPO", "EXPANSIÓN", "COHERENCIA"].map(cat => (
                 <div key={cat} onClick={() => setActiveCategory(cat)} className="sub-category-card" style={{ borderColor: `${accentColor}88` }}>
                   <span style={{ fontWeight: 'bold' }}>{cat}</span>
                 </div>
               ))}
             </div>
           </div>
-        )}
-
-        {/* PANTALLA 3: SUBCATEGORÍAS (NUEVA: APRENDIZAJE, CREATIVIDAD...) */}
-        {activeCategory === "MENTE" && !activeSub && (
+        ) : !activeSub && activeCategory === "MENTE" ? (
           <div className="fade-in-smooth" style={{ width: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
             <p style={{ fontSize: '11px', letterSpacing: '5px', color: accentColor, textAlign: 'center', marginBottom: '35px', fontWeight: 'bold' }}>RESONANCIA MENTE</p>
             <div className="category-stack">
-              {menteSubs.map(sub => (
+              {Object.keys(subCategoryTitles).map(sub => (
                 <div key={sub} onClick={() => setActiveSub(sub)} className="sub-category-card" style={{ borderColor: `${accentColor}88` }}>
                   <span style={{ fontWeight: 'bold' }}>{sub}</span>
                 </div>
               ))}
             </div>
           </div>
-        )}
-
-        {/* PANTALLA 4: LISTA DE PISTAS */}
-        {activeSub && (
+        ) : (
           <div className="fade-in-smooth" style={{ width: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-            <p style={{ fontSize: '11px', letterSpacing: '5px', color: accentColor, marginBottom: '25px', fontWeight: 'bold' }}>{activeSub}</p>
+            <p style={{ fontSize: '11px', letterSpacing: '3px', color: accentColor, textAlign: 'center', marginBottom: '25px', fontWeight: 'bold' }}>{subCategoryTitles[activeSub] || activeSub}</p>
             {(tracks[activeSub] || []).map((track, i) => (
               <div key={i} className="track-card" onClick={() => setSelectedTrack(track)} style={{ borderLeft: `4px solid ${accentColor}` }}>
                 <div style={{ textAlign: 'left' }}>
