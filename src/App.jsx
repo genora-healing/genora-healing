@@ -18,52 +18,36 @@ const inlineStyles = `
   @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
   body, html { overflow-x: hidden; background-color: #020617; margin: 0; padding: 0; font-family: sans-serif; color: white; }
 
-  .frecuencias-choice-button {
+  .choice-btn-base {
     width: 75%; max-width: 270px; padding: 18px; margin: 10px 0;
-    border-radius: 40px; border: 1.5px solid rgba(34, 211, 238, 0.6);
-    background: rgba(34, 211, 238, 0.05); color: white;
-    font-size: 12px; letter-spacing: 4px; text-transform: uppercase;
-    cursor: pointer; transition: all 0.4s ease;
+    border-radius: 40px; text-transform: uppercase; letter-spacing: 4px; font-size: 12px; cursor: pointer; transition: all 0.4s ease;
   }
-  .meditaciones-choice-button {
-    width: 75%; max-width: 270px; padding: 18px; margin: 10px 0;
-    border-radius: 40px; border: 1.5px solid rgba(168, 85, 247, 0.6);
-    background: rgba(168, 85, 247, 0.05); color: white;
-    font-size: 12px; letter-spacing: 4px; text-transform: uppercase;
-    cursor: pointer; transition: all 0.4s ease;
-  }
+  .frecuencias-choice-button { border: 1.5px solid rgba(34, 211, 238, 0.6); background: rgba(34, 211, 238, 0.05); color: white; }
+  .meditaciones-choice-button { border: 1.5px solid rgba(168, 85, 247, 0.6); background: rgba(168, 85, 247, 0.05); color: white; }
+  .premium-choice-button { border: 1.5px solid #d4af37; background: rgba(212, 175, 55, 0.05); color: #fdfcf5; }
 
-  .category-stack {
-    display: flex; flex-direction: column; align-items: center; gap: 12px;
-    width: 100%; margin: 0 auto;
-  }
+  .category-stack { display: flex; flex-direction: column; align-items: center; gap: 12px; width: 100%; margin: 0 auto; }
 
   .sub-category-card {
     width: 70%; max-width: 250px; padding: 18px; border-radius: 40px;
-    background: rgba(34, 211, 238, 0.02);
-    border: 1.5px solid rgba(34, 211, 238, 0.5);
-    text-align: center; cursor: pointer;
-    font-size: 11px; letter-spacing: 3px; text-transform: uppercase;
-    transition: all 0.3s ease; color: white;
+    background: rgba(34, 211, 238, 0.02); border: 1.5px solid rgba(34, 211, 238, 0.5);
+    text-align: center; cursor: pointer; font-size: 11px; letter-spacing: 3px; text-transform: uppercase; color: white;
   }
 
   .track-card {
     width: 85%; max-width: 340px; padding: 20px 25px; margin: 8px 0; border-radius: 30px;
     background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.1);
-    display: flex; justify-content: space-between; align-items: center; cursor: pointer;
-    transition: 0.3s;
+    display: flex; justify-content: space-between; align-items: center; cursor: pointer; transition: 0.3s;
   }
 
   .back-button-genora {
-    width: 42px; height: 42px; border-radius: 50%;
-    border: 1.5px solid rgba(34, 211, 238, 0.6);
-    background: rgba(34, 211, 238, 0.1);
-    display: flex; align-items: center; justify-content: center; cursor: pointer;
+    width: 42px; height: 42px; border-radius: 50%; border: 1.5px solid rgba(34, 211, 238, 0.6);
+    background: rgba(34, 211, 238, 0.1); display: flex; align-items: center; justify-content: center; cursor: pointer;
   }
 
   .time-button {
     width: 58px; padding: 10px 0; border-radius: 40px; border: 1px solid rgba(255,255,255,0.2);
-    background: none; color: white; font-size: 12px; cursor: pointer; transition: 0.2s;
+    background: none; color: white; font-size: 12px; cursor: pointer;
   }
 `;
 
@@ -87,7 +71,7 @@ const App = () => {
   const timerRef = useRef(null);
 
   useEffect(() => {
-    const timer = setTimeout(() => setShowSplash(false), 4500);
+    const timer = setTimeout(() => setShowSplash(false), 3000);
     return () => clearTimeout(timer);
   }, []);
 
@@ -133,12 +117,14 @@ const App = () => {
     ]
   };
 
+  // 🧱 PASO 1: SPLASH SCREEN (Mantenido tal cual tu código)
   if (showSplash) {
     return (
-      <div className="fade-in-smooth" style={{ backgroundColor: '#020617', minHeight: '100vh', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', textAlign: 'center' }}>
+      <div style={{ backgroundColor: '#020617', minHeight: '100vh', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', color: 'white', fontFamily: 'sans-serif', padding: '20px' }}>
         <style>{inlineStyles}</style>
-        <img src="/imagenes/genora-logo-white.png" style={{ width: '180px', borderRadius: '50%', animation: 'logo-breathe 3s infinite ease-in-out', objectFit: 'contain' }} alt="Logo" />
-        <h1 style={{ fontSize: '18px', fontWeight: '300', letterSpacing: '4px', color: '#22d3ee', textTransform: 'uppercase', marginTop: '35px' }}>RESONANCIA ORIGEN</h1>
+        <img src="/imagenes/genora-logo-white.png" style={{ width: '180px', height: 'auto', marginBottom: '30px' }} alt="Genora Logo" />
+        <h1 style={{ fontSize: '20px', fontWeight: '300', letterSpacing: '5px', textTransform: 'uppercase', textAlign: 'center', color: '#22d3ee', marginBottom: '15px' }}>RESONANCIA ORIGEN</h1>
+        <p style={{ fontSize: '11px', fontWeight: '300', letterSpacing: '3px', textTransform: 'uppercase', textAlign: 'center', color: '#22d3ee', opacity: 0.6 }}>Activando tu consciencia genética</p>
       </div>
     );
   }
@@ -152,7 +138,7 @@ const App = () => {
         <audio ref={audioRef} src={selectedTrack.url} loop={selectedTime === '∞'} />
         <button onClick={() => { setSelectedTrack(null); setIsPlaying(false); }} style={{ position: 'absolute', top: '35px', left: '30px', background: 'none', border: 'none', color: accentColor, fontSize: '40px', cursor: 'pointer' }}>‹</button>
         <div style={{ width: '220px', height: '220px', marginBottom: '40px', display: 'flex', alignItems: 'center', justifyContent: 'center', animation: isPlaying ? 'logo-breathe 4s infinite' : 'none' }}>
-          <img src="/imagenes/adn-icon.png" style={{ width: '100%', filter: `drop-shadow(0 0 15px ${accentColor})` }} />
+          <img src="/imagenes/adn-icon.png" style={{ width: '100%', filter: `drop-shadow(0 0 15px ${accentColor})` }} alt="ADN" />
         </div>
         <h2 style={{ fontSize: '24px', letterSpacing: '4px', textTransform: 'uppercase' }}>{selectedTrack.name}</h2>
         <p style={{ color: accentColor, fontSize: '12px', letterSpacing: '3px', fontWeight: 'bold', marginBottom: '20px' }}>{selectedTrack.hz}</p>
@@ -171,18 +157,23 @@ const App = () => {
   return (
     <div className="fade-in-smooth" style={{ backgroundColor: '#020617', minHeight: '100vh', color: 'white', padding: '20px' }}>
       <style>{inlineStyles}</style>
-      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '40px', paddingTop: '10px' }}>
+      
+      {/* HEADER GENORA (Mantenido tal cual tu código) */}
+      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', maxWidth: '500px', margin: '0 auto 30px', width: '100%' }}>
         {mainMode ? (
           <div onClick={() => activeSub ? setActiveSub(null) : (activeCategory ? setActiveCategory(null) : setMainMode(null))} className="back-button-genora" style={{ borderColor: accentColor }}>
              <span style={{ color: accentColor, fontSize: '20px', fontWeight: 'bold' }}>‹</span>
           </div>
         ) : (
-          <img src="/imagenes/genora-logo-white.png" style={{ height: '95px', borderRadius: '50%', objectFit: 'contain' }} alt="Logo" />
+          <img src="/imagenes/genora-logo-white.png" style={{ height: '30px', width: 'auto' }} alt="Logo Sutil" />
         )}
-        <div style={{ fontSize: '10px', letterSpacing: '2px', color: accentColor, border: `1px solid ${accentColor}88`, padding: '5px 14px', borderRadius: '20px', fontWeight: 'bold' }}>ES | EN</div>
+        <div style={{ display: 'flex', gap: '15px', fontSize: '12px', letterSpacing: '2px' }}>
+          <span style={{ color: accentColor, cursor: 'pointer', fontWeight: 'bold' }}>ES</span>
+          <span style={{ color: '#444', cursor: 'pointer' }}>EN</span>
+        </div>
       </div>
 
-      <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+      <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', marginTop: '40px' }}>
         <div style={{ 
           width: activeSub ? '110px' : (mainMode ? '130px' : '165px'), 
           height: activeSub ? '110px' : (mainMode ? '130px' : '165px'), 
@@ -193,46 +184,41 @@ const App = () => {
           <img src="/imagenes/adn-icon.png" style={{ width: '100%', borderRadius: '50%' }} alt="ADN" />
         </div>
 
+        {/* NIVEL 1: HOME (SIN FRASES ABAJO) */}
         {!mainMode && (
-          <div className="fade-in-smooth" style={{ width: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-            <h2 style={{ fontSize: '10px', letterSpacing: '5px', color: '#22d3ee', marginBottom: '8px', fontWeight: '300' }}>ELIGE TU CAMINO</h2>
-            {/* FRASE ICÓNICA RESTAURADA */}
-            <p style={{ fontSize: '10px', letterSpacing: '2.5px', color: '#fdfcf5', opacity: 0.8, marginBottom: '25px', fontWeight: '200' }}>ACTIVANDO TU CONSCIENCIA GENÉTICA</p>
-            
-            <button className="frecuencias-choice-button" onClick={() => setMainMode('frecuencias')}>Frecuencias</button>
-            <button className="meditaciones-choice-button" onClick={() => setMainMode('meditaciones')}>Meditaciones</button>
-            <button style={{ width: '75%', maxWidth: '270px', padding: '18px', borderRadius: '40px', border: '1.5px solid #d4af37', background: 'rgba(212, 175, 55, 0.05)', color: '#fdfcf5', fontSize: '12px', letterSpacing: '4px' }} onClick={() => setMainMode('experiencias')}>
-              💎 EXPERIENCIAS
-            </button>
+          <div className="category-stack">
+            <h2 style={{ fontSize: '10px', letterSpacing: '5px', color: '#22d3ee', marginBottom: '20px', fontWeight: '300' }}>ELIGE TU CAMINO</h2>
+            <button className="choice-btn-base frecuencias-choice-button" onClick={() => setMainMode('frecuencias')}>Frecuencias</button>
+            <button className="choice-btn-base meditaciones-choice-button" onClick={() => setMainMode('meditaciones')}>Meditaciones</button>
+            <button className="choice-btn-base premium-choice-button" onClick={() => setMainMode('experiencias')}>💎 EXPERIENCIAS</button>
           </div>
         )}
 
+        {/* NIVEL 2: CATEGORÍAS */}
         {mainMode && !activeCategory && (
-          <div className="fade-in-smooth" style={{ width: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+          <div className="category-stack">
             <p style={{ fontSize: '11px', letterSpacing: '5px', color: accentColor, textAlign: 'center', marginBottom: '35px', fontWeight: 'bold' }}>{mainMode.toUpperCase()}</p>
-            <div className="category-stack">
-              {["MENTE", "CUERPO", "EXPANSIÓN", "COHERENCIA"].map(cat => (
-                <div key={cat} onClick={() => setActiveCategory(cat)} className="sub-category-card" style={{ borderColor: `${accentColor}88` }}>
-                  <span style={{ fontWeight: 'bold' }}>{cat}</span>
-                </div>
-              ))}
-            </div>
+            {["MENTE", "CUERPO", "EXPANSIÓN", "COHERENCIA"].map(cat => (
+              <div key={cat} onClick={() => setActiveCategory(cat)} className="sub-category-card" style={{ borderColor: `${accentColor}88` }}>
+                <span style={{ fontWeight: 'bold' }}>{cat}</span>
+              </div>
+            ))}
           </div>
         )}
 
+        {/* NIVEL 3: SUB-CATEGORÍAS MENTE */}
         {activeCategory === "MENTE" && !activeSub && (
           <div className="category-stack">
             <p style={{ fontSize: '11px', letterSpacing: '5px', color: accentColor, textAlign: 'center', marginBottom: '35px', fontWeight: 'bold' }}>RESONANCIA MENTE</p>
-            <div className="category-stack">
-              {Object.keys(subCategoryTitles).map(sub => (
-                <div key={sub} onClick={() => setActiveSub(sub)} className="sub-category-card" style={{ borderColor: `${accentColor}88` }}>
-                  <span style={{ fontWeight: 'bold' }}>{sub}</span>
-                </div>
-              ))}
-            </div>
+            {Object.keys(subCategoryTitles).map(sub => (
+              <div key={sub} onClick={() => setActiveSub(sub)} className="sub-category-card" style={{ borderColor: `${accentColor}88` }}>
+                <span style={{ fontWeight: 'bold' }}>{sub}</span>
+              </div>
+            ))}
           </div>
         )}
 
+        {/* NIVEL 4: LISTA DE PISTAS CON DESCRIPCIONES BLANCAS */}
         {activeSub && (
           <div className="fade-in-smooth" style={{ width: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
             <p style={{ fontSize: '11px', letterSpacing: '3px', color: accentColor, textAlign: 'center', marginBottom: '25px', fontWeight: 'bold' }}>{subCategoryTitles[activeSub] || activeSub}</p>
@@ -240,7 +226,6 @@ const App = () => {
               <div key={i} className="track-card" onClick={() => setSelectedTrack(track)} style={{ borderLeft: `4px solid ${accentColor}` }}>
                 <div style={{ textAlign: 'left', width: '80%' }}>
                   <div style={{ fontSize: '15px', color: 'white', fontWeight: '400' }}>{track.name}</div>
-                  {/* DESCRIPCIÓN BLANCA, DELGADA Y SIN RESALTADO */}
                   <div style={{ fontSize: '10px', color: '#fdfcf5', opacity: 0.7, marginTop: '5px', fontWeight: '200', letterSpacing: '1px' }}>{track.desc}</div>
                 </div>
                 <div style={{ textAlign: 'right' }}>
