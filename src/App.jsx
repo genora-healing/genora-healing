@@ -1,239 +1,148 @@
-import React, { useState, useEffect, useRef } from 'react';
+import { useState, useRef, useEffect, useCallback } from 'react'
 
-const inlineStyles = `
-  @keyframes logo-breathe { 0%, 100% { transform: scale(1); opacity: 0.95; } 50% { transform: scale(1.05); opacity: 1; } }
-  
-  @keyframes aura-supernova {
-    0%, 100% { transform: scale(1); box-shadow: 0 0 80px rgba(34, 211, 238, 0.4), 0 0 150px rgba(34, 211, 238, 0.2); }
-    50% { transform: scale(1.03); box-shadow: 0 0 50px rgba(34, 211, 238, 0.9), 0 0 120px rgba(34, 211, 238, 0.6), 0 0 250px rgba(34, 211, 238, 0.4); }
+// ─── DATA REAL DE TU CARPETA AUDIO ──────────────────────────────────────────
+const FRECUENCIAS = [
+  {
+    id: 1,
+    nombre: { es: 'Alpha Clarity', en: 'Alpha Clarity' },
+    hz: 'Alpha',
+    archivo: '/audio/alpha-clarity.mp3',
+    descripcion: { es: 'Frecuencia para la claridad mental y el enfoque profundo.', en: 'Frequency for mental clarity and deep focus.' },
+    color: 'cian',
+  },
+  {
+    id: 2,
+    nombre: { es: 'Beta Learning', en: 'Beta Learning' },
+    hz: 'Beta',
+    archivo: '/audio/beta-learning.mp3',
+    descripcion: { es: 'Optimiza el aprendizaje activo y la retención.', en: 'Optimizes active learning and retention.' },
+    color: 'violeta',
+  },
+  {
+    id: 3,
+    nombre: { es: 'Gaia Vision', en: 'Gaia Vision' },
+    hz: 'Gaia',
+    archivo: '/audio/gaia-vision.mp3',
+    descripcion: { es: 'Conexión con la frecuencia base de la tierra.', en: 'Connection with Earth’s base frequency.' },
+    color: 'cian',
   }
+]
 
-  .fade-in-smooth { animation: fadeIn 0.8s ease-in forwards; }
-  @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
-  body, html { overflow-x: hidden; background-color: #020617; margin: 0; padding: 0; font-family: sans-serif; color: white; }
-
-  .frecuencias-choice-button {
-    width: 75%; max-width: 270px; padding: 18px; margin: 10px 0;
-    border-radius: 40px; border: 1.5px solid rgba(34, 211, 238, 0.6);
-    background: rgba(34, 211, 238, 0.05); color: white;
-    font-size: 12px; letter-spacing: 4px; text-transform: uppercase;
-    cursor: pointer; transition: all 0.4s ease;
+const MEDITACIONES = [
+  {
+    id: 101,
+    nombre: { es: 'Alpha Origen', en: 'Alpha Origin' },
+    hz: 'Alpha',
+    archivo: '/audio/alpha-origen.mp3',
+    descripcion: { es: 'Regreso al origen de la frecuencia vital.', en: 'Return to the origin of vital frequency.' },
+    color: 'violeta',
   }
-  .meditaciones-choice-button {
-    width: 75%; max-width: 270px; padding: 18px; margin: 10px 0;
-    border-radius: 40px; border: 1.5px solid rgba(168, 85, 247, 0.6);
-    background: rgba(168, 85, 247, 0.05); color: white;
-    font-size: 12px; letter-spacing: 4px; text-transform: uppercase;
-    cursor: pointer; transition: all 0.4s ease;
-  }
+]
 
-  .category-stack { display: flex; flex-direction: column; align-items: center; gap: 12px; width: 100%; margin: 0 auto; }
+// ─── UTILS ───────────────────────────────────────────────────────────────────
+const formatTime = (seconds) => {
+  const m = Math.floor(seconds / 60).toString().padStart(2, '0')
+  const s = Math.floor(seconds % 60).toString().padStart(2, '0')
+  return `${m}:${s}`
+}
 
-  .sub-category-card {
-    width: 70%; max-width: 250px; padding: 18px; border-radius: 40px;
-    background: rgba(34, 211, 238, 0.02); border: 1.5px solid rgba(34, 211, 238, 0.5);
-    text-align: center; cursor: pointer; font-size: 11px; letter-spacing: 3px; text-transform: uppercase;
-    transition: all 0.3s ease; color: white;
-  }
-
-  .track-card {
-    width: 85%; max-width: 340px; padding: 20px 25px; margin: 8px 0; border-radius: 30px;
-    background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.1);
-    display: flex; justify-content: space-between; align-items: center; cursor: pointer;
-  }
-
-  .back-button-genora {
-    width: 42px; height: 42px; border-radius: 50%; border: 1.5px solid rgba(34, 211, 238, 0.6);
-    background: rgba(34, 211, 238, 0.1); display: flex; align-items: center; justify-content: center; cursor: pointer;
-  }
-
-  .time-button {
-    width: 58px; padding: 10px 0; border-radius: 40px; border: 1px solid rgba(255,255,255,0.2);
-    background: none; color: white; font-size: 12px; cursor: pointer; transition: 0.2s;
-  }
-`;
-
-const subCategoryTitles = {
-  "APRENDIZAJE": "APRENDIZAJE & ENFOQUE",
-  "CREATIVIDAD": "CREATIVIDAD & RESOLUCIÓN",
-  "CLARIDAD": "CLARIDAD MENTAL",
-  "RENDIMIENTO": "ACTIVACIÓN MENTAL & RENDIMIENTO"
-};
-
-const App = () => {
-  const [showSplash, setShowSplash] = useState(true);
-  const [mainMode, setMainMode] = useState(null); 
-  const [activeCategory, setActiveCategory] = useState(null);
-  const [activeSub, setActiveSub] = useState(null);
-  const [selectedTrack, setSelectedTrack] = useState(null);
-  const [isPlaying, setIsPlaying] = useState(false);
-  const [selectedTime, setSelectedTime] = useState(null);
-
-  const audioRef = useRef(null);
-  const timerRef = useRef(null);
-
-  useEffect(() => {
-    const timer = setTimeout(() => setShowSplash(false), 4500);
-    return () => clearTimeout(timer);
-  }, []);
-
-  useEffect(() => {
-    if (audioRef.current) {
-      if (isPlaying) {
-        audioRef.current.play().catch(() => console.log("Verificar audio en /public/audio/"));
-        if (selectedTime && selectedTime !== '∞') {
-          if (timerRef.current) clearTimeout(timerRef.current);
-          timerRef.current = setTimeout(() => setIsPlaying(false), selectedTime * 60000);
-        }
-      } else {
-        audioRef.current.pause();
-        if (timerRef.current) clearTimeout(timerRef.current);
-      }
-    }
-  }, [isPlaying, selectedTrack, selectedTime]);
-
-  const tracks = {
-    "APRENDIZAJE": [
-      { name: "Alpha Integración", hz: "8-10 Hz", url: "/audio/alpha-integration.mp3", desc: "Integración de información desde la calma." },
-      { name: "Beta Learning", hz: "12-14 Hz", url: "/audio/beta-learning.mp3", desc: "Absorción pasiva de información sin esfuerzo." },
-      { name: "Alpha Intelligence", hz: "11.5-14.5 Hz", url: "/audio/alpha-intelligence.mp3", desc: "Mejora la capacidad de procesamiento cognitivo." },
-      { name: "Beta Focus", hz: "15-18 Hz", url: "/audio/beta-focus.mp3", desc: "Concentración y vigilancia mental sostenida." },
-      { name: "Beta Decision", hz: "13.8 Hz", url: "/audio/beta-decision.mp3", desc: "Claridad en momentos clave de decisión." }
-    ],
-    "CREATIVIDAD": [
-      { name: "Alpha Creator", hz: "8-12 Hz", url: "/audio/alpha-creator.mp3", desc: "Activa el pensamiento positivo e ideas nuevas." },
-      { name: "Beta Solution", hz: "12-36 Hz", url: "/audio/beta-solution.mp3", desc: "Resolución analítica y toma de decisiones." },
-      { name: "Beta Logic", hz: "13-40 Hz", url: "/audio/beta-logic.mp3", desc: "Potencia el pensamiento lógico y analítico." }
-    ],
-    "CLARIDAD": [
-      { name: "Alpha Balance Mind", hz: "11 Hz", url: "/audio/alpha-balance-mind.mp3", desc: "Reduce la tensión y mejora estabilidad mental." },
-      { name: "Alpha Center", hz: "12 Hz", url: "/audio/alpha-center.mp3", desc: "Centración, claridad y expresión consciente." },
-      { name: "Alpha Clarity", hz: "10.5 Hz", url: "/audio/alpha-clarity.mp3", desc: "Purificación de pensamientos y visión nítida." },
-      { name: "Alpha Calm Alert", hz: "10 Hz", url: "/audio/alpha-calm-alert.mp3", desc: "Estado de alerta serena y presencia absoluta." },
-      { name: "Gamma Insight", hz: "40 Hz", url: "/audio/gamma-insight.mp3", desc: "Destellos de comprensión profunda y epifanías." }
-    ],
-    "RENDIMIENTO": [
-      { name: "Beta Active Mind", hz: "13-27 Hz", url: "/audio/beta-active-mind.mp3", desc: "Aumenta la atención externa y actividad mental." },
-      { name: "Beta High Performance", hz: "14-30 Hz", url: "/audio/beta-high-performance.mp3", desc: "Estimula cálculos y funciones cognitivas complejas." },
-      { name: "Beta Vital Mind", hz: "14 Hz", url: "/audio/beta-vital-mind.mp3", desc: "Genera energía mental y enfoque en tareas." },
-      { name: "Beta Cortex", hz: "15.4 Hz", url: "/audio/beta-cortex.mp3", desc: "Procesamiento avanzado e inteligencia." },
-      { name: "Alpha Focus", hz: "11-14 Hz", url: "/audio/alpha-focus.mp3", desc: "Concentración y enfoque mental sostenido." },
-      { name: "Beta Attention", hz: "12-15 Hz", url: "/audio/beta-attention.mp3", desc: "Atención consciente y respuesta mental ágil." }
-    ]
-  };
-
-  if (showSplash) {
-    return (
-      <div className="fade-in-smooth" style={{ backgroundColor: '#020617', minHeight: '100vh', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', textAlign: 'center' }}>
-        <style>{inlineStyles}</style>
-        <img src="/imagenes/genora-logo-white.png" style={{ width: '180px', borderRadius: '50%', animation: 'logo-breathe 3s infinite ease-in-out', objectFit: 'contain' }} alt="Logo" />
-        <h1 style={{ fontSize: '18px', fontWeight: '300', letterSpacing: '4px', color: '#22d3ee', textTransform: 'uppercase', marginTop: '35px', marginBottom: '8px' }}>RESONANCIA ORIGEN</h1>
-        <p style={{ fontSize: '10px', fontWeight: '200', letterSpacing: '3px', color: '#fdfcf5', opacity: 0.8 }}>ACTIVANDO TU CONSCIENCIA GENÉTICA</p>
+// ─── COMPONENTS (ADN Y UI) ──────────────────────────────────────────────────
+function ADNOrganism({ isPlaying, colorAura, onClick }) {
+  return (
+    <div onClick={onClick} className="adn-wrapper" style={{ cursor: 'pointer', position: 'relative', width: 220, height: 220, margin: '0 auto' }}>
+      <div className={`adn-aura ${isPlaying ? (colorAura === 'cian' ? 'aura-cian' : 'aura-violeta') : ''}`} style={{ position: 'absolute', inset: 0, borderRadius: '50%', transition: 'all 1.2s ease' }} />
+      <div className={`adn-circle ${isPlaying ? 'adn-breathing' : ''}`} style={{ position: 'absolute', inset: 16, borderRadius: '50%', background: 'radial-gradient(circle at 35% 35%, rgba(0,212,255,0.08), rgba(139,92,246,0.06), transparent 70%)', border: '1px solid rgba(0,212,255,0.2)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+        <svg width="120" height="120" viewBox="0 0 120 120" fill="none">
+          <path d="M40 20 C50 35, 70 35, 80 50 C70 65, 50 65, 40 80 C50 95, 70 95, 80 110" stroke={colorAura === 'cian' ? '#00d4ff' : '#8b5cf6'} strokeWidth="1.5" strokeLinecap="round" fill="none" opacity="0.9" className={isPlaying ? 'dna-pulse' : ''} />
+          <path d="M80 20 C70 35, 50 35, 40 50 C50 65, 70 65, 80 80 C70 95, 50 95, 40 110" stroke={colorAura === 'cian' ? '#00d4ff' : '#8b5cf6'} strokeWidth="1.5" strokeLinecap="round" fill="none" opacity="0.9" className={isPlaying ? 'dna-pulse' : ''} />
+          {!isPlaying ? <polygon points="52,48 52,72 74,60" fill="rgba(255,255,255,0.7)" /> : <g fill="rgba(255,255,255,0.7)"><rect x="50" y="48" width="7" height="24" rx="2" /><rect x="63" y="48" width="7" height="24" rx="2" /></g>}
+        </svg>
       </div>
-    );
-  }
+    </div>
+  )
+}
 
-  const accentColor = mainMode === 'meditaciones' ? '#a855f7' : (mainMode === 'experiencias' ? '#d4af37' : '#22d3ee');
-
-  if (selectedTrack) {
-    return (
-      <div className="fade-in-smooth" style={{ backgroundColor: '#020617', minHeight: '100vh', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', textAlign: 'center', position: 'relative', padding: '20px' }}>
-        <style>{inlineStyles}</style>
-        <audio ref={audioRef} src={selectedTrack.url} loop={selectedTime === '∞'} />
-        <button onClick={() => { setSelectedTrack(null); setIsPlaying(false); }} style={{ position: 'absolute', top: '35px', left: '30px', background: 'none', border: 'none', color: accentColor, fontSize: '40px', cursor: 'pointer' }}>‹</button>
-        <div style={{ width: '220px', height: '220px', marginBottom: '40px', display: 'flex', alignItems: 'center', justifyContent: 'center', animation: isPlaying ? 'logo-breathe 4s infinite' : 'none' }}>
-          <img src="/imagenes/adn-icon.png" style={{ width: '100%', filter: `drop-shadow(0 0 15px ${accentColor})` }} alt="ADN" />
+function MiniPlayer({ track, isPlaying, onToggle, onOpen, lang }) {
+  if (!track) return null
+  return (
+    <div className="mini-player" onClick={onOpen}>
+      <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
+        <div className={`mini-dot ${isPlaying ? 'mini-dot-active' : ''}`} />
+        <div>
+          <div style={{ fontSize: 11, color: 'rgba(255,255,255,0.5)' }}>FRECUENCIA ACTIVA</div>
+          <div style={{ fontSize: 13, color: '#fff' }}>{track.nombre[lang]}</div>
         </div>
-        <h2 style={{ fontSize: '24px', letterSpacing: '4px', textTransform: 'uppercase' }}>{selectedTrack.name}</h2>
-        <p style={{ color: accentColor, fontSize: '12px', letterSpacing: '3px', fontWeight: 'bold', marginBottom: '20px' }}>{selectedTrack.hz}</p>
-        <div style={{ display: 'flex', gap: '12px', marginBottom: '45px' }}>
-          {[15, 30, 60, '∞'].map((time) => (
-            <button key={time} onClick={() => setSelectedTime(time)} className="time-button" style={{ border: `1px solid ${selectedTime === time ? accentColor : 'rgba(255,255,255,0.1)'}`, background: selectedTime === time ? `${accentColor}22` : 'none' }}>{time === '∞' ? time : `${time}'`}</button>
-          ))}
-        </div>
-        <button onClick={() => setIsPlaying(!isPlaying)} style={{ width: '85px', height: '85px', borderRadius: '50%', border: `1px solid ${accentColor}`, background: 'none', display: 'flex', alignItems: 'center', justifyCenter: 'center', cursor: 'pointer' }}>
-          <span style={{ fontSize: '30px', color: 'white' }}>{isPlaying ? '||' : '▶'}</span>
-        </button>
       </div>
-    );
+      <button onClick={(e) => { e.stopPropagation(); onToggle() }}>{isPlaying ? '⏸' : '▶'}</button>
+    </div>
+  )
+}
+
+// ─── MAIN APP ────────────────────────────────────────────────────────────────
+export default function App() {
+  const [lang, setLang] = useState('es')
+  const [tab, setTab] = useState('frecuencias')
+  const [activeTrack, setActiveTrack] = useState(null)
+  const [temploOpen, setTemploOpen] = useState(false)
+  const [isPlaying, setIsPlaying] = useState(false)
+  const audioRef = useRef(null)
+
+  const lista = tab === 'frecuencias' ? FRECUENCIAS : MEDITACIONES
+
+  const togglePlay = useCallback(() => {
+    if (!audioRef.current || !activeTrack) return
+    if (isPlaying) { audioRef.current.pause(); setIsPlaying(false); }
+    else { audioRef.current.play().catch(() => {}); setIsPlaying(true); }
+  }, [isPlaying, activeTrack])
+
+  const selectTrack = (track) => {
+    setActiveTrack(track); setTemploOpen(true);
+    setTimeout(() => {
+      if (!audioRef.current) audioRef.current = new Audio()
+      audioRef.current.src = track.archivo
+      audioRef.current.play().catch(() => {})
+      setIsPlaying(true)
+    }, 100)
   }
 
   return (
-    <div className="fade-in-smooth" style={{ backgroundColor: '#020617', minHeight: '100vh', color: 'white', padding: '20px' }}>
-      <style>{inlineStyles}</style>
-      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '40px', paddingTop: '10px' }}>
-        {mainMode ? (
-          <div onClick={() => activeSub ? setActiveSub(null) : (activeCategory ? setActiveCategory(null) : setMainMode(null))} className="back-button-genora" style={{ borderColor: accentColor }}>
-            <span style={{ color: accentColor, fontSize: '20px', fontWeight: 'bold' }}>‹</span>
-          </div>
-        ) : (
-          <img src="/imagenes/genora-logo-white.png" style={{ height: '95px', borderRadius: '50%', objectFit: 'contain' }} alt="Logo" />
-        )}
-        <div style={{ fontSize: '10px', letterSpacing: '2px', color: accentColor, border: `1px solid ${accentColor}88`, padding: '5px 14px', borderRadius: '20px', fontWeight: 'bold' }}>ES | EN</div>
-      </div>
+    <>
+      <style>{`
+        body { background: #020617; color: #fff; font-family: 'Rajdhani', sans-serif; margin: 0; }
+        .header { display: flex; justify-content: space-between; padding: 20px; border-bottom: 1px solid rgba(255,255,255,0.05); }
+        .tabs { display: flex; padding: 0 20px; border-bottom: 1px solid rgba(255,255,255,0.05); }
+        .tab-btn { background: none; border: none; color: rgba(255,255,255,0.3); padding: 15px; cursor: pointer; letter-spacing: 0.2em; }
+        .tab-btn.active { color: #fff; border-bottom: 1px solid #00d4ff; }
+        .track-item { display: flex; justify-content: space-between; padding: 16px 20px; border-bottom: 1px solid rgba(255,255,255,0.04); cursor: pointer; }
+        .mini-player { position: fixed; bottom: 0; left: 0; right: 0; background: rgba(2,6,23,0.95); padding: 15px; display: flex; justify-content: space-between; }
+        @keyframes breathe { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.05); } }
+        .adn-breathing { animation: breathe 4s ease-in-out infinite; }
+      `}</style>
 
-      <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-        <div style={{ 
-          width: activeSub ? '110px' : (mainMode ? '130px' : '165px'), 
-          height: activeSub ? '110px' : (mainMode ? '130px' : '165px'), 
-          borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', 
-          marginBottom: '35px', transition: 'all 0.5s ease',
-          animation: 'aura-supernova 8s infinite ease-in-out' 
-        }}>
-          <img src="/imagenes/adn-icon.png" style={{ width: '100%', borderRadius: '50%' }} alt="ADN" />
+      <header className="header">
+        <span style={{ letterSpacing: '0.3em', fontWeight: 200 }}>GENORA HEALING</span>
+        <div className="lang-btns">
+          <button onClick={() => setLang('es')}>ES</button> | <button onClick={() => setLang('en')}>EN</button>
         </div>
+      </header>
 
-        {!mainMode && (
-          <div className="category-stack">
-            <h2 style={{ fontSize: '10px', letterSpacing: '5px', color: '#22d3ee', marginBottom: '20px', fontWeight: '300' }}>ELIGE TU CAMINO</h2>
-            <button className="frecuencias-choice-button" onClick={() => setMainMode('frecuencias')}>Frecuencias</button>
-            <button className="meditaciones-choice-button" onClick={() => setMainMode('meditaciones')}>Meditaciones</button>
-            <button style={{ width: '75%', maxWidth: '270px', padding: '18px', borderRadius: '40px', border: '1.5px solid #d4af37', background: 'rgba(212, 175, 55, 0.05)', color: '#fdfcf5', fontSize: '12px', letterSpacing: '4px' }} onClick={() => setMainMode('experiencias')}>💎 EXPERIENCIAS</button>
+      <nav className="tabs">
+        <button className={`tab-btn ${tab === 'frecuencias' ? 'active' : ''}`} onClick={() => setTab('frecuencias')}>FRECUENCIAS</button>
+        <button className={`tab-btn ${tab === 'meditaciones' ? 'active' : ''}`} onClick={() => setTab('meditaciones')}>MEDITACIONES</button>
+      </nav>
+
+      <main className="lista">
+        {lista.map((track) => (
+          <div key={track.id} className="track-item" onClick={() => selectTrack(track)}>
+            <span>{track.nombre[lang]}</span>
+            <span style={{ color: track.color === 'cian' ? '#00d4ff' : '#8b5cf6' }}>{track.hz}</span>
           </div>
-        )}
+        ))}
+      </main>
 
-        {mainMode && !activeCategory && (
-          <div className="category-stack">
-            <p style={{ fontSize: '11px', letterSpacing: '5px', color: accentColor, textAlign: 'center', marginBottom: '35px', fontWeight: 'bold' }}>{mainMode.toUpperCase()}</p>
-           {["MENTE", "CUERPO", "EXPANSIÓN", "COHERENCIA"].map(cat => (
-              <div key={cat} onClick={() => setActiveCategory(cat)} className="sub-category-card" style={{ borderColor: `${accentColor}88` }}>
-                <span style={{ fontWeight: 'bold' }}>{cat}</span>
-              </div>
-            ))}
-          </div>
-        )}
-
-        {activeCategory === "MENTE" && !activeSub && (
-          <div className="category-stack">
-            <p style={{ fontSize: '11px', letterSpacing: '5px', color: accentColor, textAlign: 'center', marginBottom: '35px', fontWeight: 'bold' }}>RESONANCIA MENTE</p>
-           {Object.keys(subCategoryTitles).map(sub => (
-              <div key={sub} onClick={() => setActiveSub(sub)} className="sub-category-card" style={{ borderColor: `${accentColor}88` }}>
-                <span style={{ fontWeight: 'bold' }}>{sub}</span>
-              </div>
-            ))}
-          </div>
-        )}
-
-        {activeSub && (
-          <div className="fade-in-smooth" style={{ width: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-            <p style={{ fontSize: '11px', letterSpacing: '3px', color: accentColor, textAlign: 'center', marginBottom: '25px', fontWeight: 'bold' }}>{subCategoryTitles[activeSub] || activeSub}</p>
-            {(tracks[activeSub] || []).map((track, i) => (
-              <div key={i} className="track-card" onClick={() => setSelectedTrack(track)} style={{ borderLeft: `4px solid ${accentColor}` }}>
-                <div style={{ textAlign: 'left', width: '80%' }}>
-                  <div style={{ fontSize: '15px', color: 'white', fontWeight: '400' }}>{track.name}</div>
-                  <div style={{ fontSize: '10px', color: '#fdfcf5', opacity: 0.7, marginTop: '5px', fontWeight: '200', letterSpacing: '1px' }}>{track.desc}</div>
-                </div>
-                <div style={{ textAlign: 'right' }}>
-                  <div style={{ fontSize: '9px', color: accentColor, opacity: 0.7 }}>{track.hz}</div>
-                  <span style={{ color: accentColor, fontSize: '18px' }}>▶</span>
-                </div>
-              </div>
-            ))}
-          </div>
-        )}
-      </div>
-    </div>
-  );
-};
-
-export default App;
+      {activeTrack && !temploOpen && (
+        <MiniPlayer track={activeTrack} isPlaying={isPlaying} onToggle={togglePlay} onOpen={() => setTemploOpen(true)} lang={lang} />
+      )}
+    </>
+  )
+}
