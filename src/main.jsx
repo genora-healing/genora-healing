@@ -54,10 +54,10 @@ const inlineStyles = `
 `;
 
 const subCategoryTitles = {
- "APRENDIZAJE": "APRENDIZAJE & ENFOQUE",
- "CREATIVIDAD": "CREATIVIDAD & RESOLUCIÓN",
- "CLARIDAD": "CLARIDAD MENTAL",
- "RENDIMIENTO": "ACTIVACIÓN MENTAL & RENDIMIENTO"
+  "APRENDIZAJE": "APRENDIZAJE & ENFOQUE",
+  "CREATIVIDAD": "CREATIVIDAD & RESOLUCIÓN",
+  "CLARIDAD": "CLARIDAD MENTAL",
+  "RENDIMIENTO": "ACTIVACIÓN MENTAL & RENDIMIENTO"
 };
 
 const App = () => {
@@ -151,7 +151,7 @@ const App = () => {
             <button key={time} onClick={() => setSelectedTime(time)} className="time-button" style={{ border: `1px solid ${selectedTime === time ? accentColor : 'rgba(255,255,255,0.1)'}`, background: selectedTime === time ? `${accentColor}22` : 'none' }}>{time === '∞' ? time : `${time}'`}</button>
           ))}
         </div>
-        <button onClick={() => setIsPlaying(!isPlaying)} style={{ width: '85px', height: '85px', borderRadius: '50%', border: `1px solid ${accentColor}`, background: 'none', display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer' }}>
+        <button onClick={() => setIsPlaying(!isPlaying)} style={{ width: '85px', height: '85px', borderRadius: '50%', border: `1px solid ${accentColor}`, background: 'none', display: 'flex', alignItems: 'center', justifyCenter: 'center', cursor: 'pointer' }}>
           <span style={{ fontSize: '30px', color: 'white' }}>{isPlaying ? '||' : '▶'}</span>
         </button>
       </div>
