@@ -12,7 +12,6 @@ const inlineStyles = `
   @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
   body, html { overflow-x: hidden; background-color: #020617; margin: 0; padding: 0; font-family: sans-serif; color: white; }
 
-  /* BOTONES HOME: DISEÑO "PERFECCIÓN EXACTA"  */
   .frecuencias-choice-button {
     width: 75%; max-width: 270px; padding: 18px; margin: 10px 0;
     border-radius: 40px; border: 1.5px solid rgba(34, 211, 238, 0.6);
@@ -30,7 +29,6 @@ const inlineStyles = `
 
   .category-stack { display: flex; flex-direction: column; align-items: center; gap: 12px; width: 100%; margin: 0 auto; }
 
-  /* BOTONES CATEGORÍA  */
   .sub-category-card {
     width: 70%; max-width: 250px; padding: 18px; border-radius: 40px;
     background: rgba(34, 211, 238, 0.02); border: 1.5px solid rgba(34, 211, 238, 0.5);
@@ -38,7 +36,6 @@ const inlineStyles = `
     transition: all 0.3s ease; color: white;
   }
 
-  /* LISTA DE PISTAS: DESCRIPCIONES BLANCAS MINIMALISTAS  */
   .track-card {
     width: 85%; max-width: 340px; padding: 20px 25px; margin: 8px 0; border-radius: 30px;
     background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.1);
@@ -56,7 +53,6 @@ const inlineStyles = `
   }
 `;
 
-// TÍTULOS DE AUTORIDAD PARA MENTE 
 const subCategoryTitles = {
   "APRENDIZAJE": "APRENDIZAJE & ENFOQUE",
   "CREATIVIDAD": "CREATIVIDAD & RESOLUCIÓN",
@@ -81,7 +77,6 @@ const App = () => {
     return () => clearTimeout(timer);
   }, []);
 
-  // MOTOR DE AUDIO BLINDADO [cite: 1, 2]
   useEffect(() => {
     if (audioRef.current) {
       if (isPlaying) {
@@ -102,7 +97,8 @@ const App = () => {
       { name: "Alpha Integración", hz: "8-10 Hz", url: "/audio/alpha-integration.mp3", desc: "Integración de información desde la calma." },
       { name: "Beta Learning", hz: "12-14 Hz", url: "/audio/beta-learning.mp3", desc: "Absorción pasiva de información sin esfuerzo." },
       { name: "Alpha Intelligence", hz: "11.5-14.5 Hz", url: "/audio/alpha-intelligence.mp3", desc: "Mejora la capacidad de procesamiento cognitivo." },
-      { name: "Beta Focus", hz: "15-18 Hz", url: "/audio/beta-focus.mp3", desc: "Concentración y vigilancia mental sostenida." }
+      { name: "Beta Focus", hz: "15-18 Hz", url: "/audio/beta-focus.mp3", desc: "Concentración y vigilancia mental sostenida." },
+      { name: "Beta Decision", hz: "13.8 Hz", url: "/audio/beta-decision.mp3", desc: "Claridad en momentos clave de decisión." }
     ],
     "CREATIVIDAD": [
       { name: "Alpha Creator", hz: "8-12 Hz", url: "/audio/alpha-creator.mp3", desc: "Activa el pensamiento positivo e ideas nuevas." },
@@ -112,7 +108,9 @@ const App = () => {
     "CLARIDAD": [
       { name: "Alpha Balance Mind", hz: "11 Hz", url: "/audio/alpha-balance-mind.mp3", desc: "Reduce la tensión y mejora estabilidad mental." },
       { name: "Alpha Center", hz: "12 Hz", url: "/audio/alpha-center.mp3", desc: "Centración, claridad y expresión consciente." },
-      { name: "Beta Decision", hz: "13.8 Hz", url: "/audio/beta-decision.mp3", desc: "Claridad en momentos clave de decisión." }
+      { name: "Alpha Clarity", hz: "10.5 Hz", url: "/audio/alpha-clarity.mp3", desc: "Purificación de pensamientos y visión nítida." },
+      { name: "Alpha Calm Alert", hz: "10 Hz", url: "/audio/alpha-calm-alert.mp3", desc: "Estado de alerta serena y presencia absoluta." },
+      { name: "Gamma Insight", hz: "40 Hz", url: "/audio/gamma-insight.mp3", desc: "Destellos de comprensión profunda y epifanías." }
     ],
     "RENDIMIENTO": [
       { name: "Beta Active Mind", hz: "13-27 Hz", url: "/audio/beta-active-mind.mp3", desc: "Aumenta la atención externa y actividad mental." },
@@ -153,7 +151,7 @@ const App = () => {
             <button key={time} onClick={() => setSelectedTime(time)} className="time-button" style={{ border: `1px solid ${selectedTime === time ? accentColor : 'rgba(255,255,255,0.1)'}`, background: selectedTime === time ? `${accentColor}22` : 'none' }}>{time === '∞' ? time : `${time}'`}</button>
           ))}
         </div>
-        <button onClick={() => setIsPlaying(!isPlaying)} style={{ width: '85px', height: '85px', borderRadius: '50%', border: `1px solid ${accentColor}`, background: 'none', display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer' }}>
+        <button onClick={() => setIsPlaying(!isPlaying)} style={{ width: '85px', height: '85px', borderRadius: '50%', border: `1px solid ${accentColor}`, background: 'none', display: 'flex', alignItems: 'center', justifyCenter: 'center', cursor: 'pointer' }}>
           <span style={{ fontSize: '30px', color: 'white' }}>{isPlaying ? '||' : '▶'}</span>
         </button>
       </div>
@@ -166,7 +164,7 @@ const App = () => {
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '40px', paddingTop: '10px' }}>
         {mainMode ? (
           <div onClick={() => activeSub ? setActiveSub(null) : (activeCategory ? setActiveCategory(null) : setMainMode(null))} className="back-button-genora" style={{ borderColor: accentColor }}>
-             <span style={{ color: accentColor, fontSize: '20px', fontWeight: 'bold' }}>‹</span>
+            <span style={{ color: accentColor, fontSize: '20px', fontWeight: 'bold' }}>‹</span>
           </div>
         ) : (
           <img src="/imagenes/genora-logo-white.png" style={{ height: '95px', borderRadius: '50%', objectFit: 'contain' }} alt="Logo" />
@@ -185,7 +183,6 @@ const App = () => {
           <img src="/imagenes/adn-icon.png" style={{ width: '100%', borderRadius: '50%' }} alt="ADN" />
         </div>
 
-        {/* NIVEL 1: HOME */}
         {!mainMode && (
           <div className="category-stack">
             <h2 style={{ fontSize: '10px', letterSpacing: '5px', color: '#22d3ee', marginBottom: '20px', fontWeight: '300' }}>ELIGE TU CAMINO</h2>
@@ -195,11 +192,10 @@ const App = () => {
           </div>
         )}
 
-        {/* NIVEL 2: CATEGORÍAS */}
         {mainMode && !activeCategory && (
           <div className="category-stack">
             <p style={{ fontSize: '11px', letterSpacing: '5px', color: accentColor, textAlign: 'center', marginBottom: '35px', fontWeight: 'bold' }}>{mainMode.toUpperCase()}</p>
-            {["MENTE", "CUERPO", "EXPANSIÓN", "COHERENCIA"].map(cat => (
+           {["MENTE", "CUERPO", "EXPANSIÓN", "COHERENCIA"].map(cat => (
               <div key={cat} onClick={() => setActiveCategory(cat)} className="sub-category-card" style={{ borderColor: `${accentColor}88` }}>
                 <span style={{ fontWeight: 'bold' }}>{cat}</span>
               </div>
@@ -207,11 +203,10 @@ const App = () => {
           </div>
         )}
 
-        {/* NIVEL 3: SUBCATEGORÍAS MENTE  */}
         {activeCategory === "MENTE" && !activeSub && (
           <div className="category-stack">
             <p style={{ fontSize: '11px', letterSpacing: '5px', color: accentColor, textAlign: 'center', marginBottom: '35px', fontWeight: 'bold' }}>RESONANCIA MENTE</p>
-            {Object.keys(subCategoryTitles).map(sub => (
+           {Object.keys(subCategoryTitles).map(sub => (
               <div key={sub} onClick={() => setActiveSub(sub)} className="sub-category-card" style={{ borderColor: `${accentColor}88` }}>
                 <span style={{ fontWeight: 'bold' }}>{sub}</span>
               </div>
@@ -219,7 +214,6 @@ const App = () => {
           </div>
         )}
 
-        {/* NIVEL 4: LISTA DE PISTAS CON DESCRIPCIONES  */}
         {activeSub && (
           <div className="fade-in-smooth" style={{ width: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
             <p style={{ fontSize: '11px', letterSpacing: '3px', color: accentColor, textAlign: 'center', marginBottom: '25px', fontWeight: 'bold' }}>{subCategoryTitles[activeSub] || activeSub}</p>
