@@ -1,46 +1,40 @@
 import React, { useState } from 'react';
 
-function App() {
-  const [view, setView] = useState('landing');
-  const [activeCategory, setActiveCategory] = useState(null);
+export default function App() {
+  const [view, setView] = useState('inicio');
+
+  const estiloBoton = {
+    padding: '20px',
+    margin: '10px',
+    background: 'transparent',
+    border: '1px solid #4EC7C3',
+    color: 'white',
+    letterSpacing: '3px',
+    cursor: 'pointer',
+    width: '280px',
+    fontSize: '14px'
+  };
 
   return (
-    <div style={{ minHeight: '100vh', backgroundColor: '#020617', color: 'white', display: 'flex', flexDirection: 'column', alignItems: 'center', paddingTop: '50px', fontFamily: 'sans-serif' }}>
+    <div style={{ minHeight: '100vh', backgroundColor: '#020617', color: 'white', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', fontFamily: 'sans-serif' }}>
       
-      {/* LOGO TEMPORAL */}
-      <div style={{ cursor: 'pointer', textAlign: 'center', marginBottom: '50px' }} onClick={() => { setView('landing'); setActiveCategory(null); }}>
-        <h1 style={{ fontSize: '28px', letterSpacing: '10px', fontWeight: '200', margin: 0 }}>GENORA</h1>
-        <p style={{ fontSize: '10px', letterSpacing: '5px', color: '#64748b', margin: 0 }}>HEALING</p>
+      <div style={{ textAlign: 'center', marginBottom: '50px' }}>
+        <h1 style={{ fontSize: '40px', letterSpacing: '12px', fontWeight: '200', margin: 0 }}>GENORA</h1>
+        <p style={{ fontSize: '12px', letterSpacing: '6px', color: '#64748b', margin: 0 }}>HEALING</p>
       </div>
 
-      {/* VISTA LANDING */}
-      {view === 'landing' && (
-        <div style={{ display: 'flex', flexDirection: 'column', gap: '20px', width: '80%', maxWidth: '300px' }}>
-          <button 
-            onClick={() => { setView('menu'); setActiveCategory('GENORA'); }}
-            style={{ padding: '20px', background: 'transparent', border: '1px solid rgba(255,255,255,0.2)', color: 'white', letterSpacing: '3px', cursor: 'pointer' }}
-          >
-            SISTEMA GENORA
-          </button>
-          <button 
-            onClick={() => { setView('menu'); setActiveCategory('FRECUENCIAS'); }}
-            style={{ padding: '20px', background: 'transparent', border: '1px solid rgba(255,255,255,0.2)', color: 'white', letterSpacing: '3px', cursor: 'pointer' }}
-          >
-            FRECUENCIAS MASTER
-          </button>
+      {view === 'inicio' ? (
+        <div style={{ display: 'flex', flexDirection: 'column' }}>
+          <button style={estiloBoton} onClick={() => setView('sistema')}>SISTEMA GENORA</button>
+          <button style={estiloBoton} onClick={() => setView('frecuencias')}>FRECUENCIAS MASTER</button>
         </div>
-      )}
-
-      {/* VISTA MENÚ */}
-      {view === 'menu' && (
+      ) : (
         <div style={{ textAlign: 'center' }}>
-          <h2 style={{ fontSize: '14px', letterSpacing: '4px', color: '#4EC7C3' }}>{activeCategory}</h2>
-          <p style={{ color: '#64748b', marginTop: '20px' }}>Cargando frecuencias...</p>
-          <button onClick={() => setView('landing')} style={{ marginTop: '40px', background: 'transparent', border: 'none', color: '#64748b', cursor: 'pointer' }}>VOLVER</button>
+          <h2 style={{ letterSpacing: '4px', color: '#4EC7C3' }}>{view.toUpperCase()}</h2>
+          <p style={{ color: '#64748b' }}>Conexión establecida con éxito.</p>
+          <button style={{ ...estiloBoton, border: 'none', fontSize: '10px' }} onClick={() => setView('inicio')}>VOLVER AL INICIO</button>
         </div>
       )}
     </div>
   );
 }
-
-export default App;
