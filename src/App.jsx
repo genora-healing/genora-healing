@@ -19,7 +19,7 @@ export default function App() {
     <div style={{ minHeight: '100vh', backgroundColor: '#020617', color: 'white', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', fontFamily: 'sans-serif' }}>
       
       <div style={{ textAlign: 'center', marginBottom: '50px' }}>
-        <h1 style={{ fontSize: '40px', letterSpacing: '12px', fontWeight: '200', margin: 0 }}>GENORA</h1>
+        <h1 style={{ fontSize: '40px', letterSpacing: '12px', fontWeight: '200', margin: 0 }}>GENORA VIVA</h1>
         <p style={{ fontSize: '12px', letterSpacing: '6px', color: '#64748b', margin: 0 }}>HEALING</p>
       </div>
 
