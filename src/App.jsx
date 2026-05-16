@@ -1,8 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 
 const inlineStyles = `
-  @keyframes logo-breathe { 0%, 100% { transform: scale(1); opacity: 0.95; } 50% { transform: scale(1.05); opacity: 1; } }
-  @keyframes aura-supernova {
+  @keyframes logo-breathe { 0%, 100% { transform: scale(1); opacity: 0.95; } 50% { transform: scale(1.05); opacity: 1; } }\n  @keyframes aura-supernova {
     0%, 100% { transform: scale(1); box-shadow: 0 0 80px rgba(34, 211, 238, 0.4), 0 0 150px rgba(34, 211, 238, 0.2); }
     50% { transform: scale(1.03); box-shadow: 0 0 50px rgba(34, 211, 238, 0.9), 0 0 120px rgba(34, 211, 238, 0.6), 0 0 250px rgba(34, 211, 238, 0.4); }
   }
@@ -10,213 +9,132 @@ const inlineStyles = `
   @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
   body, html { overflow-x: hidden; background-color: #020617; margin: 0; padding: 0; font-family: sans-serif; color: white; }
   .frecuencias-choice-button {
-    width: 75%; max-width: 270px; padding: 18px; margin: 10px 0;
-    border-radius: 40px; border: 1.5px solid rgba(34, 211, 238, 0.6);
-    background: rgba(34, 211, 238, 0.05); color: white;
-    font-size: 12px; letter-spacing: 4px; text-transform: uppercase;
-    cursor: pointer; transition: all 0.4s ease;
+    width: 75%; max-width: 320px; padding: 14px 20px; background: rgba(30, 41, 59, 0.4);
+    border: 1px solid rgba(255,255,255,0.08); border-radius: 12px; color: white; font-size: 11px;
+    letter-spacing: 3px; font-weight: 300; text-transform: uppercase; cursor: pointer;
+    transition: all 0.4s ease; backdrop-filter: blur(8px); margin-bottom: 12px; text-align: center;
   }
-  .meditaciones-choice-button {
-    width: 75%; max-width: 270px; padding: 18px; margin: 10px 0;
-    border-radius: 40px; border: 1.5px solid rgba(168, 85, 247, 0.6);
-    background: rgba(168, 85, 247, 0.05); color: white;
-    font-size: 12px; letter-spacing: 4px; text-transform: uppercase;
-    cursor: pointer; transition: all 0.4s ease;
-  }
-  .category-stack { display: flex; flex-direction: column; align-items: center; gap: 12px; width: 100%; margin: 0 auto; }
-  .sub-category-card {
-    width: 70%; max-width: 250px; padding: 18px; border-radius: 40px;
-    background: rgba(34, 211, 238, 0.02); border: 1.5px solid rgba(34, 211, 238, 0.5);
-    text-align: center; cursor: pointer; font-size: 11px; letter-spacing: 3px; text-transform: uppercase;
-    transition: all 0.3s ease; color: white;
+  .category-pill {
+    padding: 10px 18px; border-radius: 20px; font-size: 10px; letter-spacing: 2px;
+    text-transform: uppercase; cursor: pointer; transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    background: rgba(30, 41, 59, 0.3); border: 1px solid rgba(255, 255, 255, 0.05); color: #94a3b8;
   }
   .track-card {
-    width: 85%; max-width: 340px; padding: 20px 25px; margin: 8px 0; border-radius: 30px;
-    background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.1);
-    display: flex; justify-content: space-between; align-items: center; cursor: pointer;
+    display: flex; justify-content: space-between; alignItems: center; background: rgba(15, 23, 42, 0.4);
+    border: 1px solid rgba(255,255,255,0.03); padding: 16px 20px; border-radius: 14px; margin-bottom: 10px;
+    cursor: pointer; transition: all 0.3s ease; backdrop-filter: blur(10px);
   }
-  .track-card:active { transform: scale(0.98); background: rgba(255, 255, 255, 0.07); }
-  .back-button-genora {
-    width: 42px; height: 42px; border-radius: 50%; border: 1.5px solid rgba(34, 211, 238, 0.6);
-    background: rgba(34, 211, 238, 0.1); display: flex; align-items: center; justify-content: center; cursor: pointer;
+  .track-card:hover { background: rgba(30, 41, 59, 0.4); border-color: rgba(255,255,255,0.1); transform: translateY(-1px); }
+  .audio-player-container {
+    position: fixed; bottom: 80px; left: 50%; transform: translateX(-50%); width: 90%; max-width: 400px;
+    background: rgba(15, 23, 42, 0.9); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 20px;
+    padding: 20px; backdrop-filter: blur(20px); box-shadow: 0 20px 50px rgba(0,0,0,0.5); z-index: 100;
   }
-  .time-button {
-    width: 58px; padding: 10px 0; border-radius: 40px; border: 1px solid rgba(255,255,255,0.2);
-    background: none; color: white; font-size: 12px; cursor: pointer; transition: 0.2s;
+  .control-btn {
+    background: none; border: none; color: white; cursor: pointer; display: flex; align-items: center;
+    justify-content: center; transition: all 0.2s ease;
+  }
+  .control-btn:hover { transform: scale(1.1); }
+  .heart-btn {
+    background: none; border: none; font-size: 20px; cursor: pointer; padding: 4px 8px;
+    transition: transform 0.2s ease; display: flex; align-items: center; justify-content: center;
+  }
+  .heart-btn:hover { transform: scale(1.2); }
+  .nav-bar-bottom {
+    position: fixed; bottom: 0; left: 0; right: 0; height: 65px; background: rgba(15, 23, 42, 0.95);
+    border-top: 1px solid rgba(255,255,255,0.08); display: flex; justify-content: space-around;
+    align-items: center; backdrop-filter: blur(15px); z-index: 90;
+  }
+  .nav-item {
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    background: none; border: none; color: #64748b; font-size: 9px; letter-spacing: 1.5px;
+    text-transform: uppercase; cursor: pointer; transition: all 0.3s ease; gap: 4px;
   }
 `;
 
-const subCategoryTitles = {
-  "APRENDIZAJE": "APRENDIZAJE & ENFOQUE",
-  "CREATIVIDAD": "CREATIVIDAD & RESOLUCIÓN",
-  "CLARIDAD": "CLARIDAD MENTAL",
-  "RENDIMIENTO": "ACTIVACIÓN MENTAL & RENDIMIENTO"
+const ALL_TRACKS = {
+  'GEOMETRÍA SAGRADA': [
+    { id: 'cubo', name: 'Cubo de Metatrón', hz: '528 Hz', desc: 'Activación del orden cósmico y proporciones divinas', src: '/audio/cubo-metatron.mp3' },
+    { id: 'flor', name: 'Flor de la Vida', hz: '432 Hz', desc: 'Patrón de la creación y memoria celular del todo', src: '/audio/flor-vida.mp3' },
+    { id: 'vector', name: 'Vector de Equilibrio', hz: '741 Hz', desc: 'Estabilización energética y balance de polaridades', src: '/audio/vector-equilibrio.mp3' },
+    { id: 'toroide', name: 'Toroide Dinámico', hz: '639 Hz', desc: 'Flujo constante de abundancia y regeneración vital', src: '/audio/toroide.mp3' },
+    { id: 'merkhaba', name: 'Vehículo Merkhaba', hz: '963 Hz', desc: 'Activación del cuerpo de luz y viaje dimensional', src: '/audio/merkhaba.mp3' }
+  ],
+  'CÉLULAS MADRE': [
+    { id: 'regeneracion', name: 'Regeneración Crítica', hz: '111 Hz', desc: 'Frecuencia celular de renovación y autoreparación', src: '/audio/regeneracion.mp3' },
+    { id: 'activacion_om', name: 'Activación Primordial', hz: '444 Hz', desc: 'Estímulo de resonancia para vitalidad y nuevo origen', src: '/audio/activacion.mp3' }
+  ],
+  'MEDICINA FRECUENCIAL': [
+    { id: 'limpieza', name: 'Limpieza Mental Aura', hz: '417 Hz', desc: 'Disolución de bloqueos y remoción de toxinas energéticas', src: '/audio/limpieza.mp3' },
+    { id: 'glandula', name: 'Glándula Pineal Óptima', hz: '852 Hz', desc: 'Despertar de la visión interna y conexión superior', src: '/audio/pineal.mp3' },
+    { id: 'reparacion_dna', name: 'Reparación del DNA', hz: '528 Hz', desc: 'Transformación cuántica y milagros de curación', src: '/audio/528-reparacion.mp3' }
+  ],
+  'CREATIVIDAD & RESOLUCIÓN': [
+    { id: 'beta_attention', name: 'Beta Attention', hz: '15 Hz', desc: 'Enfoque de alta eficiencia, creatividad activa y resolución', src: '/audio/Beta-attention.mp3' }
+  ],
+  'CLARIDAD MENTAL': [
+    { id: 'alpha_clarity', name: 'Alpha Clarity', hz: '10 Hz', desc: 'Claridad mental profunda y aprendizaje acelerado', src: '/audio/alpha-clarity.mp3' },
+    { id: 'alpha_calm_alert', name: 'Alpha Calm Alert', hz: '8 Hz', desc: 'Estado de alerta serena, paz mental y reducción de ruido cognitivo', src: '/audio/Alpha-calm-alert.mp3' },
+    { id: 'gamma_insight', name: 'Gamma Insight', hz: '40 Hz', desc: 'Procesamiento cognitivo de alto nivel e inspiración cuántica', src: '/audio/gamma-insight.mp3' }
+  ]
 };
 
-const App = () => {
-  const [showSplash, setShowSplash] = useState(true);
-  const [mainMode, setMainMode] = useState(null);
-  const [activeCategory, setActiveCategory] = useState(null);
-  const [activeSub, setActiveSub] = useState(null);
+const subCategoryTitles = {
+  'GEOMETRÍA SAGRADA': 'GEOMETRÍA SAGRADA FRACTAL',
+  'CÉLULAS MADRE': 'ACTIVACIÓN CÉLULAS MADRE',
+  'MEDICINA FRECUENCIAL': 'MEDICINA FRECUENCIAL AVANZADA',
+  'CREATIVIDAD & RESOLUCIÓN': 'CREATIVIDAD & RESOLUCIÓN ACTIVA',
+  'CLARIDAD MENTAL': 'CLARIDAD MENTAL & INSIGHT'
+};
+
+export default function App() {
+  const [currentTab, setCurrentTab] = useState('EXPLORAR'); // 'EXPLORAR' o 'PLAYLIST'
+  const [activeCategory, setActiveCategory] = useState('GEOMETRÍA SAGRADA');
   const [selectedTrack, setSelectedTrack] = useState(null);
   const [isPlaying, setIsPlaying] = useState(false);
-  const [selectedTime, setSelectedTime] = useState(null);
-
+  const [progress, setProgress] = useState(0);
+  const [favorites, setFavorites] = useState([]);
+  
   const audioRef = useRef(null);
-  const timerRef = useRef(null);
 
+  // Cargar favoritos al arrancar
   useEffect(() => {
-    const timer = setTimeout(() => setShowSplash(false), 4500);
-    return () => clearTimeout(timer);
+    const savedFavs = localStorage.getItem('genora_favorites');
+    if (savedFavs) {
+      try { setFavorites(JSON.parse(savedFavs)); } catch (e) { console.error(e); }
+    }
   }, []);
 
+  // Manejar reproducción de audio
   useEffect(() => {
-    if (audioRef.current) {
+    if (!audioRef.current) return;
+    if (selectedTrack) {
+      audioRef.current.src = selectedTrack.src;
       if (isPlaying) {
-        audioRef.current.play().catch(() => console.log("Verificar audio en /public/audio/"));
-        if (selectedTime && selectedTime !== '∞') {
-          if (timerRef.current) clearTimeout(timerRef.current);
-          timerRef.current = setTimeout(() => setIsPlaying(false), selectedTime * 60000);
-        }
-      } else {
-        audioRef.current.pause();
-        if (timerRef.current) clearTimeout(timerRef.current);
+        audioRef.current.play().catch(() => setIsPlaying(false));
       }
+    } else {
+      audioRef.current.pause();
+      setIsPlaying(false);
     }
-  }, [isPlaying, selectedTrack, selectedTime]);
+  }, [selectedTrack]);
 
-  const tracks = {
-    "APRENDIZAJE": [
-      { name: "Alpha Integración", hz: "8-10 Hz", url: "/audio/alpha-integration.mp3", desc: "Integración de información desde la calma." },
-      { name: "Beta Learning", hz: "12-14 Hz", url: "/audio/beta-learning.mp3", desc: "Absorción pasiva de información sin esfuerzo." },
-      { name: "Alpha Intelligence", hz: "11.5-14.5 Hz", url: "/audio/alpha-intelligence.mp3", desc: "Mejora la capacidad de procesamiento cognitivo." },
-      { name: "Beta Focus", hz: "15-18 Hz", url: "/audio/beta-focus.mp3", desc: "Concentración y vigilancia mental sostenida." },
-      { name: "Beta Decision", hz: "13.8 Hz", url: "/audio/beta-decision.mp3", desc: "Claridad en momentos clave de decisión." }
-    ],
-    "CREATIVIDAD": [
-      { name: "Alpha Creator", hz: "8-12 Hz", url: "/audio/alpha-creator.mp3", desc: "Activa el pensamiento positivo e ideas nuevas." },
-      { name: "Beta Solution", hz: "12-36 Hz", url: "/audio/beta-solution.mp3", desc: "Resolución analítica y toma de decisiones." },
-      { name: "Beta Logic", hz: "13-40 Hz", url: "/audio/beta-logic.mp3", desc: "Potencia el pensamiento lógico y analítico." }
-    ],
-    "CLARIDAD": [
-      { name: "Alpha Balance Mind", hz: "11 Hz", url: "/audio/alpha-balance-mind.mp3", desc: "Reduce la tensión y mejora estabilidad mental." },
-      { name: "Alpha Center", hz: "12 Hz", url: "/audio/alpha-center.mp3", desc: "Centración, claridad y expresión consciente." },
-      { name: "Beta Decision", hz: "13.8 Hz", url: "/audio/beta-decision.mp3", desc: "Claridad en momentos clave de decisión." }
-    ],
-    "RENDIMIENTO": [
-      { name: "Beta Active Mind", hz: "13-27 Hz", url: "/audio/beta-active-mind.mp3", desc: "Aumenta la atención externa y actividad mental." },
-      { name: "Beta High Performance", hz: "14-30 Hz", url: "/audio/beta-high-performance.mp3", desc: "Estimula cálculos y funciones cognitivas complejas." },
-      { name: "Beta Vital Mind", hz: "14 Hz", url: "/audio/beta-vital-mind.mp3", desc: "Genera energía mental y enfoque en tareas." },
-      { name: "Beta Cortex", hz: "15.4 Hz", url: "/audio/beta-cortex.mp3", desc: "Procesamiento avanzado e inteligencia." },
-      { name: "Alpha Focus", hz: "11-14 Hz", url: "/audio/alpha-focus.mp3", desc: "Concentración y enfoque mental sostenido." },
-      { name: "Beta Attention", hz: "12-15 Hz", url: "/audio/beta-attention.mp3", desc: "Atención consciente y respuesta mental ágil." }
-    ]
+  useEffect(() => {
+    if (!audioRef.current) return;
+    if (isPlaying) {
+      audioRef.current.play().catch(() => setIsPlaying(false));
+    } else {
+      audioRef.current.pause();
+    }
+  }, [isPlaying]);
+
+  // Actualizar barra de progreso del audio
+  const handleTimeUpdate = () => {
+    if (!audioRef.current) return;
+    const current = audioRef.current.currentTime;
+    const duration = audioRef.current.duration || 1;
+    setProgress((current / duration) * 100);
   };
 
-  const accentColor = mainMode === 'meditaciones' ? '#a855f7' : (mainMode === 'experiencias' ? '#d4af37' : '#22d3ee');
-
-  if (showSplash) {
-    return (
-      <div className="fade-in-smooth" style={{ backgroundColor: '#020617', minHeight: '100vh', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', textAlign: 'center' }}>
-        <style>{inlineStyles}</style>
-        <img src="/imagenes/genora-logo-white.png" style={{ width: '180px', borderRadius: '50%', animation: 'logo-breathe 3s infinite ease-in-out', objectFit: 'contain' }} alt="Logo" />
-        <h1 style={{ fontSize: '18px', fontWeight: '300', letterSpacing: '4px', color: '#22d3ee', textTransform: 'uppercase', marginTop: '35px', marginBottom: '8px' }}>RESONANCIA ORIGEN</h1>
-        <p style={{ fontSize: '10px', fontWeight: '200', letterSpacing: '3px', color: '#fdfcf5', opacity: 0.8 }}>ACTIVANDO TU CONSCIENCIA GENÉTICA</p>
-      </div>
-    );
-  }
-
-  if (selectedTrack) {
-    return (
-      <div className="fade-in-smooth" style={{ backgroundColor: '#020617', minHeight: '100vh', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', textAlign: 'center', position: 'relative', padding: '20px' }}>
-        <style>{inlineStyles}</style>
-        <audio ref={audioRef} src={selectedTrack.url} loop={selectedTime === '∞'} />
-        <button onClick={() => { setSelectedTrack(null); setIsPlaying(false); }} style={{ position: 'absolute', top: '35px', left: '30px', background: 'none', border: 'none', color: accentColor, fontSize: '40px', cursor: 'pointer' }}>‹</button>
-        <div style={{ width: '220px', height: '220px', marginBottom: '40px', display: 'flex', alignItems: 'center', justifyContent: 'center', animation: isPlaying ? 'logo-breathe 4s infinite' : 'none' }}>
-          <img src="/imagenes/adn-icon.png" style={{ width: '100%', filter: `drop-shadow(0 0 15px ${accentColor})` }} alt="ADN" />
-        </div>
-        <h2 style={{ fontSize: '24px', letterSpacing: '4px', textTransform: 'uppercase' }}>{selectedTrack.name}</h2>
-        <p style={{ color: accentColor, fontSize: '12px', letterSpacing: '3px', fontWeight: 'bold', marginBottom: '8px' }}>{selectedTrack.hz}</p>
-        <p style={{ fontSize: '13px', opacity: 0.7, maxWidth: '300px', lineHeight: '1.5', marginBottom: '35px' }}>{selectedTrack.desc}</p>
-        <div style={{ display: 'flex', gap: '12px', marginBottom: '45px' }}>
-          {[15, 30, 60, '∞'].map((time) => (
-            <button key={time} onClick={() => setSelectedTime(time)} className="time-button" style={{ border: `1px solid ${selectedTime === time ? accentColor : 'rgba(255,255,255,0.1)'}`, background: selectedTime === time ? `${accentColor}22` : 'none' }}>
-              {time === '∞' ? time : `${time}'`}
-            </button>
-          ))}
-        </div>
-        <button onClick={() => setIsPlaying(!isPlaying)} style={{ width: '85px', height: '85px', borderRadius: '50%', border: `1px solid ${accentColor}`, background: 'none', display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer' }}>
-          <span style={{ fontSize: '30px', color: 'white' }}>{isPlaying ? '||' : '▶'}</span>
-        </button>
-      </div>
-    );
-  }
-
-  return (
-    <div className="fade-in-smooth" style={{ backgroundColor: '#020617', minHeight: '100vh', color: 'white', padding: '20px' }}>
-      <style>{inlineStyles}</style>
-      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '40px', paddingTop: '10px' }}>
-        {mainMode ? (
-          <div onClick={() => activeSub ? setActiveSub(null) : (activeCategory ? setActiveCategory(null) : setMainMode(null))} className="back-button-genora" style={{ borderColor: accentColor }}>
-            <span style={{ color: accentColor, fontSize: '20px', fontWeight: 'bold' }}>‹</span>
-          </div>
-        ) : (
-          <img src="/imagenes/genora-logo-white.png" style={{ height: '95px', borderRadius: '50%', objectFit: 'contain' }} alt="Logo" />
-        )}
-        <div style={{ fontSize: '10px', letterSpacing: '2px', color: accentColor, border: `1px solid ${accentColor}88`, padding: '5px 14px', borderRadius: '20px', fontWeight: 'bold' }}>ES | EN</div>
-      </div>
-      <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-        <div style={{ width: activeSub ? '110px' : (mainMode ? '130px' : '165px'), height: activeSub ? '110px' : (mainMode ? '130px' : '165px'), borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '35px', transition: 'all 0.5s ease', animation: 'aura-supernova 8s infinite ease-in-out' }}>
-          <img src="/imagenes/adn-icon.png" style={{ width: '100%', borderRadius: '50%' }} alt="ADN" />
-        </div>
-        {!mainMode && (
-          <div className="category-stack">
-            <h2 style={{ fontSize: '10px', letterSpacing: '5px', color: '#22d3ee', marginBottom: '20px', fontWeight: '300' }}>ELIGE TU CAMINO</h2>
-            <button className="frecuencias-choice-button" onClick={() => setMainMode('frecuencias')}>Frecuencias</button>
-            <button className="meditaciones-choice-button" onClick={() => setMainMode('meditaciones')}>Meditaciones</button>
-            <button style={{ width: '75%', maxWidth: '270px', padding: '18px', borderRadius: '40px', border: '1.5px solid #d4af37', background: 'rgba(212, 175, 55, 0.05)', color: '#fdfcf5', fontSize: '12px', letterSpacing: '4px', cursor: 'pointer' }} onClick={() => setMainMode('experiencias')}>💎 EXPERIENCIAS</button>
-          </div>
-        )}
-        {mainMode && !activeCategory && (
-          <div className="category-stack">
-            <p style={{ fontSize: '11px', letterSpacing: '5px', color: accentColor, textAlign: 'center', marginBottom: '35px', fontWeight: 'bold' }}>{mainMode.toUpperCase()}</p>
-            {["MENTE", "CUERPO", "EXPANSIÓN", "COHERENCIA"].map(cat => (
-              <div key={cat} onClick={() => setActiveCategory(cat)} className="sub-category-card" style={{ borderColor: `${accentColor}88` }}>
-                <span style={{ fontWeight: 'bold' }}>{cat}</span>
-              </div>
-            ))}
-          </div>
-        )}
-        {activeCategory === "MENTE" && !activeSub && (
-          <div className="category-stack">
-            <p style={{ fontSize: '11px', letterSpacing: '5px', color: accentColor, textAlign: 'center', marginBottom: '35px', fontWeight: 'bold' }}>RESONANCIA MENTE</p>
-            {Object.keys(subCategoryTitles).map(sub => (
-              <div key={sub} onClick={() => setActiveSub(sub)} className="sub-category-card" style={{ borderColor: `${accentColor}88` }}>
-                <span style={{ fontWeight: 'bold' }}>{sub}</span>
-              </div>
-            ))}
-          </div>
-        )}
-        {activeSub && (
-          <div className="fade-in-smooth" style={{ width: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-            <p style={{ fontSize: '11px', letterSpacing: '3px', color: accentColor, textAlign: 'center', marginBottom: '25px', fontWeight: 'bold' }}>{subCategoryTitles[activeSub] || activeSub}</p>
-            {(tracks[activeSub] || []).map((track, i) => (
-              <div key={i} className="track-card" onClick={() => setSelectedTrack(track)} style={{ borderLeft: `4px solid ${accentColor}` }}>
-                <div style={{ textAlign: 'left', width: '80%' }}>
-                  <div style={{ fontSize: '15px', color: 'white', fontWeight: '400' }}>{track.name}</div>
-                  <div style={{ fontSize: '10px', color: '#fdfcf5', opacity: 0.7, marginTop: '5px', fontWeight: '200', letterSpacing: '1px' }}>{track.desc}</div>
-                </div>
-                <div style={{ textAlign: 'right' }}>
-                  <div style={{ fontSize: '9px', color: accentColor, opacity: 0.7 }}>{track.hz}</div>
-                  <span style={{ color: accentColor, fontSize: '18px' }}>▶</span>
-                </div>
-              </div>
-            ))}
-          </div>
-        )}
-      </div>
-    </div>
-  );
-};
-
-export default App;
+  const handleAudioEnded = () => {
+    setIsPlaying(false);
