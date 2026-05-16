@@ -138,3 +138,180 @@ export default function App() {
 
   const handleAudioEnded = () => {
     setIsPlaying(false);
+    setProgress(0);
+  };
+
+  const handleProgressBarClick = (e) => {
+    if (!audioRef.current) return;
+    const rect = e.currentTarget.getBoundingClientRect();
+    const clickX = e.clientX - rect.left;
+    const width = rect.width;
+    const newPercentage = clickX / width;
+    const duration = audioRef.current.duration || 0;
+    audioRef.current.currentTime = newPercentage * duration;
+    setProgress(newPercentage * 100);
+  };
+
+  // Lógica de favoritos (Corazoncitos)
+  const toggleFavorite = (e, trackId) => {
+    e.stopPropagation(); // Evita que al dar clic al corazón se reproduzca el track de inmediato
+    let updated;
+    if (favorites.includes(trackId)) {
+      updated = favorites.filter(id => id !== trackId);
+    } else {
+      updated = [...favorites, trackId];
+    }
+    setFavorites(updated);
+    localStorage.setItem('genora_favorites', JSON.stringify(updated));
+  };
+
+  const isFavorite = (trackId) => favorites.includes(trackId);
+
+  // Obtener todos los tracks de forma plana para filtrar favoritos
+  const getAllTracksList = () => {
+    const list = [];
+    Object.values(ALL_TRACKS).forEach(tracks => list.push(...tracks));
+    return list;
+  };
+
+  const favoriteTracks = getAllTracksList().filter(track => isFavorite(track.id));
+
+  const accentColor = '#22d3ee'; // Azul Profundo High-End
+
+  return (
+    <div style={{ paddingBottom: '160px', paddingTop: '40px', minHeight: '100vh', boxSizing: 'border-box', textAlign: 'center', px: '20px' }} className="fade-in-smooth">
+      <style>{inlineStyles}</style>
+      
+      <audio ref={audioRef} onTimeUpdate={handleTimeUpdate} onEnded={handleAudioEnded} />
+
+      {/* Identidad de la Marca */}
+      <div style={{ marginBottom: '40px' }}>
+        <h1 style={{ fontSize: '24px', letterSpacing: '8px', color: 'white', fontWeight: '200', textTransform: 'uppercase', margin: '0 0 8px 0' }}>GENORA</h1>
+        <p style={{ fontSize: '9px', letterSpacing: '4px', color: accentColor, opacity: 0.8, textTransform: 'uppercase', margin: 0, fontWeight: '300' }}>HEALING & CONSCIOUSNESS</p>
+      </div>
+
+      {/* VISTA 1: EXPLORAR CATÁLOGO */}
+      {currentTab === 'EXPLORAR' && (
+        <div style={{ maxWidth: '500px', margin: '0 auto', padding: '0 20px' }}>
+          {/* Píldoras de Categorías */}
+          <div style={{ display: 'flex', gap: '8px', overflowX: 'auto', paddingBottom: '15px', marginBottom: '30px', justifyContent: 'flex-start', scrollbarWidth: 'none' }}>
+            {Object.keys(ALL_TRACKS).map((cat) => (
+              <button
+                key={cat}
+                className="category-pill"
+                onClick={() => setActiveCategory(cat)}
+                style={{
+                  backgroundColor: activeCategory === cat ? 'rgba(34, 211, 238, 0.15)' : 'rgba(30, 41, 59, 0.3)',
+                  borderColor: activeCategory === cat ? accentColor : 'rgba(255, 255, 255, 0.05)',
+                  color: activeCategory === cat ? 'white' : '#94a3b8',
+                  fontWeight: activeCategory === cat ? '500' : '300'
+                }}
+              >
+                {cat.split(' ')[0]}
+              </button>
+            ))}
+          </div>
+
+          {/* Subtítulo Dinámico */}
+          <p style={{ fontSize: '11px', letterSpacing: '3px', color: accentColor, textAlign: 'center', marginBottom: '25px', fontWeight: 'bold' }}>
+            {subCategoryTitles[activeCategory]}
+          </p>
+
+          {/* Lista de Frecuencias de la Categoría */}
+          {(ALL_TRACKS[activeCategory] || []).map((track) => (
+            <div key={track.id} className="track-card" onClick={() => setSelectedTrack(track)} style={{ borderLeft: `4px solid ${accentColor}` }}>
+              <div style={{ textAlign: 'left', width: '75%' }}>
+                <div style={{ fontSize: '15px', color: 'white', fontWeight: '400' }}>{track.name}</div>
+                <div style={{ fontSize: '10px', color: '#fdfcf5', opacity: 0.7, marginTop: '5px', fontWeight: '200', letterSpacing: '1px' }}>{track.desc}</div>
+              </div>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+                <button className=\"heart-btn\" onClick={(e) => toggleFavorite(e, track.id)} style={{ color: isFavorite(track.id) ? '#ff6b9d' : 'rgba(255,255,255,0.3)' }}>
+                  {isFavorite(track.id) ? '♥' : '♡'}
+                </button>
+                <div style={{ textAlign: 'right' }}>
+                  <div style={{ fontSize: '11px', color: accentColor, fontWeight: 'bold' }}>{track.hz}</div>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      )}
+
+      {/* VISTA 2: PLAYLIST DE FAVORITOS */}
+      {currentTab === 'PLAYLIST' && (
+        <div style={{ maxWidth: '500px', margin: '0 auto', padding: '0 20px' }} className="fade-in-smooth">
+          <p style={{ fontSize: '12px', letterSpacing: '4px', color: accentColor, textAlign: 'center', marginBottom: '30px', fontWeight: 'bold' }}>
+            💖 MI ALINEACIÓN PERSONALIZADA
+          </p>
+
+          {favoriteTracks.length === 0 ? (
+            <div style={{ padding: '40px 20px', background: 'rgba(30, 41, 59, 0.2)', borderRadius: '16px', border: '1px dashed rgba(255,255,255,0.1)' }}>
+              <p style={{ fontSize: '13px', color: '#94a3b8', fontWeight: '200', margin: '0 0 15px 0', letterSpacing: '1px' }}>Tu playlist está vacía.</p>
+              <button className="frecuencias-choice-button" onClick={() => setCurrentTab('EXPLORAR')} style={{ fontSize: '9px', width: 'auto', padding: '10px 20px' }}>
+                ← Explorar Frecuencias
+              </button>
+            </div>
+          ) : (
+            favoriteTracks.map((track) => (
+              <div key={track.id} className="track-card" onClick={() => setSelectedTrack(track)} style={{ borderLeft: '4px solid #ff6b9d' }}>
+                <div style={{ textAlign: 'left', width: '75%' }}>
+                  <div style={{ fontSize: '15px', color: 'white', fontWeight: '400' }}>{track.name}</div>
+                  <div style={{ fontSize: '10px', color: '#fdfcf5', opacity: 0.7, marginTop: '5px', fontWeight: '200' }}>{track.desc}</div>
+                </div>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+                  <button className="heart-btn" onClick={(e) => toggleFavorite(e, track.id)} style={{ color: '#ff6b9d' }}>
+                    ♥
+                  </button>
+                  <div style={{ textAlign: 'right' }}>
+                    <div style={{ fontSize: '11px', color: '#ff6b9d', fontWeight: 'bold' }}>{track.hz}</div>
+                  </div>
+                </div>
+              </div>
+            ))
+          )}
+        </div>
+      )}
+
+      {/* REPRODUCTOR DE AUDIO FLOTANTE */}
+      {selectedTrack && (
+        <div className="audio-player-container fade-in-smooth">
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '14px' }}>
+            <div style={{ textAlign: 'left', maxWidth: '75%' }}>
+              <div style={{ fontSize: '13px', fontWeight: 'bold', color: 'white', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{selectedTrack.name}</div>
+              <div style={{ fontSize: '10px', color: accentColor, marginTop: '2px' }}>{selectedTrack.hz}</div>
+            </div>
+            <button className="control-btn" onClick={() => setSelectedTrack(null)} style={{ fontSize: '18px', opacity: 0.5 }}>✕</button>
+          </div>
+
+          {/* Barra de Progreso */}
+          <div onClick={handleProgressBarClick} style={{ width: '100%', height: '4px', background: 'rgba(255,255,255,0.1)', borderRadius: '2px', cursor: 'pointer', marginBottom: '18px', position: 'relative' }}>
+            <div style={{ width: `${progress}%`, height: '100%', background: `linear-gradient(90deg, ${accentColor}, #3b82f6)`, borderRadius: '2px', transition: 'width 0.1s linear' }} />
+          </div>
+
+          {/* Botón de Play / Pause */}
+          <div style={{ display: 'flex', justifyContent: 'center' }}>
+            <button className="control-btn" onClick={() => setIsPlaying(!isPlaying)} style={{ background: 'white', color: '#020617', width: '45px', height: '45px', borderRadius: '50%', boxShadow: '0 4px 15px rgba(34,211,238,0.3)' }}>
+              {isPlaying ? (
+                <span style={{ fontSize: '18px', fontWeight: 'bold' }}>❚❚</span>
+              ) : (
+                <span style={{ fontSize: '20px', marginLeft: '4px' }}>▶</span>
+              )}
+            </button>
+          </div>
+        </div>
+      )}
+
+      {/* BARRA DE NAVEGACIÓN INFERIOR ZEN */}
+      <nav className="nav-bar-bottom">
+        <button className="nav-item" onClick={() => setCurrentTab('EXPLORAR')} style={{ color: currentTab === 'EXPLORAR' ? accentColor : '#64748b' }}>
+          <span style={{ fontSize: '18px' }}>🌟</span>
+          <span>Frecuencias</span>
+        </button>
+        <button className="nav-item" onClick={() => setCurrentTab('PLAYLIST')} style={{ color: currentTab === 'PLAYLIST' ? '#ff6b9d' : '#64748b' }}>
+          <span style={{ fontSize: '18px' }}>{favoriteTracks.length > 0 ? '♥' : '♡'}</span>
+          <span>Mi Playlist</span>
+        </button>
+      </nav>
+    </div>
+  );
+}
