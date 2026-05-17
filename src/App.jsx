@@ -67,6 +67,31 @@ const inlineStyles = `
   }
   .bar-tab.active { color: #22d3ee; }
   .bar-tab-icon { font-size: 18px; line-height: 1; }
+  .progress-bar-container {
+    width: 100%; height: 2px; background: rgba(255,255,255,0.1);
+    border-radius: 2px; margin: 8px 0 4px; cursor: pointer;
+  }
+  .progress-bar-fill {
+    height: 100%; border-radius: 2px; background: #22d3ee;
+    transition: width 0.5s linear;
+  }
+  .reminder-btn {
+    padding: 8px 18px; border-radius: 30px; border: 1px solid rgba(34,211,238,0.3);
+    background: none; color: rgba(255,255,255,0.5); font-size: 10px;
+    letter-spacing: 2px; cursor: pointer; transition: all 0.3s ease;
+    text-transform: uppercase;
+  }
+  .reminder-btn.active {
+    border-color: #22d3ee; color: #22d3ee;
+    background: rgba(34,211,238,0.08);
+  }
+  .alineacion-banner {
+    margin: 0 auto 20px; width: 85%; max-width: 340px;
+    padding: 14px 20px; border-radius: 20px;
+    background: rgba(34,211,238,0.06);
+    border: 1px solid rgba(34,211,238,0.25);
+    text-align: center;
+  }
 `;
 
 const subCategoryTitles = {
@@ -109,6 +134,20 @@ const ALL_TRACKS = {
 
 const ALL_TRACKS_FLAT = Object.values(ALL_TRACKS).flat();
 
+const formatTime = (secs) => {
+  if (!secs || isNaN(secs) || !isFinite(secs)) return '00:00';
+  const m = Math.floor(secs / 60);
+  const s = Math.floor(secs % 60);
+  return `${String(m).padStart(2, '0')}:${String(s).padStart(2, '0')}`;
+};
+
+const getTimeOfDay = () => {
+  const h = new Date().getHours();
+  if (h >= 5 && h < 12) return 'manana';
+  if (h >= 12 && h < 19) return 'tarde';
+  return 'noche';
+};
+
 const App = () => {
   const [showSplash, setShowSplash] = useState(true);
   const [mainMode, setMainMode] = useState(null);
@@ -118,39 +157,95 @@ const App = () => {
   const [isPlaying, setIsPlaying] = useState(false);
   const [selectedTime, setSelectedTime] = useState(null);
   const [activeTab, setActiveTab] = useState('catalogo');
+  const [currentTime, setCurrentTime] = useState(0);
+  const [duration, setDuration] = useState(0);
+  const [showReminder, setShowReminder] = useState(false);
+  const [showBanner, setShowBanner] = useState(false);
+
   const [favorites, setFavorites] = useState(() => {
-    try {
-      const saved = localStorage.getItem('genora_favorites');
-      return saved ? JSON.parse(saved) : [];
-    } catch { return []; }
+    try { return JSON.parse(localStorage.getItem('genora_favorites')) || []; } catch { return []; }
+  });
+
+  const [reminderTime, setReminderTime] = useState(() => {
+    try { return localStorage.getItem('genora_reminder_time') || null; } catch { return null; }
   });
 
   const audioRef = useRef(null);
   const timerRef = useRef(null);
+  const activeTabRef = useRef(activeTab);
 
+  useEffect(() => { activeTabRef.current = activeTab; }, [activeTab]);
+
+  // Splash
   useEffect(() => {
     const timer = setTimeout(() => setShowSplash(false), 4500);
     return () => clearTimeout(timer);
   }, []);
 
+  // Verificar recordatorio al cargar
   useEffect(() => {
-    if (audioRef.current) {
-      if (isPlaying) {
-        audioRef.current.play().catch(() => {});
-        if (selectedTime && selectedTime !== 'inf') {
-          if (timerRef.current) clearTimeout(timerRef.current);
-          timerRef.current = setTimeout(() => setIsPlaying(false), selectedTime * 60000);
-        }
-      } else {
-        audioRef.current.pause();
+    if (reminderTime && reminderTime === getTimeOfDay()) {
+      setShowBanner(true);
+      const t = setTimeout(() => setShowBanner(false), 8000);
+      return () => clearTimeout(t);
+    }
+  }, [reminderTime]);
+
+  // Motor de audio
+  useEffect(() => {
+    if (!audioRef.current) return;
+    if (isPlaying) {
+      audioRef.current.play().catch(() => {});
+      if (selectedTime && selectedTime !== 'inf') {
         if (timerRef.current) clearTimeout(timerRef.current);
+        timerRef.current = setTimeout(() => setIsPlaying(false), selectedTime * 60000);
       }
+    } else {
+      audioRef.current.pause();
+      if (timerRef.current) clearTimeout(timerRef.current);
     }
   }, [isPlaying, selectedTrack, selectedTime]);
 
+  // Guardar favoritos
   useEffect(() => {
     try { localStorage.setItem('genora_favorites', JSON.stringify(favorites)); } catch {}
   }, [favorites]);
+
+  // Guardar recordatorio
+  useEffect(() => {
+    try {
+      if (reminderTime) localStorage.setItem('genora_reminder_time', reminderTime);
+      else localStorage.removeItem('genora_reminder_time');
+    } catch {}
+  }, [reminderTime]);
+
+  const handleTimeUpdate = () => {
+    if (!audioRef.current) return;
+    setCurrentTime(audioRef.current.currentTime || 0);
+    setDuration(audioRef.current.duration || 0);
+  };
+
+  const handleAudioEnded = () => {
+    if (activeTabRef.current === 'favoritos') {
+      const favTracks = ALL_TRACKS_FLAT.filter(t => favorites.includes(t.id));
+      const currentIndex = favTracks.findIndex(t => t.id === selectedTrack?.id);
+      if (currentIndex >= 0 && currentIndex < favTracks.length - 1) {
+        const nextTrack = favTracks[currentIndex + 1];
+        setSelectedTrack(nextTrack);
+        setCurrentTime(0);
+        setTimeout(() => {
+          if (audioRef.current) {
+            audioRef.current.src = nextTrack.url;
+            audioRef.current.play().catch(() => {});
+          }
+        }, 100);
+      } else {
+        setIsPlaying(false);
+      }
+    } else {
+      setIsPlaying(false);
+    }
+  };
 
   const toggleFavorite = (e, trackId) => {
     e.stopPropagation();
@@ -166,6 +261,13 @@ const App = () => {
     else setMainMode(null);
   };
 
+  const handleProgressClick = (e) => {
+    if (!audioRef.current || !duration) return;
+    const rect = e.currentTarget.getBoundingClientRect();
+    const ratio = (e.clientX - rect.left) / rect.width;
+    audioRef.current.currentTime = ratio * duration;
+  };
+
   const BottomBar = () => (
     <div className="bottom-bar">
       <button className={`bar-tab ${activeTab === 'catalogo' ? 'active' : ''}`} onClick={() => setActiveTab('catalogo')}>
@@ -179,6 +281,33 @@ const App = () => {
     </div>
   );
 
+  const ReminderSection = () => (
+    <div style={{ width: '85%', maxWidth: '340px', margin: '0 auto 24px', padding: '20px', borderRadius: '24px', background: 'rgba(255,255,255,0.02)', border: '1px solid rgba(255,255,255,0.07)' }}>
+      <p style={{ fontSize: '10px', letterSpacing: '3px', color: 'rgba(255,255,255,0.35)', textAlign: 'center', marginBottom: '16px' }}>RECORDATORIO DE ALINEACION</p>
+      <div style={{ display: 'flex', gap: '8px', justifyContent: 'center', flexWrap: 'wrap' }}>
+        {[
+          { key: 'manana', label: 'Manana', icon: '☀' },
+          { key: 'tarde', label: 'Tarde', icon: '◐' },
+          { key: 'noche', label: 'Noche', icon: '☽' }
+        ].map(opt => (
+          <button
+            key={opt.key}
+            className={`reminder-btn ${reminderTime === opt.key ? 'active' : ''}`}
+            onClick={() => setReminderTime(prev => prev === opt.key ? null : opt.key)}
+          >
+            {opt.icon} {opt.label}
+          </button>
+        ))}
+      </div>
+      {reminderTime && (
+        <p style={{ fontSize: '10px', color: 'rgba(34,211,238,0.5)', textAlign: 'center', marginTop: '12px', letterSpacing: '1px' }}>
+          Tu alineacion esta programada para la {reminderTime === 'manana' ? 'manana' : reminderTime === 'tarde' ? 'tarde' : 'noche'}
+        </p>
+      )}
+    </div>
+  );
+
+  // SPLASH
   if (showSplash) {
     return (
       <div className="fade-in-smooth" style={{ backgroundColor: '#020617', minHeight: '100vh', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', textAlign: 'center' }}>
@@ -190,12 +319,21 @@ const App = () => {
     );
   }
 
+  // TEMPLO
   if (selectedTrack) {
+    const progress = duration > 0 ? (currentTime / duration) * 100 : 0;
     return (
       <div className="fade-in-smooth" style={{ backgroundColor: '#020617', minHeight: '100vh', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', textAlign: 'center', position: 'relative', padding: '20px' }}>
         <style>{inlineStyles}</style>
-        <audio ref={audioRef} src={selectedTrack.url} loop={selectedTime === 'inf'} />
-        <button onClick={() => { setSelectedTrack(null); setIsPlaying(false); }} style={{ position: 'absolute', top: '35px', left: '30px', background: 'none', border: 'none', color: accentColor, fontSize: '40px', cursor: 'pointer' }}>&#8249;</button>
+        <audio
+          ref={audioRef}
+          src={selectedTrack.url}
+          loop={selectedTime === 'inf' && activeTabRef.current !== 'favoritos'}
+          onTimeUpdate={handleTimeUpdate}
+          onLoadedMetadata={handleTimeUpdate}
+          onEnded={handleAudioEnded}
+        />
+        <button onClick={() => { setSelectedTrack(null); setIsPlaying(false); setCurrentTime(0); setDuration(0); }} style={{ position: 'absolute', top: '35px', left: '30px', background: 'none', border: 'none', color: accentColor, fontSize: '40px', cursor: 'pointer' }}>&#8249;</button>
         <button className="heart-btn" onClick={(e) => toggleFavorite(e, selectedTrack.id)} style={{ position: 'absolute', top: '40px', right: '30px', fontSize: '24px', color: isFavorite(selectedTrack.id) ? '#ff6b9d' : 'rgba(255,255,255,0.4)' }}>
           {isFavorite(selectedTrack.id) ? '♥' : '♡'}
         </button>
@@ -204,7 +342,19 @@ const App = () => {
         </div>
         <h2 style={{ fontSize: '24px', letterSpacing: '4px', textTransform: 'uppercase' }}>{selectedTrack.name}</h2>
         <p style={{ color: accentColor, fontSize: '12px', letterSpacing: '3px', fontWeight: 'bold', marginBottom: '8px' }}>{selectedTrack.hz}</p>
-        <p style={{ fontSize: '13px', opacity: 0.7, maxWidth: '300px', lineHeight: '1.5', marginBottom: '35px' }}>{selectedTrack.desc}</p>
+        <p style={{ fontSize: '13px', opacity: 0.7, maxWidth: '300px', lineHeight: '1.5', marginBottom: '24px' }}>{selectedTrack.desc}</p>
+
+        {/* Barra de progreso con tiempo */}
+        <div style={{ width: '80%', maxWidth: '300px', marginBottom: '24px' }}>
+          <div className="progress-bar-container" onClick={handleProgressClick}>
+            <div className="progress-bar-fill" style={{ width: `${progress}%` }} />
+          </div>
+          <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+            <span style={{ fontSize: '10px', color: 'rgba(255,255,255,0.35)', letterSpacing: '1px' }}>{formatTime(currentTime)}</span>
+            <span style={{ fontSize: '10px', color: 'rgba(255,255,255,0.35)', letterSpacing: '1px' }}>{formatTime(duration)}</span>
+          </div>
+        </div>
+
         <div style={{ display: 'flex', gap: '12px', marginBottom: '45px' }}>
           {[15, 30, 60, 'inf'].map((time) => (
             <button key={time} onClick={() => setSelectedTime(time)} className="time-button" style={{ border: `1px solid ${selectedTime === time ? accentColor : 'rgba(255,255,255,0.1)'}`, background: selectedTime === time ? `${accentColor}22` : 'none' }}>
@@ -219,25 +369,38 @@ const App = () => {
     );
   }
 
+  // FAVORITOS
   if (activeTab === 'favoritos') {
     const favTracks = ALL_TRACKS_FLAT.filter(t => favorites.includes(t.id));
     return (
       <div className="fade-in-smooth" style={{ backgroundColor: '#020617', minHeight: '100vh', color: 'white', padding: '20px', paddingBottom: '80px' }}>
         <style>{inlineStyles}</style>
-        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '40px', paddingTop: '10px' }}>
+        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '30px', paddingTop: '10px' }}>
           <img src="/imagenes/genora-logo-white.png" style={{ height: '50px', borderRadius: '50%', objectFit: 'contain' }} alt="Logo" />
           <div style={{ fontSize: '10px', letterSpacing: '2px', color: '#22d3ee', border: '1px solid rgba(34,211,238,0.3)', padding: '5px 14px', borderRadius: '20px' }}>ES | EN</div>
         </div>
-        <p style={{ fontSize: '10px', letterSpacing: '4px', color: 'rgba(255,255,255,0.4)', textAlign: 'center', marginBottom: '30px' }}>MI CAMPO DE RESONANCIA</p>
+
+        {/* Banner de recordatorio */}
+        {showBanner && (
+          <div className="alineacion-banner">
+            <p style={{ fontSize: '11px', letterSpacing: '2px', color: '#22d3ee', margin: 0 }}>✦ Es momento de tu alineacion diaria Genora</p>
+          </div>
+        )}
+
+        <p style={{ fontSize: '10px', letterSpacing: '4px', color: 'rgba(255,255,255,0.4)', textAlign: 'center', marginBottom: '24px' }}>MI CAMPO DE RESONANCIA</p>
+
+        {/* Sección de recordatorio */}
+        <ReminderSection />
+
         {favTracks.length === 0 ? (
-          <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', padding: '60px 20px', textAlign: 'center', color: 'rgba(255,255,255,0.3)' }}>
+          <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', padding: '40px 20px', textAlign: 'center', color: 'rgba(255,255,255,0.3)' }}>
             <div style={{ fontSize: '40px', marginBottom: '16px' }}>♡</div>
             <p style={{ fontSize: '12px', letterSpacing: '2px', lineHeight: '1.8' }}>Tu campo de resonancia esta vacio.<br />Toca el corazon de cualquier frecuencia para anclarla en tu campo personal.</p>
           </div>
         ) : (
           <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
             {favTracks.map((track) => (
-              <div key={track.id} className="track-card" onClick={() => setSelectedTrack(track)} style={{ borderLeft: '4px solid #22d3ee' }}>
+              <div key={track.id} className="track-card" onClick={() => { setSelectedTrack(track); setIsPlaying(true); }} style={{ borderLeft: '4px solid #22d3ee' }}>
                 <div style={{ textAlign: 'left', width: '75%' }}>
                   <div style={{ fontSize: '15px', color: 'white', fontWeight: '400' }}>{track.name}</div>
                   <div style={{ fontSize: '10px', color: '#fdfcf5', opacity: 0.7, marginTop: '5px', fontWeight: '200', letterSpacing: '1px' }}>{track.desc}</div>
@@ -258,9 +421,18 @@ const App = () => {
     );
   }
 
+  // CATALOGO PRINCIPAL
   return (
     <div className="fade-in-smooth" style={{ backgroundColor: '#020617', minHeight: '100vh', color: 'white', padding: '20px', paddingBottom: '80px' }}>
       <style>{inlineStyles}</style>
+
+      {/* Banner de recordatorio en catalogo */}
+      {showBanner && (
+        <div className="alineacion-banner" style={{ marginTop: '10px' }}>
+          <p style={{ fontSize: '11px', letterSpacing: '2px', color: '#22d3ee', margin: 0 }}>✦ Es momento de tu alineacion diaria Genora</p>
+        </div>
+      )}
+
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '40px', paddingTop: '10px' }}>
         {mainMode ? (
           <div onClick={handleBack} className="back-button-genora" style={{ borderColor: accentColor }}>
@@ -271,10 +443,12 @@ const App = () => {
         )}
         <div style={{ fontSize: '10px', letterSpacing: '2px', color: accentColor, border: `1px solid ${accentColor}88`, padding: '5px 14px', borderRadius: '20px', fontWeight: 'bold' }}>ES | EN</div>
       </div>
+
       <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
         <div style={{ width: activeSub ? '110px' : (mainMode ? '130px' : '165px'), height: activeSub ? '110px' : (mainMode ? '130px' : '165px'), borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '35px', transition: 'all 0.5s ease', animation: 'aura-supernova 8s infinite ease-in-out' }}>
           <img src="/imagenes/adn-icon.png" style={{ width: '100%', borderRadius: '50%' }} alt="ADN" />
         </div>
+
         {!mainMode && (
           <div className="category-stack">
             <h2 style={{ fontSize: '10px', letterSpacing: '5px', color: '#22d3ee', marginBottom: '20px', fontWeight: '300' }}>ELIGE TU CAMINO</h2>
@@ -285,6 +459,7 @@ const App = () => {
             </button>
           </div>
         )}
+
         {mainMode && !activeCategory && (
           <div className="category-stack">
             <p style={{ fontSize: '11px', letterSpacing: '5px', color: accentColor, textAlign: 'center', marginBottom: '35px', fontWeight: 'bold' }}>{mainMode.toUpperCase()}</p>
@@ -295,6 +470,7 @@ const App = () => {
             ))}
           </div>
         )}
+
         {activeCategory === "MENTE" && !activeSub && (
           <div className="category-stack">
             <p style={{ fontSize: '11px', letterSpacing: '5px', color: accentColor, textAlign: 'center', marginBottom: '35px', fontWeight: 'bold' }}>RESONANCIA MENTE</p>
@@ -305,6 +481,7 @@ const App = () => {
             ))}
           </div>
         )}
+
         {activeSub && (
           <div className="fade-in-smooth" style={{ width: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
             <p style={{ fontSize: '11px', letterSpacing: '3px', color: accentColor, textAlign: 'center', marginBottom: '25px', fontWeight: 'bold' }}>{subCategoryTitles[activeSub] || activeSub}</p>
