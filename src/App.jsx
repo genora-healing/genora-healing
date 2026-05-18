@@ -103,32 +103,32 @@ const subCategoryTitles = {
 
 const ALL_TRACKS = {
   "APRENDIZAJE": [
-    { id: "alpha-integration", name: "Alpha Integracion", hz: "8-10 Hz", url: "/audio/alpha-integration.mp3", desc: "Integracion de informacion desde la calma." },
-    { id: "beta-learning", name: "Beta Learning", hz: "12-14 Hz", url: "/audio/beta-learning.mp3", desc: "Absorcion pasiva de informacion sin esfuerzo." },
-    { id: "alpha-intelligence", name: "Alpha Intelligence", hz: "11.5-14.5 Hz", url: "/audio/alpha-intelligence.mp3", desc: "Mejora la capacidad de procesamiento cognitivo." },
-    { id: "beta-focus", name: "Beta Focus", hz: "15-18 Hz", url: "/audio/beta-focus.mp3", desc: "Concentracion y vigilancia mental sostenida." },
-    { id: "beta-decision", name: "Beta Decision", hz: "13.8 Hz", url: "/audio/beta-decision.mp3", desc: "Claridad en momentos clave de decision." }
+    { id: "alpha-integration", name: "Alpha Integration", hz: "8-10 Hz", url: "/audio/alpha-integration.mp3", desc: "Information integration from a state of calm." },
+    { id: "beta-learning", name: "Beta Learning", hz: "12-14 Hz", url: "/audio/beta-learning.mp3", desc: "Passive information absorption without effort." },
+    { id: "alpha-intelligence", name: "Alpha Intelligence", hz: "11.5-14.5 Hz", url: "/audio/alpha-intelligence.mp3", desc: "Improves cognitive processing capacity." },
+    { id: "beta-focus", name: "Beta Focus", hz: "15-18 Hz", url: "/audio/beta-focus.mp3", desc: "Concentration and sustained mental clarity." },
+    { id: "beta-decision", name: "Beta Decision", hz: "13.8 Hz", url: "/audio/beta-decision.mp3", desc: "Clarity in key decision moments." }
   ],
   "CREATIVIDAD": [
-    { id: "alpha-creator", name: "Alpha Creator", hz: "8-12 Hz", url: "/audio/alpha-creator.mp3", desc: "Activa el pensamiento positivo e ideas nuevas." },
-    { id: "beta-solution", name: "Beta Solution", hz: "12-36 Hz", url: "/audio/beta-solution.mp3", desc: "Resolucion analitica y toma de decisiones." },
-    { id: "beta-logic", name: "Beta Logic", hz: "13-40 Hz", url: "/audio/beta-logic.mp3", desc: "Potencia el pensamiento logico y analitico." },
-    { id: "beta-attention", name: "Beta Attention", hz: "12-15 Hz", url: "/audio/beta-attention.mp3", desc: "Atencion consciente y respuesta mental agil." }
+    { id: "alpha-creator", name: "Alpha Creator", hz: "8-12 Hz", url: "/audio/alpha-creator.mp3", desc: "Activates positive thinking and new ideas." },
+    { id: "beta-solution", name: "Beta Solution", hz: "12-36 Hz", url: "/audio/beta-solution.mp3", desc: "Analytical resolution and decision making." },
+    { id: "beta-logic", name: "Beta Logic", hz: "13-40 Hz", url: "/audio/beta-logic.mp3", desc: "Enhances logical and analytical thinking." },
+    { id: "beta-attention", name: "Beta Attention", hz: "12-15 Hz", url: "/audio/beta-attention.mp3", desc: "Conscious attention and agile mental response." }
   ],
   "CLARIDAD": [
-    { id: "alpha-balance-mind", name: "Alpha Balance Mind", hz: "11 Hz", url: "/audio/alpha-balance-mind.mp3", desc: "Reduce la tension y mejora estabilidad mental." },
-    { id: "alpha-center", name: "Alpha Center", hz: "12 Hz", url: "/audio/alpha-center.mp3", desc: "Centracion, claridad y expresion consciente." },
-    { id: "beta-decision-c", name: "Beta Decision", hz: "13.8 Hz", url: "/audio/beta-decision.mp3", desc: "Claridad en momentos clave de decision." },
-    { id: "alpha-calm-alert", name: "Alpha Calm Alert", hz: "10 Hz", url: "/audio/alpha-calm-alert.mp3", desc: "Estado de alerta serena y presencia absoluta." },
-    { id: "alpha-clarity", name: "Alpha Clarity", hz: "10.5 Hz", url: "/audio/alpha-clarity.mp3", desc: "Purificacion de pensamientos y vision nitida." },
-    { id: "gamma-insight", name: "Gamma Insight", hz: "40 Hz", url: "/audio/gamma-insight.mp3", desc: "Destellos de comprension profunda y epifanias." }
+    { id: "alpha-balance-mind", name: "Alpha Balance Mind", hz: "11 Hz", url: "/audio/alpha-balance-mind.mp3", desc: "Reduces tension and improves mental stability." },
+    { id: "alpha-center", name: "Alpha Center", hz: "12 Hz", url: "/audio/alpha-center.mp3", desc: "Centering, clarity and conscious expression." },
+    { id: "beta-decision-c", name: "Beta Decision", hz: "13.8 Hz", url: "/audio/beta-decision.mp3", desc: "Clarity in key decision moments." },
+    { id: "alpha-calm-alert", name: "Alpha Calm Alert", hz: "10.6 Hz", url: "/audio/alpha-calm-alert.mp3", desc: "Serene alertness and absolute presence." },
+    { id: "alpha-clarity", name: "Alpha Clarity", hz: "10.5 Hz", url: "/audio/alpha-clarity.mp3", desc: "Purification of thoughts and clear vision." },
+    { id: "gamma-insight", name: "Gamma Insight", hz: "40 Hz", url: "/audio/gamma-insight.mp3", desc: "Flashes of deep understanding and epiphanies." }
   ],
   "RENDIMIENTO": [
-    { id: "beta-active-mind", name: "Beta Active Mind", hz: "13-27 Hz", url: "/audio/beta-active-mind.mp3", desc: "Aumenta la atencion externa y actividad mental." },
-    { id: "beta-high-performance", name: "Beta High Performance", hz: "14-30 Hz", url: "/audio/beta-high-performance.mp3", desc: "Estimula calculos y funciones cognitivas complejas." },
-    { id: "beta-vital-mind", name: "Beta Vital Mind", hz: "14 Hz", url: "/audio/beta-vital-mind.mp3", desc: "Genera energia mental y enfoque en tareas." },
-    { id: "beta-cortex", name: "Beta Cortex", hz: "15.4 Hz", url: "/audio/beta-cortex.mp3", desc: "Procesamiento avanzado e inteligencia." },
-    { id: "alpha-focus", name: "Alpha Focus", hz: "11-14 Hz", url: "/audio/alpha-focus.mp3", desc: "Concentracion y enfoque mental sostenido." }
+    { id: "beta-active-mind", name: "Beta Active Mind", hz: "13-27 Hz", url: "/audio/beta-activemind.mp3", desc: "Increases external attention and mental activity." },
+    { id: "beta-high-performance", name: "Beta High Performance", hz: "14-30 Hz", url: "/audio/beta-high-performance.mp3", desc: "Stimulates calculations and complex cognitive functions." },
+    { id: "beta-vital-mind", name: "Beta Vital Mind", hz: "14 Hz", url: "/audio/beta-vital-mind.mp3", desc: "Generates mental energy and task focus." },
+    { id: "beta-cortex", name: "Beta Cortex", hz: "15.4 Hz", url: "/audio/beta-cortex.mp3", desc: "Advanced processing and intelligence." },
+    { id: "alpha-focus", name: "Alpha Focus", hz: "11-14 Hz", url: "/audio/alpha-focus.mp3", desc: "Sustained concentration and mental focus." }
   ]
 };
 
@@ -159,7 +159,6 @@ const App = () => {
   const [activeTab, setActiveTab] = useState('catalogo');
   const [currentTime, setCurrentTime] = useState(0);
   const [duration, setDuration] = useState(0);
-  const [showReminder, setShowReminder] = useState(false);
   const [showBanner, setShowBanner] = useState(false);
 
   const [favorites, setFavorites] = useState(() => {
@@ -176,13 +175,11 @@ const App = () => {
 
   useEffect(() => { activeTabRef.current = activeTab; }, [activeTab]);
 
-  // Splash
   useEffect(() => {
     const timer = setTimeout(() => setShowSplash(false), 4500);
     return () => clearTimeout(timer);
   }, []);
 
-  // Verificar recordatorio al cargar
   useEffect(() => {
     if (reminderTime && reminderTime === getTimeOfDay()) {
       setShowBanner(true);
@@ -191,7 +188,6 @@ const App = () => {
     }
   }, [reminderTime]);
 
-  // Motor de audio
   useEffect(() => {
     if (!audioRef.current) return;
     if (isPlaying) {
@@ -206,12 +202,10 @@ const App = () => {
     }
   }, [isPlaying, selectedTrack, selectedTime]);
 
-  // Guardar favoritos
   useEffect(() => {
     try { localStorage.setItem('genora_favorites', JSON.stringify(favorites)); } catch {}
   }, [favorites]);
 
-  // Guardar recordatorio
   useEffect(() => {
     try {
       if (reminderTime) localStorage.setItem('genora_reminder_time', reminderTime);
@@ -307,19 +301,17 @@ const App = () => {
     </div>
   );
 
-  // SPLASH
   if (showSplash) {
     return (
       <div className="fade-in-smooth" style={{ backgroundColor: '#020617', minHeight: '100vh', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', textAlign: 'center' }}>
         <style>{inlineStyles}</style>
         <img src="/imagenes/genora-logo-white.png" style={{ width: '180px', borderRadius: '50%', animation: 'logo-breathe 3s infinite ease-in-out', objectFit: 'contain' }} alt="Logo" />
         <h1 style={{ fontSize: '18px', fontWeight: '300', letterSpacing: '4px', color: '#22d3ee', textTransform: 'uppercase', marginTop: '35px', marginBottom: '8px' }}>RESONANCIA ORIGEN</h1>
-        <p style={{ fontSize: '10px', fontWeight: '200', letterSpacing: '3px', color: '#fdfcf5', opacity: 0.8 }}>ACTIVANDO TU CONSCIENCIA GENETICA</p>
+        <p style={{ fontSize: '10px', fontWeight: '200', letterSpacing: '3px', color: '#fdfcf5', opacity: 0.8 }}>ACTIVATING YOUR GENETIC CONSCIOUSNESS</p>
       </div>
     );
   }
 
-  // TEMPLO
   if (selectedTrack) {
     const progress = duration > 0 ? (currentTime / duration) * 100 : 0;
     return (
@@ -344,7 +336,6 @@ const App = () => {
         <p style={{ color: accentColor, fontSize: '12px', letterSpacing: '3px', fontWeight: 'bold', marginBottom: '8px' }}>{selectedTrack.hz}</p>
         <p style={{ fontSize: '13px', opacity: 0.7, maxWidth: '300px', lineHeight: '1.5', marginBottom: '24px' }}>{selectedTrack.desc}</p>
 
-        {/* Barra de progreso con tiempo */}
         <div style={{ width: '80%', maxWidth: '300px', marginBottom: '24px' }}>
           <div className="progress-bar-container" onClick={handleProgressClick}>
             <div className="progress-bar-fill" style={{ width: `${progress}%` }} />
@@ -369,7 +360,6 @@ const App = () => {
     );
   }
 
-  // FAVORITOS
   if (activeTab === 'favoritos') {
     const favTracks = ALL_TRACKS_FLAT.filter(t => favorites.includes(t.id));
     return (
@@ -379,23 +369,17 @@ const App = () => {
           <img src="/imagenes/genora-logo-white.png" style={{ height: '50px', borderRadius: '50%', objectFit: 'contain' }} alt="Logo" />
           <div style={{ fontSize: '10px', letterSpacing: '2px', color: '#22d3ee', border: '1px solid rgba(34,211,238,0.3)', padding: '5px 14px', borderRadius: '20px' }}>ES | EN</div>
         </div>
-
-        {/* Banner de recordatorio */}
         {showBanner && (
           <div className="alineacion-banner">
             <p style={{ fontSize: '11px', letterSpacing: '2px', color: '#22d3ee', margin: 0 }}>✦ Es momento de tu alineacion diaria Genora</p>
           </div>
         )}
-
         <p style={{ fontSize: '10px', letterSpacing: '4px', color: 'rgba(255,255,255,0.4)', textAlign: 'center', marginBottom: '24px' }}>MI CAMPO DE RESONANCIA</p>
-
-        {/* Sección de recordatorio */}
         <ReminderSection />
-
         {favTracks.length === 0 ? (
           <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', padding: '40px 20px', textAlign: 'center', color: 'rgba(255,255,255,0.3)' }}>
             <div style={{ fontSize: '40px', marginBottom: '16px' }}>♡</div>
-            <p style={{ fontSize: '12px', letterSpacing: '2px', lineHeight: '1.8' }}>Tu campo de resonancia esta vacio.<br />Toca el corazon de cualquier frecuencia para anclarla en tu campo personal.</p>
+            <p style={{ fontSize: '12px', letterSpacing: '2px', lineHeight: '1.8' }}>Your resonance field is empty.<br />Tap the heart on any frequency to anchor it to your personal field.</p>
           </div>
         ) : (
           <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
@@ -421,18 +405,14 @@ const App = () => {
     );
   }
 
-  // CATALOGO PRINCIPAL
   return (
     <div className="fade-in-smooth" style={{ backgroundColor: '#020617', minHeight: '100vh', color: 'white', padding: '20px', paddingBottom: '80px' }}>
       <style>{inlineStyles}</style>
-
-      {/* Banner de recordatorio en catalogo */}
       {showBanner && (
         <div className="alineacion-banner" style={{ marginTop: '10px' }}>
           <p style={{ fontSize: '11px', letterSpacing: '2px', color: '#22d3ee', margin: 0 }}>✦ Es momento de tu alineacion diaria Genora</p>
         </div>
       )}
-
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '40px', paddingTop: '10px' }}>
         {mainMode ? (
           <div onClick={handleBack} className="back-button-genora" style={{ borderColor: accentColor }}>
@@ -443,37 +423,33 @@ const App = () => {
         )}
         <div style={{ fontSize: '10px', letterSpacing: '2px', color: accentColor, border: `1px solid ${accentColor}88`, padding: '5px 14px', borderRadius: '20px', fontWeight: 'bold' }}>ES | EN</div>
       </div>
-
       <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
         <div style={{ width: activeSub ? '110px' : (mainMode ? '130px' : '165px'), height: activeSub ? '110px' : (mainMode ? '130px' : '165px'), borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '35px', transition: 'all 0.5s ease', animation: 'aura-supernova 8s infinite ease-in-out' }}>
           <img src="/imagenes/adn-icon.png" style={{ width: '100%', borderRadius: '50%' }} alt="ADN" />
         </div>
-
         {!mainMode && (
           <div className="category-stack">
-            <h2 style={{ fontSize: '10px', letterSpacing: '5px', color: '#22d3ee', marginBottom: '20px', fontWeight: '300' }}>ELIGE TU CAMINO</h2>
-            <button className="frecuencias-choice-button" onClick={() => setMainMode('frecuencias')}>Frecuencias</button>
-            <button className="meditaciones-choice-button" onClick={() => setMainMode('meditaciones')}>Meditaciones</button>
+            <h2 style={{ fontSize: '10px', letterSpacing: '5px', color: '#22d3ee', marginBottom: '20px', fontWeight: '300' }}>CHOOSE YOUR PATH</h2>
+            <button className="frecuencias-choice-button" onClick={() => setMainMode('frecuencias')}>Frequencies</button>
+            <button className="meditaciones-choice-button" onClick={() => setMainMode('meditaciones')}>Meditations</button>
             <button style={{ width: '75%', maxWidth: '270px', padding: '18px', borderRadius: '40px', border: '1.5px solid #d4af37', background: 'rgba(212, 175, 55, 0.05)', color: '#fdfcf5', fontSize: '12px', letterSpacing: '4px', cursor: 'pointer' }} onClick={() => setMainMode('experiencias')}>
-              EXPERIENCIAS
+              EXPERIENCES
             </button>
           </div>
         )}
-
         {mainMode && !activeCategory && (
           <div className="category-stack">
             <p style={{ fontSize: '11px', letterSpacing: '5px', color: accentColor, textAlign: 'center', marginBottom: '35px', fontWeight: 'bold' }}>{mainMode.toUpperCase()}</p>
-            {["MENTE", "CUERPO", "EXPANSION", "COHERENCIA"].map(cat => (
+            {["MIND", "BODY", "EXPANSION", "COHERENCE"].map(cat => (
               <div key={cat} onClick={() => setActiveCategory(cat)} className="sub-category-card" style={{ borderColor: `${accentColor}88` }}>
                 <span style={{ fontWeight: 'bold' }}>{cat}</span>
               </div>
             ))}
           </div>
         )}
-
-        {activeCategory === "MENTE" && !activeSub && (
+        {activeCategory === "MIND" && !activeSub && (
           <div className="category-stack">
-            <p style={{ fontSize: '11px', letterSpacing: '5px', color: accentColor, textAlign: 'center', marginBottom: '35px', fontWeight: 'bold' }}>RESONANCIA MENTE</p>
+            <p style={{ fontSize: '11px', letterSpacing: '5px', color: accentColor, textAlign: 'center', marginBottom: '35px', fontWeight: 'bold' }}>MIND RESONANCE</p>
             {Object.keys(subCategoryTitles).map(sub => (
               <div key={sub} onClick={() => setActiveSub(sub)} className="sub-category-card" style={{ borderColor: `${accentColor}88` }}>
                 <span style={{ fontWeight: 'bold' }}>{sub}</span>
@@ -481,7 +457,6 @@ const App = () => {
             ))}
           </div>
         )}
-
         {activeSub && (
           <div className="fade-in-smooth" style={{ width: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
             <p style={{ fontSize: '11px', letterSpacing: '3px', color: accentColor, textAlign: 'center', marginBottom: '25px', fontWeight: 'bold' }}>{subCategoryTitles[activeSub] || activeSub}</p>
