@@ -92,43 +92,88 @@ const inlineStyles = `
     border: 1px solid rgba(34,211,238,0.25);
     text-align: center;
   }
+  .lang-switch-btn {
+    font-size: 10px; letter-spacing: 2px; background: none; border-radius: 20px;
+    padding: 5px 14px; cursor: pointer; font-weight: bold; transition: all 0.3s ease;
+  }
 `;
 
+// Textos traducidos para coherencia global
+const TRANSLATIONS = {
+  es: {
+    choosePath: "ELIGE TU CAMINO",
+    frequencies: "Frecuencias",
+    meditations: "Meditaciones",
+    experiences: "EXPERIENCIAS",
+    catalogo: "CATÁLOGO",
+    miAlineacion: "MI ALINEACIÓN",
+    campoResonancia: "MI CAMPO DE RESONANCIA",
+    recordatorioTitulo: "RECORDATORIO DE ALINEACIÓN",
+    emptyFavs: "Tu campo de resonancia está vacío.\nToca el corazón en cualquier frecuencia para anclarla a tu campo personal.",
+    bannerAlineacion: "✦ Es momento de tu alineación diaria Genora",
+    programmedFor: "Tu alineación está programada para la",
+    manana: "Mañana",
+    tarde: "Tarde",
+    noche: "Noche",
+    backCat: "← Explorar Catálogo"
+  },
+  en: {
+    choosePath: "CHOOSE YOUR PATH",
+    frequencies: "Frequencies",
+    meditations: "Meditations",
+    experiences: "EXPERIENCES",
+    catalogo: "CATALOG",
+    miAlineacion: "MY ALIGNMENT",
+    campoResonancia: "MY RESONANCE FIELD",
+    recordatorioTitulo: "ALIGNMENT REMINDER",
+    emptyFavs: "Your resonance field is empty.\nTap the heart on any frequency to anchor it to your personal field.",
+    bannerAlineacion: "✦ It's time for your daily Genora alignment",
+    programmedFor: "Your alignment is scheduled for the",
+    manana: "Morning",
+    tarde: "Afternoon",
+    noche: "Night",
+    backCat: "← Explore Catalog"
+  }
+};
+
+const categoriesTranslations = {
+  es: { "MIND": "MENTE", "BODY": "CUERPO", "EXPANSION": "EXPANSIÓN", "COHERENCE": "COHERENCIA" },
+  en: { "MIND": "MIND", "BODY": "BODY", "EXPANSION": "EXPANSION", "COHERENCE": "COHERENCE" }
+};
+
 const subCategoryTitles = {
-  "APRENDIZAJE": "APRENDIZAJE & ENFOQUE",
-  "CREATIVIDAD": "CREATIVIDAD & RESOLUCION",
-  "CLARIDAD": "CLARIDAD MENTAL",
-  "RENDIMIENTO": "ACTIVACION MENTAL & RENDIMIENTO"
+  es: { "APRENDIZAJE": "APRENDIZAJE & ENFOQUE", "CREATIVIDAD": "CREATIVIDAD & RESOLUCIÓN", "CLARIDAD": "CLARIDAD MENTAL", "RENDIMIENTO": "ACTIVACIÓN MENTAL & RENDIMIENTO" },
+  en: { "APRENDIZAJE": "LEARNING & FOCUS", "CREATIVIDAD": "CREATIVIVITY & RESOLUTION", "CLARIDAD": "MENTAL CLARITY", "RENDIMIENTO": "MENTAL ACTIVATION & PERFORMANCE" }
 };
 
 const ALL_TRACKS = {
   "APRENDIZAJE": [
-    { id: "alpha-integration", name: "Alpha Integration", hz: "8-10 Hz", url: "/audio/alpha-integration.mp3", desc: "Information integration from a state of calm." },
-    { id: "beta-learning", name: "Beta Learning", hz: "12-14 Hz", url: "/audio/beta-learning.mp3", desc: "Passive information absorption without effort." },
-    { id: "alpha-intelligence", name: "Alpha Intelligence", hz: "11.5-14.5 Hz", url: "/audio/alpha-intelligence.mp3", desc: "Improves cognitive processing capacity." },
-    { id: "beta-focus", name: "Beta Focus", hz: "15-18 Hz", url: "/audio/beta-focus.mp3", desc: "Concentration and sustained mental clarity." },
-    { id: "beta-decision", name: "Beta Decision", hz: "13.8 Hz", url: "/audio/beta-decision.mp3", desc: "Clarity in key decision moments." }
+    { id: "alpha-integration", name: "Alpha Integration", hz: "8-10 Hz", url: "/audio/alpha-integration.mp3", desc: { es: "Integración de información desde un estado de calma profunda.", en: "Information integration from a state of deep calm." } },
+    { id: "beta-learning", name: "Beta Learning", hz: "12-14 Hz", url: "/audio/beta-learning.mp3", desc: { es: "Absorción pasiva de información sin esfuerzo cognitivo.", en: "Passive information absorption without effort." } },
+    { id: "alpha-intelligence", name: "Alpha Intelligence", hz: "11.5-14.5 Hz", url: "/audio/alpha-intelligence.mp3", desc: { es: "Mejora la capacidad de procesamiento cognitivo y retención.", en: "Improves cognitive processing capacity." } },
+    { id: "beta-focus", name: "Beta Focus", hz: "15-18 Hz", url: "/audio/beta-focus.mp3", desc: { es: "Concentración aguda y claridad mental sostenida.", en: "Concentration and sustained mental clarity." } },
+    { id: "beta-decision", name: "Beta Decision", hz: "13.8 Hz", url: "/audio/beta-decision.mp3", desc: { es: "Claridad absoluta en momentos de decisiones clave.", en: "Clarity in key decision moments." } }
   ],
   "CREATIVIDAD": [
-    { id: "alpha-creator", name: "Alpha Creator", hz: "8-12 Hz", url: "/audio/alpha-creator.mp3", desc: "Activates positive thinking and new ideas." },
-    { id: "beta-solution", name: "Beta Solution", hz: "12-36 Hz", url: "/audio/beta-solution.mp3", desc: "Analytical resolution and decision making." },
-    { id: "beta-logic", name: "Beta Logic", hz: "13-40 Hz", url: "/audio/beta-logic.mp3", desc: "Enhances logical and analytical thinking." },
-    { id: "beta-attention", name: "Beta Attention", hz: "12-15 Hz", url: "/audio/beta-attention.mp3", desc: "Conscious attention and agile mental response." }
+    { id: "alpha-creator", name: "Alpha Creator", hz: "8-12 Hz", url: "/audio/alpha-creator.mp3", desc: { es: "Activa el pensamiento positivo y la generación de ideas disruptivas.", en: "Activates positive thinking and new ideas." } },
+    { id: "beta-solution", name: "Beta Solution", hz: "12-36 Hz", url: "/audio/beta-solution.mp3", desc: { es: "Resolución analítica eficiente y toma de decisiones rápida.", en: "Analytical resolution and decision making." } },
+    { id: "beta-logic", name: "Beta Logic", hz: "13-40 Hz", url: "/audio/beta-logic.mp3", desc: { es: "Potencia el pensamiento lógico estructurado y el análisis.", en: "Enhances logical and analytical thinking." } },
+    { id: "beta-attention", name: "Beta Attention", hz: "12-15 Hz", url: "/audio/beta-attention.mp3", desc: { es: "Atención consciente y respuesta mental ágil.", en: "Conscious attention and agile mental response." } }
   ],
   "CLARIDAD": [
-    { id: "alpha-balance-mind", name: "Alpha Balance Mind", hz: "11 Hz", url: "/audio/alpha-balance-mind.mp3", desc: "Reduces tension and improves mental stability." },
-    { id: "alpha-center", name: "Alpha Center", hz: "12 Hz", url: "/audio/alpha-center.mp3", desc: "Centering, clarity and conscious expression." },
-    { id: "beta-decision-c", name: "Beta Decision", hz: "13.8 Hz", url: "/audio/beta-decision.mp3", desc: "Clarity in key decision moments." },
-    { id: "alpha-calm-alert", name: "Alpha Calm Alert", hz: "10.6 Hz", url: "/audio/alpha-calm-alert.mp3", desc: "Serene alertness and absolute presence." },
-    { id: "alpha-clarity", name: "Alpha Clarity", hz: "10.5 Hz", url: "/audio/alpha-clarity.mp3", desc: "Purification of thoughts and clear vision." },
-    { id: "gamma-insight", name: "Gamma Insight", hz: "40 Hz", url: "/audio/gamma-insight.mp3", desc: "Flashes of deep understanding and epiphanies." }
+    { id: "alpha-balance-mind", name: "Alpha Balance Mind", hz: "11 Hz", url: "/audio/alpha-balance-mind.mp3", desc: { es: "Reduce la tensión acumulada y mejora la estabilidad mental.", en: "Reduces tension and improves mental stability." } },
+    { id: "alpha-center", name: "Alpha Center", hz: "12 Hz", url: "/audio/alpha-center.mp3", desc: { es: "Centramiento absoluto, claridad y expresión consciente.", en: "Centering, clarity and conscious expression." } },
+    { id: "beta-decision-c", name: "Beta Decision", hz: "13.8 Hz", url: "/audio/beta-decision.mp3", desc: { es: "Claridad total en momentos de decisiones críticas.", en: "Clarity in key decision moments." } },
+    { id: "alpha-calm-alert", name: "Alpha Calm Alert", hz: "10.6 Hz", url: "/audio/Alpha-calm-alert.mp3", desc: { es: "Estado de alerta sereno y presencia absoluta.", en: "Serene alertness and absolute presence." } },
+    { id: "alpha-clarity", name: "Alpha Clarity", hz: "10.5 Hz", url: "/audio/alpha-clarity.mp3", desc: { es: "Purificación de pensamientos y visión mental limpia.", en: "Purification of thoughts and clear vision." } },
+    { id: "gamma-insight", name: "Gamma Insight", hz: "40 Hz", url: "/audio/gamma-insight.mp3", desc: { es: "Destellos de comprensión profunda y epifanías cuánticas.", en: "Flashes of deep understanding and epiphanies." } }
   ],
   "RENDIMIENTO": [
-    { id: "beta-active-mind", name: "Beta Active Mind", hz: "13-27 Hz", url: "/audio/beta-activemind.mp3", desc: "Increases external attention and mental activity." },
-    { id: "beta-high-performance", name: "Beta High Performance", hz: "14-30 Hz", url: "/audio/beta-high-performance.mp3", desc: "Stimulates calculations and complex cognitive functions." },
-    { id: "beta-vital-mind", name: "Beta Vital Mind", hz: "14 Hz", url: "/audio/beta-vital-mind.mp3", desc: "Generates mental energy and task focus." },
-    { id: "beta-cortex", name: "Beta Cortex", hz: "15.4 Hz", url: "/audio/beta-cortex.mp3", desc: "Advanced processing and intelligence." },
-    { id: "alpha-focus", name: "Alpha Focus", hz: "11-14 Hz", url: "/audio/alpha-focus.mp3", desc: "Sustained concentration and mental focus." }
+    { id: "beta-active-mind", name: "Beta Active Mind", hz: "13-27 Hz", url: "/audio/beta-activemind.mp3", desc: { es: "Incrementa la atención externa y la actividad mental enfocada.", en: "Increases external attention and mental activity." } },
+    { id: "beta-high-performance", name: "Beta High Performance", hz: "14-30 Hz", url: "/audio/beta-high-performance.mp3", desc: { es: "Estimula cálculos avanzados y funciones cognitivas complejas.", en: "Stimulates calculations and complex cognitive functions." } },
+    { id: "beta-vital-mind", name: "Beta Vital Mind", hz: "14 Hz", url: "/audio/beta-vital-mind.mp3", desc: { es: "Genera energía vital mental y enfoque en tareas exigentes.", en: "Generates mental energy and task focus." } },
+    { id: "beta-cortex", name: "Beta Cortex", hz: "15.4 Hz", url: "/audio/beta-cortex.mp3", desc: { es: "Procesamiento mental avanzado e inteligencia ampliada.", en: "Advanced processing and intelligence." } },
+    { id: "alpha-focus", name: "Alpha Focus", hz: "11-14 Hz", url: "/audio/alpha-focus.mp3", desc: { es: "Concentración sostenida y enfoque mental alineado.", en: "Sustained concentration and mental focus." } }
   ]
 };
 
@@ -150,6 +195,7 @@ const getTimeOfDay = () => {
 
 const App = () => {
   const [showSplash, setShowSplash] = useState(true);
+  const [language, setLanguage] = useState('es'); // 'es' o 'en' - Selector global inteligible
   const [mainMode, setMainMode] = useState(null);
   const [activeCategory, setActiveCategory] = useState(null);
   const [activeSub, setActiveSub] = useState(null);
@@ -262,27 +308,33 @@ const App = () => {
     audioRef.current.currentTime = ratio * duration;
   };
 
+  const toggleLanguage = () => {
+    setLanguage(prev => prev === 'es' ? 'en' : 'es');
+  };
+
+  const t = TRANSLATIONS[language];
+
   const BottomBar = () => (
     <div className="bottom-bar">
       <button className={`bar-tab ${activeTab === 'catalogo' ? 'active' : ''}`} onClick={() => setActiveTab('catalogo')}>
         <span className="bar-tab-icon">◎</span>
-        CATALOGO
+        {t.catalogo}
       </button>
-      <button className={`bar-tab ${activeTab === 'favoritos' ? 'active' : ''}`} onClick={() => setActiveTab('favoritos')}>
+      <button className={`bar-tab ${activeTab === 'favoritos' ? 'active' : ''}`} onClick={() => setActiveTab('favoritos')} style={{ color: activeTab === 'favoritos' ? '#ff6b9d' : 'rgba(255,255,255,0.3)' }}>
         <span className="bar-tab-icon">{favorites.length > 0 ? '♥' : '♡'}</span>
-        {favorites.length > 0 ? `MI ALINEACION (${favorites.length})` : 'MI ALINEACION'}
+        {favorites.length > 0 ? `${t.miAlineacion} (${favorites.length})` : t.miAlineacion}
       </button>
     </div>
   );
 
   const ReminderSection = () => (
     <div style={{ width: '85%', maxWidth: '340px', margin: '0 auto 24px', padding: '20px', borderRadius: '24px', background: 'rgba(255,255,255,0.02)', border: '1px solid rgba(255,255,255,0.07)' }}>
-      <p style={{ fontSize: '10px', letterSpacing: '3px', color: 'rgba(255,255,255,0.35)', textAlign: 'center', marginBottom: '16px' }}>RECORDATORIO DE ALINEACION</p>
+      <p style={{ fontSize: '10px', letterSpacing: '3px', color: 'rgba(255,255,255,0.35)', textAlign: 'center', marginBottom: '16px' }}>{t.recordatorioTitulo}</p>
       <div style={{ display: 'flex', gap: '8px', justifyContent: 'center', flexWrap: 'wrap' }}>
         {[
-          { key: 'manana', label: 'Manana', icon: '☀' },
-          { key: 'tarde', label: 'Tarde', icon: '◐' },
-          { key: 'noche', label: 'Noche', icon: '☽' }
+          { key: 'manana', label: t.manana, icon: '☀' },
+          { key: 'tarde', label: t.tarde, icon: '◐' },
+          { key: 'noche', label: t.noche, icon: '☽' }
         ].map(opt => (
           <button
             key={opt.key}
@@ -295,7 +347,7 @@ const App = () => {
       </div>
       {reminderTime && (
         <p style={{ fontSize: '10px', color: 'rgba(34,211,238,0.5)', textAlign: 'center', marginTop: '12px', letterSpacing: '1px' }}>
-          Tu alineacion esta programada para la {reminderTime === 'manana' ? 'manana' : reminderTime === 'tarde' ? 'tarde' : 'noche'}
+          {t.programmedFor} {reminderTime === 'manana' ? t.manana.toLowerCase() : reminderTime === 'tarde' ? t.tarde.toLowerCase() : t.noche.toLowerCase()}
         </p>
       )}
     </div>
@@ -334,11 +386,13 @@ const App = () => {
         </div>
         <h2 style={{ fontSize: '24px', letterSpacing: '4px', textTransform: 'uppercase' }}>{selectedTrack.name}</h2>
         <p style={{ color: accentColor, fontSize: '12px', letterSpacing: '3px', fontWeight: 'bold', marginBottom: '8px' }}>{selectedTrack.hz}</p>
-        <p style={{ fontSize: '13px', opacity: 0.7, maxWidth: '300px', lineHeight: '1.5', marginBottom: '24px' }}>{selectedTrack.desc}</p>
+        <p style={{ fontSize: '13px', opacity: 0.7, maxWidth: '300px', lineHeight: '1.5', marginBottom: '24px' }}>
+          {typeof selectedTrack.desc === 'string' ? selectedTrack.desc : selectedTrack.desc[language]}
+        </p>
 
         <div style={{ width: '80%', maxWidth: '300px', marginBottom: '24px' }}>
           <div className="progress-bar-container" onClick={handleProgressClick}>
-            <div className="progress-bar-fill" style={{ width: `${progress}%` }} />
+            <div className="progress-bar-fill" style={{ width: `${progress}%`, backgroundColor: accentColor }} />
           </div>
           <div style={{ display: 'flex', justifyContent: 'space-between' }}>
             <span style={{ fontSize: '10px', color: 'rgba(255,255,255,0.35)', letterSpacing: '1px' }}>{formatTime(currentTime)}</span>
@@ -367,19 +421,21 @@ const App = () => {
         <style>{inlineStyles}</style>
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '30px', paddingTop: '10px' }}>
           <img src="/imagenes/genora-logo-white.png" style={{ height: '50px', borderRadius: '50%', objectFit: 'contain' }} alt="Logo" />
-          <div style={{ fontSize: '10px', letterSpacing: '2px', color: '#22d3ee', border: '1px solid rgba(34,211,238,0.3)', padding: '5px 14px', borderRadius: '20px' }}>ES | EN</div>
+          <button onClick={toggleLanguage} className="lang-switch-btn" style={{ color: '#22d3ee', border: '1px solid rgba(34,211,238,0.3)' }}>
+            {language === 'es' ? 'ES | EN' : 'EN | ES'}
+          </button>
         </div>
         {showBanner && (
           <div className="alineacion-banner">
-            <p style={{ fontSize: '11px', letterSpacing: '2px', color: '#22d3ee', margin: 0 }}>✦ Es momento de tu alineacion diaria Genora</p>
+            <p style={{ fontSize: '11px', letterSpacing: '2px', color: '#22d3ee', margin: 0 }}>{t.bannerAlineacion}</p>
           </div>
         )}
-        <p style={{ fontSize: '10px', letterSpacing: '4px', color: 'rgba(255,255,255,0.4)', textAlign: 'center', marginBottom: '24px' }}>MI CAMPO DE RESONANCIA</p>
+        <p style={{ fontSize: '10px', letterSpacing: '4px', color: 'rgba(255,255,255,0.4)', textAlign: 'center', marginBottom: '24px' }}>{t.campoResonancia}</p>
         <ReminderSection />
         {favTracks.length === 0 ? (
           <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', padding: '40px 20px', textAlign: 'center', color: 'rgba(255,255,255,0.3)' }}>
             <div style={{ fontSize: '40px', marginBottom: '16px' }}>♡</div>
-            <p style={{ fontSize: '12px', letterSpacing: '2px', lineHeight: '1.8' }}>Your resonance field is empty.<br />Tap the heart on any frequency to anchor it to your personal field.</p>
+            <p style={{ fontSize: '12px', letterSpacing: '2px', lineHeight: '1.8', whiteSpace: 'pre-line' }}>{t.emptyFavs}</p>
           </div>
         ) : (
           <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
@@ -387,7 +443,9 @@ const App = () => {
               <div key={track.id} className="track-card" onClick={() => { setSelectedTrack(track); setIsPlaying(true); }} style={{ borderLeft: '4px solid #22d3ee' }}>
                 <div style={{ textAlign: 'left', width: '75%' }}>
                   <div style={{ fontSize: '15px', color: 'white', fontWeight: '400' }}>{track.name}</div>
-                  <div style={{ fontSize: '10px', color: '#fdfcf5', opacity: 0.7, marginTop: '5px', fontWeight: '200', letterSpacing: '1px' }}>{track.desc}</div>
+                  <div style={{ fontSize: '10px', color: '#fdfcf5', opacity: 0.7, marginTop: '5px', fontWeight: '200', letterSpacing: '1px' }}>
+                    {typeof track.desc === 'string' ? track.desc : track.desc[language]}
+                  </div>
                 </div>
                 <div style={{ display: 'flex', alignItems: 'center', gap: '4px' }}>
                   <button className="heart-btn" onClick={(e) => toggleFavorite(e, track.id)} style={{ color: '#ff6b9d', fontSize: '18px' }}>♥</button>
@@ -410,7 +468,7 @@ const App = () => {
       <style>{inlineStyles}</style>
       {showBanner && (
         <div className="alineacion-banner" style={{ marginTop: '10px' }}>
-          <p style={{ fontSize: '11px', letterSpacing: '2px', color: '#22d3ee', margin: 0 }}>✦ Es momento de tu alineacion diaria Genora</p>
+          <p style={{ fontSize: '11px', letterSpacing: '2px', color: '#22d3ee', margin: 0 }}>{t.bannerAlineacion}</p>
         </div>
       )}
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '40px', paddingTop: '10px' }}>
@@ -421,7 +479,9 @@ const App = () => {
         ) : (
           <img src="/imagenes/genora-logo-white.png" style={{ height: '95px', borderRadius: '50%', objectFit: 'contain' }} alt="Logo" />
         )}
-        <div style={{ fontSize: '10px', letterSpacing: '2px', color: accentColor, border: `1px solid ${accentColor}88`, padding: '5px 14px', borderRadius: '20px', fontWeight: 'bold' }}>ES | EN</div>
+        <button onClick={toggleLanguage} className="lang-switch-btn" style={{ color: accentColor, border: `1px solid ${accentColor}88` }}>
+          {language === 'es' ? 'ES | EN' : 'EN | ES'}
+        </button>
       </div>
       <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
         <div style={{ width: activeSub ? '110px' : (mainMode ? '130px' : '165px'), height: activeSub ? '110px' : (mainMode ? '130px' : '165px'), borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '35px', transition: 'all 0.5s ease', animation: 'aura-supernova 8s infinite ease-in-out' }}>
@@ -429,11 +489,11 @@ const App = () => {
         </div>
         {!mainMode && (
           <div className="category-stack">
-            <h2 style={{ fontSize: '10px', letterSpacing: '5px', color: '#22d3ee', marginBottom: '20px', fontWeight: '300' }}>CHOOSE YOUR PATH</h2>
-            <button className="frecuencias-choice-button" onClick={() => setMainMode('frecuencias')}>Frequencies</button>
-            <button className="meditaciones-choice-button" onClick={() => setMainMode('meditaciones')}>Meditations</button>
+            <h2 style={{ fontSize: '10px', letterSpacing: '5px', color: '#22d3ee', marginBottom: '20px', fontWeight: '300' }}>{t.choosePath}</h2>
+            <button className="frecuencias-choice-button" onClick={() => setMainMode('frecuencias')}>{t.frequencies}</button>
+            <button className="meditaciones-choice-button" onClick={() => setMainMode('meditaciones')}>{t.meditations}</button>
             <button style={{ width: '75%', maxWidth: '270px', padding: '18px', borderRadius: '40px', border: '1.5px solid #d4af37', background: 'rgba(212, 175, 55, 0.05)', color: '#fdfcf5', fontSize: '12px', letterSpacing: '4px', cursor: 'pointer' }} onClick={() => setMainMode('experiencias')}>
-              EXPERIENCES
+              {t.experiences}
             </button>
           </div>
         )}
@@ -442,15 +502,17 @@ const App = () => {
             <p style={{ fontSize: '11px', letterSpacing: '5px', color: accentColor, textAlign: 'center', marginBottom: '35px', fontWeight: 'bold' }}>{mainMode.toUpperCase()}</p>
             {["MIND", "BODY", "EXPANSION", "COHERENCE"].map(cat => (
               <div key={cat} onClick={() => setActiveCategory(cat)} className="sub-category-card" style={{ borderColor: `${accentColor}88` }}>
-                <span style={{ fontWeight: 'bold' }}>{cat}</span>
+                <span style={{ fontWeight: 'bold' }}>{categoriesTranslations[language][cat] || cat}</span>
               </div>
             ))}
           </div>
         )}
         {activeCategory === "MIND" && !activeSub && (
           <div className="category-stack">
-            <p style={{ fontSize: '11px', letterSpacing: '5px', color: accentColor, textAlign: 'center', marginBottom: '35px', fontWeight: 'bold' }}>MIND RESONANCE</p>
-            {Object.keys(subCategoryTitles).map(sub => (
+            <p style={{ fontSize: '11px', letterSpacing: '5px', color: accentColor, textAlign: 'center', marginBottom: '35px', fontWeight: 'bold' }}>
+              {language === 'es' ? 'RESONANCIA MENTAL' : 'MIND RESONANCE'}
+            </p>
+            {Object.keys(subCategoryTitles[language]).map(sub => (
               <div key={sub} onClick={() => setActiveSub(sub)} className="sub-category-card" style={{ borderColor: `${accentColor}88` }}>
                 <span style={{ fontWeight: 'bold' }}>{sub}</span>
               </div>
@@ -459,12 +521,16 @@ const App = () => {
         )}
         {activeSub && (
           <div className="fade-in-smooth" style={{ width: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-            <p style={{ fontSize: '11px', letterSpacing: '3px', color: accentColor, textAlign: 'center', marginBottom: '25px', fontWeight: 'bold' }}>{subCategoryTitles[activeSub] || activeSub}</p>
+            <p style={{ fontSize: '11px', letterSpacing: '3px', color: accentColor, textAlign: 'center', marginBottom: '25px', fontWeight: 'bold' }}>
+              {subCategoryTitles[language][activeSub] || activeSub}
+            </p>
             {(ALL_TRACKS[activeSub] || []).map((track) => (
               <div key={track.id} className="track-card" onClick={() => setSelectedTrack(track)} style={{ borderLeft: `4px solid ${accentColor}` }}>
                 <div style={{ textAlign: 'left', width: '75%' }}>
                   <div style={{ fontSize: '15px', color: 'white', fontWeight: '400' }}>{track.name}</div>
-                  <div style={{ fontSize: '10px', color: '#fdfcf5', opacity: 0.7, marginTop: '5px', fontWeight: '200', letterSpacing: '1px' }}>{track.desc}</div>
+                  <div style={{ fontSize: '10px', color: '#fdfcf5', opacity: 0.7, marginTop: '5px', fontWeight: '200', letterSpacing: '1px' }}>
+                    {typeof track.desc === 'string' ? track.desc : track.desc[language]}
+                  </div>
                 </div>
                 <div style={{ display: 'flex', alignItems: 'center', gap: '4px' }}>
                   <button className="heart-btn" onClick={(e) => toggleFavorite(e, track.id)} style={{ color: isFavorite(track.id) ? '#ff6b9d' : 'rgba(255,255,255,0.3)' }}>
