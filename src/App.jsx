@@ -13,7 +13,6 @@ const T = {
     body: "CUERPO",
     expansion: "EXPANSION",
     coherence: "COHERENCIA",
-    mind_resonance: "RESONANCIA MENTE",
     catalog: "CATALOGO",
     my_alignment: "MI ALINEACION",
     my_field: "MI CAMPO DE RESONANCIA",
@@ -27,11 +26,41 @@ const T = {
     reminder_set_afternoon: "Tu alineacion esta programada para la tarde",
     reminder_set_night: "Tu alineacion esta programada para la noche",
     banner: "✦ Es momento de tu alineacion diaria Genora",
-    sub_categories: {
-      "APRENDIZAJE": "APRENDIZAJE & ENFOQUE",
-      "CREATIVIDAD": "CREATIVIDAD & RESOLUCION",
-      "CLARIDAD": "CLARIDAD MENTAL",
-      "RENDIMIENTO": "ACTIVACION MENTAL & RENDIMIENTO"
+    suggestion_label: "✦ Sugerencia de Alineacion",
+    pillars: {
+      MENTE: {
+        label: "MENTE",
+        subs: {
+          "APRENDIZAJE": "APRENDIZAJE & ENFOQUE",
+          "CREATIVIDAD": "CREATIVIDAD & RESOLUCION",
+          "CLARIDAD": "CLARIDAD MENTAL",
+          "RENDIMIENTO": "ACTIVACION MENTAL & RENDIMIENTO"
+        }
+      },
+      COHERENCIA: {
+        label: "COHERENCIA",
+        subs: {
+          "REGULACION": "REGULACION EMOCIONAL",
+          "EQUILIBRIO": "EQUILIBRIO INTERNO",
+          "INTEGRACION": "INTEGRACION MENTE-CUERPO"
+        }
+      },
+      CUERPO: {
+        label: "CUERPO",
+        subs: {
+          "REGENERACION": "REGENERACION & SANACION",
+          "ORGANOS": "ORGANOS & SISTEMAS",
+          "DOLOR": "DOLOR & RECUPERACION"
+        }
+      },
+      EXPANSION: {
+        label: "EXPANSION",
+        subs: {
+          "MEDITACION": "MEDITACION & ESTADOS INTERNOS",
+          "PERCEPCION": "PERCEPCION & INTUICION",
+          "EXPERIENCIAS": "EXPERIENCIAS EXPANDIDAS"
+        }
+      }
     },
     tracks: {
       "alpha-integration": "Integracion de informacion desde un estado de calma.",
@@ -53,7 +82,8 @@ const T = {
       "beta-high-performance": "Estimula calculos y funciones cognitivas complejas.",
       "beta-vital-mind": "Genera energia mental y enfoque en tareas.",
       "beta-cortex": "Procesamiento avanzado e inteligencia.",
-      "alpha-focus": "Concentracion y enfoque mental sostenido."
+      "alpha-focus": "Concentracion y enfoque mental sostenido.",
+      "coming-soon": "Proximamente disponible."
     }
   },
   en: {
@@ -67,7 +97,6 @@ const T = {
     body: "BODY",
     expansion: "EXPANSION",
     coherence: "COHERENCE",
-    mind_resonance: "MIND RESONANCE",
     catalog: "CATALOG",
     my_alignment: "MY ALIGNMENT",
     my_field: "MY RESONANCE FIELD",
@@ -81,11 +110,41 @@ const T = {
     reminder_set_afternoon: "Your alignment is scheduled for the afternoon",
     reminder_set_night: "Your alignment is scheduled for the night",
     banner: "✦ It is time for your daily Genora alignment",
-    sub_categories: {
-      "APRENDIZAJE": "LEARNING & FOCUS",
-      "CREATIVIDAD": "CREATIVITY & RESOLUTION",
-      "CLARIDAD": "MENTAL CLARITY",
-      "RENDIMIENTO": "MENTAL ACTIVATION & PERFORMANCE"
+    suggestion_label: "✦ Alignment Suggestion",
+    pillars: {
+      MENTE: {
+        label: "MIND",
+        subs: {
+          "APRENDIZAJE": "LEARNING & FOCUS",
+          "CREATIVIDAD": "CREATIVITY & RESOLUTION",
+          "CLARIDAD": "MENTAL CLARITY",
+          "RENDIMIENTO": "MENTAL ACTIVATION & PERFORMANCE"
+        }
+      },
+      COHERENCIA: {
+        label: "COHERENCE",
+        subs: {
+          "REGULACION": "EMOTIONAL REGULATION",
+          "EQUILIBRIO": "INNER BALANCE",
+          "INTEGRACION": "MIND-BODY INTEGRATION"
+        }
+      },
+      CUERPO: {
+        label: "BODY",
+        subs: {
+          "REGENERACION": "REGENERATION & HEALING",
+          "ORGANOS": "ORGANS & SYSTEMS",
+          "DOLOR": "PAIN & RECOVERY"
+        }
+      },
+      EXPANSION: {
+        label: "EXPANSION",
+        subs: {
+          "MEDITACION": "MEDITATION & INNER STATES",
+          "PERCEPCION": "PERCEPTION & INTUITION",
+          "EXPERIENCIAS": "EXPANDED EXPERIENCES"
+        }
+      }
     },
     tracks: {
       "alpha-integration": "Information integration from a state of calm.",
@@ -107,7 +166,8 @@ const T = {
       "beta-high-performance": "Stimulates calculations and complex cognitive functions.",
       "beta-vital-mind": "Generates mental energy and task focus.",
       "beta-cortex": "Advanced processing and intelligence.",
-      "alpha-focus": "Sustained concentration and mental focus."
+      "alpha-focus": "Sustained concentration and mental focus.",
+      "coming-soon": "Coming soon."
     }
   }
 };
@@ -122,54 +182,49 @@ const inlineStyles = `
   .fade-in-smooth { animation: fadeIn 0.8s ease-in forwards; }
   @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
   body, html { overflow-x: hidden; background-color: #020617; margin: 0; padding: 0; font-family: sans-serif; color: white; }
-  .frecuencias-choice-button {
+  .choice-button {
     width: 75%; max-width: 270px; padding: 18px; margin: 10px 0;
-    border-radius: 40px; border: 1.5px solid rgba(34, 211, 238, 0.6);
-    background: rgba(34, 211, 238, 0.05); color: white;
-    font-size: 12px; letter-spacing: 4px; text-transform: uppercase;
-    cursor: pointer; transition: all 0.4s ease;
+    border-radius: 40px; background: rgba(34, 211, 238, 0.04); color: white;
+    font-size: 12px; letter-spacing: 6px; text-transform: uppercase; font-weight: 200;
+    cursor: pointer; transition: all 0.4s ease; border: 1px solid rgba(34,211,238,0.35);
   }
-  .meditaciones-choice-button {
-    width: 75%; max-width: 270px; padding: 18px; margin: 10px 0;
-    border-radius: 40px; border: 1.5px solid rgba(168, 85, 247, 0.6);
-    background: rgba(168, 85, 247, 0.05); color: white;
-    font-size: 12px; letter-spacing: 4px; text-transform: uppercase;
-    cursor: pointer; transition: all 0.4s ease;
-  }
+  .choice-button:hover { background: rgba(34,211,238,0.08); border-color: rgba(34,211,238,0.6); }
+  .choice-button.violet { border-color: rgba(168,85,247,0.35); background: rgba(168,85,247,0.04); }
+  .choice-button.gold { border-color: rgba(212,175,55,0.35); background: rgba(212,175,55,0.04); }
   .category-stack { display: flex; flex-direction: column; align-items: center; gap: 12px; width: 100%; margin: 0 auto; }
-  .sub-category-card {
+  .pillar-card {
     width: 70%; max-width: 250px; padding: 18px; border-radius: 40px;
-    background: rgba(34, 211, 238, 0.02); border: 1.5px solid rgba(34, 211, 238, 0.5);
-    text-align: center; cursor: pointer; font-size: 11px; letter-spacing: 3px; text-transform: uppercase;
+    background: rgba(34, 211, 238, 0.02); border: 1px solid rgba(34,211,238,0.3);
+    text-align: center; cursor: pointer; font-size: 12px; letter-spacing: 6px;
+    text-transform: uppercase; font-weight: 200;
     transition: all 0.3s ease; color: white;
   }
+  .pillar-card:hover { background: rgba(34,211,238,0.06); border-color: rgba(34,211,238,0.5); }
   .track-card {
     width: 85%; max-width: 340px; padding: 20px 25px; margin: 8px 0; border-radius: 30px;
-    background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.1);
+    background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.1);
     display: flex; justify-content: space-between; align-items: center; cursor: pointer;
   }
-  .track-card:active { transform: scale(0.98); background: rgba(255, 255, 255, 0.07); }
+  .track-card:active { transform: scale(0.98); }
+  .track-card.suggestion { border-color: rgba(34,211,238,0.3); background: rgba(34,211,238,0.04); }
   .back-button-genora {
-    width: 42px; height: 42px; border-radius: 50%; border: 1.5px solid rgba(34, 211, 238, 0.6);
-    background: rgba(34, 211, 238, 0.1); display: flex; align-items: center; justify-content: center; cursor: pointer;
+    width: 42px; height: 42px; border-radius: 50%; border: 1px solid rgba(34,211,238,0.5);
+    background: rgba(34,211,238,0.08); display: flex; align-items: center; justify-content: center; cursor: pointer;
   }
   .time-button {
-    width: 58px; padding: 10px 0; border-radius: 40px; border: 1px solid rgba(255,255,255,0.2);
-    background: none; color: white; font-size: 12px; cursor: pointer; transition: 0.2s;
+    width: 58px; padding: 10px 0; border-radius: 40px; border: 1px solid rgba(255,255,255,0.15);
+    background: none; color: white; font-size: 12px; cursor: pointer; transition: 0.2s; font-weight: 200;
   }
   .heart-btn {
-    background: none; border: none; cursor: pointer;
-    font-size: 16px; padding: 4px 8px; line-height: 1;
-    transition: transform 0.2s ease; flex-shrink: 0;
+    background: none; border: none; cursor: pointer; font-size: 16px;
+    padding: 4px 8px; line-height: 1; transition: transform 0.2s ease; flex-shrink: 0;
   }
   .heart-btn:active { transform: scale(1.4); }
   .bottom-bar {
     position: fixed; bottom: 0; left: 0; right: 0;
-    background: rgba(2, 6, 23, 0.96);
-    backdrop-filter: blur(20px);
-    border-top: 1px solid rgba(255, 255, 255, 0.06);
-    display: flex; justify-content: center;
-    z-index: 100; padding: 0;
+    background: rgba(2,6,23,0.96); backdrop-filter: blur(20px);
+    border-top: 1px solid rgba(255,255,255,0.06);
+    display: flex; justify-content: center; z-index: 100;
   }
   .bar-tab {
     flex: 1; max-width: 200px; padding: 14px 8px 18px;
@@ -180,72 +235,78 @@ const inlineStyles = `
   }
   .bar-tab.active { color: #22d3ee; }
   .bar-tab-icon { font-size: 18px; line-height: 1; }
-  .lang-switch {
-    display: flex; align-items: center; gap: 0;
-    border: 1px solid rgba(34,211,238,0.4); border-radius: 20px; overflow: hidden;
-  }
-  .lang-btn {
-    padding: 5px 10px; background: none; border: none;
-    font-size: 10px; letter-spacing: 2px; cursor: pointer;
-    transition: all 0.2s ease; color: rgba(255,255,255,0.4);
-  }
+  .lang-switch { display: flex; border: 1px solid rgba(34,211,238,0.35); border-radius: 20px; overflow: hidden; }
+  .lang-btn { padding: 5px 12px; background: none; border: none; font-size: 10px; letter-spacing: 2px; cursor: pointer; transition: all 0.2s ease; color: rgba(255,255,255,0.35); font-weight: 200; }
   .lang-btn.active { background: rgba(34,211,238,0.15); color: #22d3ee; }
-  .progress-bar-container {
-    width: 100%; height: 2px; background: rgba(255,255,255,0.1);
-    border-radius: 2px; margin: 8px 0 4px; cursor: pointer;
-  }
-  .progress-bar-fill {
-    height: 100%; border-radius: 2px; background: #22d3ee;
-    transition: width 0.5s linear;
-  }
+  .progress-bar-container { width: 100%; height: 2px; background: rgba(255,255,255,0.1); border-radius: 2px; margin: 8px 0 4px; cursor: pointer; }
+  .progress-bar-fill { height: 100%; border-radius: 2px; background: #22d3ee; transition: width 0.5s linear; }
   .reminder-btn {
-    padding: 8px 18px; border-radius: 30px; border: 1px solid rgba(34,211,238,0.3);
-    background: none; color: rgba(255,255,255,0.5); font-size: 10px;
-    letter-spacing: 2px; cursor: pointer; transition: all 0.3s ease;
-    text-transform: uppercase;
+    padding: 8px 16px; border-radius: 30px; border: 1px solid rgba(34,211,238,0.25);
+    background: none; color: rgba(255,255,255,0.4); font-size: 10px;
+    letter-spacing: 2px; cursor: pointer; transition: all 0.3s ease; text-transform: uppercase; font-weight: 200;
   }
   .reminder-btn.active { border-color: #22d3ee; color: #22d3ee; background: rgba(34,211,238,0.08); }
   .alineacion-banner {
-    margin: 0 auto 20px; width: 85%; max-width: 340px;
-    padding: 14px 20px; border-radius: 20px;
-    background: rgba(34,211,238,0.06); border: 1px solid rgba(34,211,238,0.25);
-    text-align: center;
+    margin: 0 auto 20px; width: 85%; max-width: 340px; padding: 12px 20px;
+    border-radius: 20px; background: rgba(34,211,238,0.05);
+    border: 1px solid rgba(34,211,238,0.2); text-align: center;
+  }
+  .suggestion-badge {
+    font-size: 9px; letter-spacing: 2px; color: #22d3ee;
+    opacity: 0.8; margin-bottom: 4px; text-transform: uppercase;
   }
 `;
 
 // ── TRACKS ────────────────────────────────────────────────────────────────────
 const ALL_TRACKS = {
-  "APRENDIZAJE": [
-    { id: "alpha-integration", name: "Alpha Integration", hz: "8-10 Hz", url: "/audio/alpha-integration.mp3" },
-    { id: "beta-learning", name: "Beta Learning", hz: "12-14 Hz", url: "/audio/beta-learning.mp3" },
-    { id: "alpha-intelligence", name: "Alpha Intelligence", hz: "11.5-14.5 Hz", url: "/audio/alpha-intelligence.mp3" },
-    { id: "beta-focus", name: "Beta Focus", hz: "15-18 Hz", url: "/audio/beta-focus.mp3" },
-    { id: "beta-decision", name: "Beta Decision", hz: "13.8 Hz", url: "/audio/beta-decision.mp3" }
-  ],
-  "CREATIVIDAD": [
-    { id: "alpha-creator", name: "Alpha Creator", hz: "8-12 Hz", url: "/audio/alpha-creator.mp3" },
-    { id: "beta-solution", name: "Beta Solution", hz: "12-36 Hz", url: "/audio/beta-solution.mp3" },
-    { id: "beta-logic", name: "Beta Logic", hz: "13-40 Hz", url: "/audio/beta-logic.mp3" },
-    { id: "beta-attention", name: "Beta Attention", hz: "12-15 Hz", url: "/audio/Beta-attention.mp3" }
-  ],
-  "CLARIDAD": [
-    { id: "alpha-balance-mind", name: "Alpha Balance Mind", hz: "11 Hz", url: "/audio/alpha-balance-mind.mp3" },
-    { id: "alpha-center", name: "Alpha Center", hz: "12 Hz", url: "/audio/alpha-center.mp3" },
-    { id: "beta-decision-c", name: "Beta Decision", hz: "13.8 Hz", url: "/audio/beta-decision.mp3" },
-    { id: "alpha-calm-alert", name: "Alpha Calm Alert", hz: "10.6 Hz", url: "/audio/alpha-calm-alert.mp3" },
-    { id: "alpha-clarity", name: "Alpha Clarity", hz: "10.5 Hz", url: "/audio/alpha-clarity.mp3" },
-    { id: "gamma-insight", name: "Gamma Insight", hz: "40 Hz", url: "/audio/gamma-insight.mp3" }
-  ],
-  "RENDIMIENTO": [
-    { id: "beta-active-mind", name: "Beta Active Mind", hz: "13-27 Hz", url: "/audio/beta-active-mind.mp3" },
-    { id: "beta-high-performance", name: "Beta High Performance", hz: "14-30 Hz", url: "/audio/beta-high-performance.mp3" },
-    { id: "beta-vital-mind", name: "Beta Vital Mind", hz: "14 Hz", url: "/audio/beta-vital-mind.mp3" },
-    { id: "beta-cortex", name: "Beta Cortex", hz: "15.4 Hz", url: "/audio/beta-cortex.mp3" },
-    { id: "alpha-focus", name: "Alpha Focus", hz: "11-14 Hz", url: "/audio/alpha-focus.mp3" }
-  ]
+  MENTE: {
+    "APRENDIZAJE": [
+      { id: "alpha-integration", name: "Alpha Integration", hz: "8-10 Hz", url: "/audio/alpha-integration.mp3" },
+      { id: "beta-learning", name: "Beta Learning", hz: "12-14 Hz", url: "/audio/beta-learning.mp3" },
+      { id: "alpha-intelligence", name: "Alpha Intelligence", hz: "11.5-14.5 Hz", url: "/audio/alpha-intelligence.mp3" },
+      { id: "beta-focus", name: "Beta Focus", hz: "15-18 Hz", url: "/audio/beta-focus.mp3" },
+      { id: "beta-decision", name: "Beta Decision", hz: "13.8 Hz", url: "/audio/beta-decision.mp3" }
+    ],
+    "CREATIVIDAD": [
+      { id: "alpha-creator", name: "Alpha Creator", hz: "8-12 Hz", url: "/audio/alpha-creator.mp3" },
+      { id: "beta-solution", name: "Beta Solution", hz: "12-36 Hz", url: "/audio/beta-solution.mp3" },
+      { id: "beta-logic", name: "Beta Logic", hz: "13-40 Hz", url: "/audio/beta-logic.mp3" },
+      { id: "beta-attention", name: "Beta Attention", hz: "12-15 Hz", url: "/audio/Beta-attention.mp3" }
+    ],
+    "CLARIDAD": [
+      { id: "alpha-balance-mind", name: "Alpha Balance Mind", hz: "11 Hz", url: "/audio/alpha-balance-mind.mp3" },
+      { id: "alpha-center", name: "Alpha Center", hz: "12 Hz", url: "/audio/alpha-center.mp3" },
+      { id: "beta-decision-c", name: "Beta Decision", hz: "13.8 Hz", url: "/audio/beta-decision.mp3" },
+      { id: "alpha-calm-alert", name: "Alpha Calm Alert", hz: "10.6 Hz", url: "/audio/alpha-calm-alert.mp3" },
+      { id: "alpha-clarity", name: "Alpha Clarity", hz: "10.5 Hz", url: "/audio/alpha-clarity.mp3" },
+      { id: "gamma-insight", name: "Gamma Insight", hz: "40 Hz", url: "/audio/gamma-insight.mp3" }
+    ],
+    "RENDIMIENTO": [
+      { id: "beta-active-mind", name: "Beta Active Mind", hz: "13-27 Hz", url: "/audio/beta-active-mind.mp3" },
+      { id: "beta-high-performance", name: "Beta High Performance", hz: "14-30 Hz", url: "/audio/beta-high-performance.mp3" },
+      { id: "beta-vital-mind", name: "Beta Vital Mind", hz: "14 Hz", url: "/audio/beta-vital-mind.mp3" },
+      { id: "beta-cortex", name: "Beta Cortex", hz: "15.4 Hz", url: "/audio/beta-cortex.mp3" },
+      { id: "alpha-focus", name: "Alpha Focus", hz: "11-14 Hz", url: "/audio/alpha-focus.mp3" }
+    ]
+  },
+  COHERENCIA: {
+    "REGULACION": [],
+    "EQUILIBRIO": [],
+    "INTEGRACION": []
+  },
+  CUERPO: {
+    "REGENERACION": [],
+    "ORGANOS": [],
+    "DOLOR": []
+  },
+  EXPANSION: {
+    "MEDITACION": [],
+    "PERCEPCION": [],
+    "EXPERIENCIAS": []
+  }
 };
 
-const ALL_TRACKS_FLAT = Object.values(ALL_TRACKS).flat();
+const ALL_TRACKS_FLAT = Object.values(ALL_TRACKS).flatMap(pillar => Object.values(pillar).flat());
 
 const formatTime = (secs) => {
   if (!secs || isNaN(secs) || !isFinite(secs)) return '00:00';
@@ -266,9 +327,10 @@ const App = () => {
   const [lang, setLang] = useState('es');
   const [showSplash, setShowSplash] = useState(true);
   const [mainMode, setMainMode] = useState(null);
-  const [activeCategory, setActiveCategory] = useState(null);
+  const [activePillar, setActivePillar] = useState(null);
   const [activeSub, setActiveSub] = useState(null);
   const [selectedTrack, setSelectedTrack] = useState(null);
+  const [isSuggestion, setIsSuggestion] = useState(false);
   const [isPlaying, setIsPlaying] = useState(false);
   const [selectedTime, setSelectedTime] = useState(null);
   const [activeTab, setActiveTab] = useState('catalogo');
@@ -288,11 +350,13 @@ const App = () => {
   const timerRef = useRef(null);
   const activeTabRef = useRef(activeTab);
   const favoritesRef = useRef(favorites);
+  const selectedTrackRef = useRef(selectedTrack);
 
   const t = T[lang];
 
   useEffect(() => { activeTabRef.current = activeTab; }, [activeTab]);
   useEffect(() => { favoritesRef.current = favorites; }, [favorites]);
+  useEffect(() => { selectedTrackRef.current = selectedTrack; }, [selectedTrack]);
 
   useEffect(() => {
     const timer = setTimeout(() => setShowSplash(false), 4500);
@@ -302,8 +366,8 @@ const App = () => {
   useEffect(() => {
     if (reminderTime && reminderTime === getTimeOfDay()) {
       setShowBanner(true);
-      const t = setTimeout(() => setShowBanner(false), 8000);
-      return () => clearTimeout(t);
+      const timer = setTimeout(() => setShowBanner(false), 8000);
+      return () => clearTimeout(timer);
     }
   }, [reminderTime]);
 
@@ -339,11 +403,17 @@ const App = () => {
   };
 
   const handleAudioEnded = () => {
+    const currentFavs = favoritesRef.current;
+    const currentTrack = selectedTrackRef.current;
+
     if (activeTabRef.current === 'favoritos') {
-      const favTracks = ALL_TRACKS_FLAT.filter(tr => favoritesRef.current.includes(tr.id));
-      const currentIndex = favTracks.findIndex(tr => tr.id === selectedTrack?.id);
+      const favTracks = ALL_TRACKS_FLAT.filter(tr => currentFavs.includes(tr.id));
+      const currentIndex = favTracks.findIndex(tr => tr.id === currentTrack?.id);
+
       if (currentIndex >= 0 && currentIndex < favTracks.length - 1) {
+        // Siguiente en favoritos
         const nextTrack = favTracks[currentIndex + 1];
+        setIsSuggestion(false);
         setSelectedTrack(nextTrack);
         setCurrentTime(0);
         setTimeout(() => {
@@ -353,7 +423,23 @@ const App = () => {
           }
         }, 100);
       } else {
-        setIsPlaying(false);
+        // Sugerencia automatica de catalogo
+        const nonFavTracks = ALL_TRACKS_FLAT.filter(tr => !currentFavs.includes(tr.id) && tr.url);
+        if (nonFavTracks.length > 0) {
+          const randomTrack = nonFavTracks[Math.floor(Math.random() * nonFavTracks.length)];
+          setIsSuggestion(true);
+          setSelectedTrack(randomTrack);
+          setCurrentTime(0);
+          setTimeout(() => {
+            if (audioRef.current) {
+              audioRef.current.src = randomTrack.url;
+              audioRef.current.play().catch(() => {});
+            }
+          }, 100);
+        } else {
+          setIsPlaying(false);
+          setIsSuggestion(false);
+        }
       }
     } else {
       setIsPlaying(false);
@@ -363,14 +449,15 @@ const App = () => {
   const toggleFavorite = (e, trackId) => {
     e.stopPropagation();
     setFavorites(prev => prev.includes(trackId) ? prev.filter(id => id !== trackId) : [...prev, trackId]);
+    if (isSuggestion && selectedTrack?.id === trackId) setIsSuggestion(false);
   };
 
   const isFavorite = (trackId) => favorites.includes(trackId);
-  const accentColor = mainMode === 'meditaciones' ? '#a855f7' : (mainMode === 'experiencias' ? '#d4af37' : '#22d3ee');
+  const accentColor = '#22d3ee';
 
   const handleBack = () => {
     if (activeSub) setActiveSub(null);
-    else if (activeCategory) setActiveCategory(null);
+    else if (activePillar) setActivePillar(null);
     else setMainMode(null);
   };
 
@@ -387,7 +474,13 @@ const App = () => {
     return t.reminder_set_night;
   };
 
-  // ── COMPONENTES REUTILIZABLES ─────────────────────────────────────────────
+  const playTrack = (track, suggestion = false) => {
+    setSelectedTrack(track);
+    setIsSuggestion(suggestion);
+    setIsPlaying(true);
+  };
+
+  // ── COMPONENTES ───────────────────────────────────────────────────────────
 
   const LangSwitch = () => (
     <div className="lang-switch">
@@ -410,8 +503,8 @@ const App = () => {
   );
 
   const ReminderSection = () => (
-    <div style={{ width: '85%', maxWidth: '340px', margin: '0 auto 24px', padding: '20px', borderRadius: '24px', background: 'rgba(255,255,255,0.02)', border: '1px solid rgba(255,255,255,0.07)' }}>
-      <p style={{ fontSize: '10px', letterSpacing: '3px', color: 'rgba(255,255,255,0.35)', textAlign: 'center', marginBottom: '16px' }}>{t.reminder_title}</p>
+    <div style={{ width: '85%', maxWidth: '340px', margin: '0 auto 24px', padding: '20px', borderRadius: '24px', background: 'rgba(255,255,255,0.02)', border: '1px solid rgba(255,255,255,0.06)' }}>
+      <p style={{ fontSize: '10px', letterSpacing: '3px', color: 'rgba(255,255,255,0.3)', textAlign: 'center', marginBottom: '16px', fontWeight: 200 }}>{t.reminder_title}</p>
       <div style={{ display: 'flex', gap: '8px', justifyContent: 'center', flexWrap: 'wrap' }}>
         {[
           { key: 'manana', label: t.reminder_morning, icon: '☀' },
@@ -424,28 +517,29 @@ const App = () => {
         ))}
       </div>
       {reminderTime && (
-        <p style={{ fontSize: '10px', color: 'rgba(34,211,238,0.5)', textAlign: 'center', marginTop: '12px', letterSpacing: '1px' }}>
+        <p style={{ fontSize: '10px', color: 'rgba(34,211,238,0.5)', textAlign: 'center', marginTop: '12px', letterSpacing: '1px', fontWeight: 200 }}>
           {getReminderText()}
         </p>
       )}
     </div>
   );
 
-  const TrackCard = ({ track, onSelect, accentCol }) => (
-    <div className="track-card" onClick={() => onSelect(track)} style={{ borderLeft: `4px solid ${accentCol}` }}>
+  const TrackCard = ({ track, onSelect, isSugg = false }) => (
+    <div className={`track-card ${isSugg ? 'suggestion' : ''}`} onClick={() => onSelect(track)} style={{ borderLeft: `4px solid ${accentColor}` }}>
       <div style={{ textAlign: 'left', width: '75%' }}>
-        <div style={{ fontSize: '15px', color: 'white', fontWeight: '400' }}>{track.name}</div>
-        <div style={{ fontSize: '10px', color: '#fdfcf5', opacity: 0.7, marginTop: '5px', fontWeight: '200', letterSpacing: '1px' }}>
+        {isSugg && <div className="suggestion-badge">{t.suggestion_label}</div>}
+        <div style={{ fontSize: '15px', color: 'white', fontWeight: 300 }}>{track.name}</div>
+        <div style={{ fontSize: '10px', color: '#fdfcf5', opacity: 0.6, marginTop: '5px', fontWeight: 200, letterSpacing: '1px' }}>
           {t.tracks[track.id] || ''}
         </div>
       </div>
       <div style={{ display: 'flex', alignItems: 'center', gap: '4px' }}>
-        <button className="heart-btn" onClick={(e) => toggleFavorite(e, track.id)} style={{ color: isFavorite(track.id) ? '#ff6b9d' : 'rgba(255,255,255,0.3)' }}>
+        <button className="heart-btn" onClick={(e) => toggleFavorite(e, track.id)} style={{ color: isFavorite(track.id) ? '#ff6b9d' : 'rgba(255,255,255,0.25)' }}>
           {isFavorite(track.id) ? '♥' : '♡'}
         </button>
         <div style={{ textAlign: 'right' }}>
-          <div style={{ fontSize: '9px', color: accentCol, opacity: 0.7 }}>{track.hz}</div>
-          <span style={{ color: accentCol, fontSize: '18px' }}>▶</span>
+          <div style={{ fontSize: '9px', color: accentColor, opacity: 0.6 }}>{track.hz}</div>
+          <span style={{ color: accentColor, fontSize: '18px' }}>▶</span>
         </div>
       </div>
     </div>
@@ -457,8 +551,8 @@ const App = () => {
       <div className="fade-in-smooth" style={{ backgroundColor: '#020617', minHeight: '100vh', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', textAlign: 'center' }}>
         <style>{inlineStyles}</style>
         <img src="/imagenes/genora-logo-white.png" style={{ width: '180px', borderRadius: '50%', animation: 'logo-breathe 3s infinite ease-in-out', objectFit: 'contain' }} alt="Logo" />
-        <h1 style={{ fontSize: '18px', fontWeight: '300', letterSpacing: '4px', color: '#22d3ee', textTransform: 'uppercase', marginTop: '35px', marginBottom: '8px' }}>{t.splash_title}</h1>
-        <p style={{ fontSize: '10px', fontWeight: '200', letterSpacing: '3px', color: '#fdfcf5', opacity: 0.8 }}>{t.splash_sub}</p>
+        <h1 style={{ fontSize: '18px', fontWeight: 200, letterSpacing: '6px', color: '#22d3ee', textTransform: 'uppercase', marginTop: '35px', marginBottom: '8px' }}>{t.splash_title}</h1>
+        <p style={{ fontSize: '10px', fontWeight: 200, letterSpacing: '3px', color: '#fdfcf5', opacity: 0.7 }}>{t.splash_sub}</p>
       </div>
     );
   }
@@ -477,32 +571,43 @@ const App = () => {
           onLoadedMetadata={handleTimeUpdate}
           onEnded={handleAudioEnded}
         />
-        <button onClick={() => { setSelectedTrack(null); setIsPlaying(false); setCurrentTime(0); setDuration(0); }} style={{ position: 'absolute', top: '35px', left: '30px', background: 'none', border: 'none', color: accentColor, fontSize: '40px', cursor: 'pointer' }}>&#8249;</button>
+        <button onClick={() => { setSelectedTrack(null); setIsPlaying(false); setCurrentTime(0); setDuration(0); setIsSuggestion(false); }} style={{ position: 'absolute', top: '35px', left: '30px', background: 'none', border: 'none', color: accentColor, fontSize: '40px', cursor: 'pointer' }}>&#8249;</button>
         <button className="heart-btn" onClick={(e) => toggleFavorite(e, selectedTrack.id)} style={{ position: 'absolute', top: '40px', right: '30px', fontSize: '24px', color: isFavorite(selectedTrack.id) ? '#ff6b9d' : 'rgba(255,255,255,0.4)' }}>
           {isFavorite(selectedTrack.id) ? '♥' : '♡'}
         </button>
-        <div style={{ width: '220px', height: '220px', marginBottom: '40px', display: 'flex', alignItems: 'center', justifyContent: 'center', animation: isPlaying ? 'logo-breathe 4s infinite' : 'none' }}>
+
+        {isSuggestion && (
+          <div style={{ position: 'absolute', top: '90px', fontSize: '9px', letterSpacing: '2px', color: 'rgba(34,211,238,0.6)', textTransform: 'uppercase' }}>
+            {t.suggestion_label}
+          </div>
+        )}
+
+        <div style={{ width: '220px', height: '220px', marginBottom: '30px', display: 'flex', alignItems: 'center', justifyContent: 'center', animation: isPlaying ? 'logo-breathe 4s infinite' : 'none' }}>
           <img src="/imagenes/adn-icon.png" style={{ width: '100%', filter: `drop-shadow(0 0 15px ${accentColor})` }} alt="ADN" />
         </div>
-        <h2 style={{ fontSize: '24px', letterSpacing: '4px', textTransform: 'uppercase' }}>{selectedTrack.name}</h2>
-        <p style={{ color: accentColor, fontSize: '12px', letterSpacing: '3px', fontWeight: 'bold', marginBottom: '8px' }}>{selectedTrack.hz}</p>
-        <p style={{ fontSize: '13px', opacity: 0.7, maxWidth: '300px', lineHeight: '1.5', marginBottom: '24px' }}>{t.tracks[selectedTrack.id] || ''}</p>
-        <div style={{ width: '80%', maxWidth: '300px', marginBottom: '24px' }}>
+
+        <h2 style={{ fontSize: '22px', letterSpacing: '4px', textTransform: 'uppercase', fontWeight: 200 }}>{selectedTrack.name}</h2>
+        <p style={{ color: accentColor, fontSize: '11px', letterSpacing: '3px', fontWeight: 300, marginBottom: '8px' }}>{selectedTrack.hz}</p>
+        <p style={{ fontSize: '12px', opacity: 0.6, maxWidth: '300px', lineHeight: '1.6', marginBottom: '20px', fontWeight: 200 }}>{t.tracks[selectedTrack.id] || ''}</p>
+
+        <div style={{ width: '80%', maxWidth: '300px', marginBottom: '20px' }}>
           <div className="progress-bar-container" onClick={handleProgressClick}>
             <div className="progress-bar-fill" style={{ width: `${progress}%` }} />
           </div>
           <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-            <span style={{ fontSize: '10px', color: 'rgba(255,255,255,0.35)', letterSpacing: '1px' }}>{formatTime(currentTime)}</span>
-            <span style={{ fontSize: '10px', color: 'rgba(255,255,255,0.35)', letterSpacing: '1px' }}>{formatTime(duration)}</span>
+            <span style={{ fontSize: '10px', color: 'rgba(255,255,255,0.3)', letterSpacing: '1px' }}>{formatTime(currentTime)}</span>
+            <span style={{ fontSize: '10px', color: 'rgba(255,255,255,0.3)', letterSpacing: '1px' }}>{formatTime(duration)}</span>
           </div>
         </div>
-        <div style={{ display: 'flex', gap: '12px', marginBottom: '45px' }}>
+
+        <div style={{ display: 'flex', gap: '12px', marginBottom: '40px' }}>
           {[15, 30, 60, 'inf'].map((time) => (
             <button key={time} onClick={() => setSelectedTime(time)} className="time-button" style={{ border: `1px solid ${selectedTime === time ? accentColor : 'rgba(255,255,255,0.1)'}`, background: selectedTime === time ? `${accentColor}22` : 'none' }}>
               {time === 'inf' ? '∞' : `${time}'`}
             </button>
           ))}
         </div>
+
         <button onClick={() => setIsPlaying(!isPlaying)} style={{ width: '85px', height: '85px', borderRadius: '50%', border: `1px solid ${accentColor}`, background: 'none', display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer' }}>
           <span style={{ fontSize: '30px', color: 'white' }}>{isPlaying ? '||' : '▶'}</span>
         </button>
@@ -522,20 +627,20 @@ const App = () => {
         </div>
         {showBanner && (
           <div className="alineacion-banner">
-            <p style={{ fontSize: '11px', letterSpacing: '2px', color: '#22d3ee', margin: 0 }}>{t.banner}</p>
+            <p style={{ fontSize: '11px', letterSpacing: '2px', color: '#22d3ee', margin: 0, fontWeight: 200 }}>{t.banner}</p>
           </div>
         )}
-        <p style={{ fontSize: '10px', letterSpacing: '4px', color: 'rgba(255,255,255,0.4)', textAlign: 'center', marginBottom: '24px' }}>{t.my_field}</p>
+        <p style={{ fontSize: '10px', letterSpacing: '4px', color: 'rgba(255,255,255,0.35)', textAlign: 'center', marginBottom: '24px', fontWeight: 200 }}>{t.my_field}</p>
         <ReminderSection />
         {favTracks.length === 0 ? (
-          <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', padding: '40px 20px', textAlign: 'center', color: 'rgba(255,255,255,0.3)' }}>
+          <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', padding: '40px 20px', textAlign: 'center', color: 'rgba(255,255,255,0.25)' }}>
             <div style={{ fontSize: '40px', marginBottom: '16px' }}>♡</div>
-            <p style={{ fontSize: '12px', letterSpacing: '2px', lineHeight: '1.8' }}>{t.empty_field}<br />{t.empty_sub}</p>
+            <p style={{ fontSize: '12px', letterSpacing: '2px', lineHeight: '1.8', fontWeight: 200 }}>{t.empty_field}<br />{t.empty_sub}</p>
           </div>
         ) : (
           <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
             {favTracks.map((track) => (
-              <TrackCard key={track.id} track={track} onSelect={(tr) => { setSelectedTrack(tr); setIsPlaying(true); }} accentCol="#22d3ee" />
+              <TrackCard key={track.id} track={track} onSelect={(tr) => playTrack(tr, false)} />
             ))}
           </div>
         )}
@@ -545,18 +650,23 @@ const App = () => {
   }
 
   // ── CATALOGO PRINCIPAL ────────────────────────────────────────────────────
+  const pillarKeys = ['MENTE', 'COHERENCIA', 'CUERPO', 'EXPANSION'];
+
   return (
     <div className="fade-in-smooth" style={{ backgroundColor: '#020617', minHeight: '100vh', color: 'white', padding: '20px', paddingBottom: '80px' }}>
       <style>{inlineStyles}</style>
+
       {showBanner && (
         <div className="alineacion-banner" style={{ marginTop: '10px' }}>
-          <p style={{ fontSize: '11px', letterSpacing: '2px', color: '#22d3ee', margin: 0 }}>{t.banner}</p>
+          <p style={{ fontSize: '11px', letterSpacing: '2px', color: '#22d3ee', margin: 0, fontWeight: 200 }}>{t.banner}</p>
         </div>
       )}
+
+      {/* Header */}
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '40px', paddingTop: '10px' }}>
         {mainMode ? (
-          <div onClick={handleBack} className="back-button-genora" style={{ borderColor: accentColor }}>
-            <span style={{ color: accentColor, fontSize: '20px', fontWeight: 'bold' }}>&#8249;</span>
+          <div onClick={handleBack} className="back-button-genora">
+            <span style={{ color: accentColor, fontSize: '20px' }}>&#8249;</span>
           </div>
         ) : (
           <img src="/imagenes/genora-logo-white.png" style={{ height: '95px', borderRadius: '50%', objectFit: 'contain' }} alt="Logo" />
@@ -565,46 +675,40 @@ const App = () => {
       </div>
 
       <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-        <div style={{ width: activeSub ? '110px' : (mainMode ? '130px' : '165px'), height: activeSub ? '110px' : (mainMode ? '130px' : '165px'), borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '35px', transition: 'all 0.5s ease', animation: 'aura-supernova 8s infinite ease-in-out' }}>
+        {/* ADN */}
+        <div style={{ width: activeSub ? '110px' : (activePillar ? '130px' : (mainMode ? '130px' : '165px')), height: activeSub ? '110px' : (activePillar ? '130px' : (mainMode ? '130px' : '165px')), borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '35px', transition: 'all 0.5s ease', animation: 'aura-supernova 8s infinite ease-in-out' }}>
           <img src="/imagenes/adn-icon.png" style={{ width: '100%', borderRadius: '50%' }} alt="ADN" />
         </div>
 
         {/* NIVEL 1 — HOME */}
         {!mainMode && (
           <div className="category-stack">
-            <h2 style={{ fontSize: '10px', letterSpacing: '5px', color: '#22d3ee', marginBottom: '20px', fontWeight: '300' }}>{t.choose_path}</h2>
-            <button className="frecuencias-choice-button" onClick={() => setMainMode('frecuencias')}>{t.frequencies}</button>
-            <button className="meditaciones-choice-button" onClick={() => setMainMode('meditaciones')}>{t.meditations}</button>
-            <button style={{ width: '75%', maxWidth: '270px', padding: '18px', borderRadius: '40px', border: '1.5px solid #d4af37', background: 'rgba(212, 175, 55, 0.05)', color: '#fdfcf5', fontSize: '12px', letterSpacing: '4px', cursor: 'pointer' }} onClick={() => setMainMode('experiencias')}>
-              {t.experiences}
-            </button>
+            <h2 style={{ fontSize: '10px', letterSpacing: '5px', color: '#22d3ee', marginBottom: '20px', fontWeight: 200 }}>{t.choose_path}</h2>
+            <button className="choice-button" onClick={() => setMainMode('frecuencias')}>{t.frequencies}</button>
+            <button className="choice-button violet" onClick={() => setMainMode('meditaciones')}>{t.meditations}</button>
+            <button className="choice-button gold" onClick={() => setMainMode('experiencias')}>{t.experiences}</button>
           </div>
         )}
 
-        {/* NIVEL 2 — CATEGORIAS */}
-        {mainMode && !activeCategory && (
+        {/* NIVEL 2 — PILARES */}
+        {mainMode && !activePillar && (
           <div className="category-stack">
-            <p style={{ fontSize: '11px', letterSpacing: '5px', color: accentColor, textAlign: 'center', marginBottom: '35px', fontWeight: 'bold' }}>{mainMode.toUpperCase()}</p>
-            {[
-              { key: 'MENTE', label: t.mind },
-              { key: 'CUERPO', label: t.body },
-              { key: 'EXPANSION', label: t.expansion },
-              { key: 'COHERENCIA', label: t.coherence }
-            ].map(cat => (
-              <div key={cat.key} onClick={() => setActiveCategory(cat.key)} className="sub-category-card" style={{ borderColor: `${accentColor}88` }}>
-                <span style={{ fontWeight: 'bold' }}>{cat.label}</span>
+            <p style={{ fontSize: '10px', letterSpacing: '5px', color: accentColor, textAlign: 'center', marginBottom: '35px', fontWeight: 200 }}>{mainMode.toUpperCase()}</p>
+            {pillarKeys.map(key => (
+              <div key={key} onClick={() => setActivePillar(key)} className="pillar-card">
+                {t.pillars[key].label}
               </div>
             ))}
           </div>
         )}
 
         {/* NIVEL 3 — SUBCATEGORIAS */}
-        {activeCategory === "MENTE" && !activeSub && (
+        {activePillar && !activeSub && (
           <div className="category-stack">
-            <p style={{ fontSize: '11px', letterSpacing: '5px', color: accentColor, textAlign: 'center', marginBottom: '35px', fontWeight: 'bold' }}>{t.mind_resonance}</p>
-            {Object.keys(t.sub_categories).map(sub => (
-              <div key={sub} onClick={() => setActiveSub(sub)} className="sub-category-card" style={{ borderColor: `${accentColor}88` }}>
-                <span style={{ fontWeight: 'bold' }}>{t.sub_categories[sub]}</span>
+            <p style={{ fontSize: '10px', letterSpacing: '5px', color: accentColor, textAlign: 'center', marginBottom: '35px', fontWeight: 200 }}>{t.pillars[activePillar].label}</p>
+            {Object.keys(t.pillars[activePillar].subs).map(sub => (
+              <div key={sub} onClick={() => setActiveSub(sub)} className="pillar-card">
+                {t.pillars[activePillar].subs[sub]}
               </div>
             ))}
           </div>
@@ -613,10 +717,16 @@ const App = () => {
         {/* NIVEL 4 — TRACKS */}
         {activeSub && (
           <div className="fade-in-smooth" style={{ width: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-            <p style={{ fontSize: '11px', letterSpacing: '3px', color: accentColor, textAlign: 'center', marginBottom: '25px', fontWeight: 'bold' }}>{t.sub_categories[activeSub] || activeSub}</p>
-            {(ALL_TRACKS[activeSub] || []).map((track) => (
-              <TrackCard key={track.id} track={track} onSelect={setSelectedTrack} accentCol={accentColor} />
-            ))}
+            <p style={{ fontSize: '10px', letterSpacing: '3px', color: accentColor, textAlign: 'center', marginBottom: '25px', fontWeight: 200 }}>{t.pillars[activePillar]?.subs[activeSub] || activeSub}</p>
+            {(ALL_TRACKS[activePillar]?.[activeSub] || []).length === 0 ? (
+              <div style={{ textAlign: 'center', color: 'rgba(255,255,255,0.25)', fontSize: '11px', letterSpacing: '2px', padding: '40px 20px', fontWeight: 200 }}>
+                {lang === 'es' ? 'Proximamente...' : 'Coming soon...'}
+              </div>
+            ) : (
+              (ALL_TRACKS[activePillar][activeSub]).map((track) => (
+                <TrackCard key={track.id} track={track} onSelect={playTrack} />
+              ))
+            )}
           </div>
         )}
       </div>
