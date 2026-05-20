@@ -759,7 +759,12 @@ const App = () => {
         {/* NIVEL 2 — PILARES */}
         {mainMode && !activePillar && (
           <div className="category-stack">
-            <p style={{ fontSize: '10px', letterSpacing: '5px', color: accentColor, textAlign: 'center', marginBottom: '35px', fontWeight: 200 }}>{mainMode.toUpperCase()}</p>
+            <p style={{ fontSize: '10px', letterSpacing: '5px', color: accentColor, textAlign: 'center', marginBottom: '35px', fontWeight: 200 }}>
+  {mainMode === 'frecuencias' ? t.frequencies.toUpperCase() :
+   mainMode === 'meditaciones' ? t.meditations.toUpperCase() :
+   mainMode === 'experiencias' ? t.experiences.toUpperCase() :
+   mainMode.toUpperCase()}
+</p>
             {pillarKeys.map(key => (
               <div key={key} onClick={() => setActivePillar(key)} className="pillar-card">
                 {t.pillars[key].label}
