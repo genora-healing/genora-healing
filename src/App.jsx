@@ -28,13 +28,13 @@ const T = {
     banner: "✦ Es momento de tu alineacion diaria Genora",
     suggestion_label: "SUGERENCIA DE ALINEACION",
     coming_soon: "Proximas frecuencias en camino...",
-    // Santuario
+    // Santuario (Corregido y Limpio de redundancias)
     sanctuary_title: "SANTUARIO GENORA",
     sanctuary_micro: "Un espacio reservado para las herramientas que apoyan tu camino.",
-    sanctuary_access: "Acceso exclusivo mediante código de acompañamiento.",
-    sanctuary_placeholder: "Ingresa tu código de acompañamiento",
+    sanctuary_access: "Acceso exclusivo mediante código de acceso.",
+    sanctuary_placeholder: "Ingresa tu código de acceso",
     sanctuary_enter: "ACCEDER",
-    sanctuary_error: "Código no verificado. Solicita tu acceso de acompañamiento.",
+    sanctuary_error: "Código no verificado. Solicita tu código de acceso.",
     sanctuary_loading: "Sintonizando frecuencia de alta fidelidad...",
     sanctuary_library_title: "HERRAMIENTAS DE CONTENCIÓN",
     sanctuary_library_sub: "Frecuencias y videos para tu proceso de sanación.",
@@ -148,10 +148,10 @@ const T = {
     // Sanctuary
     sanctuary_title: "GENORA SANCTUARY",
     sanctuary_micro: "A reserved space for the tools that support your journey.",
-    sanctuary_access: "Exclusive access via accompaniment code.",
-    sanctuary_placeholder: "Enter your accompaniment code",
+    sanctuary_access: "Exclusive access via access code.",
+    sanctuary_placeholder: "Enter your access code",
     sanctuary_enter: "ENTER",
-    sanctuary_error: "Code not verified. Request your accompaniment access.",
+    sanctuary_error: "Code not verified. Request your access code.",
     sanctuary_loading: "Tuning high-fidelity frequency...",
     sanctuary_library_title: "CONTAINMENT TOOLS",
     sanctuary_library_sub: "Frequencies and videos for your healing process.",
@@ -337,16 +337,31 @@ const inlineStyles = `
     vertical-align: middle; margin-right: 8px;
   }
  
+  /* Separador Espacial Limpio - Orbe Arriba Centrado Sutil */
   .sanctuary-spacer-orbe {
     display: flex; justify-content: center; align-items: center;
-    width: 100%; height: auto; margin: 20px auto 14px;
+    width: 100%; height: auto; margin: 16px auto 4px;
   }
   .orbe-divisor-pulsante {
     width: 6px; height: 6px; border-radius: 50%; background: #d4af37;
     animation: micro-orbe-breathe 3s infinite ease-in-out;
   }
  
-  /* FILTRO MAESTRO DE TRANSMUTACIÓN CROMÁTICA PARA EL LOGO (Dorado Premium) */
+  /* Botón Santuario Limpio Minimalista de Alta Gama (Estilo Pilar) */
+  .sanctuary-btn-clean {
+    width: 75%; max-width: 290px; padding: 10px 14px; margin: 2px 0;
+    border-radius: 40px; background: rgba(212,175,55,0.03); color: white;
+    font-size: 9px; letter-spacing: 3px; text-transform: uppercase; font-weight: 200;
+    cursor: pointer; transition: all 0.4s ease; border: 1px solid rgba(212,175,55,0.3);
+    text-align: center; line-height: 1.4;
+  }
+  .sanctuary-btn-clean:hover {
+    background: rgba(212,175,55,0.08);
+    border-color: rgba(212,175,55,0.65);
+    box-shadow: 0 0 15px rgba(212,175,55,0.15);
+  }
+ 
+  /* TRANSMUTACIÓN CROMÁTICA PARA EL LOGO (Dorado Premium) */
   .logo-filtro-dorado {
     filter: sepia(1) hue-rotate(-12deg) saturate(2.3) brightness(0.88) drop-shadow(0 0 20px rgba(212,175,55,0.65)) !important;
     transition: all 0.8s ease-in-out;
@@ -354,20 +369,6 @@ const inlineStyles = `
   .logo-normal {
     filter: drop-shadow(0 0 15px #22d3ee);
     transition: all 0.8s ease-in-out;
-  }
- 
-  .sanctuary-btn {
-    width: 75%; max-width: 290px; padding: 12px 14px; margin: 2px 0;
-    border-radius: 40px;
-    background: rgba(212,175,55,0.03);
-    color: white; text-align: center; cursor: pointer;
-    transition: all 0.5s ease;
-    border: 1px solid rgba(212,175,55,0.3);
-  }
-  .sanctuary-btn:hover {
-    background: rgba(212,175,55,0.08);
-    border-color: rgba(212,175,55,0.65);
-    box-shadow: 0 0 20px rgba(212,175,55,0.15);
   }
  
   .sanctuary-input {
@@ -907,7 +908,6 @@ const App = () => {
         </div>
  
         <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center', paddingBottom: '40px' }}>
-          {/* El Logotipo Central mutado al filtro dorado líquido para el Santuario */}
           <div style={{ width: '120px', height: '120px', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '24px', animation: 'aura-gold-santuario 6s infinite ease-in-out' }}>
             <img src="/imagenes/adn-icon.png" className="logo-filtro-dorado" style={{ width: '100%', borderRadius: '50%' }} alt="ADN" />
           </div>
@@ -1002,7 +1002,7 @@ const App = () => {
     );
   }
  
-  // ── SANTUARIO — pantalla de código (Logo mutado a Dorado Premium) ───────────
+  // ── SANTUARIO — pantalla de código (Uso de "Código de acceso") ─────────────
   if (showSanctuary && !sanctuaryUnlocked) {
     return (
       <div className="fade-in-smooth" style={{ backgroundColor: '#020617', minHeight: '100vh', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', textAlign: 'center', padding: '30px', position: 'relative' }}>
@@ -1012,7 +1012,6 @@ const App = () => {
           &#8249;
         </button>
  
-        {/* El Logotipo Central mutado al filtro dorado líquido en el portal de entrada */}
         <div style={{
           width: '160px', height: '160px', borderRadius: '50%',
           display: 'flex', alignItems: 'center', justifyContent: 'center',
@@ -1082,7 +1081,7 @@ const App = () => {
     );
   }
  
-  // ── CATÁLOGO PRINCIPAL (Home unificado) ───────────────────────────────────
+  // ── CATÁLOGO PRINCIPAL (Home Unificado con Cambios Solicitados) ────────────
   return (
     <div className="fade-in-smooth" style={{ backgroundColor: '#020617', minHeight: '100vh', color: 'white', padding: '20px', paddingBottom: '80px' }}>
       <style>{inlineStyles}</style>
@@ -1105,7 +1104,6 @@ const App = () => {
       </div>
  
       <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-        {/* En el Home mantiene su clase original turquesa, pero si se entra a subniveles se adapta */}
         <div style={{
           width: activeSub ? '80px' : (activePillar ? '100px' : (mainMode ? '100px' : '115px')),
           height: activeSub ? '80px' : (activePillar ? '100px' : (mainMode ? '100px' : '115px')),
@@ -1135,28 +1133,18 @@ const App = () => {
               </button>
             ))}
  
+            {/* El Orbe Centrado Arriba del Botón */}
             <div className="sanctuary-spacer-orbe">
               <div className="orbe-divisor-pulsante"></div>
             </div>
  
-            {/* Botón Santuario GENORA */}
-            <div
-              className="sanctuary-btn"
+            {/* Botón Santuario GENORA Limpio, Estilizado y Simple (Igual a las demás casillas) */}
+            <button
+              className="sanctuary-btn-clean"
               onClick={() => { setShowSanctuary(true); setActiveTab('catalogo'); }}
             >
-              <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '4px' }}>
-                <div className="micro-orbe-vivo"></div>
-                <div style={{ fontSize: '10px', letterSpacing: '4px', fontWeight: 200, color: goldColor, textTransform: 'uppercase' }}>
-                  {t.sanctuary_title}
-                </div>
-              </div>
-              <div style={{ fontSize: '9px', color: 'rgba(255,255,255,0.28)', fontWeight: 200, letterSpacing: '0.5px', lineheight: 1.4 }}>
-                {t.sanctuary_micro}
-              </div>
-              <div style={{ fontSize: '8px', color: `${goldColor}77`, fontWeight: 200, letterSpacing: '2px', marginTop: '4px', textTransform: 'uppercase' }}>
-                {t.sanctuary_access}
-              </div>
-            </div>
+              {t.sanctuary_title}
+            </button>
           </div>
         )}
  
