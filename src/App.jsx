@@ -1111,7 +1111,6 @@ const App = () => {
           <img src="/imagenes/adn-icon.png" style={{ width: '100%', borderRadius: '50%' }} alt="ADN" />
         </div>
 
-        /* NIVEL 1 — HOME: 6 pilares bilingües + Santuario */
         {!mainMode && (
           <div className="category-stack">
             <h2 style={{ fontSize: '10px', letterSpacing: '5px', color: '#22d3ee', marginBottom: '16px', fontWeight: 200 }}>{t.choose_path}</h2>
