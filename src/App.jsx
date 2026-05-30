@@ -16,7 +16,7 @@ const T = {
     catalog: "CATALOGO",
     my_alignment: "MI ALINEACION",
     my_field: "MI CAMPO DE RESONANCIA",
-    empty_field: "Tu campo de resonancia esta vacio.",
+    empty_field: "Tu campo de resonance esta vacio.",
     empty_sub: "Toca el corazon de cualquier frecuencia para anclarla en tu campo personal.",
     reminder_title: "RECORDATORIO DE ALINEACION",
     reminder_morning: "Manana",
@@ -115,8 +115,8 @@ const T = {
       "gamma-insight": "Destellos de comprension profunda y epifanias.",
       "beta-active-mind": "Aumenta la atencion externa y actividad mental.",
       "beta-vital-mind": "Genera energia mental y enfoque en tareas.",
-      "beta-cortex": "Procesamiento avanzado e inteligencia.",
-      "alpha-focus": "Concentracion y enfoque mental sostenido."
+      "beta-cortex": "Procesamiento advanced e inteligencia.",
+      "alpha-focus": "Concentracion and enfoque mental sostenido."
     }
   },
   en: {
@@ -209,7 +209,7 @@ const T = {
         label: "BIOLOGICAL HARMONIZATION",
         subs: {
           "ADN": "DNA REPROGRAMMING",
-          "CAMPOS": "BIOENERgetic fields",
+          "CAMPOS": "BIOENERGETIC FIELDS",
           "CELULAR": "CELLULAR REGENERATION"
         }
       }
@@ -330,7 +330,6 @@ const inlineStyles = `
   }
   .pillar-home-btn:hover { background: rgba(34,211,238,0.07); border-color: rgba(34,211,238,0.55); }
  
-  /* Micro Orbe Diminuto Incorporado Elocuentemente */
   .micro-orbe-vivo {
     width: 7px; height: 7px; border-radius: 50%;
     background: #d4af37; display: inline-block;
@@ -338,7 +337,25 @@ const inlineStyles = `
     vertical-align: middle; margin-right: 8px;
   }
  
-  /* Santuario — botón inferior optimizado */
+  .sanctuary-spacer-orbe {
+    display: flex; justify-content: center; align-items: center;
+    width: 100%; height: auto; margin: 20px auto 14px;
+  }
+  .orbe-divisor-pulsante {
+    width: 6px; height: 6px; border-radius: 50%; background: #d4af37;
+    animation: micro-orbe-breathe 3s infinite ease-in-out;
+  }
+ 
+  /* FILTRO MAESTRO DE TRANSMUTACIÓN CROMÁTICA PARA EL LOGO (Dorado Premium) */
+  .logo-filtro-dorado {
+    filter: sepia(1) hue-rotate(-12deg) saturate(2.3) brightness(0.88) drop-shadow(0 0 20px rgba(212,175,55,0.65)) !important;
+    transition: all 0.8s ease-in-out;
+  }
+  .logo-normal {
+    filter: drop-shadow(0 0 15px #22d3ee);
+    transition: all 0.8s ease-in-out;
+  }
+ 
   .sanctuary-btn {
     width: 75%; max-width: 290px; padding: 12px 14px; margin: 2px 0;
     border-radius: 40px;
@@ -353,7 +370,6 @@ const inlineStyles = `
     box-shadow: 0 0 20px rgba(212,175,55,0.15);
   }
  
-  /* Santuario — Formulario e Inputs Dorados */
   .sanctuary-input {
     width: 70%; max-width: 260px; padding: 14px 20px; border-radius: 30px;
     background: rgba(255,255,255,0.03); border: 1px solid rgba(212,175,55,0.3);
@@ -372,19 +388,12 @@ const inlineStyles = `
   }
   .sanctuary-enter-btn:hover { background: rgba(212,175,55,0.12); border-color: rgba(212,175,55,0.75); box-shadow: 0 0 15px rgba(212,175,55,0.1); }
  
-  /* Santuario — tarjeta de herramienta dorada premium */
   .sanctuary-tool-card {
     width: 85%; max-width: 340px; padding: 20px 22px; margin: 8px 0; border-radius: 24px;
     background: rgba(212,175,55,0.03); border: 1px solid rgba(212,175,55,0.18);
     transition: all 0.3s ease; cursor: pointer;
   }
   .sanctuary-tool-card:hover { background: rgba(212,175,55,0.06); border-color: rgba(212,175,55,0.45); }
- 
-  .sanctuary-divider {
-    width: 60%; max-width: 200px; height: 1px;
-    background: linear-gradient(90deg, transparent, rgba(212,175,55,0.25), transparent);
-    margin: 16px auto 12px;
-  }
  
   .track-card {
     width: 85%; max-width: 340px; padding: 20px 25px; margin: 8px 0; border-radius: 30px;
@@ -898,8 +907,9 @@ const App = () => {
         </div>
  
         <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center', paddingBottom: '40px' }}>
+          {/* El Logotipo Central mutado al filtro dorado líquido para el Santuario */}
           <div style={{ width: '120px', height: '120px', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '24px', animation: 'aura-gold-santuario 6s infinite ease-in-out' }}>
-            <img src="/imagenes/adn-icon.png" style={{ width: '100%', borderRadius: '50%', filter: `drop-shadow(0 0 15px ${goldColor}77)` }} alt="ADN" />
+            <img src="/imagenes/adn-icon.png" className="logo-filtro-dorado" style={{ width: '100%', borderRadius: '50%' }} alt="ADN" />
           </div>
           <h2 style={{ fontSize: '14px', letterSpacing: '4px', textTransform: 'uppercase', fontWeight: 200, marginBottom: '8px', color: goldColor }}>{tool.name}</h2>
           <p style={{ fontSize: '11px', color: 'rgba(255,255,255,0.4)', letterSpacing: '1px', fontWeight: 200, marginBottom: '6px', maxWidth: '280px', lineHeight: 1.7 }}>{tool.description}</p>
@@ -945,7 +955,7 @@ const App = () => {
     );
   }
  
-  // ── SANTUARIO — biblioteca (Sin emoji, 100% dorado) ───────────────────────
+  // ── SANTUARIO — biblioteca ────────────────────────────────────────────────
   if (showSanctuary && sanctuaryUnlocked) {
     return (
       <div className="fade-in-smooth" style={{ backgroundColor: '#020617', minHeight: '100vh', color: 'white', padding: '20px', paddingBottom: '80px' }}>
@@ -992,7 +1002,7 @@ const App = () => {
     );
   }
  
-  // ── SANTUARIO — pantalla de código (Sin emoji, 100% dorado) ────────────────
+  // ── SANTUARIO — pantalla de código (Logo mutado a Dorado Premium) ───────────
   if (showSanctuary && !sanctuaryUnlocked) {
     return (
       <div className="fade-in-smooth" style={{ backgroundColor: '#020617', minHeight: '100vh', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', textAlign: 'center', padding: '30px', position: 'relative' }}>
@@ -1002,13 +1012,14 @@ const App = () => {
           &#8249;
         </button>
  
+        {/* El Logotipo Central mutado al filtro dorado líquido en el portal de entrada */}
         <div style={{
           width: '160px', height: '160px', borderRadius: '50%',
           display: 'flex', alignItems: 'center', justifyContent: 'center',
           marginBottom: '35px',
           animation: 'aura-gold-santuario 6s infinite ease-in-out'
         }}>
-          <img src="/imagenes/adn-icon.png" style={{ width: '100%', borderRadius: '50%', filter: `drop-shadow(0 0 20px ${goldColor}77)` }} alt="ADN" />
+          <img src="/imagenes/adn-icon.png" className="logo-filtro-dorado" style={{ width: '100%', borderRadius: '50%' }} alt="ADN" />
         </div>
  
         <h2 style={{ fontSize: '13px', letterSpacing: '5px', color: goldColor, fontWeight: 200, textTransform: 'uppercase', marginBottom: '10px' }}>{t.sanctuary_title}</h2>
@@ -1071,7 +1082,7 @@ const App = () => {
     );
   }
  
-  // ── CATÁLOGO PRINCIPAL ────────────────────────────────────────────────────
+  // ── CATÁLOGO PRINCIPAL (Home unificado) ───────────────────────────────────
   return (
     <div className="fade-in-smooth" style={{ backgroundColor: '#020617', minHeight: '100vh', color: 'white', padding: '20px', paddingBottom: '80px' }}>
       <style>{inlineStyles}</style>
@@ -1094,14 +1105,20 @@ const App = () => {
       </div>
  
       <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+        {/* En el Home mantiene su clase original turquesa, pero si se entra a subniveles se adapta */}
         <div style={{
           width: activeSub ? '80px' : (activePillar ? '100px' : (mainMode ? '100px' : '115px')),
           height: activeSub ? '80px' : (activePillar ? '100px' : (mainMode ? '100px' : '115px')),
           borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center',
           marginBottom: mainMode ? '20px' : '14px', transition: 'all 0.5s ease',
           animation: 'aura-supernova 8s infinite ease-in-out'
-        }}>
-          <img src="/imagenes/adn-icon.png" style={{ width: '100%', borderRadius: '50%' }} alt="ADN" />
+         }}>
+          <img 
+            src="/imagenes/adn-icon.png" 
+            className={mainMode && activePillar ? "logo-filtro-dorado" : "logo-normal"} 
+            style={{ width: '100%', borderRadius: '50%' }} 
+            alt="ADN" 
+          />
         </div>
  
         {!mainMode && (
@@ -1118,9 +1135,11 @@ const App = () => {
               </button>
             ))}
  
-            <div className="sanctuary-divider" />
+            <div className="sanctuary-spacer-orbe">
+              <div className="orbe-divisor-pulsante"></div>
+            </div>
  
-            {/* Botón Santuario GENORA Con Micro-Orbe Flotante */}
+            {/* Botón Santuario GENORA */}
             <div
               className="sanctuary-btn"
               onClick={() => { setShowSanctuary(true); setActiveTab('catalogo'); }}
