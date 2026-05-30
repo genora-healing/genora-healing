@@ -963,7 +963,7 @@ const App = () => {
 
         <div style={{ textAlign: 'center', marginBottom: '32px' }}>
           <div style={{ fontSize: '26px', marginBottom: '12px' }}>🔮</div>
-          <h2 style={{ fontSize: '13px', letterSpacing: '5px', color: goldColor, fontWeight: 200, textTransform: 'uppercase', marginBottom: '8px' }}>{t.sanctuary_title}</h2>
+          <h2 style={{ fontSize: '13px', letterSpacing: '5px', color: violetColor, fontWeight: 200, textTransform: 'uppercase', marginBottom: '8px' }}>{t.sanctuary_title}</h2>
           <p style={{ fontSize: '11px', color: 'rgba(255,255,255,0.35)', letterSpacing: '1px', fontWeight: 200, maxWidth: '260px', margin: '0 auto', lineHeight: 1.7 }}>{t.sanctuary_library_sub}</p>
         </div>
 
@@ -1016,7 +1016,7 @@ const App = () => {
         </div>
 
         <div style={{ fontSize: '30px', marginBottom: '14px' }}>🔮</div>
-        <h2 style={{ fontSize: '13px', letterSpacing: '5px', color: goldColor, fontWeight: 200, textTransform: 'uppercase', marginBottom: '10px' }}>{t.sanctuary_title}</h2>
+        <h2 style={{ fontSize: '13px', letterSpacing: '5px', color: violetColor, fontWeight: 200, textTransform: 'uppercase', marginBottom: '10px' }}>{t.sanctuary_title}</h2>
         <p style={{ fontSize: '11px', color: 'rgba(255,255,255,0.35)', maxWidth: '260px', lineHeight: 1.8, fontWeight: 200, marginBottom: '6px', letterSpacing: '0.5px' }}>{t.sanctuary_micro}</p>
         <p style={{ fontSize: '10px', color: `${violetColor}66`, letterSpacing: '2px', fontWeight: 200, marginBottom: '36px' }}>{t.sanctuary_access}</p>
 
