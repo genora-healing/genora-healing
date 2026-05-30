@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-
+ 
 // ── TRADUCCIONES ──────────────────────────────────────────────────────────────
 const T = {
   es: {
@@ -16,7 +16,7 @@ const T = {
     catalog: "CATALOGO",
     my_alignment: "MI ALINEACION",
     my_field: "MI CAMPO DE RESONANCIA",
-    empty_field: "Tu campo de resonance esta vacio.",
+    empty_field: "Tu campo de resonancia esta vacio.",
     empty_sub: "Toca el corazon de cualquier frecuencia para anclarla en tu campo personal.",
     reminder_title: "RECORDATORIO DE ALINEACION",
     reminder_morning: "Manana",
@@ -209,7 +209,7 @@ const T = {
         label: "BIOLOGICAL HARMONIZATION",
         subs: {
           "ADN": "DNA REPROGRAMMING",
-          "CAMPOS": "BIOENERGETIC FIELDS",
+          "CAMPOS": "BIOENERgetic fields",
           "CELULAR": "CELLULAR REGENERATION"
         }
       }
@@ -237,20 +237,18 @@ const T = {
     }
   }
 };
-
+ 
 // ── CÓDIGO SANTUARIO ──────────────────────────────────────────────────────────
 const SANCTUARY_CODE = "GENORA2026";
-
+ 
 // ── HERRAMIENTAS DEL SANTUARIO (URLs de Cloudinary) ───────────────────────────
-// Reemplaza estas URLs con las URLs reales de Cloudinary cuando las subas
 const SANCTUARY_TOOLS = [
   {
     id: "frecuencia-adn-001",
     name: "Frecuencia ADN — Activación Primaria",
-    type: "audio", // "audio" o "video"
+    type: "audio", 
     description: "Frecuencia de alta fidelidad para activación genética profunda.",
     duration: "60 min",
-    // URL de Cloudinary para audio .wav
     url: "https://res.cloudinary.com/TU_CLOUD_NAME/video/upload/v1/genora/frecuencias/frecuencia-adn-001.wav",
   },
   {
@@ -267,7 +265,6 @@ const SANCTUARY_TOOLS = [
     type: "video",
     description: "Proceso guiado para liberación de matrices perinatales.",
     duration: "35 min",
-    // URL de Cloudinary para video .mp4
     url: "https://res.cloudinary.com/TU_CLOUD_NAME/video/upload/v1/genora/videos/meditacion-matrices-001.mp4",
     thumbnail: "https://res.cloudinary.com/TU_CLOUD_NAME/video/upload/so_0/v1/genora/videos/meditacion-matrices-001.jpg",
   },
@@ -280,7 +277,7 @@ const SANCTUARY_TOOLS = [
     url: "https://res.cloudinary.com/TU_CLOUD_NAME/video/upload/v1/genora/frecuencias/frecuencia-ancestral-001.wav",
   },
 ];
-
+ 
 // ── ESTILOS ───────────────────────────────────────────────────────────────────
 const inlineStyles = `
   @keyframes logo-breathe { 0%, 100% { transform: scale(1); opacity: 0.95; } 50% { transform: scale(1.05); opacity: 1; } }
@@ -288,21 +285,23 @@ const inlineStyles = `
     0%, 100% { transform: scale(1); box-shadow: 0 0 80px rgba(34,211,238,0.4), 0 0 150px rgba(34,211,238,0.2); }
     50% { transform: scale(1.03); box-shadow: 0 0 50px rgba(34,211,238,0.9), 0 0 120px rgba(34,211,238,0.6), 0 0 250px rgba(34,211,238,0.4); }
   }
-  @keyframes aura-violet {
-    0%, 100% { transform: scale(1); box-shadow: 0 0 60px rgba(139,92,246,0.3), 0 0 120px rgba(139,92,246,0.15); }
-    50% { transform: scale(1.02); box-shadow: 0 0 40px rgba(139,92,246,0.7), 0 0 100px rgba(139,92,246,0.4), 0 0 200px rgba(139,92,246,0.2); }
+  @keyframes aura-gold-santuario {
+    0%, 100% { transform: scale(1); box-shadow: 0 0 60px rgba(212,175,55,0.25), 0 0 120px rgba(212,175,55,0.12); }
+    50% { transform: scale(1.02); box-shadow: 0 0 40px rgba(212,175,55,0.6), 0 0 100px rgba(212,175,55,0.35), 0 0 200px rgba(212,175,55,0.18); }
+  }
+  @keyframes micro-orbe-breathe {
+    0%, 100% { transform: scale(1); opacity: 0.7; box-shadow: 0 0 6px #d4af37; }
+    50% { transform: scale(1.2); opacity: 1; box-shadow: 0 0 12px #d4af37; }
   }
   @keyframes fadeInDown { from { opacity: 0; transform: translateY(-8px); } to { opacity: 1; transform: translateY(0); } }
   @keyframes fadeInUp { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: translateY(0); } }
-  @keyframes pulse-glow {
-    0%, 100% { opacity: 0.5; }
-    50% { opacity: 1; }
-  }
+  @keyframes pulse-glow { 0%, 100% { opacity: 0.5; } 50% { opacity: 1; } }
+  
   .fade-in-smooth { animation: fadeIn 0.8s ease-in forwards; }
   .fade-in-up { animation: fadeInUp 0.6s ease forwards; }
   @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
   body, html { overflow-x: hidden; background-color: #020617; margin: 0; padding: 0; font-family: sans-serif; color: white; }
-
+ 
   .choice-button {
     width: 75%; max-width: 270px; padding: 18px; margin: 10px 0;
     border-radius: 40px; background: rgba(34,211,238,0.04); color: white;
@@ -310,78 +309,83 @@ const inlineStyles = `
     cursor: pointer; transition: all 0.4s ease; border: 1px solid rgba(34,211,238,0.35);
   }
   .choice-button:hover { background: rgba(34,211,238,0.08); border-color: rgba(34,211,238,0.6); }
-  .choice-button.violet { border-color: rgba(168,85,247,0.35); background: rgba(168,85,247,0.04); }
   .choice-button.gold { border-color: rgba(212,175,55,0.35); background: rgba(212,175,55,0.04); }
-
-  .category-stack { display: flex; flex-direction: column; align-items: center; gap: 12px; width: 100%; margin: 0 auto; }
-
+ 
+  .category-stack { display: flex; flex-direction: column; align-items: center; gap: 8px; width: 100%; margin: 0 auto; }
+ 
   .pillar-card {
-    width: 70%; max-width: 250px; padding: 18px; border-radius: 40px;
+    width: 70%; max-width: 250px; padding: 14px; border-radius: 40px;
     background: rgba(34,211,238,0.02); border: 1px solid rgba(34,211,238,0.3);
     text-align: center; cursor: pointer; font-size: 11px; letter-spacing: 4px;
     text-transform: uppercase; font-weight: 200; transition: all 0.3s ease; color: white;
   }
   .pillar-card:hover { background: rgba(34,211,238,0.06); border-color: rgba(34,211,238,0.5); }
-
-  /* Nuevo: botones de pilares bilinguales en home */
+ 
   .pillar-home-btn {
-    width: 75%; max-width: 290px; padding: 16px 20px; margin: 6px 0;
+    width: 75%; max-width: 290px; padding: 10px 14px; margin: 2px 0;
     border-radius: 40px; background: rgba(34,211,238,0.03); color: white;
-    font-size: 10px; letter-spacing: 4px; text-transform: uppercase; font-weight: 200;
-    cursor: pointer; transition: all 0.4s ease; border: 1px solid rgba(34,211,238,0.28);
-    text-align: center; line-height: 1.6;
+    font-size: 9px; letter-spacing: 3px; text-transform: uppercase; font-weight: 200;
+    cursor: pointer; transition: all 0.4s ease; border: 1px solid rgba(34,211,238,0.18);
+    text-align: center; line-height: 1.4;
   }
   .pillar-home-btn:hover { background: rgba(34,211,238,0.07); border-color: rgba(34,211,238,0.55); }
-
-  /* Santuario — botón especial inferior */
+ 
+  /* Micro Orbe Diminuto Incorporado Elocuentemente */
+  .micro-orbe-vivo {
+    width: 7px; height: 7px; border-radius: 50%;
+    background: #d4af37; display: inline-block;
+    animation: micro-orbe-breathe 2.5s infinite ease-in-out;
+    vertical-align: middle; margin-right: 8px;
+  }
+ 
+  /* Santuario — botón inferior optimizado */
   .sanctuary-btn {
-    width: 75%; max-width: 290px; padding: 20px; margin: 4px 0;
+    width: 75%; max-width: 290px; padding: 12px 14px; margin: 2px 0;
     border-radius: 40px;
-    background: linear-gradient(135deg, rgba(139,92,246,0.06), rgba(34,211,238,0.04));
+    background: rgba(212,175,55,0.03);
     color: white; text-align: center; cursor: pointer;
     transition: all 0.5s ease;
-    border: 1px solid rgba(139,92,246,0.4);
+    border: 1px solid rgba(212,175,55,0.3);
   }
   .sanctuary-btn:hover {
-    background: linear-gradient(135deg, rgba(139,92,246,0.12), rgba(34,211,238,0.07));
-    border-color: rgba(139,92,246,0.7);
-    box-shadow: 0 0 30px rgba(139,92,246,0.2);
+    background: rgba(212,175,55,0.08);
+    border-color: rgba(212,175,55,0.65);
+    box-shadow: 0 0 20px rgba(212,175,55,0.15);
   }
-
-  /* Santuario — pantalla de código */
+ 
+  /* Santuario — Formulario e Inputs Dorados */
   .sanctuary-input {
     width: 70%; max-width: 260px; padding: 14px 20px; border-radius: 30px;
-    background: rgba(255,255,255,0.03); border: 1px solid rgba(139,92,246,0.35);
+    background: rgba(255,255,255,0.03); border: 1px solid rgba(212,175,55,0.3);
     color: white; font-size: 12px; letter-spacing: 3px; text-align: center;
     text-transform: uppercase; outline: none; transition: all 0.3s ease;
     font-weight: 200;
   }
-  .sanctuary-input:focus { border-color: rgba(139,92,246,0.7); background: rgba(139,92,246,0.05); }
+  .sanctuary-input:focus { border-color: rgba(212,175,55,0.7); background: rgba(212,175,55,0.05); }
   .sanctuary-input::placeholder { color: rgba(255,255,255,0.2); text-transform: none; letter-spacing: 1px; }
-
+ 
   .sanctuary-enter-btn {
     width: 70%; max-width: 260px; padding: 14px; border-radius: 30px;
-    background: linear-gradient(135deg, rgba(139,92,246,0.15), rgba(34,211,238,0.08));
-    border: 1px solid rgba(139,92,246,0.5); color: white;
+    background: rgba(212,175,55,0.06);
+    border: 1px solid rgba(212,175,55,0.4); color: white;
     font-size: 11px; letter-spacing: 4px; cursor: pointer; transition: all 0.3s ease; font-weight: 200;
   }
-  .sanctuary-enter-btn:hover { background: linear-gradient(135deg, rgba(139,92,246,0.25), rgba(34,211,238,0.12)); border-color: rgba(139,92,246,0.8); }
-
-  /* Santuario — tarjeta de herramienta */
+  .sanctuary-enter-btn:hover { background: rgba(212,175,55,0.12); border-color: rgba(212,175,55,0.75); box-shadow: 0 0 15px rgba(212,175,55,0.1); }
+ 
+  /* Santuario — tarjeta de herramienta dorada premium */
   .sanctuary-tool-card {
     width: 85%; max-width: 340px; padding: 20px 22px; margin: 8px 0; border-radius: 24px;
-    background: rgba(139,92,246,0.04); border: 1px solid rgba(139,92,246,0.2);
-    transition: all 0.3s ease;
+    background: rgba(212,175,55,0.03); border: 1px solid rgba(212,175,55,0.18);
+    transition: all 0.3s ease; cursor: pointer;
   }
-  .sanctuary-tool-card:hover { background: rgba(139,92,246,0.08); border-color: rgba(139,92,246,0.4); }
-
-  /* Divisor santuario */
+  .sanctuary-tool-card:hover { background: rgba(212,175,55,0.06); border-color: rgba(212,175,55,0.45); }
+ 
   .sanctuary-divider {
     width: 60%; max-width: 200px; height: 1px;
-    background: linear-gradient(90deg, transparent, rgba(139,92,246,0.3), transparent);
-    margin: 20px auto 16px;
+    background: linear-gradient(90deg, transparent, rgba(212,175,55,0.25), transparent);
+    margin: 16px auto 12px;
   }
-
+ 
   .track-card {
     width: 85%; max-width: 340px; padding: 20px 25px; margin: 8px 0; border-radius: 30px;
     background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.1);
@@ -389,23 +393,23 @@ const inlineStyles = `
   }
   .track-card:active { transform: scale(0.98); }
   .track-card.suggestion { border-color: rgba(34,211,238,0.3); background: rgba(34,211,238,0.04); }
-
+ 
   .back-button-genora {
     width: 42px; height: 42px; border-radius: 50%; border: 1px solid rgba(34,211,238,0.5);
     background: rgba(34,211,238,0.08); display: flex; align-items: center; justify-content: center; cursor: pointer;
   }
-
+ 
   .time-button {
     width: 58px; padding: 10px 0; border-radius: 40px; border: 1px solid rgba(255,255,255,0.15);
     background: none; color: white; font-size: 12px; cursor: pointer; transition: 0.2s; font-weight: 200;
   }
-
+ 
   .heart-btn {
     background: none; border: none; cursor: pointer; font-size: 16px;
     padding: 4px 8px; line-height: 1; transition: transform 0.2s ease; flex-shrink: 0;
   }
   .heart-btn:active { transform: scale(1.4); }
-
+ 
   .bottom-bar {
     position: fixed; bottom: 0; left: 0; right: 0;
     background: rgba(2,6,23,0.96); backdrop-filter: blur(20px);
@@ -420,15 +424,18 @@ const inlineStyles = `
     display: flex; flex-direction: column; align-items: center; gap: 4px;
   }
   .bar-tab.active { color: #22d3ee; }
+  .bar-tab.active.gold-tab { color: #d4af37; }
   .bar-tab-icon { font-size: 18px; line-height: 1; }
-
+ 
   .lang-switch { display: flex; border: 1px solid rgba(34,211,238,0.35); border-radius: 20px; overflow: hidden; }
+  .lang-switch.gold-border { border-color: rgba(212,175,55,0.35); }
   .lang-btn { padding: 5px 12px; background: none; border: none; font-size: 10px; letter-spacing: 2px; cursor: pointer; transition: all 0.2s; color: rgba(255,255,255,0.35); font-weight: 200; }
   .lang-btn.active { background: rgba(34,211,238,0.15); color: #22d3ee; }
-
+  .lang-btn.active.gold-text { background: rgba(212,175,55,0.1); color: #d4af37; }
+ 
   .progress-bar-container { width: 100%; height: 2px; background: rgba(255,255,255,0.1); border-radius: 2px; margin: 8px 0 4px; cursor: pointer; }
   .progress-bar-fill { height: 100%; border-radius: 2px; background: #22d3ee; transition: width 0.5s linear; }
-
+ 
   .reminder-btn {
     padding: 8px 16px; border-radius: 30px; border: 1px solid rgba(34,211,238,0.25);
     background: none; color: rgba(255,255,255,0.4); font-size: 10px;
@@ -436,40 +443,38 @@ const inlineStyles = `
     text-transform: uppercase; font-weight: 200;
   }
   .reminder-btn.active { border-color: #22d3ee; color: #22d3ee; background: rgba(34,211,238,0.08); }
-
+ 
   .alineacion-banner {
     animation: fadeInDown 0.4s ease forwards;
-    margin: 0 auto 20px; width: 85%; max-width: 340px; padding: 12px 20px;
+    margin: 0 auto 12px; width: 85%; max-width: 340px; padding: 10px 16px;
     border-radius: 20px; background: rgba(34,211,238,0.05);
-    border: 1px solid rgba(34,211,238,0.2); text-align: center;
+    border: 1px solid rgba(34,211,238,0.15); text-align: center;
   }
-
+ 
   .suggestion-badge {
     animation: fadeInDown 0.3s ease forwards;
     font-size: 9px; letter-spacing: 2px; color: rgba(34,211,238,0.75);
     text-transform: uppercase; font-weight: 200;
   }
-
+ 
   .coming-soon-box {
-    text-align: center; color: rgba(255,255,255,0.2); padding: 50px 20px;
+    text-align: center; color: rgba(255,255,255,0.2); padding: 40px 20px;
     font-size: 11px; letter-spacing: 3px; font-weight: 200; line-height: 2;
   }
   .coming-soon-icon { font-size: 28px; margin-bottom: 16px; opacity: 0.4; }
-
-  /* Video Santuario — flotante zen */
+ 
   .sanctuary-video {
     width: 100%; border-radius: 16px; margin-top: 12px;
-    background: #000; border: 1px solid rgba(139,92,246,0.2);
+    background: #000; border: 1px solid rgba(212,175,55,0.2);
   }
-
-  /* Indicador de carga streaming */
+ 
   .streaming-indicator {
     animation: pulse-glow 2s infinite ease-in-out;
-    font-size: 10px; letter-spacing: 2px; color: rgba(139,92,246,0.7);
+    font-size: 10px; letter-spacing: 2px; color: rgba(212,175,55,0.7);
     text-align: center; padding: 8px 0; font-weight: 200;
   }
 `;
-
+ 
 // ── TRACKS ────────────────────────────────────────────────────────────────────
 const ALL_TRACKS = {
   MENTE: {
@@ -507,28 +512,27 @@ const ALL_TRACKS = {
   EXPERIENCIAS: { "SESIONES": [], "RITUALES": [], "CEREMONIAS": [] },
   ARMONIZACION: { "ADN": [], "CAMPOS": [], "CELULAR": [] }
 };
-
+ 
 const ALL_TRACKS_FLAT = Object.values(ALL_TRACKS)
   .flatMap(pillar => Object.values(pillar).flat())
   .filter(t => t.url);
-
+ 
 const formatTime = (secs) => {
   if (!secs || isNaN(secs) || !isFinite(secs)) return '00:00';
   const m = Math.floor(secs / 60);
   const s = Math.floor(secs % 60);
   return `${String(m).padStart(2, '0')}:${String(s).padStart(2, '0')}`;
 };
-
+ 
 const getTimeOfDay = () => {
   const h = new Date().getHours();
   if (h >= 5 && h < 12) return 'manana';
   if (h >= 12 && h < 19) return 'tarde';
   return 'noche';
 };
-
-// ── ORDEN DE PILARES EN HOME ──────────────────────────────────────────────────
+ 
 const HOME_PILLAR_ORDER = ['MENTE', 'COHERENCIA', 'CUERPO', 'EXPANSION', 'EXPERIENCIAS', 'ARMONIZACION'];
-
+ 
 // ── APP ───────────────────────────────────────────────────────────────────────
 const App = () => {
   const [lang, setLang] = useState('es');
@@ -544,7 +548,7 @@ const App = () => {
   const [currentTime, setCurrentTime] = useState(0);
   const [duration, setDuration] = useState(0);
   const [showBanner, setShowBanner] = useState(false);
-
+ 
   // ── SANTUARIO states ──
   const [showSanctuary, setShowSanctuary] = useState(false);
   const [sanctuaryUnlocked, setSanctuaryUnlocked] = useState(false);
@@ -552,15 +556,15 @@ const App = () => {
   const [sanctuaryError, setSanctuaryError] = useState(false);
   const [activeSanctuaryTool, setActiveSanctuaryTool] = useState(null);
   const [sanctuaryLoading, setSanctuaryLoading] = useState(false);
-
+ 
   const [favorites, setFavorites] = useState(() => {
     try { return JSON.parse(localStorage.getItem('genora_favorites')) || []; } catch { return []; }
   });
-
+ 
   const [reminderTime, setReminderTime] = useState(() => {
     try { return localStorage.getItem('genora_reminder_time') || null; } catch { return null; }
   });
-
+ 
   const audioRef = useRef(null);
   const sanctuaryMediaRef = useRef(null);
   const timerRef = useRef(null);
@@ -568,20 +572,18 @@ const App = () => {
   const activeTabRef = useRef(activeTab);
   const favoritesRef = useRef(favorites);
   const selectedTrackRef = useRef(selectedTrack);
-
+ 
   const t = T[lang];
-
+ 
   useEffect(() => { activeTabRef.current = activeTab; }, [activeTab]);
   useEffect(() => { favoritesRef.current = favorites; }, [favorites]);
   useEffect(() => { selectedTrackRef.current = selectedTrack; }, [selectedTrack]);
-
-  // Splash
+ 
   useEffect(() => {
     const timer = setTimeout(() => setShowSplash(false), 4500);
     return () => clearTimeout(timer);
   }, []);
-
-  // Recordatorio
+ 
   useEffect(() => {
     const checkReminder = () => {
       if (reminderTime && reminderTime === getTimeOfDay()) {
@@ -597,8 +599,7 @@ const App = () => {
       if (bannerTimerRef.current) clearTimeout(bannerTimerRef.current);
     };
   }, [reminderTime]);
-
-  // Motor de audio
+ 
   useEffect(() => {
     if (!audioRef.current) return;
     if (isPlaying) {
@@ -612,26 +613,24 @@ const App = () => {
       if (timerRef.current) clearTimeout(timerRef.current);
     }
   }, [isPlaying, selectedTrack, selectedTime]);
-
-  // Guardar favoritos
+ 
   useEffect(() => {
     try { localStorage.setItem('genora_favorites', JSON.stringify(favorites)); } catch {}
   }, [favorites]);
-
-  // Guardar recordatorio
+ 
   useEffect(() => {
     try {
       if (reminderTime) localStorage.setItem('genora_reminder_time', reminderTime);
       else localStorage.removeItem('genora_reminder_time');
     } catch {}
   }, [reminderTime]);
-
+ 
   const handleTimeUpdate = () => {
     if (!audioRef.current) return;
     setCurrentTime(audioRef.current.currentTime || 0);
     setDuration(audioRef.current.duration || 0);
   };
-
+ 
   const handleAudioEnded = () => {
     const currentFavs = favoritesRef.current;
     const currentTrack = selectedTrackRef.current;
@@ -665,13 +664,13 @@ const App = () => {
       setIsPlaying(false);
     }
   };
-
+ 
   const toggleFavorite = (e, trackId) => {
     e.stopPropagation();
     setFavorites(prev => prev.includes(trackId) ? prev.filter(id => id !== trackId) : [...prev, trackId]);
     if (isSuggestion && selectedTrack?.id === trackId) setIsSuggestion(false);
   };
-
+ 
   const handleReminderSelect = (key) => {
     const newValue = reminderTime === key ? null : key;
     setReminderTime(newValue);
@@ -683,8 +682,7 @@ const App = () => {
       setShowBanner(false);
     }
   };
-
-  // ── SANTUARIO — lógica ────────────────────────────────────────────────────
+ 
   const handleSanctuarySubmit = () => {
     if (sanctuaryCode.trim().toUpperCase() === SANCTUARY_CODE) {
       setSanctuaryUnlocked(true);
@@ -693,59 +691,56 @@ const App = () => {
       setSanctuaryError(true);
     }
   };
-
+ 
   const handleSanctuaryToolPlay = (tool) => {
     setActiveSanctuaryTool(tool);
     setSanctuaryLoading(true);
-    // Simula el inicio del streaming — el evento canplay del media lo desactiva
     setTimeout(() => setSanctuaryLoading(false), 3000);
   };
-
+ 
   const handleSanctuaryMediaCanPlay = () => {
     setSanctuaryLoading(false);
   };
-
+ 
   const isFavorite = (trackId) => favorites.includes(trackId);
   const accentColor = '#22d3ee';
-  const violetColor = '#8b5cf6';
-
+  const goldColor = '#d4af37';
+ 
   const handleBack = () => {
     if (activeSub) setActiveSub(null);
     else if (activePillar) setActivePillar(null);
     else setMainMode(null);
   };
-
+ 
   const handleProgressClick = (e) => {
     if (!audioRef.current || !duration) return;
     const rect = e.currentTarget.getBoundingClientRect();
     const ratio = (e.clientX - rect.left) / rect.width;
     audioRef.current.currentTime = ratio * duration;
   };
-
+ 
   const getReminderText = () => {
     if (reminderTime === 'manana') return t.reminder_set_morning;
     if (reminderTime === 'tarde') return t.reminder_set_afternoon;
     return t.reminder_set_night;
   };
-
+ 
   const playTrack = (track, suggestion = false) => {
     setSelectedTrack(track);
     setIsSuggestion(suggestion);
     setIsPlaying(true);
   };
-
-  // ── COMPONENTES ───────────────────────────────────────────────────────────
-
-  const LangSwitch = () => (
-    <div className="lang-switch">
-      <button className={`lang-btn ${lang === 'es' ? 'active' : ''}`} onClick={() => setLang('es')}>ES</button>
-      <button className={`lang-btn ${lang === 'en' ? 'active' : ''}`} onClick={() => setLang('en')}>EN</button>
+ 
+  const LangSwitch = ({ isGold = false }) => (
+    <div className={`lang-switch ${isGold ? 'gold-border' : ''}`}>
+      <button className={`lang-btn ${lang === 'es' ? 'active' : ''} ${isGold && lang === 'es' ? 'gold-text' : ''}`} onClick={() => setLang('es')}>ES</button>
+      <button className={`lang-btn ${lang === 'en' ? 'active' : ''} ${isGold && lang === 'en' ? 'gold-text' : ''}`} onClick={() => setLang('en')}>EN</button>
     </div>
   );
-
-  const BottomBar = () => (
+ 
+  const BottomBar = ({ isGold = false }) => (
     <div className="bottom-bar">
-      <button className={`bar-tab ${activeTab === 'catalogo' ? 'active' : ''}`} onClick={() => { setActiveTab('catalogo'); setShowSanctuary(false); }}>
+      <button className={`bar-tab ${activeTab === 'catalogo' ? 'active' : ''} ${isGold && activeTab === 'catalogo' ? 'gold-tab' : ''}`} onClick={() => { setActiveTab('catalogo'); setShowSanctuary(false); }}>
         <span className="bar-tab-icon">◎</span>
         {t.catalog}
       </button>
@@ -755,7 +750,7 @@ const App = () => {
       </button>
     </div>
   );
-
+ 
   const ReminderSection = () => (
     <div style={{ width: '85%', maxWidth: '340px', margin: '0 auto 24px', padding: '20px', borderRadius: '24px', background: 'rgba(255,255,255,0.02)', border: '1px solid rgba(255,255,255,0.06)' }}>
       <p style={{ fontSize: '10px', letterSpacing: '3px', color: 'rgba(255,255,255,0.3)', textAlign: 'center', marginBottom: '16px', fontWeight: 200 }}>{t.reminder_title}</p>
@@ -781,7 +776,7 @@ const App = () => {
       )}
     </div>
   );
-
+ 
   const TrackCard = ({ track, onSelect, isSugg = false }) => (
     <div className={`track-card ${isSugg ? 'suggestion' : ''}`} onClick={() => onSelect(track)} style={{ borderLeft: `4px solid ${accentColor}` }}>
       <div style={{ textAlign: 'left', width: '75%' }}>
@@ -802,14 +797,14 @@ const App = () => {
       </div>
     </div>
   );
-
+ 
   const ComingSoon = () => (
     <div className="coming-soon-box">
       <div className="coming-soon-icon">◈</div>
       {t.coming_soon}
     </div>
   );
-
+ 
   // ── SPLASH ────────────────────────────────────────────────────────────────
   if (showSplash) {
     return (
@@ -821,7 +816,7 @@ const App = () => {
       </div>
     );
   }
-
+ 
   // ── TEMPLO (reproductor) ──────────────────────────────────────────────────
   if (selectedTrack) {
     const progress = duration > 0 ? (currentTime / duration) * 100 : 0;
@@ -836,7 +831,7 @@ const App = () => {
           onLoadedMetadata={handleTimeUpdate}
           onEnded={handleAudioEnded}
         />
-
+ 
         <div style={{
           position: 'absolute', top: '35px', left: '30px', right: '30px',
           display: 'flex', alignItems: 'center', justifyContent: 'space-between'
@@ -852,15 +847,15 @@ const App = () => {
             {isFavorite(selectedTrack.id) ? '♥' : '♡'}
           </button>
         </div>
-
+ 
         <div style={{ width: '220px', height: '220px', marginBottom: '30px', display: 'flex', alignItems: 'center', justifyContent: 'center', animation: isPlaying ? 'logo-breathe 4s infinite' : 'none' }}>
           <img src="/imagenes/adn-icon.png" style={{ width: '100%', filter: `drop-shadow(0 0 15px ${accentColor})` }} alt="ADN" />
         </div>
-
+ 
         <h2 style={{ fontSize: '22px', letterSpacing: '4px', textTransform: 'uppercase', fontWeight: 200 }}>{selectedTrack.name}</h2>
         <p style={{ color: accentColor, fontSize: '11px', letterSpacing: '3px', fontWeight: 300, marginBottom: '8px' }}>{selectedTrack.hz}</p>
         <p style={{ fontSize: '12px', opacity: 0.6, maxWidth: '300px', lineHeight: '1.6', marginBottom: '20px', fontWeight: 200 }}>{t.tracks[selectedTrack.id] || ''}</p>
-
+ 
         <div style={{ width: '80%', maxWidth: '300px', marginBottom: '20px' }}>
           <div className="progress-bar-container" onClick={handleProgressClick}>
             <div className="progress-bar-fill" style={{ width: `${progress}%` }} />
@@ -870,7 +865,7 @@ const App = () => {
             <span style={{ fontSize: '10px', color: 'rgba(255,255,255,0.3)', letterSpacing: '1px' }}>{formatTime(duration)}</span>
           </div>
         </div>
-
+ 
         <div style={{ display: 'flex', gap: '12px', marginBottom: '40px' }}>
           {[15, 30, 60, 'inf'].map((time) => (
             <button key={time} onClick={() => setSelectedTime(time)} className="time-button"
@@ -879,7 +874,7 @@ const App = () => {
             </button>
           ))}
         </div>
-
+ 
         <button onClick={() => setIsPlaying(!isPlaying)}
           style={{ width: '85px', height: '85px', borderRadius: '50%', border: `1px solid ${accentColor}`, background: 'none', display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer' }}>
           <span style={{ fontSize: '30px', color: 'white' }}>{isPlaying ? '||' : '▶'}</span>
@@ -887,7 +882,7 @@ const App = () => {
       </div>
     );
   }
-
+ 
   // ── SANTUARIO — pantalla de herramienta activa ────────────────────────────
   if (showSanctuary && sanctuaryUnlocked && activeSanctuaryTool) {
     const tool = activeSanctuaryTool;
@@ -896,22 +891,24 @@ const App = () => {
         <style>{inlineStyles}</style>
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '30px', paddingTop: '10px' }}>
           <button onClick={() => setActiveSanctuaryTool(null)}
-            style={{ background: 'none', border: 'none', color: violetColor, fontSize: '40px', cursor: 'pointer', lineHeight: 1, padding: 0 }}>
+            style={{ background: 'none', border: 'none', color: goldColor, fontSize: '40px', cursor: 'pointer', lineHeight: 1, padding: 0 }}>
             &#8249;
           </button>
-          <LangSwitch />
+          <LangSwitch isGold={true} />
         </div>
-
+ 
         <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center', paddingBottom: '40px' }}>
-          <div style={{ fontSize: '28px', marginBottom: '16px' }}>{tool.type === 'video' ? '◈' : '◎'}</div>
-          <h2 style={{ fontSize: '14px', letterSpacing: '4px', textTransform: 'uppercase', fontWeight: 200, marginBottom: '8px' }}>{tool.name}</h2>
+          <div style={{ width: '120px', height: '120px', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '24px', animation: 'aura-gold-santuario 6s infinite ease-in-out' }}>
+            <img src="/imagenes/adn-icon.png" style={{ width: '100%', borderRadius: '50%', filter: `drop-shadow(0 0 15px ${goldColor}77)` }} alt="ADN" />
+          </div>
+          <h2 style={{ fontSize: '14px', letterSpacing: '4px', textTransform: 'uppercase', fontWeight: 200, marginBottom: '8px', color: goldColor }}>{tool.name}</h2>
           <p style={{ fontSize: '11px', color: 'rgba(255,255,255,0.4)', letterSpacing: '1px', fontWeight: 200, marginBottom: '6px', maxWidth: '280px', lineHeight: 1.7 }}>{tool.description}</p>
-          <p style={{ fontSize: '10px', color: `${violetColor}99`, letterSpacing: '2px', fontWeight: 200, marginBottom: '24px' }}>{tool.duration}</p>
-
+          <p style={{ fontSize: '10px', color: `${goldColor}99`, letterSpacing: '2px', fontWeight: 200, marginBottom: '24px' }}>{tool.duration}</p>
+ 
           {sanctuaryLoading && (
             <div className="streaming-indicator">◈ {t.sanctuary_loading}</div>
           )}
-
+ 
           {tool.type === 'audio' && (
             <div style={{ width: '85%', maxWidth: '340px' }}>
               <audio
@@ -921,13 +918,13 @@ const App = () => {
                 preload="metadata"
                 onCanPlay={handleSanctuaryMediaCanPlay}
                 onLoadStart={() => setSanctuaryLoading(true)}
-                style={{ width: '100%', borderRadius: '30px', accentColor: violetColor }}
+                style={{ width: '100%', borderRadius: '30px', accentColor: goldColor }}
               />
             </div>
           )}
-
+ 
           {tool.type === 'video' && (
-            <div style={{ width: '90%', maxWidth: '360px', borderRadius: '20px', overflow: 'hidden', border: `1px solid ${violetColor}33` }}>
+            <div style={{ width: '90%', maxWidth: '360px', borderRadius: '20px', overflow: 'hidden', border: `1px solid ${goldColor}33` }}>
               <video
                 ref={sanctuaryMediaRef}
                 src={tool.url}
@@ -943,30 +940,30 @@ const App = () => {
             </div>
           )}
         </div>
-        <BottomBar />
+        <BottomBar isGold={true} />
       </div>
     );
   }
-
-  // ── SANTUARIO — biblioteca ────────────────────────────────────────────────
+ 
+  // ── SANTUARIO — biblioteca (Sin emoji, 100% dorado) ───────────────────────
   if (showSanctuary && sanctuaryUnlocked) {
     return (
       <div className="fade-in-smooth" style={{ backgroundColor: '#020617', minHeight: '100vh', color: 'white', padding: '20px', paddingBottom: '80px' }}>
         <style>{inlineStyles}</style>
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '30px', paddingTop: '10px' }}>
           <button onClick={() => { setShowSanctuary(false); setSanctuaryUnlocked(false); setSanctuaryCode(''); }}
-            style={{ background: 'none', border: 'none', color: violetColor, fontSize: '40px', cursor: 'pointer', lineHeight: 1, padding: 0 }}>
+            style={{ background: 'none', border: 'none', color: goldColor, fontSize: '40px', cursor: 'pointer', lineHeight: 1, padding: 0 }}>
             &#8249;
           </button>
-          <LangSwitch />
+          <LangSwitch isGold={true} />
         </div>
-
+ 
         <div style={{ textAlign: 'center', marginBottom: '32px' }}>
-          <div style={{ fontSize: '26px', marginBottom: '12px' }}>🔮</div>
-          <h2 style={{ fontSize: '13px', letterSpacing: '5px', color: violetColor, fontWeight: 200, textTransform: 'uppercase', marginBottom: '8px' }}>{t.sanctuary_title}</h2>
+          <div className="micro-orbe-vivo" style={{ width: '10px', height: '10px', marginBottom: '14px', marginRight: 0 }}></div>
+          <h2 style={{ fontSize: '13px', letterSpacing: '5px', color: goldColor, fontWeight: 200, textTransform: 'uppercase', marginBottom: '8px' }}>{t.sanctuary_title}</h2>
           <p style={{ fontSize: '11px', color: 'rgba(255,255,255,0.35)', letterSpacing: '1px', fontWeight: 200, maxWidth: '260px', margin: '0 auto', lineHeight: 1.7 }}>{t.sanctuary_library_sub}</p>
         </div>
-
+ 
         <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
           {SANCTUARY_TOOLS.map((tool) => (
             <div
@@ -976,50 +973,48 @@ const App = () => {
             >
               <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
                 <div style={{ flex: 1, textAlign: 'left' }}>
-                  <div style={{ fontSize: '10px', letterSpacing: '2px', color: `${violetColor}99`, fontWeight: 200, marginBottom: '6px', textTransform: 'uppercase' }}>
+                  <div style={{ fontSize: '10px', letterSpacing: '2px', color: `${goldColor}99`, fontWeight: 200, marginBottom: '6px', textTransform: 'uppercase' }}>
                     {tool.type === 'audio' ? '◎ AUDIO' : '◈ VIDEO'}
                   </div>
                   <div style={{ fontSize: '14px', fontWeight: 300, color: 'white', marginBottom: '6px', lineHeight: 1.4 }}>{tool.name}</div>
                   <div style={{ fontSize: '10px', color: 'rgba(255,255,255,0.4)', fontWeight: 200, letterSpacing: '0.5px', lineHeight: 1.6 }}>{tool.description}</div>
                 </div>
                 <div style={{ marginLeft: '16px', display: 'flex', flexDirection: 'column', alignItems: 'flex-end', gap: '6px' }}>
-                  <span style={{ color: violetColor, fontSize: '20px' }}>▶</span>
-                  <span style={{ fontSize: '9px', color: `${violetColor}66`, letterSpacing: '1px', fontWeight: 200 }}>{tool.duration}</span>
+                  <span style={{ color: goldColor, fontSize: '20px' }}>▶</span>
+                  <span style={{ fontSize: '9px', color: `${goldColor}66`, letterSpacing: '1px', fontWeight: 200 }}>{tool.duration}</span>
                 </div>
               </div>
             </div>
           ))}
         </div>
-        <BottomBar />
+        <BottomBar isGold={true} />
       </div>
     );
   }
-
-  // ── SANTUARIO — pantalla de código ───────────────────────────────────────
+ 
+  // ── SANTUARIO — pantalla de código (Sin emoji, 100% dorado) ────────────────
   if (showSanctuary && !sanctuaryUnlocked) {
     return (
       <div className="fade-in-smooth" style={{ backgroundColor: '#020617', minHeight: '100vh', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', textAlign: 'center', padding: '30px', position: 'relative' }}>
         <style>{inlineStyles}</style>
         <button onClick={() => { setShowSanctuary(false); setSanctuaryCode(''); setSanctuaryError(false); }}
-          style={{ position: 'absolute', top: '35px', left: '30px', background: 'none', border: 'none', color: violetColor, fontSize: '40px', cursor: 'pointer', lineHeight: 1, padding: 0 }}>
+          style={{ position: 'absolute', top: '35px', left: '30px', background: 'none', border: 'none', color: goldColor, fontSize: '40px', cursor: 'pointer', lineHeight: 1, padding: 0 }}>
           &#8249;
         </button>
-
-        {/* Orbe violeta */}
+ 
         <div style={{
           width: '160px', height: '160px', borderRadius: '50%',
           display: 'flex', alignItems: 'center', justifyContent: 'center',
           marginBottom: '35px',
-          animation: 'aura-violet 6s infinite ease-in-out'
+          animation: 'aura-gold-santuario 6s infinite ease-in-out'
         }}>
-          <img src="/imagenes/adn-icon.png" style={{ width: '100%', borderRadius: '50%', filter: `drop-shadow(0 0 20px ${violetColor})` }} alt="ADN" />
+          <img src="/imagenes/adn-icon.png" style={{ width: '100%', borderRadius: '50%', filter: `drop-shadow(0 0 20px ${goldColor}77)` }} alt="ADN" />
         </div>
-
-        <div style={{ fontSize: '30px', marginBottom: '14px' }}>🔮</div>
-        <h2 style={{ fontSize: '13px', letterSpacing: '5px', color: violetColor, fontWeight: 200, textTransform: 'uppercase', marginBottom: '10px' }}>{t.sanctuary_title}</h2>
+ 
+        <h2 style={{ fontSize: '13px', letterSpacing: '5px', color: goldColor, fontWeight: 200, textTransform: 'uppercase', marginBottom: '10px' }}>{t.sanctuary_title}</h2>
         <p style={{ fontSize: '11px', color: 'rgba(255,255,255,0.35)', maxWidth: '260px', lineHeight: 1.8, fontWeight: 200, marginBottom: '6px', letterSpacing: '0.5px' }}>{t.sanctuary_micro}</p>
-        <p style={{ fontSize: '10px', color: `${violetColor}66`, letterSpacing: '2px', fontWeight: 200, marginBottom: '36px' }}>{t.sanctuary_access}</p>
-
+        <p style={{ fontSize: '10px', color: `${goldColor}66`, letterSpacing: '2px', fontWeight: 200, marginBottom: '36px' }}>{t.sanctuary_access}</p>
+ 
         <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '14px', width: '100%' }}>
           <input
             className="sanctuary-input"
@@ -1041,7 +1036,7 @@ const App = () => {
       </div>
     );
   }
-
+ 
   // ── MI ALINEACION ─────────────────────────────────────────────────────────
   if (activeTab === 'favoritos') {
     const favTracks = ALL_TRACKS_FLAT.filter(tr => favorites.includes(tr.id));
@@ -1075,47 +1070,44 @@ const App = () => {
       </div>
     );
   }
-
+ 
   // ── CATÁLOGO PRINCIPAL ────────────────────────────────────────────────────
   return (
     <div className="fade-in-smooth" style={{ backgroundColor: '#020617', minHeight: '100vh', color: 'white', padding: '20px', paddingBottom: '80px' }}>
       <style>{inlineStyles}</style>
-
+ 
       {showBanner && (
         <div className="alineacion-banner" style={{ marginTop: '10px' }}>
           <p style={{ fontSize: '11px', letterSpacing: '2px', color: '#22d3ee', margin: 0, fontWeight: 200 }}>{t.banner}</p>
         </div>
       )}
-
-      {/* Header */}
-      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '40px', paddingTop: '10px' }}>
+ 
+      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '12px', paddingTop: '10px' }}>
         {mainMode ? (
           <div onClick={handleBack} className="back-button-genora">
             <span style={{ color: accentColor, fontSize: '20px' }}>&#8249;</span>
           </div>
         ) : (
-          <img src="/imagenes/genora-logo-white.png" style={{ height: '95px', borderRadius: '50%', objectFit: 'contain' }} alt="Logo" />
+          <img src="/imagenes/genora-logo-white.png" style={{ height: '60px', borderRadius: '50%', objectFit: 'contain' }} alt="Logo" />
         )}
         <LangSwitch />
       </div>
-
+ 
       <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-        {/* ADN supernova */}
         <div style={{
-          width: activeSub ? '110px' : (activePillar ? '130px' : (mainMode ? '130px' : '165px')),
-          height: activeSub ? '110px' : (activePillar ? '130px' : (mainMode ? '130px' : '165px')),
+          width: activeSub ? '80px' : (activePillar ? '100px' : (mainMode ? '100px' : '115px')),
+          height: activeSub ? '80px' : (activePillar ? '100px' : (mainMode ? '100px' : '115px')),
           borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center',
-          marginBottom: '35px', transition: 'all 0.5s ease',
+          marginBottom: mainMode ? '20px' : '14px', transition: 'all 0.5s ease',
           animation: 'aura-supernova 8s infinite ease-in-out'
         }}>
           <img src="/imagenes/adn-icon.png" style={{ width: '100%', borderRadius: '50%' }} alt="ADN" />
         </div>
-
+ 
         {!mainMode && (
           <div className="category-stack">
-            <h2 style={{ fontSize: '10px', letterSpacing: '5px', color: '#22d3ee', marginBottom: '16px', fontWeight: 200 }}>{t.choose_path}</h2>
-
-            {/* Los 6 pilares */}
+            <h2 style={{ fontSize: '9px', letterSpacing: '5px', color: '#22d3ee', marginBottom: '8px', fontWeight: 200 }}>{t.choose_path}</h2>
+ 
             {HOME_PILLAR_ORDER.map((key) => (
               <button
                 key={key}
@@ -1125,33 +1117,34 @@ const App = () => {
                 {t.pillar_names[key]}
               </button>
             ))}
-
-            {/* Divisor visual sutil */}
-            <div className="sanctuary-divider" style={{ marginTop: '10px' }} />
-
-            {/* Santuario GENORA */}
+ 
+            <div className="sanctuary-divider" />
+ 
+            {/* Botón Santuario GENORA Con Micro-Orbe Flotante */}
             <div
               className="sanctuary-btn"
               onClick={() => { setShowSanctuary(true); setActiveTab('catalogo'); }}
             >
-              <div style={{ fontSize: '18px', marginBottom: '6px' }}>🔮</div>
-              <div style={{ fontSize: '11px', letterSpacing: '4px', fontWeight: 200, color: 'rgba(255,255,255,0.85)', textTransform: 'uppercase', marginBottom: '6px' }}>
-                {t.sanctuary_title}
+              <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '4px' }}>
+                <div className="micro-orbe-vivo"></div>
+                <div style={{ fontSize: '10px', letterSpacing: '4px', fontWeight: 200, color: goldColor, textTransform: 'uppercase' }}>
+                  {t.sanctuary_title}
+                </div>
               </div>
-              <div style={{ fontSize: '10px', color: 'rgba(255,255,255,0.3)', fontWeight: 200, letterSpacing: '0.5px', lineHeight: 1.6 }}>
+              <div style={{ fontSize: '9px', color: 'rgba(255,255,255,0.28)', fontWeight: 200, letterSpacing: '0.5px', lineheight: 1.4 }}>
                 {t.sanctuary_micro}
               </div>
-              <div style={{ fontSize: '9px', color: `${violetColor}88`, fontWeight: 200, letterSpacing: '2px', marginTop: '6px', textTransform: 'uppercase' }}>
+              <div style={{ fontSize: '8px', color: `${goldColor}77`, fontWeight: 200, letterSpacing: '2px', marginTop: '4px', textTransform: 'uppercase' }}>
                 {t.sanctuary_access}
               </div>
             </div>
           </div>
         )}
-
-        {/* NIVEL 2 — PILARES (subcategorías del pilar seleccionado) */}
+ 
+        {/* NIVEL 2 — PILARES */}
         {mainMode && !activePillar && (
           <div className="category-stack">
-            <p style={{ fontSize: '10px', letterSpacing: '5px', color: accentColor, textAlign: 'center', marginBottom: '35px', fontWeight: 200 }}>
+            <p style={{ fontSize: '10px', letterSpacing: '5px', color: accentColor, textAlign: 'center', marginBottom: '25px', fontWeight: 200 }}>
               {t.pillars[mainMode]?.label?.toUpperCase() || mainMode.toUpperCase()}
             </p>
             {Object.keys(t.pillars[mainMode]?.subs || {}).map(sub => (
@@ -1161,11 +1154,11 @@ const App = () => {
             ))}
           </div>
         )}
-
+ 
         {/* NIVEL 3 — SUBCATEGORIAS */}
         {activePillar && !activeSub && (
           <div className="category-stack">
-            <p style={{ fontSize: '10px', letterSpacing: '5px', color: accentColor, textAlign: 'center', marginBottom: '35px', fontWeight: 200 }}>{t.pillars[activePillar].label}</p>
+            <p style={{ fontSize: '10px', letterSpacing: '5px', color: accentColor, textAlign: 'center', marginBottom: '25px', fontWeight: 200 }}>{t.pillars[activePillar].label}</p>
             {Object.keys(t.pillars[activePillar].subs).map(sub => (
               <div key={sub} onClick={() => setActiveSub(sub)} className="pillar-card">
                 {t.pillars[activePillar].subs[sub]}
@@ -1173,11 +1166,11 @@ const App = () => {
             ))}
           </div>
         )}
-
-        {/* NIVEL 4 — TRACKS o COMING SOON */}
+ 
+        {/* NIVEL 4 — TRACKS */}
         {activeSub && (
           <div className="fade-in-smooth" style={{ width: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-            <p style={{ fontSize: '10px', letterSpacing: '3px', color: accentColor, textAlign: 'center', marginBottom: '25px', fontWeight: 200 }}>
+            <p style={{ fontSize: '10px', letterSpacing: '3px', color: accentColor, textAlign: 'center', marginBottom: '20px', fontWeight: 200 }}>
               {t.pillars[activePillar]?.subs[activeSub] || activeSub}
             </p>
             {(ALL_TRACKS[activePillar]?.[activeSub] || []).length === 0
@@ -1193,5 +1186,5 @@ const App = () => {
     </div>
   );
 };
-
+ 
 export default App;
