@@ -284,8 +284,8 @@ const getTimeOfDay = () => {
 
 // Colores dorados mejorados para legibilidad
 const GOLD = '#d4af37';
-const GOLD_BRIGHT = '#d4af37';
-const GOLD_LIGHT = '#c9a227';
+const GOLD_BRIGHT = '#F4EAD4';
+const GOLD_LIGHT = '#FFF5E1';
 const GOLD_SHADOW = 'text-shadow: 0 0 8px rgba(212,175,55,0.4)';
 
 const inlineStyles = `
@@ -320,16 +320,16 @@ const inlineStyles = `
 
   /* Textos dorados con brillo espiritual */
   .gold-title {
-    color: #d4af37 !important;
+    color: #F4EAD4;
     text-shadow: 0 0 8px rgba(212,175,55,0.4);
   }
   .gold-sub {
-    color: #c9a227 !important;
-    opacity: 0.9;
+    color: #F4EAD4;
+    opacity: 0.85;
   }
   .gold-micro {
-    color: #b8960c !important;
-    opacity: 0.85;
+    color: #FFF5E1;
+    opacity: 0.7;
   }
 
   .home-btn {
@@ -428,12 +428,12 @@ const inlineStyles = `
   .sanctuary-input { width: 70%; max-width: 260px; padding: 14px 20px; border-radius: 30px; background: rgba(255,255,255,0.03); border: 1px solid rgba(212,175,55,0.3); color: white; font-size: 12px; letter-spacing: 3px; text-align: center; text-transform: uppercase; outline: none; transition: all 0.3s ease; font-weight: 200; }
   .sanctuary-input:focus { border-color: rgba(212,175,55,0.7); background: rgba(212,175,55,0.05); }
   .sanctuary-input::placeholder { color: rgba(255,255,255,0.2); text-transform: none; letter-spacing: 1px; }
-  .sanctuary-enter-btn { width: 70%; max-width: 260px; padding: 14px; border-radius: 30px; background: rgba(212,175,55,0.06); border: 1px solid rgba(212,175,55,0.4); color: #d4af37; font-size: 11px; letter-spacing: 4px; cursor: pointer; transition: all 0.3s ease; font-weight: 200; text-shadow: 0 0 8px rgba(212,175,55,0.3); }
+  .sanctuary-enter-btn { width: 70%; max-width: 260px; padding: 14px; border-radius: 30px; background: rgba(212,175,55,0.06); border: 1px solid rgba(212,175,55,0.4); color: #F4EAD4; font-size: 11px; letter-spacing: 4px; cursor: pointer; transition: all 0.3s ease; font-weight: 200; text-shadow: 0 0 8px rgba(212,175,55,0.3); }
   .sanctuary-enter-btn:hover { background: rgba(212,175,55,0.12); border-color: rgba(212,175,55,0.75); }
   .sanctuary-tool-card { width: 85%; max-width: 340px; padding: 20px 22px; margin: 8px 0; border-radius: 24px; background: rgba(212,175,55,0.03); border: 1px solid rgba(212,175,55,0.18); transition: all 0.3s ease; cursor: pointer; }
   .sanctuary-tool-card:hover { background: rgba(212,175,55,0.06); border-color: rgba(212,175,55,0.45); }
   .micro-orbe-vivo { width: 7px; height: 7px; border-radius: 50%; background: #d4af37; display: inline-block; animation: micro-orbe-breathe 2.5s infinite ease-in-out; }
-  .streaming-indicator { animation: pulse-glow 2s infinite ease-in-out; font-size: 10px; letter-spacing: 2px; color: #d4af37; text-align: center; padding: 8px 0; font-weight: 200; }
+  .streaming-indicator { animation: pulse-glow 2s infinite ease-in-out; font-size: 10px; letter-spacing: 2px; color: #F4EAD4; text-align: center; padding: 8px 0; font-weight: 200; }
   .sanctuary-video { width: 100%; border-radius: 16px; margin-top: 12px; background: #000; border: 1px solid rgba(212,175,55,0.2); }
 `;
 
@@ -446,16 +446,16 @@ const App = () => {
   const [medPillar, setMedPillar] = useState(null);
   const [expLevel, setExpLevel] = useState(null);
   const [expStage, setExpStage] = useState(null);
-  const [selectedTrack, setSelectedTrack] = useState(() => {
-    try { const [selectedTrack, setSelectedTrack] = useState(null);
-  });
+  const [selectedTrack, setSelectedTrack] = useState(null);
+
+
   const [isSuggestion, setIsSuggestion] = useState(false);
   const [isPlaying, setIsPlaying] = useState(false);
   const [selectedTime, setSelectedTime] = useState(null);
-  const [currentTime, setCurrentTime] = useState(() => {
-    try { return parseFloat(localStorage.getItem('genora_last_time')) || 0; } catch { return 0; }
-  });
-  const [duration, setDuration] = useState(0);
+  const [currentTime, setCurrentTime] = useState(0);
+
+
+
   const [activeTab, setActiveTab] = useState('catalogo');
   const [showBanner, setShowBanner] = useState(false);
   const [favorites, setFavorites] = useState(() => {
@@ -683,9 +683,9 @@ const App = () => {
   const SessionCard = ({ session, color = 'white', accent = '#22d3ee' }) => (
     <div className={`session-card ${color === 'violet' ? 'violet' : color === 'gold' ? 'gold' : ''}`} style={{ borderLeft: `3px solid ${accent}33` }}>
       <div style={{ fontSize: '13px', color: 'white', fontWeight: 300, marginBottom: '4px' }}>{session.name}</div>
-      {session.sub && <div style={{ fontSize: '10px', color: color === 'gold' ? '#d4af37' : `${accent}99`, letterSpacing: '1px', fontWeight: 200, marginBottom: '4px', textShadow: color === 'gold' ? '0 0 6px rgba(212,175,55,0.3)' : 'none' }}>{session.sub}</div>}
+      {session.sub && <div style={{ fontSize: '10px', color: color === 'gold' ? '#F4EAD4' : `${accent}99`, letterSpacing: '1px', fontWeight: 200, marginBottom: '4px', textShadow: color === 'gold' ? '0 0 6px rgba(212,175,55,0.3)' : 'none' }}>{session.sub}</div>}
       <div style={{ fontSize: '10px', color: 'rgba(212,175,55,0.75)', fontWeight: 200, lineHeight: 1.6 }}>{session.desc}</div>
-      <div style={{ marginTop: '10px', fontSize: '9px', color: color === 'gold' ? '#d4af37' : `${accent}77`, letterSpacing: '2px', fontWeight: 200, opacity: 0.7 }}>
+      <div style={{ marginTop: '10px', fontSize: '9px', color: color === 'gold' ? '#F4EAD4' : `${accent}77`, letterSpacing: '2px', fontWeight: 200, opacity: 0.7 }}>
         {lang === 'es' ? 'PROXIMAMENTE' : 'COMING SOON'}
       </div>
     </div>
@@ -830,13 +830,13 @@ const App = () => {
               <div key={tool.id} className="sanctuary-tool-card" onClick={() => { setActiveSanctuaryTool(tool); setSanctuaryLoading(true); setTimeout(() => setSanctuaryLoading(false), 3000); }}>
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
                   <div style={{ flex: 1, textAlign: 'left' }}>
-                    <div style={{ fontSize: '10px', letterSpacing: '2px', color: '#d4af37', fontWeight: 200, marginBottom: '6px', textTransform: 'uppercase', opacity: 0.7 }}>{tool.type === 'audio' ? '◎ AUDIO' : '◈ VIDEO'}</div>
+                    <div style={{ fontSize: '10px', letterSpacing: '2px', color: '#F4EAD4', fontWeight: 200, marginBottom: '6px', textTransform: 'uppercase', opacity: 0.7 }}>{tool.type === 'audio' ? '◎ AUDIO' : '◈ VIDEO'}</div>
                     <div style={{ fontSize: '14px', fontWeight: 300, color: '#d4af37', marginBottom: '6px', lineHeight: 1.4 }}>{tool.name}</div>
                     <div style={{ fontSize: '10px', color: 'rgba(212,175,55,0.75)', fontWeight: 200, lineHeight: 1.6 }}>{tool.description}</div>
                   </div>
                   <div style={{ marginLeft: '16px', display: 'flex', flexDirection: 'column', alignItems: 'flex-end', gap: '6px' }}>
-                    <span style={{ color: '#d4af37', fontSize: '20px', textShadow: '0 0 8px rgba(212,175,55,0.4)' }}>▶</span>
-                    <span style={{ fontSize: '9px', color: '#d4af37', letterSpacing: '1px', fontWeight: 200, opacity: 0.6 }}>{tool.duration}</span>
+                    <span style={{ color: '#F4EAD4', fontSize: '20px', textShadow: '0 0 8px rgba(212,175,55,0.4)' }}>▶</span>
+                    <span style={{ fontSize: '9px', color: '#F4EAD4', letterSpacing: '1px', fontWeight: 200, opacity: 0.6 }}>{tool.duration}</span>
                   </div>
                 </div>
               </div>
@@ -979,9 +979,9 @@ const App = () => {
               { key: 'MERKABA', label: t.exp_levels.MERKABA, sub: t.exp_levels.MERKABA_sub }
             ].map((lvl, i) => (
               <div key={lvl.key} className="pillar-card gold" onClick={() => setExpLevel(lvl.key)} style={{ maxWidth: '310px', width: '80%' }}>
-                <div style={{ fontSize: '9px', color: '#d4af37', letterSpacing: '2px', marginBottom: '4px', opacity: 0.6 }}>NIVEL {i + 1}</div>
-                <div style={{ fontSize: '11px', letterSpacing: '3px', color: '#d4af37', textShadow: '0 0 8px rgba(212,175,55,0.4)' }}>{lvl.label}</div>
-                <div style={{ fontSize: '9px', color: '#c9a227', letterSpacing: '1px', marginTop: '3px', fontWeight: 200, opacity: 0.75 }}>{lvl.sub}</div>
+                <div style={{ fontSize: '9px', color: '#F4EAD4', letterSpacing: '2px', marginBottom: '4px', opacity: 0.6 }}>NIVEL {i + 1}</div>
+                <div style={{ fontSize: '11px', letterSpacing: '3px', color: '#F4EAD4', textShadow: '0 0 8px rgba(212,175,55,0.4)' }}>{lvl.label}</div>
+                <div style={{ fontSize: '9px', color: '#FFF5E1', letterSpacing: '1px', marginTop: '3px', fontWeight: 200, opacity: 0.75 }}>{lvl.sub}</div>
               </div>
             ))}
           </div>
@@ -991,11 +991,11 @@ const App = () => {
         {mainMode === 'experiencias' && expLevel === 'UNVEILING' && !expStage && (
           <div className="category-stack">
             <p className="gold-title" style={{ fontSize: '10px', letterSpacing: '4px', textAlign: 'center', marginBottom: '4px', fontWeight: 200 }}>{t.exp_levels.UNVEILING}</p>
-            <p style={{ fontSize: '9px', color: '#c9a227', letterSpacing: '1px', textAlign: 'center', marginBottom: '16px', fontWeight: 200, opacity: 0.7 }}>{t.exp_levels.UNVEILING_sub}</p>
+            <p style={{ fontSize: '9px', color: '#FFF5E1', letterSpacing: '1px', textAlign: 'center', marginBottom: '16px', fontWeight: 200, opacity: 0.7 }}>{t.exp_levels.UNVEILING_sub}</p>
             {['TERRESTRE', 'DIVINO', 'INTERDIMENSIONAL'].map(stage => (
               <div key={stage} className="pillar-card gold" onClick={() => setExpStage(stage)} style={{ maxWidth: '310px', width: '80%' }}>
-                <div style={{ fontSize: '10px', letterSpacing: '3px', color: '#d4af37', textShadow: '0 0 8px rgba(212,175,55,0.35)' }}>{t.unveiling_stages[stage]}</div>
-                <div style={{ fontSize: '9px', color: '#c9a227', letterSpacing: '1px', marginTop: '3px', fontWeight: 200, opacity: 0.75 }}>{t.unveiling_stages[`${stage}_sub`]}</div>
+                <div style={{ fontSize: '10px', letterSpacing: '3px', color: '#F4EAD4', textShadow: '0 0 8px rgba(212,175,55,0.35)' }}>{t.unveiling_stages[stage]}</div>
+                <div style={{ fontSize: '9px', color: '#FFF5E1', letterSpacing: '1px', marginTop: '3px', fontWeight: 200, opacity: 0.75 }}>{t.unveiling_stages[`${stage}_sub`]}</div>
               </div>
             ))}
           </div>
@@ -1005,7 +1005,7 @@ const App = () => {
         {mainMode === 'experiencias' && expLevel === 'UNVEILING' && expStage && (
           <div className="fade-in-smooth" style={{ width: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
             <p className="gold-title" style={{ fontSize: '10px', letterSpacing: '3px', textAlign: 'center', marginBottom: '4px', fontWeight: 200 }}>{t.unveiling_stages[expStage]}</p>
-            <p style={{ fontSize: '9px', color: '#c9a227', textAlign: 'center', marginBottom: '16px', fontWeight: 200, opacity: 0.7 }}>{t.unveiling_stages[`${expStage}_sub`]}</p>
+            <p style={{ fontSize: '9px', color: '#FFF5E1', textAlign: 'center', marginBottom: '16px', fontWeight: 200, opacity: 0.7 }}>{t.unveiling_stages[`${expStage}_sub`]}</p>
             {EXP_DATA.UNVEILING[expStage].map(s => <SessionCard key={s.id} session={s} color="gold" accent={goldColor} />)}
           </div>
         )}
@@ -1014,7 +1014,7 @@ const App = () => {
         {mainMode === 'experiencias' && expLevel && expLevel !== 'UNVEILING' && (
           <div className="fade-in-smooth" style={{ width: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
             <p className="gold-title" style={{ fontSize: '10px', letterSpacing: '3px', textAlign: 'center', marginBottom: '4px', fontWeight: 200 }}>{t.exp_levels[expLevel]}</p>
-            <p style={{ fontSize: '9px', color: '#c9a227', textAlign: 'center', marginBottom: '16px', fontWeight: 200, opacity: 0.7 }}>{t.exp_levels[`${expLevel}_sub`]}</p>
+            <p style={{ fontSize: '9px', color: '#FFF5E1', textAlign: 'center', marginBottom: '16px', fontWeight: 200, opacity: 0.7 }}>{t.exp_levels[`${expLevel}_sub`]}</p>
             {(EXP_DATA[expLevel] || []).map(s => <SessionCard key={s.id} session={s} color="gold" accent={goldColor} />)}
           </div>
         )}
