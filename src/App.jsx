@@ -454,11 +454,11 @@ const App = () => {
   const [selectedTime, setSelectedTime] = useState(null);
   const [currentTime, setCurrentTime] = useState(0);
 
-
-
   const [activeTab, setActiveTab] = useState('catalogo');
   const [showBanner, setShowBanner] = useState(false);
- const [selectedTrack, setSelectedTrack] = useState(null);
+  const [favorites, setFavorites] = useState(() => {
+    try { return JSON.parse(localStorage.getItem('genora_favorites')) || []; } catch { return []; }
+  });
   const [reminderTime, setReminderTime] = useState(() => {
     try { return localStorage.getItem('genora_reminder_time') || null; } catch { return null; }
   });
