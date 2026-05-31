@@ -320,16 +320,16 @@ const inlineStyles = `
 
   /* Textos dorados con brillo espiritual */
   .gold-title {
-    color: #d4af37;
-    text-shadow: 0 0 8px rgba(253, 216, 95, 0.4);
+    color: #F4EAD4;
+    text-shadow: 0 0 8px rgba(212,175,55,0.4);
   }
   .gold-sub {
-    color: #c9a227;
-    opacity: 0.9;
+    color: #F4EAD4;
+    opacity: 0.85;
   }
   .gold-micro {
-    color: #eec41e;
-    opacity: 0.85;
+    color: #FFF5E1;
+    opacity: 0.7;
   }
 
   .home-btn {
@@ -684,7 +684,7 @@ const App = () => {
     <div className={`session-card ${color === 'violet' ? 'violet' : color === 'gold' ? 'gold' : ''}`} style={{ borderLeft: `3px solid ${accent}33` }}>
       <div style={{ fontSize: '13px', color: 'white', fontWeight: 300, marginBottom: '4px' }}>{session.name}</div>
       {session.sub && <div style={{ fontSize: '10px', color: color === 'gold' ? '#F4EAD4' : `${accent}99`, letterSpacing: '1px', fontWeight: 200, marginBottom: '4px', textShadow: color === 'gold' ? '0 0 6px rgba(212,175,55,0.3)' : 'none' }}>{session.sub}</div>}
-      <div style={{ fontSize: '10px', color: 'rgba(255,255,255,0.5)', fontWeight: 200, lineHeight: 1.6 }}>{session.desc}</div>
+      <div style={{ fontSize: '10px', color: 'rgba(212,175,55,0.75)', fontWeight: 200, lineHeight: 1.6 }}>{session.desc}</div>
       <div style={{ marginTop: '10px', fontSize: '9px', color: color === 'gold' ? '#F4EAD4' : `${accent}77`, letterSpacing: '2px', fontWeight: 200, opacity: 0.7 }}>
         {lang === 'es' ? 'PROXIMAMENTE' : 'COMING SOON'}
       </div>
@@ -831,8 +831,8 @@ const App = () => {
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
                   <div style={{ flex: 1, textAlign: 'left' }}>
                     <div style={{ fontSize: '10px', letterSpacing: '2px', color: '#F4EAD4', fontWeight: 200, marginBottom: '6px', textTransform: 'uppercase', opacity: 0.7 }}>{tool.type === 'audio' ? '◎ AUDIO' : '◈ VIDEO'}</div>
-                    <div style={{ fontSize: '14px', fontWeight: 300, color: 'white', marginBottom: '6px', lineHeight: 1.4 }}>{tool.name}</div>
-                    <div style={{ fontSize: '10px', color: 'rgba(255,255,255,0.5)', fontWeight: 200, lineHeight: 1.6 }}>{tool.description}</div>
+                    <div style={{ fontSize: '14px', fontWeight: 300, color: '#d4af37', marginBottom: '6px', lineHeight: 1.4 }}>{tool.name}</div>
+                    <div style={{ fontSize: '10px', color: 'rgba(212,175,55,0.75)', fontWeight: 200, lineHeight: 1.6 }}>{tool.description}</div>
                   </div>
                   <div style={{ marginLeft: '16px', display: 'flex', flexDirection: 'column', alignItems: 'flex-end', gap: '6px' }}>
                     <span style={{ color: '#F4EAD4', fontSize: '20px', textShadow: '0 0 8px rgba(212,175,55,0.4)' }}>▶</span>
