@@ -553,7 +553,6 @@ const App = () => {
     try { return parseFloat(localStorage.getItem('genora_last_time')) || 0; } catch { return 0; }
   });
   const [duration, setDuration] = useState(0);
-  const [showResumeBar, setShowResumeBar] = useState(() => {
     try { return !!localStorage.getItem('genora_last_track'); } catch { return false; }
   });
   // tabs
@@ -807,7 +806,6 @@ const App = () => {
     </div>
   );
 
-  const ResumeBar = () => {
     if (!showResumeBar || !selectedTrack || isPlaying) return null;
     return (
       <div className="mini-resume-bar" onClick={() => { setShowResumeBar(false); setIsPlaying(true); }}>
@@ -866,7 +864,7 @@ const App = () => {
           onLoadedMetadata={(e) => { handleTimeUpdate(); if (currentTime > 0 && e.target.duration > currentTime) e.target.currentTime = currentTime; }}
           onEnded={handleAudioEnded} />
         <div style={{ position: 'absolute', top: '35px', left: '30px', right: '30px', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-          <button onClick={() => { setIsPlaying(false); setShowResumeBar(true); }} style={{ background: 'none', border: 'none', color: accentColor, fontSize: '40px', cursor: 'pointer', lineHeight: 1, padding: 0 }}>&#8249;</button>
+          <button onClick={() => { setIsPlaying(false); setSelectedTrack(null); setCurrentTime(0); }} style={{ background: 'none', border: 'none', color: accentColor, fontSize: '40px', cursor: 'pointer', lineHeight: 1, padding: 0 }}>&#8249;</button>
           {isSuggestion && <div className="suggestion-badge">✦ {t.suggestion_label}</div>}
           <button className="heart-btn" onClick={(e) => toggleFavorite(e, selectedTrack.id)} style={{ fontSize: '24px', color: isFavorite(selectedTrack.id) ? '#ff6b9d' : 'rgba(255,255,255,0.4)', padding: 0 }}>
             {isFavorite(selectedTrack.id) ? '♥' : '♡'}
@@ -1013,7 +1011,6 @@ const App = () => {
             {favTracks.map((track) => <TrackCard key={track.id} track={track} onSelect={(tr) => playTrack(tr, false)} />)}
           </div>
         )}
-        <ResumeBar />
         <BottomBar />
       </div>
     );
