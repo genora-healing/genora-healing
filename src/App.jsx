@@ -447,7 +447,7 @@ const App = () => {
   const [expLevel, setExpLevel] = useState(null);
   const [expStage, setExpStage] = useState(null);
   const [selectedTrack, setSelectedTrack] = useState(() => {
-    try { const s = localStorage.getItem('genora_last_track'); return s ? JSON.parse(s) : null; } catch { return null; }
+    try { const [selectedTrack, setSelectedTrack] = useState(null);
   });
   const [isSuggestion, setIsSuggestion] = useState(false);
   const [isPlaying, setIsPlaying] = useState(false);
