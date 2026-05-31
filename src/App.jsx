@@ -320,16 +320,16 @@ const inlineStyles = `
 
   /* Textos dorados con brillo espiritual */
   .gold-title {
-    color: #F4EAD4;
-    text-shadow: 0 0 8px rgba(212,175,55,0.4);
+    color: #d4af37;
+    text-shadow: 0 0 8px rgba(253, 216, 95, 0.4);
   }
   .gold-sub {
-    color: #F4EAD4;
-    opacity: 0.85;
+    color: #c9a227;
+    opacity: 0.9;
   }
   .gold-micro {
-    color: #FFF5E1;
-    opacity: 0.7;
+    color: #eec41e;
+    opacity: 0.85;
   }
 
   .home-btn {
