@@ -23,7 +23,6 @@ const T = {
     banner: "✦ Es momento de tu alineacion diaria Genora",
     suggestion_label: "SUGERENCIA DE ALINEACION",
     coming_soon: "Proximas frecuencias en camino...",
-    resume_playing: "Reanudar frecuencia",
     sanctuary_title: "SANTUARIO GENORA",
     sanctuary_micro: "Un espacio reservado para las herramientas que apoyan tu camino.",
     sanctuary_access: "Acceso exclusivo mediante codigo de acceso.",
@@ -32,77 +31,29 @@ const T = {
     sanctuary_error: "Codigo no verificado. Solicita tu codigo de acceso.",
     sanctuary_loading: "Sintonizando frecuencia de alta fidelidad...",
     sanctuary_library_sub: "Frecuencias y videos para tu proceso de sanacion.",
-    home_buttons: {
-      frequencies: "FRECUENCIAS",
-      meditations: "MEDITACIONES",
-      experiences: "EXPERIENCIAS",
-      sanctuary: "SANTUARIO GENORA"
-    },
-    freq_pillars: {
-      MENTE: "MENTE",
-      COHERENCIA: "COHERENCIA",
-      CUERPO: "CUERPO",
-      EXPANSION: "EXPANSION",
-      EXPERIENCIAS_G: "EXPERIENCIAS GENORA",
-      ARMONIZACION: "ARMONIZACION BIOLOGICA"
-    },
-    med_pillars: {
-      LINAJE: "LINAJE & ORIGEN",
-      CONSCIENCIA: "CONSCIENCIA & UNIFICACION",
-      ELEVACION: "ELEVACION & TRANSMUTACION"
-    },
+    home_buttons: { frequencies: "FRECUENCIAS", meditations: "MEDITACIONES", experiences: "EXPERIENCIAS", sanctuary: "SANTUARIO GENORA" },
+    freq_pillars: { MENTE: "MENTE", COHERENCIA: "COHERENCIA", CUERPO: "CUERPO", EXPANSION: "EXPANSION", EXPERIENCIAS_G: "EXPERIENCIAS GENORA", ARMONIZACION: "ARMONIZACION BIOLOGICA" },
+    med_pillars: { LINAJE: "LINAJE & ORIGEN", CONSCIENCIA: "CONSCIENCIA & UNIFICACION", ELEVACION: "ELEVACION & TRANSMUTACION" },
     exp_levels: {
-      UNVEILING: "THE UNVEILING",
-      UNVEILING_sub: "Activando el Potencial del Ser Humano de Luz",
-      AWAKENING: "PATH OF AWAKENING",
-      AWAKENING_sub: "El Sendero de los Dones Superiores",
-      CODEX: "CODEX OF WISDOM",
-      CODEX_sub: "Conocimiento, Sanacion y Clarividencia",
-      VOICE: "VOICE OF LIGHT",
-      VOICE_sub: "Clariaudiencia y Conexion Multidimensional",
-      ALCHEMIST: "ALCHEMIST PATH",
-      ALCHEMIST_sub: "Transmutacion y Precognicion",
-      MERKABA: "MERKABA ASCENSION",
-      MERKABA_sub: "Ensonacion, Resurreccion y Omnipotencia"
+      UNVEILING: "THE UNVEILING", UNVEILING_sub: "Activando el Potencial del Ser Humano de Luz",
+      AWAKENING: "PATH OF AWAKENING", AWAKENING_sub: "El Sendero de los Dones Superiores",
+      CODEX: "CODEX OF WISDOM", CODEX_sub: "Conocimiento, Sanacion y Clarividencia",
+      VOICE: "VOICE OF LIGHT", VOICE_sub: "Clariaudiencia y Conexion Multidimensional",
+      ALCHEMIST: "ALCHEMIST PATH", ALCHEMIST_sub: "Transmutacion y Precognicion",
+      MERKABA: "MERKABA ASCENSION", MERKABA_sub: "Ensonacion, Resurreccion y Omnipotencia"
     },
     unveiling_stages: {
-      TERRESTRE: "ETAPA I · GENOMA HUMANO TERRESTRE",
-      TERRESTRE_sub: "El Despertar de las Maestrias Fundamentales",
-      DIVINO: "ETAPA II · GENOMA HUMANO DIVINO",
-      DIVINO_sub: "La Expansion de la Consciencia Superior",
-      INTERDIMENSIONAL: "ETAPA III · GENOMA HUMANO INTERDIMENSIONAL",
-      INTERDIMENSIONAL_sub: "La Integracion del Ser de Luz"
+      TERRESTRE: "ETAPA I · GENOMA HUMANO TERRESTRE", TERRESTRE_sub: "El Despertar de las Maestrias Fundamentales",
+      DIVINO: "ETAPA II · GENOMA HUMANO DIVINO", DIVINO_sub: "La Expansion de la Consciencia Superior",
+      INTERDIMENSIONAL: "ETAPA III · GENOMA HUMANO INTERDIMENSIONAL", INTERDIMENSIONAL_sub: "La Integracion del Ser de Luz"
     },
     pillars: {
-      MENTE: {
-        label: "MENTE",
-        subs: {
-          "APRENDIZAJE": "APRENDIZAJE & ENFOQUE",
-          "CREATIVIDAD": "CREATIVIDAD & RESOLUCION",
-          "CLARIDAD": "CLARIDAD MENTAL",
-          "RENDIMIENTO": "ACTIVACION MENTAL & RENDIMIENTO"
-        }
-      },
-      COHERENCIA: {
-        label: "COHERENCIA",
-        subs: { "REGULACION": "REGULACION EMOCIONAL", "EQUILIBRIO": "EQUILIBRIO INTERNO", "INTEGRACION": "INTEGRACION MENTE-CUERPO" }
-      },
-      CUERPO: {
-        label: "CUERPO",
-        subs: { "REGENERACION": "REGENERACION & SANACION", "ORGANOS": "ORGANOS & SISTEMAS", "DOLOR": "DOLOR & RECUPERACION" }
-      },
-      EXPANSION: {
-        label: "EXPANSION",
-        subs: { "MEDITACION": "MEDITACION & ESTADOS INTERNOS", "PERCEPCION": "PERCEPCION & INTUICION", "EXPERIENCIAS": "EXPERIENCIAS EXPANDIDAS" }
-      },
-      EXPERIENCIAS_G: {
-        label: "EXPERIENCIAS GENORA",
-        subs: { "SESIONES": "SESIONES EN VIVO", "RITUALES": "RITUALES DE ACTIVACION", "CEREMONIAS": "CEREMONIAS SONORAS" }
-      },
-      ARMONIZACION: {
-        label: "ARMONIZACION BIOLOGICA",
-        subs: { "ADN": "REPROGRAMACION DE ADN", "CAMPOS": "CAMPOS BIOENERGETICOS", "CELULAR": "REGENERACION CELULAR" }
-      }
+      MENTE: { label: "MENTE", subs: { "APRENDIZAJE": "APRENDIZAJE & ENFOQUE", "CREATIVIDAD": "CREATIVIDAD & RESOLUCION", "CLARIDAD": "CLARIDAD MENTAL", "RENDIMIENTO": "ACTIVACION MENTAL & RENDIMIENTO" } },
+      COHERENCIA: { label: "COHERENCIA", subs: { "REGULACION": "REGULACION EMOCIONAL", "EQUILIBRIO": "EQUILIBRIO INTERNO", "INTEGRACION": "INTEGRACION MENTE-CUERPO" } },
+      CUERPO: { label: "CUERPO", subs: { "REGENERACION": "REGENERACION & SANACION", "ORGANOS": "ORGANOS & SISTEMAS", "DOLOR": "DOLOR & RECUPERACION" } },
+      EXPANSION: { label: "EXPANSION", subs: { "MEDITACION": "MEDITACION & ESTADOS INTERNOS", "PERCEPCION": "PERCEPCION & INTUICION", "EXPERIENCIAS": "EXPERIENCIAS EXPANDIDAS" } },
+      EXPERIENCIAS_G: { label: "EXPERIENCIAS GENORA", subs: { "SESIONES": "SESIONES EN VIVO", "RITUALES": "RITUALES DE ACTIVACION", "CEREMONIAS": "CEREMONIAS SONORAS" } },
+      ARMONIZACION: { label: "ARMONIZACION BIOLOGICA", subs: { "ADN": "REPROGRAMACION DE ADN", "CAMPOS": "CAMPOS BIOENERGETICOS", "CELULAR": "REGENERACION CELULAR" } }
     },
     tracks: {
       "alpha-integration": "Integracion de informacion desde un estado de calma.",
@@ -148,7 +99,6 @@ const T = {
     banner: "✦ It is time for your daily Genora alignment",
     suggestion_label: "ALIGNMENT SUGGESTION",
     coming_soon: "Upcoming frequencies on their way...",
-    resume_playing: "Resume frequency",
     sanctuary_title: "GENORA SANCTUARY",
     sanctuary_micro: "A reserved space for the tools that support your journey.",
     sanctuary_access: "Exclusive access via access code.",
@@ -157,77 +107,29 @@ const T = {
     sanctuary_error: "Code not verified. Request your access code.",
     sanctuary_loading: "Tuning high-fidelity frequency...",
     sanctuary_library_sub: "Frequencies and videos for your healing process.",
-    home_buttons: {
-      frequencies: "FREQUENCIES",
-      meditations: "MEDITATIONS",
-      experiences: "EXPERIENCES",
-      sanctuary: "GENORA SANCTUARY"
-    },
-    freq_pillars: {
-      MENTE: "MIND",
-      COHERENCIA: "COHERENCE",
-      CUERPO: "BODY",
-      EXPANSION: "EXPANSION",
-      EXPERIENCIAS_G: "GENORA EXPERIENCES",
-      ARMONIZACION: "BIOLOGICAL HARMONIZATION"
-    },
-    med_pillars: {
-      LINAJE: "LINEAGE & ORIGIN",
-      CONSCIENCIA: "CONSCIOUSNESS & UNIFICATION",
-      ELEVACION: "ELEVATION & TRANSMUTATION"
-    },
+    home_buttons: { frequencies: "FREQUENCIES", meditations: "MEDITATIONS", experiences: "EXPERIENCES", sanctuary: "GENORA SANCTUARY" },
+    freq_pillars: { MENTE: "MIND", COHERENCIA: "COHERENCE", CUERPO: "BODY", EXPANSION: "EXPANSION", EXPERIENCIAS_G: "GENORA EXPERIENCES", ARMONIZACION: "BIOLOGICAL HARMONIZATION" },
+    med_pillars: { LINAJE: "LINEAGE & ORIGIN", CONSCIENCIA: "CONSCIOUSNESS & UNIFICATION", ELEVACION: "ELEVATION & TRANSMUTATION" },
     exp_levels: {
-      UNVEILING: "THE UNVEILING",
-      UNVEILING_sub: "Activating the Potential of the Human Being of Light",
-      AWAKENING: "PATH OF AWAKENING",
-      AWAKENING_sub: "The Path of Superior Gifts",
-      CODEX: "CODEX OF WISDOM",
-      CODEX_sub: "Knowledge, Healing and Clairvoyance",
-      VOICE: "VOICE OF LIGHT",
-      VOICE_sub: "Clairaudience and Multidimensional Connection",
-      ALCHEMIST: "ALCHEMIST PATH",
-      ALCHEMIST_sub: "Transmutation and Precognition",
-      MERKABA: "MERKABA ASCENSION",
-      MERKABA_sub: "Dreaming, Resurrection and Omnipotence"
+      UNVEILING: "THE UNVEILING", UNVEILING_sub: "Activating the Potential of the Human Being of Light",
+      AWAKENING: "PATH OF AWAKENING", AWAKENING_sub: "The Path of Superior Gifts",
+      CODEX: "CODEX OF WISDOM", CODEX_sub: "Knowledge, Healing and Clairvoyance",
+      VOICE: "VOICE OF LIGHT", VOICE_sub: "Clairaudience and Multidimensional Connection",
+      ALCHEMIST: "ALCHEMIST PATH", ALCHEMIST_sub: "Transmutation and Precognition",
+      MERKABA: "MERKABA ASCENSION", MERKABA_sub: "Dreaming, Resurrection and Omnipotence"
     },
     unveiling_stages: {
-      TERRESTRE: "STAGE I · TERRESTRIAL HUMAN GENOME",
-      TERRESTRE_sub: "The Awakening of Fundamental Masteries",
-      DIVINO: "STAGE II · DIVINE HUMAN GENOME",
-      DIVINO_sub: "The Expansion of Superior Consciousness",
-      INTERDIMENSIONAL: "STAGE III · INTERDIMENSIONAL HUMAN GENOME",
-      INTERDIMENSIONAL_sub: "The Integration of the Being of Light"
+      TERRESTRE: "STAGE I · TERRESTRIAL HUMAN GENOME", TERRESTRE_sub: "The Awakening of Fundamental Masteries",
+      DIVINO: "STAGE II · DIVINE HUMAN GENOME", DIVINO_sub: "The Expansion of Superior Consciousness",
+      INTERDIMENSIONAL: "STAGE III · INTERDIMENSIONAL HUMAN GENOME", INTERDIMENSIONAL_sub: "The Integration of the Being of Light"
     },
     pillars: {
-      MENTE: {
-        label: "MIND",
-        subs: {
-          "APRENDIZAJE": "LEARNING & FOCUS",
-          "CREATIVIDAD": "CREATIVITY & RESOLUTION",
-          "CLARIDAD": "MENTAL CLARITY",
-          "RENDIMIENTO": "MENTAL ACTIVATION & PERFORMANCE"
-        }
-      },
-      COHERENCIA: {
-        label: "COHERENCE",
-        subs: { "REGULACION": "EMOTIONAL REGULATION", "EQUILIBRIO": "INNER BALANCE", "INTEGRACION": "MIND-BODY INTEGRATION" }
-      },
-      CUERPO: {
-        label: "BODY",
-        subs: { "REGENERACION": "REGENERATION & HEALING", "ORGANOS": "ORGANS & SYSTEMS", "DOLOR": "PAIN & RECOVERY" }
-      },
-      EXPANSION: {
-        label: "EXPANSION",
-        subs: { "MEDITACION": "MEDITATION & INNER STATES", "PERCEPCION": "PERCEPTION & INTUITION", "EXPERIENCIAS": "EXPANDED EXPERIENCES" }
-      },
-      EXPERIENCIAS_G: {
-        label: "GENORA EXPERIENCES",
-        subs: { "SESIONES": "LIVE SESSIONS", "RITUALES": "ACTIVATION RITUALS", "CEREMONIAS": "SOUND CEREMONIES" }
-      },
-      ARMONIZACION: {
-        label: "BIOLOGICAL HARMONIZATION",
-        subs: { "ADN": "DNA REPROGRAMMING", "CAMPOS": "BIOENERGETIC FIELDS", "CELULAR": "CELLULAR REGENERATION" }
-      }
+      MENTE: { label: "MIND", subs: { "APRENDIZAJE": "LEARNING & FOCUS", "CREATIVIDAD": "CREATIVITY & RESOLUTION", "CLARIDAD": "MENTAL CLARITY", "RENDIMIENTO": "MENTAL ACTIVATION & PERFORMANCE" } },
+      COHERENCIA: { label: "COHERENCE", subs: { "REGULACION": "EMOTIONAL REGULATION", "EQUILIBRIO": "INNER BALANCE", "INTEGRACION": "MIND-BODY INTEGRATION" } },
+      CUERPO: { label: "BODY", subs: { "REGENERACION": "REGENERATION & HEALING", "ORGANOS": "ORGANS & SYSTEMS", "DOLOR": "PAIN & RECOVERY" } },
+      EXPANSION: { label: "EXPANSION", subs: { "MEDITACION": "MEDITATION & INNER STATES", "PERCEPCION": "PERCEPTION & INTUITION", "EXPERIENCIAS": "EXPANDED EXPERIENCES" } },
+      EXPERIENCIAS_G: { label: "GENORA EXPERIENCES", subs: { "SESIONES": "LIVE SESSIONS", "RITUALES": "ACTIVATION RITUALS", "CEREMONIAS": "SOUND CEREMONIES" } },
+      ARMONIZACION: { label: "BIOLOGICAL HARMONIZATION", subs: { "ADN": "DNA REPROGRAMMING", "CAMPOS": "BIOENERGETIC FIELDS", "CELULAR": "CELLULAR REGENERATION" } }
     },
     tracks: {
       "alpha-integration": "Information integration from a state of calm.",
@@ -261,7 +163,6 @@ const SANCTUARY_TOOLS = [
   { id: "frecuencia-ancestral-001", name: "Liberacion Ancestral — Limpieza de Campo", type: "audio", description: "Frecuencia para desbloqueo de patrones heredados.", duration: "55 min", url: "https://res.cloudinary.com/TU_CLOUD_NAME/video/upload/v1/genora/frecuencias/frecuencia-ancestral-001.wav" },
 ];
 
-// ── DATA FRECUENCIAS ──────────────────────────────────────────────────────────
 const FREQ_TRACKS = {
   MENTE: {
     "APRENDIZAJE": [
@@ -299,33 +200,23 @@ const FREQ_TRACKS = {
   ARMONIZACION: { "ADN": [], "CAMPOS": [], "CELULAR": [] }
 };
 
-const ALL_TRACKS_FLAT = Object.values(FREQ_TRACKS)
-  .flatMap(p => Object.values(p).flat())
-  .filter(t => t.url);
+const ALL_TRACKS_FLAT = Object.values(FREQ_TRACKS).flatMap(p => Object.values(p).flat()).filter(t => t.url);
 
-// ── DATA MEDITACIONES ─────────────────────────────────────────────────────────
 const MED_DATA = {
-  LINAJE: {
-    sessions: [
-      { id: "crimson-genesis", name: "Crimson Genesis", sub: "Sanacion del Linaje y Memorias Profundas", desc: "Exploracion de emociones profundas, memorias ancestrales y patrones grabados en las capas geneticas del ADN." },
-      { id: "golden-legacy", name: "Golden Legacy", sub: "Reconexion con el Linaje Ancestral y Galactico", desc: "Viaje de reconocimiento y restauracion de la herencia ancestral y galactica." }
-    ]
-  },
-  CONSCIENCIA: {
-    sessions: [
-      { id: "chamber-translove", name: "Chamber of Translove", sub: "La Camara de la Unificacion Interior", desc: "Acceso a la camara interna donde habitan los sentimientos ennoblecidos que permiten vivir desde la unidad y la compasion." },
-      { id: "codex-unity", name: "Codex of Unity", sub: "El Viaje de la Dualidad a la Neutralidad", desc: "Recorrido por los niveles superiores de consciencia para integrar el conocimiento unificador." }
-    ]
-  },
-  ELEVACION: {
-    sessions: [
-      { id: "ascension-192", name: "Ascension 192", sub: "Activacion de la Consciencia Humana Genuina", desc: "Meditacion de expansion espiritual enfocada en el reconocimiento del ser humano como portador de frecuencias elevadas." },
-      { id: "obsidian-light", name: "Obsidian Light", sub: "Transmutacion y Liberacion de Densidades", desc: "Proceso de limpieza energetica profunda para favorecer la liberacion, transmutacion y restauracion del equilibrio interno." }
-    ]
-  }
+  LINAJE: { sessions: [
+    { id: "crimson-genesis", name: "Crimson Genesis", sub: "Sanacion del Linaje y Memorias Profundas", desc: "Exploracion de emociones profundas, memorias ancestrales y patrones grabados en las capas geneticas del ADN." },
+    { id: "golden-legacy", name: "Golden Legacy", sub: "Reconexion con el Linaje Ancestral y Galactico", desc: "Viaje de reconocimiento y restauracion de la herencia ancestral y galactica." }
+  ]},
+  CONSCIENCIA: { sessions: [
+    { id: "chamber-translove", name: "Chamber of Translove", sub: "La Camara de la Unificacion Interior", desc: "Acceso a la camara interna donde habitan los sentimientos ennoblecidos que permiten vivir desde la unidad y la compasion." },
+    { id: "codex-unity", name: "Codex of Unity", sub: "El Viaje de la Dualidad a la Neutralidad", desc: "Recorrido por los niveles superiores de consciencia para integrar el conocimiento unificador." }
+  ]},
+  ELEVACION: { sessions: [
+    { id: "ascension-192", name: "Ascension 192", sub: "Activacion de la Consciencia Humana Genuina", desc: "Meditacion de expansion espiritual enfocada en el reconocimiento del ser humano como portador de frecuencias elevadas." },
+    { id: "obsidian-light", name: "Obsidian Light", sub: "Transmutacion y Liberacion de Densidades", desc: "Proceso de limpieza energetica profunda para favorecer la liberacion, transmutacion y restauracion del equilibrio interno." }
+  ]}
 };
 
-// ── DATA EXPERIENCIAS ─────────────────────────────────────────────────────────
 const EXP_DATA = {
   UNVEILING: {
     TERRESTRE: [
@@ -391,6 +282,12 @@ const getTimeOfDay = () => {
   return 'noche';
 };
 
+// Colores dorados mejorados para legibilidad
+const GOLD = '#d4af37';
+const GOLD_BRIGHT = '#F4EAD4';
+const GOLD_LIGHT = '#FFF5E1';
+const GOLD_SHADOW = 'text-shadow: 0 0 8px rgba(212,175,55,0.4)';
+
 const inlineStyles = `
   @keyframes logo-breathe { 0%, 100% { transform: scale(1); opacity: 0.95; } 50% { transform: scale(1.05); opacity: 1; } }
   @keyframes aura-supernova {
@@ -415,12 +312,26 @@ const inlineStyles = `
   }
   @keyframes fadeInDown { from { opacity: 0; transform: translateY(-8px); } to { opacity: 1; transform: translateY(0); } }
   @keyframes fadeInUp { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: translateY(0); } }
-  @keyframes slideUp { from { opacity: 0; transform: translateX(-50%) translateY(20px); } to { opacity: 1; transform: translateX(-50%) translateY(0); } }
   @keyframes pulse-glow { 0%, 100% { opacity: 0.5; } 50% { opacity: 1; } }
   .fade-in-smooth { animation: fadeIn 0.8s ease-in forwards; }
   .fade-in-up { animation: fadeInUp 0.6s ease forwards; }
   @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
   body, html { overflow-x: hidden; background-color: #020617; margin: 0; padding: 0; font-family: sans-serif; color: white; }
+
+  /* Textos dorados con brillo espiritual */
+  .gold-title {
+    color: #F4EAD4;
+    text-shadow: 0 0 8px rgba(212,175,55,0.4);
+  }
+  .gold-sub {
+    color: #F4EAD4;
+    opacity: 0.85;
+  }
+  .gold-micro {
+    color: #FFF5E1;
+    opacity: 0.7;
+  }
+
   .home-btn {
     width: 75%; max-width: 290px; padding: 14px; margin: 6px 0;
     border-radius: 40px; color: white; font-size: 10px; letter-spacing: 5px;
@@ -429,14 +340,15 @@ const inlineStyles = `
     background: rgba(34,211,238,0.03); text-align: center;
   }
   .home-btn:hover { background: rgba(34,211,238,0.08); border-color: rgba(34,211,238,0.6); }
-  .home-btn.bright:hover { background: rgba(34,211,238,0.12); border-color: rgba(34,211,238,0.8); box-shadow: 0 0 20px rgba(34,211,238,0.2); }
+  .home-btn.bright { border-color: rgba(34,211,238,0.4); }
+  .home-btn.bright:hover { background: rgba(34,211,238,0.1); border-color: rgba(34,211,238,0.8); box-shadow: 0 0 20px rgba(34,211,238,0.2); }
   .home-btn.violet { border-color: rgba(168,85,247,0.3); background: rgba(168,85,247,0.03); }
   .home-btn.violet:hover { background: rgba(168,85,247,0.08); border-color: rgba(168,85,247,0.6); }
-  .home-btn.gold { border-color: rgba(212,175,55,0.3); background: rgba(212,175,55,0.03); }
-  .home-btn.gold:hover { background: rgba(212,175,55,0.08); border-color: rgba(212,175,55,0.6); }
   .home-btn.sanctuary { border-color: rgba(212,175,55,0.4); background: rgba(212,175,55,0.04); margin-top: 16px; }
   .home-btn.sanctuary:hover { background: rgba(212,175,55,0.1); border-color: rgba(212,175,55,0.7); box-shadow: 0 0 15px rgba(212,175,55,0.15); }
+
   .category-stack { display: flex; flex-direction: column; align-items: center; gap: 6px; width: 100%; }
+
   .pillar-card {
     width: 75%; max-width: 290px; padding: 13px; border-radius: 40px;
     background: rgba(34,211,238,0.02); border: 1px solid rgba(34,211,238,0.25);
@@ -446,8 +358,9 @@ const inlineStyles = `
   .pillar-card:hover { background: rgba(34,211,238,0.06); border-color: rgba(34,211,238,0.5); }
   .pillar-card.violet { border-color: rgba(168,85,247,0.25); background: rgba(168,85,247,0.02); }
   .pillar-card.violet:hover { background: rgba(168,85,247,0.06); border-color: rgba(168,85,247,0.5); }
-  .pillar-card.gold { border-color: rgba(212,175,55,0.25); background: rgba(212,175,55,0.02); }
+  .pillar-card.gold { border-color: rgba(212,175,55,0.3); background: rgba(212,175,55,0.02); }
   .pillar-card.gold:hover { background: rgba(212,175,55,0.06); border-color: rgba(212,175,55,0.5); }
+
   .track-card {
     width: 85%; max-width: 340px; padding: 18px 22px; margin: 6px 0; border-radius: 28px;
     background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.1);
@@ -455,20 +368,16 @@ const inlineStyles = `
   }
   .track-card:active { transform: scale(0.98); }
   .track-card.suggestion { border-color: rgba(34,211,238,0.3); background: rgba(34,211,238,0.04); }
+
   .session-card {
     width: 85%; max-width: 340px; padding: 18px 22px; margin: 6px 0; border-radius: 28px;
     background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.08);
-    cursor: pointer; transition: all 0.3s ease;
+    cursor: default; transition: all 0.3s ease;
   }
-  .session-card:hover { background: rgba(255,255,255,0.04); }
   .session-card.violet { border-color: rgba(168,85,247,0.2); }
-  .session-card.violet:hover { background: rgba(168,85,247,0.05); border-color: rgba(168,85,247,0.4); }
   .session-card.gold { border-color: rgba(212,175,55,0.2); }
-  .session-card.gold:hover { background: rgba(212,175,55,0.05); border-color: rgba(212,175,55,0.4); }
-  .stage-header {
-    width: 85%; max-width: 340px; padding: 12px 0 6px;
-    text-align: center; margin-top: 12px;
-  }
+  .session-card.gold:hover { background: rgba(212,175,55,0.04); border-color: rgba(212,175,55,0.35); }
+
   .back-button-genora {
     width: 42px; height: 42px; border-radius: 50%; border: 1px solid rgba(34,211,238,0.5);
     background: rgba(34,211,238,0.08); display: flex; align-items: center; justify-content: center; cursor: pointer;
@@ -519,30 +428,24 @@ const inlineStyles = `
   .sanctuary-input { width: 70%; max-width: 260px; padding: 14px 20px; border-radius: 30px; background: rgba(255,255,255,0.03); border: 1px solid rgba(212,175,55,0.3); color: white; font-size: 12px; letter-spacing: 3px; text-align: center; text-transform: uppercase; outline: none; transition: all 0.3s ease; font-weight: 200; }
   .sanctuary-input:focus { border-color: rgba(212,175,55,0.7); background: rgba(212,175,55,0.05); }
   .sanctuary-input::placeholder { color: rgba(255,255,255,0.2); text-transform: none; letter-spacing: 1px; }
-  .sanctuary-enter-btn { width: 70%; max-width: 260px; padding: 14px; border-radius: 30px; background: rgba(212,175,55,0.06); border: 1px solid rgba(212,175,55,0.4); color: white; font-size: 11px; letter-spacing: 4px; cursor: pointer; transition: all 0.3s ease; font-weight: 200; }
+  .sanctuary-enter-btn { width: 70%; max-width: 260px; padding: 14px; border-radius: 30px; background: rgba(212,175,55,0.06); border: 1px solid rgba(212,175,55,0.4); color: #F4EAD4; font-size: 11px; letter-spacing: 4px; cursor: pointer; transition: all 0.3s ease; font-weight: 200; text-shadow: 0 0 8px rgba(212,175,55,0.3); }
   .sanctuary-enter-btn:hover { background: rgba(212,175,55,0.12); border-color: rgba(212,175,55,0.75); }
   .sanctuary-tool-card { width: 85%; max-width: 340px; padding: 20px 22px; margin: 8px 0; border-radius: 24px; background: rgba(212,175,55,0.03); border: 1px solid rgba(212,175,55,0.18); transition: all 0.3s ease; cursor: pointer; }
   .sanctuary-tool-card:hover { background: rgba(212,175,55,0.06); border-color: rgba(212,175,55,0.45); }
   .micro-orbe-vivo { width: 7px; height: 7px; border-radius: 50%; background: #d4af37; display: inline-block; animation: micro-orbe-breathe 2.5s infinite ease-in-out; }
-  .streaming-indicator { animation: pulse-glow 2s infinite ease-in-out; font-size: 10px; letter-spacing: 2px; color: rgba(212,175,55,0.7); text-align: center; padding: 8px 0; font-weight: 200; }
-  .mini-resume-bar { animation: slideUp 0.4s ease forwards; position: fixed; bottom: 65px; left: 50%; transform: translateX(-50%); width: 90%; max-width: 340px; padding: 10px 16px; border-radius: 20px; background: rgba(2,6,23,0.95); backdrop-filter: blur(20px); border: 1px solid rgba(34,211,238,0.2); display: flex; align-items: center; justify-content: space-between; z-index: 99; cursor: pointer; }
+  .streaming-indicator { animation: pulse-glow 2s infinite ease-in-out; font-size: 10px; letter-spacing: 2px; color: #F4EAD4; text-align: center; padding: 8px 0; font-weight: 200; }
   .sanctuary-video { width: 100%; border-radius: 16px; margin-top: 12px; background: #000; border: 1px solid rgba(212,175,55,0.2); }
 `;
 
 const App = () => {
   const [lang, setLang] = useState('es');
   const [showSplash, setShowSplash] = useState(true);
-  // nav: null | 'frecuencias' | 'meditaciones' | 'experiencias'
   const [mainMode, setMainMode] = useState(null);
-  // freq nav
   const [freqPillar, setFreqPillar] = useState(null);
   const [freqSub, setFreqSub] = useState(null);
-  // med nav
   const [medPillar, setMedPillar] = useState(null);
-  // exp nav
   const [expLevel, setExpLevel] = useState(null);
   const [expStage, setExpStage] = useState(null);
-  // audio
   const [selectedTrack, setSelectedTrack] = useState(() => {
     try { const s = localStorage.getItem('genora_last_track'); return s ? JSON.parse(s) : null; } catch { return null; }
   });
@@ -553,9 +456,6 @@ const App = () => {
     try { return parseFloat(localStorage.getItem('genora_last_time')) || 0; } catch { return 0; }
   });
   const [duration, setDuration] = useState(0);
-    try { return !!localStorage.getItem('genora_last_track'); } catch { return false; }
-  });
-  // tabs
   const [activeTab, setActiveTab] = useState('catalogo');
   const [showBanner, setShowBanner] = useState(false);
   const [favorites, setFavorites] = useState(() => {
@@ -564,7 +464,6 @@ const App = () => {
   const [reminderTime, setReminderTime] = useState(() => {
     try { return localStorage.getItem('genora_reminder_time') || null; } catch { return null; }
   });
-  // sanctuary
   const [showSanctuary, setShowSanctuary] = useState(false);
   const [sanctuaryUnlocked, setSanctuaryUnlocked] = useState(false);
   const [sanctuaryCode, setSanctuaryCode] = useState('');
@@ -720,12 +619,7 @@ const App = () => {
   };
 
   const playTrack = (track, suggestion = false) => {
-    setSelectedTrack(track); setIsSuggestion(suggestion); setIsPlaying(true); setShowResumeBar(false);
-  };
-
-  const dismissResume = (e) => {
-    e.stopPropagation(); setShowResumeBar(false); setSelectedTrack(null);
-    try { localStorage.removeItem('genora_last_track'); localStorage.removeItem('genora_last_time'); } catch {}
+    setSelectedTrack(track); setIsSuggestion(suggestion); setIsPlaying(true);
   };
 
   const getReminderText = () => {
@@ -733,8 +627,6 @@ const App = () => {
     if (reminderTime === 'tarde') return t.reminder_set_afternoon;
     return t.reminder_set_night;
   };
-
-  // ── COMPONENTES ───────────────────────────────────────────────────────────
 
   const LangSwitch = ({ isGold = false, isViolet = false }) => (
     <div className={`lang-switch ${isGold ? 'gold-border' : ''} ${isViolet ? 'violet-border' : ''}`}>
@@ -789,11 +681,11 @@ const App = () => {
   );
 
   const SessionCard = ({ session, color = 'white', accent = '#22d3ee' }) => (
-    <div className={`session-card ${color === 'violet' ? 'violet' : color === 'gold' ? 'gold' : ''}`} style={{ borderLeft: `3px solid ${accent}22` }}>
+    <div className={`session-card ${color === 'violet' ? 'violet' : color === 'gold' ? 'gold' : ''}`} style={{ borderLeft: `3px solid ${accent}33` }}>
       <div style={{ fontSize: '13px', color: 'white', fontWeight: 300, marginBottom: '4px' }}>{session.name}</div>
-      {session.sub && <div style={{ fontSize: '10px', color: `${accent}99`, letterSpacing: '1px', fontWeight: 200, marginBottom: '4px' }}>{session.sub}</div>}
-      <div style={{ fontSize: '10px', color: 'rgba(255,255,255,0.45)', fontWeight: 200, lineHeight: 1.6 }}>{session.desc}</div>
-      <div style={{ marginTop: '10px', fontSize: '9px', color: `${accent}66`, letterSpacing: '2px', fontWeight: 200 }}>
+      {session.sub && <div style={{ fontSize: '10px', color: color === 'gold' ? '#F4EAD4' : `${accent}99`, letterSpacing: '1px', fontWeight: 200, marginBottom: '4px', textShadow: color === 'gold' ? '0 0 6px rgba(212,175,55,0.3)' : 'none' }}>{session.sub}</div>}
+      <div style={{ fontSize: '10px', color: 'rgba(255,255,255,0.5)', fontWeight: 200, lineHeight: 1.6 }}>{session.desc}</div>
+      <div style={{ marginTop: '10px', fontSize: '9px', color: color === 'gold' ? '#F4EAD4' : `${accent}77`, letterSpacing: '2px', fontWeight: 200, opacity: 0.7 }}>
         {lang === 'es' ? 'PROXIMAMENTE' : 'COMING SOON'}
       </div>
     </div>
@@ -805,21 +697,6 @@ const App = () => {
       {t.coming_soon}
     </div>
   );
-
-    if (!showResumeBar || !selectedTrack || isPlaying) return null;
-    return (
-      <div className="mini-resume-bar" onClick={() => { setShowResumeBar(false); setIsPlaying(true); }}>
-        <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
-          <span style={{ color: accentColor, fontSize: '16px' }}>▶</span>
-          <div>
-            <div style={{ fontSize: '9px', color: 'rgba(255,255,255,0.35)', letterSpacing: '2px', marginBottom: '2px' }}>{t.resume_playing}</div>
-            <div style={{ fontSize: '12px', color: 'white', fontWeight: 300 }}>{selectedTrack.name}</div>
-          </div>
-        </div>
-        <button onClick={dismissResume} style={{ background: 'none', border: 'none', color: 'rgba(255,255,255,0.3)', fontSize: '18px', cursor: 'pointer', padding: '0 4px' }}>✕</button>
-      </div>
-    );
-  };
 
   const PageHeader = ({ isGold = false, isViolet = false }) => (
     <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '16px', paddingTop: '10px' }}>
@@ -853,7 +730,7 @@ const App = () => {
   }
 
   // ── TEMPLO ────────────────────────────────────────────────────────────────
-  if (selectedTrack && !showResumeBar) {
+  if (selectedTrack) {
     const progress = duration > 0 ? (currentTime / duration) * 100 : 0;
     return (
       <div className="fade-in-smooth" style={{ backgroundColor: '#020617', minHeight: '100vh', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', textAlign: 'center', position: 'relative', padding: '20px' }}>
@@ -864,7 +741,7 @@ const App = () => {
           onLoadedMetadata={(e) => { handleTimeUpdate(); if (currentTime > 0 && e.target.duration > currentTime) e.target.currentTime = currentTime; }}
           onEnded={handleAudioEnded} />
         <div style={{ position: 'absolute', top: '35px', left: '30px', right: '30px', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-          <button onClick={() => { setIsPlaying(false); setSelectedTrack(null); setCurrentTime(0); }} style={{ background: 'none', border: 'none', color: accentColor, fontSize: '40px', cursor: 'pointer', lineHeight: 1, padding: 0 }}>&#8249;</button>
+          <button onClick={() => { setIsPlaying(false); setSelectedTrack(null); setCurrentTime(0); setDuration(0); }} style={{ background: 'none', border: 'none', color: accentColor, fontSize: '40px', cursor: 'pointer', lineHeight: 1, padding: 0 }}>&#8249;</button>
           {isSuggestion && <div className="suggestion-badge">✦ {t.suggestion_label}</div>}
           <button className="heart-btn" onClick={(e) => toggleFavorite(e, selectedTrack.id)} style={{ fontSize: '24px', color: isFavorite(selectedTrack.id) ? '#ff6b9d' : 'rgba(255,255,255,0.4)', padding: 0 }}>
             {isFavorite(selectedTrack.id) ? '♥' : '♡'}
@@ -912,9 +789,9 @@ const App = () => {
           </div>
           <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center', paddingBottom: '40px' }}>
             <ADNOrb auraClass="aura-gold-santuario" filterClass="logo-filtro-dorado" size="120px" />
-            <h2 style={{ fontSize: '14px', letterSpacing: '4px', textTransform: 'uppercase', fontWeight: 200, marginBottom: '8px', color: goldColor }}>{tool.name}</h2>
-            <p style={{ fontSize: '11px', color: 'rgba(255,255,255,0.4)', letterSpacing: '1px', fontWeight: 200, marginBottom: '6px', maxWidth: '280px', lineHeight: 1.7 }}>{tool.description}</p>
-            <p style={{ fontSize: '10px', color: `${goldColor}99`, letterSpacing: '2px', fontWeight: 200, marginBottom: '24px' }}>{tool.duration}</p>
+            <h2 className="gold-title" style={{ fontSize: '14px', letterSpacing: '4px', textTransform: 'uppercase', fontWeight: 200, marginBottom: '8px' }}>{tool.name}</h2>
+            <p className="gold-sub" style={{ fontSize: '11px', letterSpacing: '1px', fontWeight: 200, marginBottom: '6px', maxWidth: '280px', lineHeight: 1.7 }}>{tool.description}</p>
+            <p className="gold-micro" style={{ fontSize: '10px', letterSpacing: '2px', fontWeight: 200, marginBottom: '24px' }}>{tool.duration}</p>
             {sanctuaryLoading && <div className="streaming-indicator">◈ {t.sanctuary_loading}</div>}
             {tool.type === 'audio' && (
               <audio ref={sanctuaryMediaRef} src={tool.url} controls preload="metadata"
@@ -945,21 +822,21 @@ const App = () => {
             <div style={{ display: 'flex', justifyContent: 'center', marginBottom: '12px' }}>
               <div className="micro-orbe-vivo" style={{ width: '10px', height: '10px' }}></div>
             </div>
-            <h2 style={{ fontSize: '13px', letterSpacing: '5px', color: goldColor, fontWeight: 200, textTransform: 'uppercase', marginBottom: '6px' }}>{t.sanctuary_title}</h2>
-            <p style={{ fontSize: '11px', color: 'rgba(255,255,255,0.35)', letterSpacing: '1px', fontWeight: 200, maxWidth: '260px', margin: '0 auto', lineHeight: 1.7 }}>{t.sanctuary_library_sub}</p>
+            <h2 className="gold-title" style={{ fontSize: '13px', letterSpacing: '5px', fontWeight: 200, textTransform: 'uppercase', marginBottom: '6px' }}>{t.sanctuary_title}</h2>
+            <p className="gold-sub" style={{ fontSize: '11px', letterSpacing: '1px', fontWeight: 200, maxWidth: '260px', margin: '0 auto', lineHeight: 1.7 }}>{t.sanctuary_library_sub}</p>
           </div>
           <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
             {SANCTUARY_TOOLS.map((tool) => (
               <div key={tool.id} className="sanctuary-tool-card" onClick={() => { setActiveSanctuaryTool(tool); setSanctuaryLoading(true); setTimeout(() => setSanctuaryLoading(false), 3000); }}>
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
                   <div style={{ flex: 1, textAlign: 'left' }}>
-                    <div style={{ fontSize: '10px', letterSpacing: '2px', color: `${goldColor}99`, fontWeight: 200, marginBottom: '6px', textTransform: 'uppercase' }}>{tool.type === 'audio' ? '◎ AUDIO' : '◈ VIDEO'}</div>
+                    <div style={{ fontSize: '10px', letterSpacing: '2px', color: '#F4EAD4', fontWeight: 200, marginBottom: '6px', textTransform: 'uppercase', opacity: 0.7 }}>{tool.type === 'audio' ? '◎ AUDIO' : '◈ VIDEO'}</div>
                     <div style={{ fontSize: '14px', fontWeight: 300, color: 'white', marginBottom: '6px', lineHeight: 1.4 }}>{tool.name}</div>
-                    <div style={{ fontSize: '10px', color: 'rgba(255,255,255,0.4)', fontWeight: 200, lineHeight: 1.6 }}>{tool.description}</div>
+                    <div style={{ fontSize: '10px', color: 'rgba(255,255,255,0.5)', fontWeight: 200, lineHeight: 1.6 }}>{tool.description}</div>
                   </div>
                   <div style={{ marginLeft: '16px', display: 'flex', flexDirection: 'column', alignItems: 'flex-end', gap: '6px' }}>
-                    <span style={{ color: goldColor, fontSize: '20px' }}>▶</span>
-                    <span style={{ fontSize: '9px', color: `${goldColor}66`, letterSpacing: '1px', fontWeight: 200 }}>{tool.duration}</span>
+                    <span style={{ color: '#F4EAD4', fontSize: '20px', textShadow: '0 0 8px rgba(212,175,55,0.4)' }}>▶</span>
+                    <span style={{ fontSize: '9px', color: '#F4EAD4', letterSpacing: '1px', fontWeight: 200, opacity: 0.6 }}>{tool.duration}</span>
                   </div>
                 </div>
               </div>
@@ -974,9 +851,9 @@ const App = () => {
         <style>{inlineStyles}</style>
         <button onClick={() => { setShowSanctuary(false); setSanctuaryCode(''); setSanctuaryError(false); }} style={{ position: 'absolute', top: '35px', left: '30px', background: 'none', border: 'none', color: goldColor, fontSize: '40px', cursor: 'pointer', lineHeight: 1, padding: 0 }}>&#8249;</button>
         <ADNOrb auraClass="aura-gold-santuario" filterClass="logo-filtro-dorado" size="160px" />
-        <h2 style={{ fontSize: '13px', letterSpacing: '5px', color: goldColor, fontWeight: 200, textTransform: 'uppercase', marginBottom: '10px' }}>{t.sanctuary_title}</h2>
-        <p style={{ fontSize: '11px', color: 'rgba(255,255,255,0.35)', maxWidth: '260px', lineHeight: 1.8, fontWeight: 200, marginBottom: '6px' }}>{t.sanctuary_micro}</p>
-        <p style={{ fontSize: '10px', color: `${goldColor}66`, letterSpacing: '2px', fontWeight: 200, marginBottom: '36px' }}>{t.sanctuary_access}</p>
+        <h2 className="gold-title" style={{ fontSize: '13px', letterSpacing: '5px', fontWeight: 200, textTransform: 'uppercase', marginBottom: '10px' }}>{t.sanctuary_title}</h2>
+        <p className="gold-sub" style={{ fontSize: '11px', maxWidth: '260px', lineHeight: 1.8, fontWeight: 200, marginBottom: '6px' }}>{t.sanctuary_micro}</p>
+        <p className="gold-micro" style={{ fontSize: '10px', letterSpacing: '2px', fontWeight: 200, marginBottom: '36px' }}>{t.sanctuary_access}</p>
         <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '14px', width: '100%' }}>
           <input className="sanctuary-input" type="text" placeholder={t.sanctuary_placeholder} value={sanctuaryCode}
             onChange={(e) => { setSanctuaryCode(e.target.value); setSanctuaryError(false); }}
@@ -1021,19 +898,15 @@ const App = () => {
     <div className="fade-in-smooth" style={{ backgroundColor: '#020617', minHeight: '100vh', color: 'white', padding: '20px', paddingBottom: '80px' }}>
       <style>{inlineStyles}</style>
       {showBanner && <div className="alineacion-banner" style={{ marginTop: '10px' }}><p style={{ fontSize: '11px', letterSpacing: '2px', color: '#22d3ee', margin: 0, fontWeight: 200 }}>{t.banner}</p></div>}
-
       <PageHeader isGold={mainMode === 'experiencias'} isViolet={mainMode === 'meditaciones'} />
-
       <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-
-        {/* ADN */}
         <ADNOrb
           auraClass={mainMode === 'meditaciones' ? 'aura-violet' : mainMode === 'experiencias' ? 'aura-gold' : 'aura-supernova'}
           filterClass={mainMode === 'experiencias' ? 'logo-filtro-dorado' : mainMode === 'meditaciones' ? 'logo-filtro-violeta' : 'logo-normal'}
           size={!mainMode ? '130px' : '90px'}
         />
 
-        {/* ── HOME ── */}
+        {/* HOME */}
         {!mainMode && (
           <div className="category-stack">
             <h2 style={{ fontSize: '9px', letterSpacing: '5px', color: '#22d3ee', marginBottom: '10px', fontWeight: 200 }}>{t.choose_path}</h2>
@@ -1044,7 +917,7 @@ const App = () => {
           </div>
         )}
 
-        {/* ── FRECUENCIAS — pilares ── */}
+        {/* FRECUENCIAS — pilares */}
         {mainMode === 'frecuencias' && !freqPillar && (
           <div className="category-stack">
             <p style={{ fontSize: '10px', letterSpacing: '5px', color: '#22d3ee', textAlign: 'center', marginBottom: '16px', fontWeight: 200 }}>{t.home_buttons.frequencies}</p>
@@ -1054,7 +927,7 @@ const App = () => {
           </div>
         )}
 
-        {/* ── FRECUENCIAS — subcategorias ── */}
+        {/* FRECUENCIAS — subcategorias */}
         {mainMode === 'frecuencias' && freqPillar && !freqSub && (
           <div className="category-stack">
             <p style={{ fontSize: '10px', letterSpacing: '4px', color: '#22d3ee', textAlign: 'center', marginBottom: '16px', fontWeight: 200 }}>{t.freq_pillars[freqPillar]}</p>
@@ -1064,7 +937,7 @@ const App = () => {
           </div>
         )}
 
-        {/* ── FRECUENCIAS — tracks ── */}
+        {/* FRECUENCIAS — tracks */}
         {mainMode === 'frecuencias' && freqPillar && freqSub && (
           <div className="fade-in-smooth" style={{ width: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
             <p style={{ fontSize: '10px', letterSpacing: '3px', color: '#22d3ee', textAlign: 'center', marginBottom: '16px', fontWeight: 200 }}>{t.pillars[freqPillar]?.subs[freqSub]}</p>
@@ -1075,7 +948,7 @@ const App = () => {
           </div>
         )}
 
-        {/* ── MEDITACIONES — pilares ── */}
+        {/* MEDITACIONES — pilares */}
         {mainMode === 'meditaciones' && !medPillar && (
           <div className="category-stack">
             <p style={{ fontSize: '10px', letterSpacing: '5px', color: violetColor, textAlign: 'center', marginBottom: '16px', fontWeight: 200 }}>{t.home_buttons.meditations}</p>
@@ -1085,7 +958,7 @@ const App = () => {
           </div>
         )}
 
-        {/* ── MEDITACIONES — sesiones ── */}
+        {/* MEDITACIONES — sesiones */}
         {mainMode === 'meditaciones' && medPillar && (
           <div className="fade-in-smooth" style={{ width: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
             <p style={{ fontSize: '10px', letterSpacing: '3px', color: violetColor, textAlign: 'center', marginBottom: '16px', fontWeight: 200 }}>{t.med_pillars[medPillar]}</p>
@@ -1093,10 +966,10 @@ const App = () => {
           </div>
         )}
 
-        {/* ── EXPERIENCIAS — niveles ── */}
+        {/* EXPERIENCIAS — niveles */}
         {mainMode === 'experiencias' && !expLevel && (
           <div className="category-stack">
-            <p style={{ fontSize: '10px', letterSpacing: '5px', color: goldColor, textAlign: 'center', marginBottom: '16px', fontWeight: 200 }}>{t.home_buttons.experiences}</p>
+            <p className="gold-title" style={{ fontSize: '10px', letterSpacing: '5px', textAlign: 'center', marginBottom: '16px', fontWeight: 200 }}>{t.home_buttons.experiences}</p>
             {[
               { key: 'UNVEILING', label: t.exp_levels.UNVEILING, sub: t.exp_levels.UNVEILING_sub },
               { key: 'AWAKENING', label: t.exp_levels.AWAKENING, sub: t.exp_levels.AWAKENING_sub },
@@ -1106,51 +979,51 @@ const App = () => {
               { key: 'MERKABA', label: t.exp_levels.MERKABA, sub: t.exp_levels.MERKABA_sub }
             ].map((lvl, i) => (
               <div key={lvl.key} className="pillar-card gold" onClick={() => setExpLevel(lvl.key)} style={{ maxWidth: '310px', width: '80%' }}>
-                <div style={{ fontSize: '9px', color: `${goldColor}66`, letterSpacing: '2px', marginBottom: '4px' }}>NIVEL {i + 1}</div>
-                <div style={{ fontSize: '11px', letterSpacing: '3px' }}>{lvl.label}</div>
-                <div style={{ fontSize: '9px', color: `${goldColor}88`, letterSpacing: '1px', marginTop: '3px', fontWeight: 200 }}>{lvl.sub}</div>
+                <div style={{ fontSize: '9px', color: '#F4EAD4', letterSpacing: '2px', marginBottom: '4px', opacity: 0.6 }}>NIVEL {i + 1}</div>
+                <div style={{ fontSize: '11px', letterSpacing: '3px', color: '#F4EAD4', textShadow: '0 0 8px rgba(212,175,55,0.4)' }}>{lvl.label}</div>
+                <div style={{ fontSize: '9px', color: '#FFF5E1', letterSpacing: '1px', marginTop: '3px', fontWeight: 200, opacity: 0.75 }}>{lvl.sub}</div>
               </div>
             ))}
           </div>
         )}
 
-        {/* ── EXPERIENCIAS — THE UNVEILING — etapas ── */}
+        {/* EXPERIENCIAS — THE UNVEILING — etapas */}
         {mainMode === 'experiencias' && expLevel === 'UNVEILING' && !expStage && (
           <div className="category-stack">
-            <p style={{ fontSize: '10px', letterSpacing: '4px', color: goldColor, textAlign: 'center', marginBottom: '6px', fontWeight: 200 }}>{t.exp_levels.UNVEILING}</p>
-            <p style={{ fontSize: '9px', color: `${goldColor}77`, letterSpacing: '1px', textAlign: 'center', marginBottom: '16px', fontWeight: 200 }}>{t.exp_levels.UNVEILING_sub}</p>
+            <p className="gold-title" style={{ fontSize: '10px', letterSpacing: '4px', textAlign: 'center', marginBottom: '4px', fontWeight: 200 }}>{t.exp_levels.UNVEILING}</p>
+            <p style={{ fontSize: '9px', color: '#FFF5E1', letterSpacing: '1px', textAlign: 'center', marginBottom: '16px', fontWeight: 200, opacity: 0.7 }}>{t.exp_levels.UNVEILING_sub}</p>
             {['TERRESTRE', 'DIVINO', 'INTERDIMENSIONAL'].map(stage => (
               <div key={stage} className="pillar-card gold" onClick={() => setExpStage(stage)} style={{ maxWidth: '310px', width: '80%' }}>
-                <div style={{ fontSize: '10px', letterSpacing: '3px' }}>{t.unveiling_stages[stage]}</div>
-                <div style={{ fontSize: '9px', color: `${goldColor}88`, letterSpacing: '1px', marginTop: '3px', fontWeight: 200 }}>{t.unveiling_stages[`${stage}_sub`]}</div>
+                <div style={{ fontSize: '10px', letterSpacing: '3px', color: '#F4EAD4', textShadow: '0 0 8px rgba(212,175,55,0.35)' }}>{t.unveiling_stages[stage]}</div>
+                <div style={{ fontSize: '9px', color: '#FFF5E1', letterSpacing: '1px', marginTop: '3px', fontWeight: 200, opacity: 0.75 }}>{t.unveiling_stages[`${stage}_sub`]}</div>
               </div>
             ))}
           </div>
         )}
 
-        {/* ── EXPERIENCIAS — THE UNVEILING — sesiones de etapa ── */}
+        {/* EXPERIENCIAS — THE UNVEILING — sesiones de etapa */}
         {mainMode === 'experiencias' && expLevel === 'UNVEILING' && expStage && (
           <div className="fade-in-smooth" style={{ width: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-            <p style={{ fontSize: '10px', letterSpacing: '3px', color: goldColor, textAlign: 'center', marginBottom: '4px', fontWeight: 200 }}>{t.unveiling_stages[expStage]}</p>
-            <p style={{ fontSize: '9px', color: `${goldColor}77`, textAlign: 'center', marginBottom: '16px', fontWeight: 200 }}>{t.unveiling_stages[`${expStage}_sub`]}</p>
+            <p className="gold-title" style={{ fontSize: '10px', letterSpacing: '3px', textAlign: 'center', marginBottom: '4px', fontWeight: 200 }}>{t.unveiling_stages[expStage]}</p>
+            <p style={{ fontSize: '9px', color: '#FFF5E1', textAlign: 'center', marginBottom: '16px', fontWeight: 200, opacity: 0.7 }}>{t.unveiling_stages[`${expStage}_sub`]}</p>
             {EXP_DATA.UNVEILING[expStage].map(s => <SessionCard key={s.id} session={s} color="gold" accent={goldColor} />)}
           </div>
         )}
 
-        {/* ── EXPERIENCIAS — otros niveles ── */}
+        {/* EXPERIENCIAS — otros niveles */}
         {mainMode === 'experiencias' && expLevel && expLevel !== 'UNVEILING' && (
           <div className="fade-in-smooth" style={{ width: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-            <p style={{ fontSize: '10px', letterSpacing: '3px', color: goldColor, textAlign: 'center', marginBottom: '4px', fontWeight: 200 }}>{t.exp_levels[expLevel]}</p>
-            <p style={{ fontSize: '9px', color: `${goldColor}77`, textAlign: 'center', marginBottom: '16px', fontWeight: 200 }}>{t.exp_levels[`${expLevel}_sub`]}</p>
+            <p className="gold-title" style={{ fontSize: '10px', letterSpacing: '3px', textAlign: 'center', marginBottom: '4px', fontWeight: 200 }}>{t.exp_levels[expLevel]}</p>
+            <p style={{ fontSize: '9px', color: '#FFF5E1', textAlign: 'center', marginBottom: '16px', fontWeight: 200, opacity: 0.7 }}>{t.exp_levels[`${expLevel}_sub`]}</p>
             {(EXP_DATA[expLevel] || []).map(s => <SessionCard key={s.id} session={s} color="gold" accent={goldColor} />)}
           </div>
         )}
 
       </div>
-      <ResumeBar />
       <BottomBar />
     </div>
   );
 };
 
 export default App;
+
