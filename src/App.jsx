@@ -458,9 +458,7 @@ const App = () => {
 
   const [activeTab, setActiveTab] = useState('catalogo');
   const [showBanner, setShowBanner] = useState(false);
-  const [favorites, setFavorites] = useState(() => {
-    try { return JSON.parse(localStorage.getItem('genora_favorites')) || []; } catch { return []; }
-  });
+ const [selectedTrack, setSelectedTrack] = useState(null);
   const [reminderTime, setReminderTime] = useState(() => {
     try { return localStorage.getItem('genora_reminder_time') || null; } catch { return null; }
   });
