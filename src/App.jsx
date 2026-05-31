@@ -429,6 +429,7 @@ const inlineStyles = `
     background: rgba(34,211,238,0.03); text-align: center;
   }
   .home-btn:hover { background: rgba(34,211,238,0.08); border-color: rgba(34,211,238,0.6); }
+  .home-btn.bright:hover { background: rgba(34,211,238,0.12); border-color: rgba(34,211,238,0.8); box-shadow: 0 0 20px rgba(34,211,238,0.2); }
   .home-btn.violet { border-color: rgba(168,85,247,0.3); background: rgba(168,85,247,0.03); }
   .home-btn.violet:hover { background: rgba(168,85,247,0.08); border-color: rgba(168,85,247,0.6); }
   .home-btn.gold { border-color: rgba(212,175,55,0.3); background: rgba(212,175,55,0.03); }
@@ -1041,7 +1042,7 @@ const App = () => {
             <h2 style={{ fontSize: '9px', letterSpacing: '5px', color: '#22d3ee', marginBottom: '10px', fontWeight: 200 }}>{t.choose_path}</h2>
             <button className="home-btn" onClick={() => setMainMode('frecuencias')}>{t.home_buttons.frequencies}</button>
             <button className="home-btn violet" onClick={() => setMainMode('meditaciones')}>{t.home_buttons.meditations}</button>
-            <button className="home-btn gold" onClick={() => setMainMode('experiencias')}>{t.home_buttons.experiences}</button>
+            <button className="home-btn bright" onClick={() => setMainMode('experiencias')}>✦ {t.home_buttons.experiences}</button>
             <button className="home-btn sanctuary" onClick={() => { setShowSanctuary(true); setActiveTab('catalogo'); }}>{t.home_buttons.sanctuary}</button>
           </div>
         )}
