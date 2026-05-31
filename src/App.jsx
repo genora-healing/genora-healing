@@ -23,6 +23,7 @@ const T = {
     banner: "✦ Es momento de tu alineacion diaria Genora",
     suggestion_label: "SUGERENCIA DE ALINEACION",
     coming_soon: "Proximas frecuencias en camino...",
+    resume_playing: "Reanudar frecuencia",
     sanctuary_title: "SANTUARIO GENORA",
     sanctuary_micro: "Un espacio reservado para las herramientas que apoyan tu camino.",
     sanctuary_access: "Acceso exclusivo mediante codigo de acceso.",
@@ -30,16 +31,47 @@ const T = {
     sanctuary_enter: "ACCEDER",
     sanctuary_error: "Codigo no verificado. Solicita tu codigo de acceso.",
     sanctuary_loading: "Sintonizando frecuencia de alta fidelidad...",
-    sanctuary_library_title: "HERRAMIENTAS DE CONTENCION",
     sanctuary_library_sub: "Frecuencias y videos para tu proceso de sanacion.",
-    resume_playing: "Reanudar frecuencia",
-    pillar_names: {
-      MENTE: { es: "MENTE", en: "MIND" },
-      COHERENCIA: { es: "COHERENCIA", en: "COHERENCE" },
-      CUERPO: { es: "CUERPO", en: "BODY" },
-      EXPANSION: { es: "EXPANSION", en: "EXPANSION" },
-      EXPERIENCIAS: { es: "EXPERIENCIAS GENORA", en: "GENORA EXPERIENCES" },
-      ARMONIZACION: { es: "ARMONIZACION BIOLOGICA", en: "BIOLOGICAL HARMONIZATION" },
+    home_buttons: {
+      frequencies: "FRECUENCIAS",
+      meditations: "MEDITACIONES",
+      experiences: "EXPERIENCIAS",
+      sanctuary: "SANTUARIO GENORA"
+    },
+    freq_pillars: {
+      MENTE: "MENTE",
+      COHERENCIA: "COHERENCIA",
+      CUERPO: "CUERPO",
+      EXPANSION: "EXPANSION",
+      EXPERIENCIAS_G: "EXPERIENCIAS GENORA",
+      ARMONIZACION: "ARMONIZACION BIOLOGICA"
+    },
+    med_pillars: {
+      LINAJE: "LINAJE & ORIGEN",
+      CONSCIENCIA: "CONSCIENCIA & UNIFICACION",
+      ELEVACION: "ELEVACION & TRANSMUTACION"
+    },
+    exp_levels: {
+      UNVEILING: "THE UNVEILING",
+      UNVEILING_sub: "Activando el Potencial del Ser Humano de Luz",
+      AWAKENING: "PATH OF AWAKENING",
+      AWAKENING_sub: "El Sendero de los Dones Superiores",
+      CODEX: "CODEX OF WISDOM",
+      CODEX_sub: "Conocimiento, Sanacion y Clarividencia",
+      VOICE: "VOICE OF LIGHT",
+      VOICE_sub: "Clariaudiencia y Conexion Multidimensional",
+      ALCHEMIST: "ALCHEMIST PATH",
+      ALCHEMIST_sub: "Transmutacion y Precognicion",
+      MERKABA: "MERKABA ASCENSION",
+      MERKABA_sub: "Ensonacion, Resurreccion y Omnipotencia"
+    },
+    unveiling_stages: {
+      TERRESTRE: "ETAPA I · GENOMA HUMANO TERRESTRE",
+      TERRESTRE_sub: "El Despertar de las Maestrias Fundamentales",
+      DIVINO: "ETAPA II · GENOMA HUMANO DIVINO",
+      DIVINO_sub: "La Expansion de la Consciencia Superior",
+      INTERDIMENSIONAL: "ETAPA III · GENOMA HUMANO INTERDIMENSIONAL",
+      INTERDIMENSIONAL_sub: "La Integracion del Ser de Luz"
     },
     pillars: {
       MENTE: {
@@ -53,43 +85,23 @@ const T = {
       },
       COHERENCIA: {
         label: "COHERENCIA",
-        subs: {
-          "REGULACION": "REGULACION EMOCIONAL",
-          "EQUILIBRIO": "EQUILIBRIO INTERNO",
-          "INTEGRACION": "INTEGRACION MENTE-CUERPO"
-        }
+        subs: { "REGULACION": "REGULACION EMOCIONAL", "EQUILIBRIO": "EQUILIBRIO INTERNO", "INTEGRACION": "INTEGRACION MENTE-CUERPO" }
       },
       CUERPO: {
         label: "CUERPO",
-        subs: {
-          "REGENERACION": "REGENERACION & SANACION",
-          "ORGANOS": "ORGANOS & SISTEMAS",
-          "DOLOR": "DOLOR & RECUPERACION"
-        }
+        subs: { "REGENERACION": "REGENERACION & SANACION", "ORGANOS": "ORGANOS & SISTEMAS", "DOLOR": "DOLOR & RECUPERACION" }
       },
       EXPANSION: {
         label: "EXPANSION",
-        subs: {
-          "MEDITACION": "MEDITACION & ESTADOS INTERNOS",
-          "PERCEPCION": "PERCEPCION & INTUICION",
-          "EXPERIENCIAS": "EXPERIENCIAS EXPANDIDAS"
-        }
+        subs: { "MEDITACION": "MEDITACION & ESTADOS INTERNOS", "PERCEPCION": "PERCEPCION & INTUICION", "EXPERIENCIAS": "EXPERIENCIAS EXPANDIDAS" }
       },
-      EXPERIENCIAS: {
+      EXPERIENCIAS_G: {
         label: "EXPERIENCIAS GENORA",
-        subs: {
-          "SESIONES": "SESIONES EN VIVO",
-          "RITUALES": "RITUALES DE ACTIVACION",
-          "CEREMONIAS": "CEREMONIAS SONORAS"
-        }
+        subs: { "SESIONES": "SESIONES EN VIVO", "RITUALES": "RITUALES DE ACTIVACION", "CEREMONIAS": "CEREMONIAS SONORAS" }
       },
       ARMONIZACION: {
         label: "ARMONIZACION BIOLOGICA",
-        subs: {
-          "ADN": "REPROGRAMACION DE ADN",
-          "CAMPOS": "CAMPOS BIOENERGETICOS",
-          "CELULAR": "REGENERACION CELULAR"
-        }
+        subs: { "ADN": "REPROGRAMACION DE ADN", "CAMPOS": "CAMPOS BIOENERGETICOS", "CELULAR": "REGENERACION CELULAR" }
       }
     },
     tracks: {
@@ -136,6 +148,7 @@ const T = {
     banner: "✦ It is time for your daily Genora alignment",
     suggestion_label: "ALIGNMENT SUGGESTION",
     coming_soon: "Upcoming frequencies on their way...",
+    resume_playing: "Resume frequency",
     sanctuary_title: "GENORA SANCTUARY",
     sanctuary_micro: "A reserved space for the tools that support your journey.",
     sanctuary_access: "Exclusive access via access code.",
@@ -143,16 +156,47 @@ const T = {
     sanctuary_enter: "ENTER",
     sanctuary_error: "Code not verified. Request your access code.",
     sanctuary_loading: "Tuning high-fidelity frequency...",
-    sanctuary_library_title: "CONTAINMENT TOOLS",
     sanctuary_library_sub: "Frequencies and videos for your healing process.",
-    resume_playing: "Resume frequency",
-    pillar_names: {
-      MENTE: { es: "MENTE", en: "MIND" },
-      COHERENCIA: { es: "COHERENCIA", en: "COHERENCE" },
-      CUERPO: { es: "CUERPO", en: "BODY" },
-      EXPANSION: { es: "EXPANSION", en: "EXPANSION" },
-      EXPERIENCIAS: { es: "EXPERIENCIAS GENORA", en: "GENORA EXPERIENCES" },
-      ARMONIZACION: { es: "ARMONIZACION BIOLOGICA", en: "BIOLOGICAL HARMONIZATION" },
+    home_buttons: {
+      frequencies: "FREQUENCIES",
+      meditations: "MEDITATIONS",
+      experiences: "EXPERIENCES",
+      sanctuary: "GENORA SANCTUARY"
+    },
+    freq_pillars: {
+      MENTE: "MIND",
+      COHERENCIA: "COHERENCE",
+      CUERPO: "BODY",
+      EXPANSION: "EXPANSION",
+      EXPERIENCIAS_G: "GENORA EXPERIENCES",
+      ARMONIZACION: "BIOLOGICAL HARMONIZATION"
+    },
+    med_pillars: {
+      LINAJE: "LINEAGE & ORIGIN",
+      CONSCIENCIA: "CONSCIOUSNESS & UNIFICATION",
+      ELEVACION: "ELEVATION & TRANSMUTATION"
+    },
+    exp_levels: {
+      UNVEILING: "THE UNVEILING",
+      UNVEILING_sub: "Activating the Potential of the Human Being of Light",
+      AWAKENING: "PATH OF AWAKENING",
+      AWAKENING_sub: "The Path of Superior Gifts",
+      CODEX: "CODEX OF WISDOM",
+      CODEX_sub: "Knowledge, Healing and Clairvoyance",
+      VOICE: "VOICE OF LIGHT",
+      VOICE_sub: "Clairaudience and Multidimensional Connection",
+      ALCHEMIST: "ALCHEMIST PATH",
+      ALCHEMIST_sub: "Transmutation and Precognition",
+      MERKABA: "MERKABA ASCENSION",
+      MERKABA_sub: "Dreaming, Resurrection and Omnipotence"
+    },
+    unveiling_stages: {
+      TERRESTRE: "STAGE I · TERRESTRIAL HUMAN GENOME",
+      TERRESTRE_sub: "The Awakening of Fundamental Masteries",
+      DIVINO: "STAGE II · DIVINE HUMAN GENOME",
+      DIVINO_sub: "The Expansion of Superior Consciousness",
+      INTERDIMENSIONAL: "STAGE III · INTERDIMENSIONAL HUMAN GENOME",
+      INTERDIMENSIONAL_sub: "The Integration of the Being of Light"
     },
     pillars: {
       MENTE: {
@@ -166,43 +210,23 @@ const T = {
       },
       COHERENCIA: {
         label: "COHERENCE",
-        subs: {
-          "REGULACION": "EMOTIONAL REGULATION",
-          "EQUILIBRIO": "INNER BALANCE",
-          "INTEGRACION": "MIND-BODY INTEGRATION"
-        }
+        subs: { "REGULACION": "EMOTIONAL REGULATION", "EQUILIBRIO": "INNER BALANCE", "INTEGRACION": "MIND-BODY INTEGRATION" }
       },
       CUERPO: {
         label: "BODY",
-        subs: {
-          "REGENERACION": "REGENERATION & HEALING",
-          "ORGANOS": "ORGANS & SYSTEMS",
-          "DOLOR": "PAIN & RECOVERY"
-        }
+        subs: { "REGENERACION": "REGENERATION & HEALING", "ORGANOS": "ORGANS & SYSTEMS", "DOLOR": "PAIN & RECOVERY" }
       },
       EXPANSION: {
         label: "EXPANSION",
-        subs: {
-          "MEDITACION": "MEDITATION & INNER STATES",
-          "PERCEPCION": "PERCEPTION & INTUITION",
-          "EXPERIENCIAS": "EXPANDED EXPERIENCES"
-        }
+        subs: { "MEDITACION": "MEDITATION & INNER STATES", "PERCEPCION": "PERCEPTION & INTUITION", "EXPERIENCIAS": "EXPANDED EXPERIENCES" }
       },
-      EXPERIENCIAS: {
+      EXPERIENCIAS_G: {
         label: "GENORA EXPERIENCES",
-        subs: {
-          "SESIONES": "LIVE SESSIONS",
-          "RITUALES": "ACTIVATION RITUALS",
-          "CEREMONIAS": "SOUND CEREMONIES"
-        }
+        subs: { "SESIONES": "LIVE SESSIONS", "RITUALES": "ACTIVATION RITUALS", "CEREMONIAS": "SOUND CEREMONIES" }
       },
       ARMONIZACION: {
         label: "BIOLOGICAL HARMONIZATION",
-        subs: {
-          "ADN": "DNA REPROGRAMMING",
-          "CAMPOS": "BIOENERGETIC FIELDS",
-          "CELULAR": "CELLULAR REGENERATION"
-        }
+        subs: { "ADN": "DNA REPROGRAMMING", "CAMPOS": "BIOENERGETIC FIELDS", "CELULAR": "CELLULAR REGENERATION" }
       }
     },
     tracks: {
@@ -230,248 +254,15 @@ const T = {
 };
 
 const SANCTUARY_CODE = "GENORA2026";
-
 const SANCTUARY_TOOLS = [
-  {
-    id: "frecuencia-adn-001",
-    name: "Frecuencia ADN — Activacion Primaria",
-    type: "audio",
-    description: "Frecuencia de alta fidelidad para activacion genetica profunda.",
-    duration: "60 min",
-    url: "https://res.cloudinary.com/TU_CLOUD_NAME/video/upload/v1/genora/frecuencias/frecuencia-adn-001.wav",
-  },
-  {
-    id: "frecuencia-celular-001",
-    name: "Regeneracion Celular — Campo Cuantico",
-    type: "audio",
-    description: "Soporte vibracional para procesos de sanacion celular.",
-    duration: "45 min",
-    url: "https://res.cloudinary.com/TU_CLOUD_NAME/video/upload/v1/genora/frecuencias/frecuencia-celular-001.wav",
-  },
-  {
-    id: "video-meditacion-001",
-    name: "Meditacion Guiada — Matrices Perinatales",
-    type: "video",
-    description: "Proceso guiado para liberacion de matrices perinatales.",
-    duration: "35 min",
-    url: "https://res.cloudinary.com/TU_CLOUD_NAME/video/upload/v1/genora/videos/meditacion-matrices-001.mp4",
-    thumbnail: "https://res.cloudinary.com/TU_CLOUD_NAME/video/upload/so_0/v1/genora/videos/meditacion-matrices-001.jpg",
-  },
-  {
-    id: "frecuencia-ancestral-001",
-    name: "Liberacion Ancestral — Limpieza de Campo",
-    type: "audio",
-    description: "Frecuencia para desbloqueo de patrones heredados.",
-    duration: "55 min",
-    url: "https://res.cloudinary.com/TU_CLOUD_NAME/video/upload/v1/genora/frecuencias/frecuencia-ancestral-001.wav",
-  },
+  { id: "frecuencia-adn-001", name: "Frecuencia ADN — Activacion Primaria", type: "audio", description: "Frecuencia de alta fidelidad para activacion genetica profunda.", duration: "60 min", url: "https://res.cloudinary.com/TU_CLOUD_NAME/video/upload/v1/genora/frecuencias/frecuencia-adn-001.wav" },
+  { id: "frecuencia-celular-001", name: "Regeneracion Celular — Campo Cuantico", type: "audio", description: "Soporte vibracional para procesos de sanacion celular.", duration: "45 min", url: "https://res.cloudinary.com/TU_CLOUD_NAME/video/upload/v1/genora/frecuencias/frecuencia-celular-001.wav" },
+  { id: "video-meditacion-001", name: "Meditacion Guiada — Matrices Perinatales", type: "video", description: "Proceso guiado para liberacion de matrices perinatales.", duration: "35 min", url: "https://res.cloudinary.com/TU_CLOUD_NAME/video/upload/v1/genora/videos/meditacion-matrices-001.mp4", thumbnail: "" },
+  { id: "frecuencia-ancestral-001", name: "Liberacion Ancestral — Limpieza de Campo", type: "audio", description: "Frecuencia para desbloqueo de patrones heredados.", duration: "55 min", url: "https://res.cloudinary.com/TU_CLOUD_NAME/video/upload/v1/genora/frecuencias/frecuencia-ancestral-001.wav" },
 ];
 
-const inlineStyles = `
-  @keyframes logo-breathe { 0%, 100% { transform: scale(1); opacity: 0.95; } 50% { transform: scale(1.05); opacity: 1; } }
-  @keyframes aura-supernova {
-    0%, 100% { transform: scale(1); box-shadow: 0 0 80px rgba(34,211,238,0.4), 0 0 150px rgba(34,211,238,0.2); }
-    50% { transform: scale(1.03); box-shadow: 0 0 50px rgba(34,211,238,0.9), 0 0 120px rgba(34,211,238,0.6), 0 0 250px rgba(34,211,238,0.4); }
-  }
-  @keyframes aura-gold-santuario {
-    0%, 100% { transform: scale(1); box-shadow: 0 0 60px rgba(212,175,55,0.25), 0 0 120px rgba(212,175,55,0.12); }
-    50% { transform: scale(1.02); box-shadow: 0 0 40px rgba(212,175,55,0.6), 0 0 100px rgba(212,175,55,0.35), 0 0 200px rgba(212,175,55,0.18); }
-  }
-  @keyframes micro-orbe-breathe {
-    0%, 100% { transform: scale(1); opacity: 0.7; box-shadow: 0 0 6px #d4af37; }
-    50% { transform: scale(1.2); opacity: 1; box-shadow: 0 0 12px #d4af37; }
-  }
-  @keyframes fadeInDown { from { opacity: 0; transform: translateY(-8px); } to { opacity: 1; transform: translateY(0); } }
-  @keyframes fadeInUp { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: translateY(0); } }
-  @keyframes pulse-glow { 0%, 100% { opacity: 0.5; } 50% { opacity: 1; } }
-  @keyframes slideUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
-
-  .fade-in-smooth { animation: fadeIn 0.8s ease-in forwards; }
-  .fade-in-up { animation: fadeInUp 0.6s ease forwards; }
-  @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
-  body, html { overflow-x: hidden; background-color: #020617; margin: 0; padding: 0; font-family: sans-serif; color: white; }
-
-  .choice-button {
-    width: 75%; max-width: 270px; padding: 18px; margin: 10px 0;
-    border-radius: 40px; background: rgba(34,211,238,0.04); color: white;
-    font-size: 12px; letter-spacing: 6px; text-transform: uppercase; font-weight: 200;
-    cursor: pointer; transition: all 0.4s ease; border: 1px solid rgba(34,211,238,0.35);
-  }
-  .choice-button:hover { background: rgba(34,211,238,0.08); border-color: rgba(34,211,238,0.6); }
-  .choice-button.gold { border-color: rgba(212,175,55,0.35); background: rgba(212,175,55,0.04); }
-
-  .category-stack { display: flex; flex-direction: column; align-items: center; gap: 8px; width: 100%; margin: 0 auto; }
-
-  .pillar-card {
-    width: 70%; max-width: 250px; padding: 14px; border-radius: 40px;
-    background: rgba(34,211,238,0.02); border: 1px solid rgba(34,211,238,0.3);
-    text-align: center; cursor: pointer; font-size: 11px; letter-spacing: 4px;
-    text-transform: uppercase; font-weight: 200; transition: all 0.3s ease; color: white;
-  }
-  .pillar-card:hover { background: rgba(34,211,238,0.06); border-color: rgba(34,211,238,0.5); }
-
-  .pillar-home-btn {
-    width: 75%; max-width: 290px; padding: 10px 14px; margin: 2px 0;
-    border-radius: 40px; background: rgba(34,211,238,0.03); color: white;
-    font-size: 9px; letter-spacing: 3px; text-transform: uppercase; font-weight: 200;
-    cursor: pointer; transition: all 0.4s ease; border: 1px solid rgba(34,211,238,0.18);
-    text-align: center; line-height: 1.4;
-  }
-  .pillar-home-btn:hover { background: rgba(34,211,238,0.07); border-color: rgba(34,211,238,0.55); }
-
-  .micro-orbe-vivo {
-    width: 7px; height: 7px; border-radius: 50%;
-    background: #d4af37; display: inline-block;
-    animation: micro-orbe-breathe 2.5s infinite ease-in-out;
-    vertical-align: middle; margin-right: 8px;
-  }
-
-  .sanctuary-btn-clean {
-    width: 75%; max-width: 290px; padding: 10px 14px; margin: 2px 0;
-    border-radius: 40px; background: rgba(212,175,55,0.03); color: white;
-    font-size: 9px; letter-spacing: 3px; text-transform: uppercase; font-weight: 200;
-    cursor: pointer; transition: all 0.4s ease; border: 1px solid rgba(212,175,55,0.3);
-    text-align: center; line-height: 1.4;
-  }
-  .sanctuary-btn-clean:hover {
-    background: rgba(212,175,55,0.08);
-    border-color: rgba(212,175,55,0.65);
-    box-shadow: 0 0 15px rgba(212,175,55,0.15);
-  }
-
-  .logo-filtro-dorado {
-    filter: sepia(1) hue-rotate(-12deg) saturate(2.3) brightness(0.88) drop-shadow(0 0 20px rgba(212,175,55,0.65)) !important;
-    transition: all 0.8s ease-in-out;
-  }
-  .logo-normal {
-    filter: drop-shadow(0 0 15px #22d3ee);
-    transition: all 0.8s ease-in-out;
-  }
-
-  .sanctuary-input {
-    width: 70%; max-width: 260px; padding: 14px 20px; border-radius: 30px;
-    background: rgba(255,255,255,0.03); border: 1px solid rgba(212,175,55,0.3);
-    color: white; font-size: 12px; letter-spacing: 3px; text-align: center;
-    text-transform: uppercase; outline: none; transition: all 0.3s ease; font-weight: 200;
-  }
-  .sanctuary-input:focus { border-color: rgba(212,175,55,0.7); background: rgba(212,175,55,0.05); }
-  .sanctuary-input::placeholder { color: rgba(255,255,255,0.2); text-transform: none; letter-spacing: 1px; }
-
-  .sanctuary-enter-btn {
-    width: 70%; max-width: 260px; padding: 14px; border-radius: 30px;
-    background: rgba(212,175,55,0.06);
-    border: 1px solid rgba(212,175,55,0.4); color: white;
-    font-size: 11px; letter-spacing: 4px; cursor: pointer; transition: all 0.3s ease; font-weight: 200;
-  }
-  .sanctuary-enter-btn:hover { background: rgba(212,175,55,0.12); border-color: rgba(212,175,55,0.75); box-shadow: 0 0 15px rgba(212,175,55,0.1); }
-
-  .sanctuary-tool-card {
-    width: 85%; max-width: 340px; padding: 20px 22px; margin: 8px 0; border-radius: 24px;
-    background: rgba(212,175,55,0.03); border: 1px solid rgba(212,175,55,0.18);
-    transition: all 0.3s ease; cursor: pointer;
-  }
-  .sanctuary-tool-card:hover { background: rgba(212,175,55,0.06); border-color: rgba(212,175,55,0.45); }
-
-  .track-card {
-    width: 85%; max-width: 340px; padding: 20px 25px; margin: 8px 0; border-radius: 30px;
-    background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.1);
-    display: flex; justify-content: space-between; align-items: center; cursor: pointer;
-  }
-  .track-card:active { transform: scale(0.98); }
-  .track-card.suggestion { border-color: rgba(34,211,238,0.3); background: rgba(34,211,238,0.04); }
-
-  .back-button-genora {
-    width: 42px; height: 42px; border-radius: 50%; border: 1px solid rgba(34,211,238,0.5);
-    background: rgba(34,211,238,0.08); display: flex; align-items: center; justify-content: center; cursor: pointer;
-  }
-
-  .time-button {
-    width: 58px; padding: 10px 0; border-radius: 40px; border: 1px solid rgba(255,255,255,0.15);
-    background: none; color: white; font-size: 12px; cursor: pointer; transition: 0.2s; font-weight: 200;
-  }
-
-  .heart-btn {
-    background: none; border: none; cursor: pointer; font-size: 16px;
-    padding: 4px 8px; line-height: 1; transition: transform 0.2s ease; flex-shrink: 0;
-  }
-  .heart-btn:active { transform: scale(1.4); }
-
-  .bottom-bar {
-    position: fixed; bottom: 0; left: 0; right: 0;
-    background: rgba(2,6,23,0.96); backdrop-filter: blur(20px);
-    border-top: 1px solid rgba(255,255,255,0.06);
-    display: flex; justify-content: center; z-index: 100;
-  }
-  .bar-tab {
-    flex: 1; max-width: 200px; padding: 14px 8px 18px;
-    background: none; border: none; color: rgba(255,255,255,0.3);
-    font-size: 10px; letter-spacing: 2px; text-transform: uppercase;
-    cursor: pointer; transition: all 0.3s ease;
-    display: flex; flex-direction: column; align-items: center; gap: 4px;
-  }
-  .bar-tab.active { color: #22d3ee; }
-  .bar-tab.active.gold-tab { color: #d4af37; }
-  .bar-tab-icon { font-size: 18px; line-height: 1; }
-
-  .lang-switch { display: flex; border: 1px solid rgba(34,211,238,0.35); border-radius: 20px; overflow: hidden; }
-  .lang-switch.gold-border { border-color: rgba(212,175,55,0.35); }
-  .lang-btn { padding: 5px 12px; background: none; border: none; font-size: 10px; letter-spacing: 2px; cursor: pointer; transition: all 0.2s; color: rgba(255,255,255,0.35); font-weight: 200; }
-  .lang-btn.active { background: rgba(34,211,238,0.15); color: #22d3ee; }
-  .lang-btn.active.gold-text { background: rgba(212,175,55,0.1); color: #d4af37; }
-
-  .progress-bar-container { width: 100%; height: 2px; background: rgba(255,255,255,0.1); border-radius: 2px; margin: 8px 0 4px; cursor: pointer; }
-  .progress-bar-fill { height: 100%; border-radius: 2px; background: #22d3ee; transition: width 0.5s linear; }
-
-  .reminder-btn {
-    padding: 8px 16px; border-radius: 30px; border: 1px solid rgba(34,211,238,0.25);
-    background: none; color: rgba(255,255,255,0.4); font-size: 10px;
-    letter-spacing: 2px; cursor: pointer; transition: all 0.3s ease;
-    text-transform: uppercase; font-weight: 200;
-  }
-  .reminder-btn.active { border-color: #22d3ee; color: #22d3ee; background: rgba(34,211,238,0.08); }
-
-  .alineacion-banner {
-    animation: fadeInDown 0.4s ease forwards;
-    margin: 0 auto 12px; width: 85%; max-width: 340px; padding: 10px 16px;
-    border-radius: 20px; background: rgba(34,211,238,0.05);
-    border: 1px solid rgba(34,211,238,0.15); text-align: center;
-  }
-
-  .suggestion-badge {
-    animation: fadeInDown 0.3s ease forwards;
-    font-size: 9px; letter-spacing: 2px; color: rgba(34,211,238,0.75);
-    text-transform: uppercase; font-weight: 200;
-  }
-
-  .coming-soon-box {
-    text-align: center; color: rgba(255,255,255,0.2); padding: 40px 20px;
-    font-size: 11px; letter-spacing: 3px; font-weight: 200; line-height: 2;
-  }
-  .coming-soon-icon { font-size: 28px; margin-bottom: 16px; opacity: 0.4; }
-
-  .sanctuary-video {
-    width: 100%; border-radius: 16px; margin-top: 12px;
-    background: #000; border: 1px solid rgba(212,175,55,0.2);
-  }
-
-  .streaming-indicator {
-    animation: pulse-glow 2s infinite ease-in-out;
-    font-size: 10px; letter-spacing: 2px; color: rgba(212,175,55,0.7);
-    text-align: center; padding: 8px 0; font-weight: 200;
-  }
-
-  .mini-resume-bar {
-    animation: slideUp 0.4s ease forwards;
-    position: fixed; bottom: 65px; left: 50%; transform: translateX(-50%);
-    width: 90%; max-width: 340px; padding: 10px 16px; border-radius: 20px;
-    background: rgba(2,6,23,0.95); backdrop-filter: blur(20px);
-    border: 1px solid rgba(34,211,238,0.2);
-    display: flex; align-items: center; justify-content: space-between;
-    z-index: 99; cursor: pointer;
-  }
-`;
-
-const ALL_TRACKS = {
+// ── DATA FRECUENCIAS ──────────────────────────────────────────────────────────
+const FREQ_TRACKS = {
   MENTE: {
     "APRENDIZAJE": [
       { id: "alpha-integration", name: "Alpha Integration", hz: "8-10 Hz", url: "/audio/alpha-integration.mp3" },
@@ -504,13 +295,87 @@ const ALL_TRACKS = {
   COHERENCIA: { "REGULACION": [], "EQUILIBRIO": [], "INTEGRACION": [] },
   CUERPO: { "REGENERACION": [], "ORGANOS": [], "DOLOR": [] },
   EXPANSION: { "MEDITACION": [], "PERCEPCION": [], "EXPERIENCIAS": [] },
-  EXPERIENCIAS: { "SESIONES": [], "RITUALES": [], "CEREMONIAS": [] },
+  EXPERIENCIAS_G: { "SESIONES": [], "RITUALES": [], "CEREMONIAS": [] },
   ARMONIZACION: { "ADN": [], "CAMPOS": [], "CELULAR": [] }
 };
 
-const ALL_TRACKS_FLAT = Object.values(ALL_TRACKS)
-  .flatMap(pillar => Object.values(pillar).flat())
+const ALL_TRACKS_FLAT = Object.values(FREQ_TRACKS)
+  .flatMap(p => Object.values(p).flat())
   .filter(t => t.url);
+
+// ── DATA MEDITACIONES ─────────────────────────────────────────────────────────
+const MED_DATA = {
+  LINAJE: {
+    sessions: [
+      { id: "crimson-genesis", name: "Crimson Genesis", sub: "Sanacion del Linaje y Memorias Profundas", desc: "Exploracion de emociones profundas, memorias ancestrales y patrones grabados en las capas geneticas del ADN." },
+      { id: "golden-legacy", name: "Golden Legacy", sub: "Reconexion con el Linaje Ancestral y Galactico", desc: "Viaje de reconocimiento y restauracion de la herencia ancestral y galactica." }
+    ]
+  },
+  CONSCIENCIA: {
+    sessions: [
+      { id: "chamber-translove", name: "Chamber of Translove", sub: "La Camara de la Unificacion Interior", desc: "Acceso a la camara interna donde habitan los sentimientos ennoblecidos que permiten vivir desde la unidad y la compasion." },
+      { id: "codex-unity", name: "Codex of Unity", sub: "El Viaje de la Dualidad a la Neutralidad", desc: "Recorrido por los niveles superiores de consciencia para integrar el conocimiento unificador." }
+    ]
+  },
+  ELEVACION: {
+    sessions: [
+      { id: "ascension-192", name: "Ascension 192", sub: "Activacion de la Consciencia Humana Genuina", desc: "Meditacion de expansion espiritual enfocada en el reconocimiento del ser humano como portador de frecuencias elevadas." },
+      { id: "obsidian-light", name: "Obsidian Light", sub: "Transmutacion y Liberacion de Densidades", desc: "Proceso de limpieza energetica profunda para favorecer la liberacion, transmutacion y restauracion del equilibrio interno." }
+    ]
+  }
+};
+
+// ── DATA EXPERIENCIAS ─────────────────────────────────────────────────────────
+const EXP_DATA = {
+  UNVEILING: {
+    TERRESTRE: [
+      { id: "eternal-grace", name: "Eternal Grace", sub: "Maestrias de la Eternidad, el Poder y la Gracia", desc: "La primera iniciacion del camino. Un encuentro con los pilares fundamentales del potencial humano." },
+      { id: "sacred-power", name: "Sacred Power", sub: "Maestrias del Poder, la Sabiduria y la Energia", desc: "Experiencia para fortalecer la relacion consciente con la energia personal y la sabiduria interior." },
+      { id: "grace-in-motion", name: "Grace in Motion", sub: "Maestrias de la Gracia, el Poder y la Energia", desc: "La integracion armonica entre la fuerza interior y la fluidez consciente." },
+      { id: "golden-freedom", name: "Golden Freedom", sub: "Maestrias del Amor, la Luz Dorada y la Libertad", desc: "Iniciacion orientada a la expansion del corazon y el reconocimiento de la luz interior." }
+    ],
+    DIVINO: [
+      { id: "nature-eternal", name: "Nature Eternal", sub: "Maestrias de la Naturaleza y la Eternidad", desc: "Reconexion con los principios vivos de la creacion y los ciclos eternos de la existencia." },
+      { id: "wisdom-freedom", name: "Wisdom of Freedom", sub: "Maestrias de la Sabiduria y la Libertad", desc: "La verdadera libertad surge del conocimiento consciente de uno mismo." },
+      { id: "infinite-current", name: "Infinite Current", sub: "Maestrias de la Eternidad y la Energia", desc: "Inmersion en los principios energeticos que sostienen la continuidad de la vida." },
+      { id: "grace-eternity", name: "Grace of Eternity", sub: "Maestrias de la Sabiduria, la Gracia y la Eternidad", desc: "Integracion de la sabiduria y la gracia como expresiones naturales de una consciencia eterna." }
+    ],
+    INTERDIMENSIONAL: [
+      { id: "heart-of-light", name: "Heart of Light", sub: "Maestrias de la Gracia, el Amor y la Energia", desc: "Activacion del corazon como puente entre la energia, la compasion y la expansion de la consciencia." },
+      { id: "golden-wisdom", name: "Golden Wisdom", sub: "Maestrias de la Sabiduria, la Luz Dorada y la Libertad", desc: "Integracion de la vision superior, la claridad interior y la libertad." },
+      { id: "eternal-nature", name: "Eternal Nature", sub: "Maestrias de la Naturaleza, la Energia y la Eternidad", desc: "Reconocimiento de la conexion profunda entre la vida, la energia universal y los principios eternos." },
+      { id: "sovereign-light", name: "Sovereign Light", sub: "Maestrias del Poder, la Energia y la Eternidad", desc: "La iniciacion final. Sintesis de las maestrias desarrolladas y reconocimiento del potencial luminoso del ser humano." }
+    ]
+  },
+  AWAKENING: [
+    { id: "apertura-dones", name: "Apertura de Dones", desc: "Activacion y reconocimiento de los dones superiores del ser." },
+    { id: "telepatia-cosmica", name: "Telepatia Cosmica", desc: "Expansion de la percepcion hacia niveles superiores de consciencia." },
+    { id: "creacion-abundancia", name: "Creacion de Abundancia", desc: "Conexion con los principios creativos de la abundancia universal." }
+  ],
+  CODEX: [
+    { id: "don-conocimiento", name: "Don del Conocimiento", desc: "Despertar de la sabiduria interior y la percepcion profunda." },
+    { id: "don-sanacion", name: "Don de Sanacion", desc: "Activacion de las capacidades naturales de sanacion consciente." },
+    { id: "clarividencia", name: "Clarividencia", desc: "Desarrollo de la percepcion visual expandida." },
+    { id: "omnibenevolencia", name: "Virtud de la Omnibenevolencia", desc: "Activacion del servicio consciente desde la bondad universal." }
+  ],
+  VOICE: [
+    { id: "clariaudiencia", name: "Don de Clariaudiencia", desc: "Desarrollo de la escucha interna y la percepcion auditiva expandida." },
+    { id: "equipos-luz", name: "Conexion con Equipos de Luz", desc: "Fortalecimiento de la conexion con niveles ampliados de guia." },
+    { id: "dimensiones-luz", name: "Conexion con Dimensiones de Luz", desc: "Acceso a niveles expandidos de percepcion multidimensional." },
+    { id: "omnipresencia", name: "Virtud de la Omnipresencia", desc: "Reconocimiento de la presencia consciente en todos los niveles." }
+  ],
+  ALCHEMIST: [
+    { id: "don-transmutacion", name: "Don de Transmutacion", desc: "Transformacion consciente de patrones y densidades." },
+    { id: "don-precognicion", name: "Don de Precognicion", desc: "Reconocimiento de patrones emergentes dentro del proceso evolutivo." }
+  ],
+  MERKABA: [
+    { id: "don-ensonacion", name: "Don de la Ensonacion", desc: "Activacion del estado de ensonacion consciente." },
+    { id: "ensonacion-luz", name: "Activacion de la Ensonacion de Luz", desc: "Expansion del estado de ensonacion hacia niveles de luz." },
+    { id: "vehiculo-luz", name: "Activacion del Vehiculo de Luz Merkaba", desc: "Activacion del cuerpo de luz multidimensional." },
+    { id: "don-resurreccion", name: "Don de la Resurreccion", desc: "Reconocimiento del poder de renovacion consciente." },
+    { id: "omnipotencia", name: "Virtud de la Omnipotencia", desc: "Integracion del potencial creador ilimitado del ser." }
+  ]
+};
 
 const formatTime = (secs) => {
   if (!secs || isNaN(secs) || !isFinite(secs)) return '00:00';
@@ -526,47 +391,186 @@ const getTimeOfDay = () => {
   return 'noche';
 };
 
-const HOME_PILLAR_ORDER = ['MENTE', 'COHERENCIA', 'CUERPO', 'EXPANSION', 'EXPERIENCIAS', 'ARMONIZACION'];
+const inlineStyles = `
+  @keyframes logo-breathe { 0%, 100% { transform: scale(1); opacity: 0.95; } 50% { transform: scale(1.05); opacity: 1; } }
+  @keyframes aura-supernova {
+    0%, 100% { transform: scale(1); box-shadow: 0 0 80px rgba(34,211,238,0.4), 0 0 150px rgba(34,211,238,0.2); }
+    50% { transform: scale(1.03); box-shadow: 0 0 50px rgba(34,211,238,0.9), 0 0 120px rgba(34,211,238,0.6), 0 0 250px rgba(34,211,238,0.4); }
+  }
+  @keyframes aura-violet {
+    0%, 100% { transform: scale(1); box-shadow: 0 0 80px rgba(168,85,247,0.35), 0 0 150px rgba(168,85,247,0.15); }
+    50% { transform: scale(1.03); box-shadow: 0 0 50px rgba(168,85,247,0.8), 0 0 120px rgba(168,85,247,0.5), 0 0 250px rgba(168,85,247,0.3); }
+  }
+  @keyframes aura-gold {
+    0%, 100% { transform: scale(1); box-shadow: 0 0 80px rgba(212,175,55,0.35), 0 0 150px rgba(212,175,55,0.15); }
+    50% { transform: scale(1.03); box-shadow: 0 0 50px rgba(212,175,55,0.8), 0 0 120px rgba(212,175,55,0.5), 0 0 250px rgba(212,175,55,0.3); }
+  }
+  @keyframes aura-gold-santuario {
+    0%, 100% { transform: scale(1); box-shadow: 0 0 60px rgba(212,175,55,0.25), 0 0 120px rgba(212,175,55,0.12); }
+    50% { transform: scale(1.02); box-shadow: 0 0 40px rgba(212,175,55,0.6), 0 0 100px rgba(212,175,55,0.35); }
+  }
+  @keyframes micro-orbe-breathe {
+    0%, 100% { transform: scale(1); opacity: 0.7; box-shadow: 0 0 6px #d4af37; }
+    50% { transform: scale(1.2); opacity: 1; box-shadow: 0 0 12px #d4af37; }
+  }
+  @keyframes fadeInDown { from { opacity: 0; transform: translateY(-8px); } to { opacity: 1; transform: translateY(0); } }
+  @keyframes fadeInUp { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: translateY(0); } }
+  @keyframes slideUp { from { opacity: 0; transform: translateX(-50%) translateY(20px); } to { opacity: 1; transform: translateX(-50%) translateY(0); } }
+  @keyframes pulse-glow { 0%, 100% { opacity: 0.5; } 50% { opacity: 1; } }
+  .fade-in-smooth { animation: fadeIn 0.8s ease-in forwards; }
+  .fade-in-up { animation: fadeInUp 0.6s ease forwards; }
+  @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+  body, html { overflow-x: hidden; background-color: #020617; margin: 0; padding: 0; font-family: sans-serif; color: white; }
+  .home-btn {
+    width: 75%; max-width: 290px; padding: 14px; margin: 6px 0;
+    border-radius: 40px; color: white; font-size: 10px; letter-spacing: 5px;
+    text-transform: uppercase; font-weight: 200; cursor: pointer;
+    transition: all 0.4s ease; border: 1px solid rgba(34,211,238,0.3);
+    background: rgba(34,211,238,0.03); text-align: center;
+  }
+  .home-btn:hover { background: rgba(34,211,238,0.08); border-color: rgba(34,211,238,0.6); }
+  .home-btn.violet { border-color: rgba(168,85,247,0.3); background: rgba(168,85,247,0.03); }
+  .home-btn.violet:hover { background: rgba(168,85,247,0.08); border-color: rgba(168,85,247,0.6); }
+  .home-btn.gold { border-color: rgba(212,175,55,0.3); background: rgba(212,175,55,0.03); }
+  .home-btn.gold:hover { background: rgba(212,175,55,0.08); border-color: rgba(212,175,55,0.6); }
+  .home-btn.sanctuary { border-color: rgba(212,175,55,0.4); background: rgba(212,175,55,0.04); margin-top: 16px; }
+  .home-btn.sanctuary:hover { background: rgba(212,175,55,0.1); border-color: rgba(212,175,55,0.7); box-shadow: 0 0 15px rgba(212,175,55,0.15); }
+  .category-stack { display: flex; flex-direction: column; align-items: center; gap: 6px; width: 100%; }
+  .pillar-card {
+    width: 75%; max-width: 290px; padding: 13px; border-radius: 40px;
+    background: rgba(34,211,238,0.02); border: 1px solid rgba(34,211,238,0.25);
+    text-align: center; cursor: pointer; font-size: 10px; letter-spacing: 4px;
+    text-transform: uppercase; font-weight: 200; transition: all 0.3s ease; color: white;
+  }
+  .pillar-card:hover { background: rgba(34,211,238,0.06); border-color: rgba(34,211,238,0.5); }
+  .pillar-card.violet { border-color: rgba(168,85,247,0.25); background: rgba(168,85,247,0.02); }
+  .pillar-card.violet:hover { background: rgba(168,85,247,0.06); border-color: rgba(168,85,247,0.5); }
+  .pillar-card.gold { border-color: rgba(212,175,55,0.25); background: rgba(212,175,55,0.02); }
+  .pillar-card.gold:hover { background: rgba(212,175,55,0.06); border-color: rgba(212,175,55,0.5); }
+  .track-card {
+    width: 85%; max-width: 340px; padding: 18px 22px; margin: 6px 0; border-radius: 28px;
+    background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.1);
+    display: flex; justify-content: space-between; align-items: center; cursor: pointer;
+  }
+  .track-card:active { transform: scale(0.98); }
+  .track-card.suggestion { border-color: rgba(34,211,238,0.3); background: rgba(34,211,238,0.04); }
+  .session-card {
+    width: 85%; max-width: 340px; padding: 18px 22px; margin: 6px 0; border-radius: 28px;
+    background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.08);
+    cursor: pointer; transition: all 0.3s ease;
+  }
+  .session-card:hover { background: rgba(255,255,255,0.04); }
+  .session-card.violet { border-color: rgba(168,85,247,0.2); }
+  .session-card.violet:hover { background: rgba(168,85,247,0.05); border-color: rgba(168,85,247,0.4); }
+  .session-card.gold { border-color: rgba(212,175,55,0.2); }
+  .session-card.gold:hover { background: rgba(212,175,55,0.05); border-color: rgba(212,175,55,0.4); }
+  .stage-header {
+    width: 85%; max-width: 340px; padding: 12px 0 6px;
+    text-align: center; margin-top: 12px;
+  }
+  .back-button-genora {
+    width: 42px; height: 42px; border-radius: 50%; border: 1px solid rgba(34,211,238,0.5);
+    background: rgba(34,211,238,0.08); display: flex; align-items: center; justify-content: center; cursor: pointer;
+  }
+  .time-button {
+    width: 58px; padding: 10px 0; border-radius: 40px; border: 1px solid rgba(255,255,255,0.15);
+    background: none; color: white; font-size: 12px; cursor: pointer; transition: 0.2s; font-weight: 200;
+  }
+  .heart-btn {
+    background: none; border: none; cursor: pointer; font-size: 16px;
+    padding: 4px 8px; line-height: 1; transition: transform 0.2s ease; flex-shrink: 0;
+  }
+  .heart-btn:active { transform: scale(1.4); }
+  .bottom-bar {
+    position: fixed; bottom: 0; left: 0; right: 0;
+    background: rgba(2,6,23,0.96); backdrop-filter: blur(20px);
+    border-top: 1px solid rgba(255,255,255,0.06);
+    display: flex; justify-content: center; z-index: 100;
+  }
+  .bar-tab {
+    flex: 1; max-width: 200px; padding: 14px 8px 18px;
+    background: none; border: none; color: rgba(255,255,255,0.3);
+    font-size: 10px; letter-spacing: 2px; text-transform: uppercase;
+    cursor: pointer; transition: all 0.3s ease;
+    display: flex; flex-direction: column; align-items: center; gap: 4px;
+  }
+  .bar-tab.active { color: #22d3ee; }
+  .bar-tab.active.gold-tab { color: #d4af37; }
+  .bar-tab-icon { font-size: 18px; line-height: 1; }
+  .lang-switch { display: flex; border: 1px solid rgba(34,211,238,0.35); border-radius: 20px; overflow: hidden; }
+  .lang-switch.gold-border { border-color: rgba(212,175,55,0.35); }
+  .lang-switch.violet-border { border-color: rgba(168,85,247,0.35); }
+  .lang-btn { padding: 5px 12px; background: none; border: none; font-size: 10px; letter-spacing: 2px; cursor: pointer; transition: all 0.2s; color: rgba(255,255,255,0.35); font-weight: 200; }
+  .lang-btn.active { background: rgba(34,211,238,0.15); color: #22d3ee; }
+  .lang-btn.active.gold-text { background: rgba(212,175,55,0.1); color: #d4af37; }
+  .lang-btn.active.violet-text { background: rgba(168,85,247,0.1); color: #a855f7; }
+  .progress-bar-container { width: 100%; height: 2px; background: rgba(255,255,255,0.1); border-radius: 2px; margin: 8px 0 4px; cursor: pointer; }
+  .progress-bar-fill { height: 100%; border-radius: 2px; background: #22d3ee; transition: width 0.5s linear; }
+  .reminder-btn { padding: 8px 16px; border-radius: 30px; border: 1px solid rgba(34,211,238,0.25); background: none; color: rgba(255,255,255,0.4); font-size: 10px; letter-spacing: 2px; cursor: pointer; transition: all 0.3s ease; text-transform: uppercase; font-weight: 200; }
+  .reminder-btn.active { border-color: #22d3ee; color: #22d3ee; background: rgba(34,211,238,0.08); }
+  .alineacion-banner { animation: fadeInDown 0.4s ease forwards; margin: 0 auto 12px; width: 85%; max-width: 340px; padding: 10px 16px; border-radius: 20px; background: rgba(34,211,238,0.05); border: 1px solid rgba(34,211,238,0.15); text-align: center; }
+  .suggestion-badge { animation: fadeInDown 0.3s ease forwards; font-size: 9px; letter-spacing: 2px; color: rgba(34,211,238,0.75); text-transform: uppercase; font-weight: 200; }
+  .coming-soon-box { text-align: center; color: rgba(255,255,255,0.2); padding: 40px 20px; font-size: 11px; letter-spacing: 3px; font-weight: 200; line-height: 2; }
+  .coming-soon-icon { font-size: 28px; margin-bottom: 16px; opacity: 0.4; }
+  .logo-filtro-dorado { filter: sepia(1) hue-rotate(-12deg) saturate(2.3) brightness(0.88) drop-shadow(0 0 20px rgba(212,175,55,0.65)) !important; transition: all 0.8s ease-in-out; }
+  .logo-filtro-violeta { filter: sepia(1) hue-rotate(220deg) saturate(3) brightness(0.85) drop-shadow(0 0 20px rgba(168,85,247,0.65)) !important; transition: all 0.8s ease-in-out; }
+  .logo-normal { filter: drop-shadow(0 0 15px #22d3ee); transition: all 0.8s ease-in-out; }
+  .sanctuary-input { width: 70%; max-width: 260px; padding: 14px 20px; border-radius: 30px; background: rgba(255,255,255,0.03); border: 1px solid rgba(212,175,55,0.3); color: white; font-size: 12px; letter-spacing: 3px; text-align: center; text-transform: uppercase; outline: none; transition: all 0.3s ease; font-weight: 200; }
+  .sanctuary-input:focus { border-color: rgba(212,175,55,0.7); background: rgba(212,175,55,0.05); }
+  .sanctuary-input::placeholder { color: rgba(255,255,255,0.2); text-transform: none; letter-spacing: 1px; }
+  .sanctuary-enter-btn { width: 70%; max-width: 260px; padding: 14px; border-radius: 30px; background: rgba(212,175,55,0.06); border: 1px solid rgba(212,175,55,0.4); color: white; font-size: 11px; letter-spacing: 4px; cursor: pointer; transition: all 0.3s ease; font-weight: 200; }
+  .sanctuary-enter-btn:hover { background: rgba(212,175,55,0.12); border-color: rgba(212,175,55,0.75); }
+  .sanctuary-tool-card { width: 85%; max-width: 340px; padding: 20px 22px; margin: 8px 0; border-radius: 24px; background: rgba(212,175,55,0.03); border: 1px solid rgba(212,175,55,0.18); transition: all 0.3s ease; cursor: pointer; }
+  .sanctuary-tool-card:hover { background: rgba(212,175,55,0.06); border-color: rgba(212,175,55,0.45); }
+  .micro-orbe-vivo { width: 7px; height: 7px; border-radius: 50%; background: #d4af37; display: inline-block; animation: micro-orbe-breathe 2.5s infinite ease-in-out; }
+  .streaming-indicator { animation: pulse-glow 2s infinite ease-in-out; font-size: 10px; letter-spacing: 2px; color: rgba(212,175,55,0.7); text-align: center; padding: 8px 0; font-weight: 200; }
+  .mini-resume-bar { animation: slideUp 0.4s ease forwards; position: fixed; bottom: 65px; left: 50%; transform: translateX(-50%); width: 90%; max-width: 340px; padding: 10px 16px; border-radius: 20px; background: rgba(2,6,23,0.95); backdrop-filter: blur(20px); border: 1px solid rgba(34,211,238,0.2); display: flex; align-items: center; justify-content: space-between; z-index: 99; cursor: pointer; }
+  .sanctuary-video { width: 100%; border-radius: 16px; margin-top: 12px; background: #000; border: 1px solid rgba(212,175,55,0.2); }
+`;
 
 const App = () => {
   const [lang, setLang] = useState('es');
   const [showSplash, setShowSplash] = useState(true);
+  // nav: null | 'frecuencias' | 'meditaciones' | 'experiencias'
   const [mainMode, setMainMode] = useState(null);
-  const [activePillar, setActivePillar] = useState(null);
-  const [activeSub, setActiveSub] = useState(null);
+  // freq nav
+  const [freqPillar, setFreqPillar] = useState(null);
+  const [freqSub, setFreqSub] = useState(null);
+  // med nav
+  const [medPillar, setMedPillar] = useState(null);
+  // exp nav
+  const [expLevel, setExpLevel] = useState(null);
+  const [expStage, setExpStage] = useState(null);
+  // audio
   const [selectedTrack, setSelectedTrack] = useState(() => {
-    try {
-      const saved = localStorage.getItem('genora_last_track');
-      return saved ? JSON.parse(saved) : null;
-    } catch { return null; }
+    try { const s = localStorage.getItem('genora_last_track'); return s ? JSON.parse(s) : null; } catch { return null; }
   });
   const [isSuggestion, setIsSuggestion] = useState(false);
   const [isPlaying, setIsPlaying] = useState(false);
   const [selectedTime, setSelectedTime] = useState(null);
-  const [activeTab, setActiveTab] = useState('catalogo');
   const [currentTime, setCurrentTime] = useState(() => {
     try { return parseFloat(localStorage.getItem('genora_last_time')) || 0; } catch { return 0; }
   });
   const [duration, setDuration] = useState(0);
-  const [showBanner, setShowBanner] = useState(false);
   const [showResumeBar, setShowResumeBar] = useState(() => {
     try { return !!localStorage.getItem('genora_last_track'); } catch { return false; }
   });
-
+  // tabs
+  const [activeTab, setActiveTab] = useState('catalogo');
+  const [showBanner, setShowBanner] = useState(false);
+  const [favorites, setFavorites] = useState(() => {
+    try { return JSON.parse(localStorage.getItem('genora_favorites')) || []; } catch { return []; }
+  });
+  const [reminderTime, setReminderTime] = useState(() => {
+    try { return localStorage.getItem('genora_reminder_time') || null; } catch { return null; }
+  });
+  // sanctuary
   const [showSanctuary, setShowSanctuary] = useState(false);
   const [sanctuaryUnlocked, setSanctuaryUnlocked] = useState(false);
   const [sanctuaryCode, setSanctuaryCode] = useState('');
   const [sanctuaryError, setSanctuaryError] = useState(false);
   const [activeSanctuaryTool, setActiveSanctuaryTool] = useState(null);
   const [sanctuaryLoading, setSanctuaryLoading] = useState(false);
-
-  const [favorites, setFavorites] = useState(() => {
-    try { return JSON.parse(localStorage.getItem('genora_favorites')) || []; } catch { return []; }
-  });
-
-  const [reminderTime, setReminderTime] = useState(() => {
-    try { return localStorage.getItem('genora_reminder_time') || null; } catch { return null; }
-  });
 
   const audioRef = useRef(null);
   const sanctuaryMediaRef = useRef(null);
@@ -575,21 +579,16 @@ const App = () => {
   const activeTabRef = useRef(activeTab);
   const favoritesRef = useRef(favorites);
   const selectedTrackRef = useRef(selectedTrack);
-
   const t = T[lang];
 
   useEffect(() => { activeTabRef.current = activeTab; }, [activeTab]);
   useEffect(() => { favoritesRef.current = favorites; }, [favorites]);
   useEffect(() => { selectedTrackRef.current = selectedTrack; }, [selectedTrack]);
 
-  // Guardar track activo en localStorage
   useEffect(() => {
-    try {
-      if (selectedTrack) localStorage.setItem('genora_last_track', JSON.stringify(selectedTrack));
-    } catch {}
+    try { if (selectedTrack) localStorage.setItem('genora_last_track', JSON.stringify(selectedTrack)); } catch {}
   }, [selectedTrack]);
 
-  // Guardar tiempo cada 5 segundos
   useEffect(() => {
     const interval = setInterval(() => {
       if (audioRef.current && isPlaying) {
@@ -605,19 +604,16 @@ const App = () => {
   }, []);
 
   useEffect(() => {
-    const checkReminder = () => {
+    const check = () => {
       if (reminderTime && reminderTime === getTimeOfDay()) {
         setShowBanner(true);
         if (bannerTimerRef.current) clearTimeout(bannerTimerRef.current);
         bannerTimerRef.current = setTimeout(() => setShowBanner(false), 10000);
       }
     };
-    checkReminder();
-    const interval = setInterval(checkReminder, 60000);
-    return () => {
-      clearInterval(interval);
-      if (bannerTimerRef.current) clearTimeout(bannerTimerRef.current);
-    };
+    check();
+    const interval = setInterval(check, 60000);
+    return () => { clearInterval(interval); if (bannerTimerRef.current) clearTimeout(bannerTimerRef.current); };
   }, [reminderTime]);
 
   useEffect(() => {
@@ -657,33 +653,20 @@ const App = () => {
     const currentTrack = selectedTrackRef.current;
     if (activeTabRef.current === 'favoritos') {
       const favTracks = ALL_TRACKS_FLAT.filter(tr => currentFavs.includes(tr.id));
-      const currentIndex = favTracks.findIndex(tr => tr.id === currentTrack?.id);
-      if (currentIndex >= 0 && currentIndex < favTracks.length - 1) {
-        const nextTrack = favTracks[currentIndex + 1];
-        setIsSuggestion(false);
-        setSelectedTrack(nextTrack);
-        setCurrentTime(0);
-        setTimeout(() => {
-          if (audioRef.current) { audioRef.current.src = nextTrack.url; audioRef.current.play().catch(() => {}); }
-        }, 100);
+      const idx = favTracks.findIndex(tr => tr.id === currentTrack?.id);
+      if (idx >= 0 && idx < favTracks.length - 1) {
+        const next = favTracks[idx + 1];
+        setIsSuggestion(false); setSelectedTrack(next); setCurrentTime(0);
+        setTimeout(() => { if (audioRef.current) { audioRef.current.src = next.url; audioRef.current.play().catch(() => {}); } }, 100);
       } else {
-        const nonFavTracks = ALL_TRACKS_FLAT.filter(tr => !currentFavs.includes(tr.id));
-        if (nonFavTracks.length > 0) {
-          const randomTrack = nonFavTracks[Math.floor(Math.random() * nonFavTracks.length)];
-          setIsSuggestion(true);
-          setSelectedTrack(randomTrack);
-          setCurrentTime(0);
-          setTimeout(() => {
-            if (audioRef.current) { audioRef.current.src = randomTrack.url; audioRef.current.play().catch(() => {}); }
-          }, 100);
-        } else {
-          setIsPlaying(false);
-          setIsSuggestion(false);
-        }
+        const nonFav = ALL_TRACKS_FLAT.filter(tr => !currentFavs.includes(tr.id));
+        if (nonFav.length > 0) {
+          const rand = nonFav[Math.floor(Math.random() * nonFav.length)];
+          setIsSuggestion(true); setSelectedTrack(rand); setCurrentTime(0);
+          setTimeout(() => { if (audioRef.current) { audioRef.current.src = rand.url; audioRef.current.play().catch(() => {}); } }, 100);
+        } else { setIsPlaying(false); setIsSuggestion(false); }
       }
-    } else {
-      setIsPlaying(false);
-    }
+    } else { setIsPlaying(false); }
   };
 
   const toggleFavorite = (e, trackId) => {
@@ -693,49 +676,56 @@ const App = () => {
   };
 
   const handleReminderSelect = (key) => {
-    const newValue = reminderTime === key ? null : key;
-    setReminderTime(newValue);
-    if (newValue) {
-      setShowBanner(true);
-      if (bannerTimerRef.current) clearTimeout(bannerTimerRef.current);
-      bannerTimerRef.current = setTimeout(() => setShowBanner(false), 10000);
-    } else {
-      setShowBanner(false);
-    }
+    const val = reminderTime === key ? null : key;
+    setReminderTime(val);
+    if (val) { setShowBanner(true); if (bannerTimerRef.current) clearTimeout(bannerTimerRef.current); bannerTimerRef.current = setTimeout(() => setShowBanner(false), 10000); }
+    else setShowBanner(false);
   };
 
   const handleSanctuarySubmit = () => {
-    if (sanctuaryCode.trim().toUpperCase() === SANCTUARY_CODE) {
-      setSanctuaryUnlocked(true);
-      setSanctuaryError(false);
-    } else {
-      setSanctuaryError(true);
-    }
+    if (sanctuaryCode.trim().toUpperCase() === SANCTUARY_CODE) { setSanctuaryUnlocked(true); setSanctuaryError(false); }
+    else setSanctuaryError(true);
   };
 
-  const handleSanctuaryToolPlay = (tool) => {
-    setActiveSanctuaryTool(tool);
-    setSanctuaryLoading(true);
-    setTimeout(() => setSanctuaryLoading(false), 3000);
+  const isFavorite = (id) => favorites.includes(id);
+
+  const getAccentColor = () => {
+    if (mainMode === 'meditaciones') return '#a855f7';
+    if (mainMode === 'experiencias') return '#d4af37';
+    return '#22d3ee';
   };
-
-  const handleSanctuaryMediaCanPlay = () => setSanctuaryLoading(false);
-
-  const isFavorite = (trackId) => favorites.includes(trackId);
-  const accentColor = '#22d3ee';
+  const accentColor = getAccentColor();
   const goldColor = '#d4af37';
+  const violetColor = '#a855f7';
 
   const handleBack = () => {
-    if (activeSub) setActiveSub(null);
-    else if (activePillar) setActivePillar(null);
-    else setMainMode(null);
+    if (mainMode === 'frecuencias') {
+      if (freqSub) setFreqSub(null);
+      else if (freqPillar) setFreqPillar(null);
+      else setMainMode(null);
+    } else if (mainMode === 'meditaciones') {
+      if (medPillar) setMedPillar(null);
+      else setMainMode(null);
+    } else if (mainMode === 'experiencias') {
+      if (expStage) setExpStage(null);
+      else if (expLevel) setExpLevel(null);
+      else setMainMode(null);
+    } else setMainMode(null);
   };
 
   const handleProgressClick = (e) => {
     if (!audioRef.current || !duration) return;
     const rect = e.currentTarget.getBoundingClientRect();
-    const ratio = (e.clientX - rect.left) / rect.width;
-    audioRef.current.currentTime = ratio * duration;
+    audioRef.current.currentTime = ((e.clientX - rect.left) / rect.width) * duration;
+  };
+
+  const playTrack = (track, suggestion = false) => {
+    setSelectedTrack(track); setIsSuggestion(suggestion); setIsPlaying(true); setShowResumeBar(false);
+  };
+
+  const dismissResume = (e) => {
+    e.stopPropagation(); setShowResumeBar(false); setSelectedTrack(null);
+    try { localStorage.removeItem('genora_last_track'); localStorage.removeItem('genora_last_time'); } catch {}
   };
 
   const getReminderText = () => {
@@ -744,40 +734,19 @@ const App = () => {
     return t.reminder_set_night;
   };
 
-  const playTrack = (track, suggestion = false) => {
-    setSelectedTrack(track);
-    setIsSuggestion(suggestion);
-    setIsPlaying(true);
-    setShowResumeBar(false);
-  };
+  // ── COMPONENTES ───────────────────────────────────────────────────────────
 
-  const handleResumeTrack = () => {
-    setShowResumeBar(false);
-    setIsPlaying(true);
-    if (audioRef.current && currentTime > 0) {
-      audioRef.current.currentTime = currentTime;
-    }
-  };
-
-  const dismissResume = (e) => {
-    e.stopPropagation();
-    setShowResumeBar(false);
-    setSelectedTrack(null);
-    try { localStorage.removeItem('genora_last_track'); localStorage.removeItem('genora_last_time'); } catch {}
-  };
-
-  const LangSwitch = ({ isGold = false }) => (
-    <div className={`lang-switch ${isGold ? 'gold-border' : ''}`}>
-      <button className={`lang-btn ${lang === 'es' ? 'active' : ''} ${isGold && lang === 'es' ? 'gold-text' : ''}`} onClick={() => setLang('es')}>ES</button>
-      <button className={`lang-btn ${lang === 'en' ? 'active' : ''} ${isGold && lang === 'en' ? 'gold-text' : ''}`} onClick={() => setLang('en')}>EN</button>
+  const LangSwitch = ({ isGold = false, isViolet = false }) => (
+    <div className={`lang-switch ${isGold ? 'gold-border' : ''} ${isViolet ? 'violet-border' : ''}`}>
+      <button className={`lang-btn ${lang === 'es' ? 'active' : ''} ${isGold && lang === 'es' ? 'gold-text' : ''} ${isViolet && lang === 'es' ? 'violet-text' : ''}`} onClick={() => setLang('es')}>ES</button>
+      <button className={`lang-btn ${lang === 'en' ? 'active' : ''} ${isGold && lang === 'en' ? 'gold-text' : ''} ${isViolet && lang === 'en' ? 'violet-text' : ''}`} onClick={() => setLang('en')}>EN</button>
     </div>
   );
 
   const BottomBar = ({ isGold = false }) => (
     <div className="bottom-bar">
       <button className={`bar-tab ${activeTab === 'catalogo' ? 'active' : ''} ${isGold && activeTab === 'catalogo' ? 'gold-tab' : ''}`} onClick={() => { setActiveTab('catalogo'); setShowSanctuary(false); }}>
-        <span className="bar-tab-icon">◎</span>
-        {t.catalog}
+        <span className="bar-tab-icon">◎</span>{t.catalog}
       </button>
       <button className={`bar-tab ${activeTab === 'favoritos' ? 'active' : ''}`} onClick={() => { setActiveTab('favoritos'); setShowSanctuary(false); }}>
         <span className="bar-tab-icon">{favorites.length > 0 ? '♥' : '♡'}</span>
@@ -787,24 +756,16 @@ const App = () => {
   );
 
   const ReminderSection = () => (
-    <div style={{ width: '85%', maxWidth: '340px', margin: '0 auto 24px', padding: '20px', borderRadius: '24px', background: 'rgba(255,255,255,0.02)', border: '1px solid rgba(255,255,255,0.06)' }}>
-      <p style={{ fontSize: '10px', letterSpacing: '3px', color: 'rgba(255,255,255,0.3)', textAlign: 'center', marginBottom: '16px', fontWeight: 200 }}>{t.reminder_title}</p>
+    <div style={{ width: '85%', maxWidth: '340px', margin: '0 auto 24px', padding: '18px', borderRadius: '24px', background: 'rgba(255,255,255,0.02)', border: '1px solid rgba(255,255,255,0.06)' }}>
+      <p style={{ fontSize: '10px', letterSpacing: '3px', color: 'rgba(255,255,255,0.3)', textAlign: 'center', marginBottom: '14px', fontWeight: 200 }}>{t.reminder_title}</p>
       <div style={{ display: 'flex', gap: '8px', justifyContent: 'center', flexWrap: 'wrap' }}>
-        {[
-          { key: 'manana', label: t.reminder_morning, icon: '☀' },
-          { key: 'tarde', label: t.reminder_afternoon, icon: '◐' },
-          { key: 'noche', label: t.reminder_night, icon: '☽' }
-        ].map(opt => (
+        {[{ key: 'manana', label: t.reminder_morning, icon: '☀' }, { key: 'tarde', label: t.reminder_afternoon, icon: '◐' }, { key: 'noche', label: t.reminder_night, icon: '☽' }].map(opt => (
           <button key={opt.key} className={`reminder-btn ${reminderTime === opt.key ? 'active' : ''}`} onClick={() => handleReminderSelect(opt.key)}>
             {opt.icon} {opt.label}
           </button>
         ))}
       </div>
-      {reminderTime && (
-        <p style={{ fontSize: '10px', color: 'rgba(34,211,238,0.5)', textAlign: 'center', marginTop: '12px', letterSpacing: '1px', fontWeight: 200 }}>
-          {getReminderText()}
-        </p>
-      )}
+      {reminderTime && <p style={{ fontSize: '10px', color: 'rgba(34,211,238,0.5)', textAlign: 'center', marginTop: '10px', letterSpacing: '1px', fontWeight: 200 }}>{getReminderText()}</p>}
     </div>
   );
 
@@ -812,10 +773,8 @@ const App = () => {
     <div className={`track-card ${isSugg ? 'suggestion' : ''}`} onClick={() => onSelect(track)} style={{ borderLeft: `4px solid ${accentColor}` }}>
       <div style={{ textAlign: 'left', width: '75%' }}>
         {isSugg && <div className="suggestion-badge">{t.suggestion_label}</div>}
-        <div style={{ fontSize: '15px', color: 'white', fontWeight: 300 }}>{track.name}</div>
-        <div style={{ fontSize: '10px', color: '#fdfcf5', opacity: 0.6, marginTop: '5px', fontWeight: 200, letterSpacing: '1px' }}>
-          {t.tracks[track.id] || ''}
-        </div>
+        <div style={{ fontSize: '14px', color: 'white', fontWeight: 300 }}>{track.name}</div>
+        <div style={{ fontSize: '10px', color: '#fdfcf5', opacity: 0.6, marginTop: '4px', fontWeight: 200, letterSpacing: '1px' }}>{t.tracks[track.id] || ''}</div>
       </div>
       <div style={{ display: 'flex', alignItems: 'center', gap: '4px' }}>
         <button className="heart-btn" onClick={(e) => toggleFavorite(e, track.id)} style={{ color: isFavorite(track.id) ? '#ff6b9d' : 'rgba(255,255,255,0.25)' }}>
@@ -829,18 +788,28 @@ const App = () => {
     </div>
   );
 
-  const ComingSoon = () => (
+  const SessionCard = ({ session, color = 'white', accent = '#22d3ee' }) => (
+    <div className={`session-card ${color === 'violet' ? 'violet' : color === 'gold' ? 'gold' : ''}`} style={{ borderLeft: `3px solid ${accent}22` }}>
+      <div style={{ fontSize: '13px', color: 'white', fontWeight: 300, marginBottom: '4px' }}>{session.name}</div>
+      {session.sub && <div style={{ fontSize: '10px', color: `${accent}99`, letterSpacing: '1px', fontWeight: 200, marginBottom: '4px' }}>{session.sub}</div>}
+      <div style={{ fontSize: '10px', color: 'rgba(255,255,255,0.45)', fontWeight: 200, lineHeight: 1.6 }}>{session.desc}</div>
+      <div style={{ marginTop: '10px', fontSize: '9px', color: `${accent}66`, letterSpacing: '2px', fontWeight: 200 }}>
+        {lang === 'es' ? 'PROXIMAMENTE' : 'COMING SOON'}
+      </div>
+    </div>
+  );
+
+  const ComingSoon = ({ accent = '#22d3ee' }) => (
     <div className="coming-soon-box">
-      <div className="coming-soon-icon">◈</div>
+      <div className="coming-soon-icon" style={{ color: accent }}>◈</div>
       {t.coming_soon}
     </div>
   );
 
-  // Barra de reanudacion persistente
   const ResumeBar = () => {
     if (!showResumeBar || !selectedTrack || isPlaying) return null;
     return (
-      <div className="mini-resume-bar" onClick={handleResumeTrack}>
+      <div className="mini-resume-bar" onClick={() => { setShowResumeBar(false); setIsPlaying(true); }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
           <span style={{ color: accentColor, fontSize: '16px' }}>▶</span>
           <div>
@@ -852,6 +821,25 @@ const App = () => {
       </div>
     );
   };
+
+  const PageHeader = ({ isGold = false, isViolet = false }) => (
+    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '16px', paddingTop: '10px' }}>
+      {mainMode ? (
+        <div onClick={handleBack} className="back-button-genora" style={{ borderColor: `${accentColor}88` }}>
+          <span style={{ color: accentColor, fontSize: '20px' }}>&#8249;</span>
+        </div>
+      ) : (
+        <img src="/imagenes/genora-logo-white.png" style={{ height: '55px', borderRadius: '50%', objectFit: 'contain' }} alt="Logo" />
+      )}
+      <LangSwitch isGold={isGold} isViolet={isViolet} />
+    </div>
+  );
+
+  const ADNOrb = ({ auraClass = 'aura-supernova', filterClass = 'logo-normal', size = '110px' }) => (
+    <div style={{ width: size, height: size, borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '20px', transition: 'all 0.5s ease', animation: `${auraClass} 8s infinite ease-in-out` }}>
+      <img src="/imagenes/adn-icon.png" className={filterClass} style={{ width: '100%', borderRadius: '50%' }} alt="ADN" />
+    </div>
+  );
 
   // ── SPLASH ────────────────────────────────────────────────────────────────
   if (showSplash) {
@@ -871,34 +859,22 @@ const App = () => {
     return (
       <div className="fade-in-smooth" style={{ backgroundColor: '#020617', minHeight: '100vh', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', textAlign: 'center', position: 'relative', padding: '20px' }}>
         <style>{inlineStyles}</style>
-        <audio
-          ref={audioRef}
-          src={selectedTrack.url}
+        <audio ref={audioRef} src={selectedTrack.url}
           loop={selectedTime === 'inf' && activeTabRef.current !== 'favoritos'}
           onTimeUpdate={handleTimeUpdate}
-          onLoadedMetadata={(e) => {
-            handleTimeUpdate();
-            if (currentTime > 0 && e.target.duration > currentTime) {
-              e.target.currentTime = currentTime;
-            }
-          }}
-          onEnded={handleAudioEnded}
-        />
+          onLoadedMetadata={(e) => { handleTimeUpdate(); if (currentTime > 0 && e.target.duration > currentTime) e.target.currentTime = currentTime; }}
+          onEnded={handleAudioEnded} />
         <div style={{ position: 'absolute', top: '35px', left: '30px', right: '30px', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-          <button onClick={() => { setIsPlaying(false); setShowResumeBar(true); }}
-            style={{ background: 'none', border: 'none', color: accentColor, fontSize: '40px', cursor: 'pointer', lineHeight: 1, padding: 0 }}>
-            &#8249;
-          </button>
+          <button onClick={() => { setIsPlaying(false); setShowResumeBar(true); }} style={{ background: 'none', border: 'none', color: accentColor, fontSize: '40px', cursor: 'pointer', lineHeight: 1, padding: 0 }}>&#8249;</button>
           {isSuggestion && <div className="suggestion-badge">✦ {t.suggestion_label}</div>}
-          <button className="heart-btn" onClick={(e) => toggleFavorite(e, selectedTrack.id)}
-            style={{ fontSize: '24px', color: isFavorite(selectedTrack.id) ? '#ff6b9d' : 'rgba(255,255,255,0.4)', padding: 0 }}>
+          <button className="heart-btn" onClick={(e) => toggleFavorite(e, selectedTrack.id)} style={{ fontSize: '24px', color: isFavorite(selectedTrack.id) ? '#ff6b9d' : 'rgba(255,255,255,0.4)', padding: 0 }}>
             {isFavorite(selectedTrack.id) ? '♥' : '♡'}
           </button>
         </div>
         <div style={{ width: '220px', height: '220px', marginBottom: '30px', display: 'flex', alignItems: 'center', justifyContent: 'center', animation: isPlaying ? 'logo-breathe 4s infinite' : 'none' }}>
           <img src="/imagenes/adn-icon.png" style={{ width: '100%', filter: `drop-shadow(0 0 15px ${accentColor})` }} alt="ADN" />
         </div>
-        <h2 style={{ fontSize: '22px', letterSpacing: '4px', textTransform: 'uppercase', fontWeight: 200 }}>{selectedTrack.name}</h2>
+        <h2 style={{ fontSize: '20px', letterSpacing: '4px', textTransform: 'uppercase', fontWeight: 200 }}>{selectedTrack.name}</h2>
         <p style={{ color: accentColor, fontSize: '11px', letterSpacing: '3px', fontWeight: 300, marginBottom: '8px' }}>{selectedTrack.hz}</p>
         <p style={{ fontSize: '12px', opacity: 0.6, maxWidth: '300px', lineHeight: '1.6', marginBottom: '20px', fontWeight: 200 }}>{t.tracks[selectedTrack.id] || ''}</p>
         <div style={{ width: '80%', maxWidth: '300px', marginBottom: '20px' }}>
@@ -912,129 +888,101 @@ const App = () => {
         </div>
         <div style={{ display: 'flex', gap: '12px', marginBottom: '40px' }}>
           {[15, 30, 60, 'inf'].map((time) => (
-            <button key={time} onClick={() => setSelectedTime(time)} className="time-button"
-              style={{ border: `1px solid ${selectedTime === time ? accentColor : 'rgba(255,255,255,0.1)'}`, background: selectedTime === time ? `${accentColor}22` : 'none' }}>
+            <button key={time} onClick={() => setSelectedTime(time)} className="time-button" style={{ border: `1px solid ${selectedTime === time ? accentColor : 'rgba(255,255,255,0.1)'}`, background: selectedTime === time ? `${accentColor}22` : 'none' }}>
               {time === 'inf' ? '∞' : `${time}'`}
             </button>
           ))}
         </div>
-        <button onClick={() => setIsPlaying(!isPlaying)}
-          style={{ width: '85px', height: '85px', borderRadius: '50%', border: `1px solid ${accentColor}`, background: 'none', display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer' }}>
+        <button onClick={() => setIsPlaying(!isPlaying)} style={{ width: '85px', height: '85px', borderRadius: '50%', border: `1px solid ${accentColor}`, background: 'none', display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer' }}>
           <span style={{ fontSize: '30px', color: 'white' }}>{isPlaying ? '||' : '▶'}</span>
         </button>
       </div>
     );
   }
 
-  // ── SANTUARIO — herramienta activa ────────────────────────────────────────
-  if (showSanctuary && sanctuaryUnlocked && activeSanctuaryTool) {
-    const tool = activeSanctuaryTool;
-    return (
-      <div className="fade-in-smooth" style={{ backgroundColor: '#020617', minHeight: '100vh', color: 'white', padding: '20px', paddingBottom: '80px' }}>
-        <style>{inlineStyles}</style>
-        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '30px', paddingTop: '10px' }}>
-          <button onClick={() => setActiveSanctuaryTool(null)}
-            style={{ background: 'none', border: 'none', color: goldColor, fontSize: '40px', cursor: 'pointer', lineHeight: 1, padding: 0 }}>
-            &#8249;
-          </button>
-          <LangSwitch isGold={true} />
-        </div>
-        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center', paddingBottom: '40px' }}>
-          <div style={{ width: '120px', height: '120px', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '24px', animation: 'aura-gold-santuario 6s infinite ease-in-out' }}>
-            <img src="/imagenes/adn-icon.png" className="logo-filtro-dorado" style={{ width: '100%', borderRadius: '50%' }} alt="ADN" />
+  // ── SANTUARIO ─────────────────────────────────────────────────────────────
+  if (showSanctuary) {
+    if (sanctuaryUnlocked && activeSanctuaryTool) {
+      const tool = activeSanctuaryTool;
+      return (
+        <div className="fade-in-smooth" style={{ backgroundColor: '#020617', minHeight: '100vh', color: 'white', padding: '20px', paddingBottom: '80px' }}>
+          <style>{inlineStyles}</style>
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '30px', paddingTop: '10px' }}>
+            <button onClick={() => setActiveSanctuaryTool(null)} style={{ background: 'none', border: 'none', color: goldColor, fontSize: '40px', cursor: 'pointer', lineHeight: 1, padding: 0 }}>&#8249;</button>
+            <LangSwitch isGold />
           </div>
-          <h2 style={{ fontSize: '14px', letterSpacing: '4px', textTransform: 'uppercase', fontWeight: 200, marginBottom: '8px', color: goldColor }}>{tool.name}</h2>
-          <p style={{ fontSize: '11px', color: 'rgba(255,255,255,0.4)', letterSpacing: '1px', fontWeight: 200, marginBottom: '6px', maxWidth: '280px', lineHeight: 1.7 }}>{tool.description}</p>
-          <p style={{ fontSize: '10px', color: `${goldColor}99`, letterSpacing: '2px', fontWeight: 200, marginBottom: '24px' }}>{tool.duration}</p>
-          {sanctuaryLoading && <div className="streaming-indicator">◈ {t.sanctuary_loading}</div>}
-          {tool.type === 'audio' && (
-            <div style={{ width: '85%', maxWidth: '340px' }}>
+          <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center', paddingBottom: '40px' }}>
+            <ADNOrb auraClass="aura-gold-santuario" filterClass="logo-filtro-dorado" size="120px" />
+            <h2 style={{ fontSize: '14px', letterSpacing: '4px', textTransform: 'uppercase', fontWeight: 200, marginBottom: '8px', color: goldColor }}>{tool.name}</h2>
+            <p style={{ fontSize: '11px', color: 'rgba(255,255,255,0.4)', letterSpacing: '1px', fontWeight: 200, marginBottom: '6px', maxWidth: '280px', lineHeight: 1.7 }}>{tool.description}</p>
+            <p style={{ fontSize: '10px', color: `${goldColor}99`, letterSpacing: '2px', fontWeight: 200, marginBottom: '24px' }}>{tool.duration}</p>
+            {sanctuaryLoading && <div className="streaming-indicator">◈ {t.sanctuary_loading}</div>}
+            {tool.type === 'audio' && (
               <audio ref={sanctuaryMediaRef} src={tool.url} controls preload="metadata"
-                onCanPlay={handleSanctuaryMediaCanPlay} onLoadStart={() => setSanctuaryLoading(true)}
-                style={{ width: '100%', borderRadius: '30px', accentColor: goldColor }} />
-            </div>
-          )}
-          {tool.type === 'video' && (
-            <div style={{ width: '90%', maxWidth: '360px', borderRadius: '20px', overflow: 'hidden', border: `1px solid ${goldColor}33` }}>
-              <video ref={sanctuaryMediaRef} src={tool.url} poster={tool.thumbnail || ''} controls preload="metadata"
-                playsInline onCanPlay={handleSanctuaryMediaCanPlay} onLoadStart={() => setSanctuaryLoading(true)}
-                className="sanctuary-video" style={{ display: 'block' }} />
-            </div>
-          )}
-        </div>
-        <BottomBar isGold={true} />
-      </div>
-    );
-  }
-
-  // ── SANTUARIO — biblioteca ────────────────────────────────────────────────
-  if (showSanctuary && sanctuaryUnlocked) {
-    return (
-      <div className="fade-in-smooth" style={{ backgroundColor: '#020617', minHeight: '100vh', color: 'white', padding: '20px', paddingBottom: '80px' }}>
-        <style>{inlineStyles}</style>
-        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '30px', paddingTop: '10px' }}>
-          <button onClick={() => { setShowSanctuary(false); setSanctuaryUnlocked(false); setSanctuaryCode(''); }}
-            style={{ background: 'none', border: 'none', color: goldColor, fontSize: '40px', cursor: 'pointer', lineHeight: 1, padding: 0 }}>
-            &#8249;
-          </button>
-          <LangSwitch isGold={true} />
-        </div>
-        <div style={{ textAlign: 'center', marginBottom: '32px' }}>
-          <div style={{ display: 'flex', justifyContent: 'center', marginBottom: '14px' }}>
-            <div className="micro-orbe-vivo" style={{ width: '10px', height: '10px', marginRight: 0 }}></div>
+                onCanPlay={() => setSanctuaryLoading(false)} onLoadStart={() => setSanctuaryLoading(true)}
+                style={{ width: '85%', maxWidth: '340px', borderRadius: '30px', accentColor: goldColor }} />
+            )}
+            {tool.type === 'video' && (
+              <div style={{ width: '90%', maxWidth: '360px', borderRadius: '20px', overflow: 'hidden', border: `1px solid ${goldColor}33` }}>
+                <video ref={sanctuaryMediaRef} src={tool.url} poster={tool.thumbnail || ''} controls preload="metadata"
+                  playsInline onCanPlay={() => setSanctuaryLoading(false)} onLoadStart={() => setSanctuaryLoading(true)}
+                  className="sanctuary-video" style={{ display: 'block' }} />
+              </div>
+            )}
           </div>
-          <h2 style={{ fontSize: '13px', letterSpacing: '5px', color: goldColor, fontWeight: 200, textTransform: 'uppercase', marginBottom: '8px' }}>{t.sanctuary_title}</h2>
-          <p style={{ fontSize: '11px', color: 'rgba(255,255,255,0.35)', letterSpacing: '1px', fontWeight: 200, maxWidth: '260px', margin: '0 auto', lineHeight: 1.7 }}>{t.sanctuary_library_sub}</p>
+          <BottomBar isGold />
         </div>
-        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-          {SANCTUARY_TOOLS.map((tool) => (
-            <div key={tool.id} className="sanctuary-tool-card" onClick={() => handleSanctuaryToolPlay(tool)}>
-              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
-                <div style={{ flex: 1, textAlign: 'left' }}>
-                  <div style={{ fontSize: '10px', letterSpacing: '2px', color: `${goldColor}99`, fontWeight: 200, marginBottom: '6px', textTransform: 'uppercase' }}>
-                    {tool.type === 'audio' ? '◎ AUDIO' : '◈ VIDEO'}
+      );
+    }
+    if (sanctuaryUnlocked) {
+      return (
+        <div className="fade-in-smooth" style={{ backgroundColor: '#020617', minHeight: '100vh', color: 'white', padding: '20px', paddingBottom: '80px' }}>
+          <style>{inlineStyles}</style>
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '30px', paddingTop: '10px' }}>
+            <button onClick={() => { setShowSanctuary(false); setSanctuaryUnlocked(false); setSanctuaryCode(''); }} style={{ background: 'none', border: 'none', color: goldColor, fontSize: '40px', cursor: 'pointer', lineHeight: 1, padding: 0 }}>&#8249;</button>
+            <LangSwitch isGold />
+          </div>
+          <div style={{ textAlign: 'center', marginBottom: '28px' }}>
+            <div style={{ display: 'flex', justifyContent: 'center', marginBottom: '12px' }}>
+              <div className="micro-orbe-vivo" style={{ width: '10px', height: '10px' }}></div>
+            </div>
+            <h2 style={{ fontSize: '13px', letterSpacing: '5px', color: goldColor, fontWeight: 200, textTransform: 'uppercase', marginBottom: '6px' }}>{t.sanctuary_title}</h2>
+            <p style={{ fontSize: '11px', color: 'rgba(255,255,255,0.35)', letterSpacing: '1px', fontWeight: 200, maxWidth: '260px', margin: '0 auto', lineHeight: 1.7 }}>{t.sanctuary_library_sub}</p>
+          </div>
+          <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+            {SANCTUARY_TOOLS.map((tool) => (
+              <div key={tool.id} className="sanctuary-tool-card" onClick={() => { setActiveSanctuaryTool(tool); setSanctuaryLoading(true); setTimeout(() => setSanctuaryLoading(false), 3000); }}>
+                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
+                  <div style={{ flex: 1, textAlign: 'left' }}>
+                    <div style={{ fontSize: '10px', letterSpacing: '2px', color: `${goldColor}99`, fontWeight: 200, marginBottom: '6px', textTransform: 'uppercase' }}>{tool.type === 'audio' ? '◎ AUDIO' : '◈ VIDEO'}</div>
+                    <div style={{ fontSize: '14px', fontWeight: 300, color: 'white', marginBottom: '6px', lineHeight: 1.4 }}>{tool.name}</div>
+                    <div style={{ fontSize: '10px', color: 'rgba(255,255,255,0.4)', fontWeight: 200, lineHeight: 1.6 }}>{tool.description}</div>
                   </div>
-                  <div style={{ fontSize: '14px', fontWeight: 300, color: 'white', marginBottom: '6px', lineHeight: 1.4 }}>{tool.name}</div>
-                  <div style={{ fontSize: '10px', color: 'rgba(255,255,255,0.4)', fontWeight: 200, letterSpacing: '0.5px', lineHeight: 1.6 }}>{tool.description}</div>
-                </div>
-                <div style={{ marginLeft: '16px', display: 'flex', flexDirection: 'column', alignItems: 'flex-end', gap: '6px' }}>
-                  <span style={{ color: goldColor, fontSize: '20px' }}>▶</span>
-                  <span style={{ fontSize: '9px', color: `${goldColor}66`, letterSpacing: '1px', fontWeight: 200 }}>{tool.duration}</span>
+                  <div style={{ marginLeft: '16px', display: 'flex', flexDirection: 'column', alignItems: 'flex-end', gap: '6px' }}>
+                    <span style={{ color: goldColor, fontSize: '20px' }}>▶</span>
+                    <span style={{ fontSize: '9px', color: `${goldColor}66`, letterSpacing: '1px', fontWeight: 200 }}>{tool.duration}</span>
+                  </div>
                 </div>
               </div>
-            </div>
-          ))}
+            ))}
+          </div>
+          <BottomBar isGold />
         </div>
-        <BottomBar isGold={true} />
-      </div>
-    );
-  }
-
-  // ── SANTUARIO — codigo de acceso ──────────────────────────────────────────
-  if (showSanctuary && !sanctuaryUnlocked) {
+      );
+    }
     return (
       <div className="fade-in-smooth" style={{ backgroundColor: '#020617', minHeight: '100vh', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', textAlign: 'center', padding: '30px', position: 'relative' }}>
         <style>{inlineStyles}</style>
-        <button onClick={() => { setShowSanctuary(false); setSanctuaryCode(''); setSanctuaryError(false); }}
-          style={{ position: 'absolute', top: '35px', left: '30px', background: 'none', border: 'none', color: goldColor, fontSize: '40px', cursor: 'pointer', lineHeight: 1, padding: 0 }}>
-          &#8249;
-        </button>
-        <div style={{ width: '160px', height: '160px', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '35px', animation: 'aura-gold-santuario 6s infinite ease-in-out' }}>
-          <img src="/imagenes/adn-icon.png" className="logo-filtro-dorado" style={{ width: '100%', borderRadius: '50%' }} alt="ADN" />
-        </div>
+        <button onClick={() => { setShowSanctuary(false); setSanctuaryCode(''); setSanctuaryError(false); }} style={{ position: 'absolute', top: '35px', left: '30px', background: 'none', border: 'none', color: goldColor, fontSize: '40px', cursor: 'pointer', lineHeight: 1, padding: 0 }}>&#8249;</button>
+        <ADNOrb auraClass="aura-gold-santuario" filterClass="logo-filtro-dorado" size="160px" />
         <h2 style={{ fontSize: '13px', letterSpacing: '5px', color: goldColor, fontWeight: 200, textTransform: 'uppercase', marginBottom: '10px' }}>{t.sanctuary_title}</h2>
-        <p style={{ fontSize: '11px', color: 'rgba(255,255,255,0.35)', maxWidth: '260px', lineHeight: 1.8, fontWeight: 200, marginBottom: '6px', letterSpacing: '0.5px' }}>{t.sanctuary_micro}</p>
+        <p style={{ fontSize: '11px', color: 'rgba(255,255,255,0.35)', maxWidth: '260px', lineHeight: 1.8, fontWeight: 200, marginBottom: '6px' }}>{t.sanctuary_micro}</p>
         <p style={{ fontSize: '10px', color: `${goldColor}66`, letterSpacing: '2px', fontWeight: 200, marginBottom: '36px' }}>{t.sanctuary_access}</p>
         <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '14px', width: '100%' }}>
-          <input className="sanctuary-input" type="text" placeholder={t.sanctuary_placeholder}
-            value={sanctuaryCode}
+          <input className="sanctuary-input" type="text" placeholder={t.sanctuary_placeholder} value={sanctuaryCode}
             onChange={(e) => { setSanctuaryCode(e.target.value); setSanctuaryError(false); }}
             onKeyDown={(e) => e.key === 'Enter' && handleSanctuarySubmit()} />
-          {sanctuaryError && (
-            <p className="fade-in-up" style={{ fontSize: '10px', color: 'rgba(239,68,68,0.7)', letterSpacing: '1px', fontWeight: 200, maxWidth: '260px', lineHeight: 1.6 }}>
-              {t.sanctuary_error}
-            </p>
-          )}
+          {sanctuaryError && <p className="fade-in-up" style={{ fontSize: '10px', color: 'rgba(239,68,68,0.7)', letterSpacing: '1px', fontWeight: 200, maxWidth: '260px', lineHeight: 1.6 }}>{t.sanctuary_error}</p>}
           <button className="sanctuary-enter-btn" onClick={handleSanctuarySubmit}>{t.sanctuary_enter}</button>
         </div>
       </div>
@@ -1047,16 +995,12 @@ const App = () => {
     return (
       <div className="fade-in-smooth" style={{ backgroundColor: '#020617', minHeight: '100vh', color: 'white', padding: '20px', paddingBottom: '80px' }}>
         <style>{inlineStyles}</style>
-        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '30px', paddingTop: '10px' }}>
+        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '20px', paddingTop: '10px' }}>
           <img src="/imagenes/genora-logo-white.png" style={{ height: '50px', borderRadius: '50%', objectFit: 'contain' }} alt="Logo" />
           <LangSwitch />
         </div>
-        {showBanner && (
-          <div className="alineacion-banner">
-            <p style={{ fontSize: '11px', letterSpacing: '2px', color: '#22d3ee', margin: 0, fontWeight: 200 }}>{t.banner}</p>
-          </div>
-        )}
-        <p style={{ fontSize: '10px', letterSpacing: '4px', color: 'rgba(255,255,255,0.35)', textAlign: 'center', marginBottom: '24px', fontWeight: 200 }}>{t.my_field}</p>
+        {showBanner && <div className="alineacion-banner"><p style={{ fontSize: '11px', letterSpacing: '2px', color: '#22d3ee', margin: 0, fontWeight: 200 }}>{t.banner}</p></div>}
+        <p style={{ fontSize: '10px', letterSpacing: '4px', color: 'rgba(255,255,255,0.35)', textAlign: 'center', marginBottom: '20px', fontWeight: 200 }}>{t.my_field}</p>
         <ReminderSection />
         {favTracks.length === 0 ? (
           <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', padding: '40px 20px', textAlign: 'center', color: 'rgba(255,255,255,0.25)' }}>
@@ -1065,9 +1009,7 @@ const App = () => {
           </div>
         ) : (
           <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-            {favTracks.map((track) => (
-              <TrackCard key={track.id} track={track} onSelect={(tr) => playTrack(tr, false)} />
-            ))}
+            {favTracks.map((track) => <TrackCard key={track.id} track={track} onSelect={(tr) => playTrack(tr, false)} />)}
           </div>
         )}
         <ResumeBar />
@@ -1080,92 +1022,132 @@ const App = () => {
   return (
     <div className="fade-in-smooth" style={{ backgroundColor: '#020617', minHeight: '100vh', color: 'white', padding: '20px', paddingBottom: '80px' }}>
       <style>{inlineStyles}</style>
-      {showBanner && (
-        <div className="alineacion-banner" style={{ marginTop: '10px' }}>
-          <p style={{ fontSize: '11px', letterSpacing: '2px', color: '#22d3ee', margin: 0, fontWeight: 200 }}>{t.banner}</p>
-        </div>
-      )}
-      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '12px', paddingTop: '10px' }}>
-        {mainMode ? (
-          <div onClick={handleBack} className="back-button-genora">
-            <span style={{ color: accentColor, fontSize: '20px' }}>&#8249;</span>
-          </div>
-        ) : (
-          <img src="/imagenes/genora-logo-white.png" style={{ height: '60px', borderRadius: '50%', objectFit: 'contain' }} alt="Logo" />
-        )}
-        <LangSwitch />
-      </div>
+      {showBanner && <div className="alineacion-banner" style={{ marginTop: '10px' }}><p style={{ fontSize: '11px', letterSpacing: '2px', color: '#22d3ee', margin: 0, fontWeight: 200 }}>{t.banner}</p></div>}
+
+      <PageHeader isGold={mainMode === 'experiencias'} isViolet={mainMode === 'meditaciones'} />
 
       <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-        <div style={{
-          width: activeSub ? '80px' : (activePillar ? '100px' : (mainMode ? '100px' : '115px')),
-          height: activeSub ? '80px' : (activePillar ? '100px' : (mainMode ? '100px' : '115px')),
-          borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center',
-          marginBottom: mainMode ? '20px' : '14px', transition: 'all 0.5s ease',
-          animation: 'aura-supernova 8s infinite ease-in-out'
-        }}>
-          <img src="/imagenes/adn-icon.png"
-            className={mainMode && activePillar ? "logo-filtro-dorado" : "logo-normal"}
-            style={{ width: '100%', borderRadius: '50%' }} alt="ADN" />
-        </div>
 
-        {/* NIVEL 1 — HOME: pilares en un solo idioma, sin orbe divisor */}
+        {/* ADN */}
+        <ADNOrb
+          auraClass={mainMode === 'meditaciones' ? 'aura-violet' : mainMode === 'experiencias' ? 'aura-gold' : 'aura-supernova'}
+          filterClass={mainMode === 'experiencias' ? 'logo-filtro-dorado' : mainMode === 'meditaciones' ? 'logo-filtro-violeta' : 'logo-normal'}
+          size={!mainMode ? '130px' : '90px'}
+        />
+
+        {/* ── HOME ── */}
         {!mainMode && (
           <div className="category-stack">
-            <h2 style={{ fontSize: '9px', letterSpacing: '5px', color: '#22d3ee', marginBottom: '8px', fontWeight: 200 }}>{t.choose_path}</h2>
-            {HOME_PILLAR_ORDER.map((key) => (
-              <button key={key} className="pillar-home-btn" onClick={() => setMainMode(key)}>
-                {T[lang].pillar_names[key][lang]}
-              </button>
-            ))}
-            {/* Sin orbe divisor en Home — margen limpio antes del Santuario */}
-            <div style={{ height: '16px' }} />
-            <button className="sanctuary-btn-clean" onClick={() => { setShowSanctuary(true); setActiveTab('catalogo'); }}>
-              {t.sanctuary_title}
-            </button>
+            <h2 style={{ fontSize: '9px', letterSpacing: '5px', color: '#22d3ee', marginBottom: '10px', fontWeight: 200 }}>{t.choose_path}</h2>
+            <button className="home-btn" onClick={() => setMainMode('frecuencias')}>{t.home_buttons.frequencies}</button>
+            <button className="home-btn violet" onClick={() => setMainMode('meditaciones')}>{t.home_buttons.meditations}</button>
+            <button className="home-btn gold" onClick={() => setMainMode('experiencias')}>{t.home_buttons.experiences}</button>
+            <button className="home-btn sanctuary" onClick={() => { setShowSanctuary(true); setActiveTab('catalogo'); }}>{t.home_buttons.sanctuary}</button>
           </div>
         )}
 
-        {/* NIVEL 2 — PILARES */}
-        {mainMode && !activePillar && (
+        {/* ── FRECUENCIAS — pilares ── */}
+        {mainMode === 'frecuencias' && !freqPillar && (
           <div className="category-stack">
-            <p style={{ fontSize: '10px', letterSpacing: '5px', color: accentColor, textAlign: 'center', marginBottom: '25px', fontWeight: 200 }}>
-              {t.pillars[mainMode]?.label?.toUpperCase() || mainMode.toUpperCase()}
-            </p>
-            {Object.keys(t.pillars[mainMode]?.subs || {}).map(sub => (
-              <div key={sub} onClick={() => { setActivePillar(mainMode); setActiveSub(sub); }} className="pillar-card">
-                {t.pillars[mainMode].subs[sub]}
-              </div>
+            <p style={{ fontSize: '10px', letterSpacing: '5px', color: '#22d3ee', textAlign: 'center', marginBottom: '16px', fontWeight: 200 }}>{t.home_buttons.frequencies}</p>
+            {Object.keys(t.freq_pillars).map(key => (
+              <div key={key} className="pillar-card" onClick={() => setFreqPillar(key)}>{t.freq_pillars[key]}</div>
             ))}
           </div>
         )}
 
-        {/* NIVEL 3 — SUBCATEGORIAS */}
-        {activePillar && !activeSub && (
+        {/* ── FRECUENCIAS — subcategorias ── */}
+        {mainMode === 'frecuencias' && freqPillar && !freqSub && (
           <div className="category-stack">
-            <p style={{ fontSize: '10px', letterSpacing: '5px', color: accentColor, textAlign: 'center', marginBottom: '25px', fontWeight: 200 }}>{t.pillars[activePillar].label}</p>
-            {Object.keys(t.pillars[activePillar].subs).map(sub => (
-              <div key={sub} onClick={() => setActiveSub(sub)} className="pillar-card">
-                {t.pillars[activePillar].subs[sub]}
-              </div>
+            <p style={{ fontSize: '10px', letterSpacing: '4px', color: '#22d3ee', textAlign: 'center', marginBottom: '16px', fontWeight: 200 }}>{t.freq_pillars[freqPillar]}</p>
+            {Object.keys(t.pillars[freqPillar]?.subs || {}).map(sub => (
+              <div key={sub} className="pillar-card" onClick={() => setFreqSub(sub)}>{t.pillars[freqPillar].subs[sub]}</div>
             ))}
           </div>
         )}
 
-        {/* NIVEL 4 — TRACKS */}
-        {activeSub && (
+        {/* ── FRECUENCIAS — tracks ── */}
+        {mainMode === 'frecuencias' && freqPillar && freqSub && (
           <div className="fade-in-smooth" style={{ width: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-            <p style={{ fontSize: '10px', letterSpacing: '3px', color: accentColor, textAlign: 'center', marginBottom: '20px', fontWeight: 200 }}>
-              {t.pillars[activePillar]?.subs[activeSub] || activeSub}
-            </p>
-            {(ALL_TRACKS[activePillar]?.[activeSub] || []).length === 0
-              ? <ComingSoon />
-              : (ALL_TRACKS[activePillar][activeSub]).map((track) => (
-                  <TrackCard key={track.id} track={track} onSelect={playTrack} />
-                ))
+            <p style={{ fontSize: '10px', letterSpacing: '3px', color: '#22d3ee', textAlign: 'center', marginBottom: '16px', fontWeight: 200 }}>{t.pillars[freqPillar]?.subs[freqSub]}</p>
+            {(FREQ_TRACKS[freqPillar]?.[freqSub] || []).length === 0
+              ? <ComingSoon accent="#22d3ee" />
+              : FREQ_TRACKS[freqPillar][freqSub].map(track => <TrackCard key={track.id} track={track} onSelect={playTrack} />)
             }
           </div>
         )}
+
+        {/* ── MEDITACIONES — pilares ── */}
+        {mainMode === 'meditaciones' && !medPillar && (
+          <div className="category-stack">
+            <p style={{ fontSize: '10px', letterSpacing: '5px', color: violetColor, textAlign: 'center', marginBottom: '16px', fontWeight: 200 }}>{t.home_buttons.meditations}</p>
+            {Object.keys(t.med_pillars).map(key => (
+              <div key={key} className="pillar-card violet" onClick={() => setMedPillar(key)}>{t.med_pillars[key]}</div>
+            ))}
+          </div>
+        )}
+
+        {/* ── MEDITACIONES — sesiones ── */}
+        {mainMode === 'meditaciones' && medPillar && (
+          <div className="fade-in-smooth" style={{ width: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+            <p style={{ fontSize: '10px', letterSpacing: '3px', color: violetColor, textAlign: 'center', marginBottom: '16px', fontWeight: 200 }}>{t.med_pillars[medPillar]}</p>
+            {MED_DATA[medPillar].sessions.map(s => <SessionCard key={s.id} session={s} color="violet" accent={violetColor} />)}
+          </div>
+        )}
+
+        {/* ── EXPERIENCIAS — niveles ── */}
+        {mainMode === 'experiencias' && !expLevel && (
+          <div className="category-stack">
+            <p style={{ fontSize: '10px', letterSpacing: '5px', color: goldColor, textAlign: 'center', marginBottom: '16px', fontWeight: 200 }}>{t.home_buttons.experiences}</p>
+            {[
+              { key: 'UNVEILING', label: t.exp_levels.UNVEILING, sub: t.exp_levels.UNVEILING_sub },
+              { key: 'AWAKENING', label: t.exp_levels.AWAKENING, sub: t.exp_levels.AWAKENING_sub },
+              { key: 'CODEX', label: t.exp_levels.CODEX, sub: t.exp_levels.CODEX_sub },
+              { key: 'VOICE', label: t.exp_levels.VOICE, sub: t.exp_levels.VOICE_sub },
+              { key: 'ALCHEMIST', label: t.exp_levels.ALCHEMIST, sub: t.exp_levels.ALCHEMIST_sub },
+              { key: 'MERKABA', label: t.exp_levels.MERKABA, sub: t.exp_levels.MERKABA_sub }
+            ].map((lvl, i) => (
+              <div key={lvl.key} className="pillar-card gold" onClick={() => setExpLevel(lvl.key)} style={{ maxWidth: '310px', width: '80%' }}>
+                <div style={{ fontSize: '9px', color: `${goldColor}66`, letterSpacing: '2px', marginBottom: '4px' }}>NIVEL {i + 1}</div>
+                <div style={{ fontSize: '11px', letterSpacing: '3px' }}>{lvl.label}</div>
+                <div style={{ fontSize: '9px', color: `${goldColor}88`, letterSpacing: '1px', marginTop: '3px', fontWeight: 200 }}>{lvl.sub}</div>
+              </div>
+            ))}
+          </div>
+        )}
+
+        {/* ── EXPERIENCIAS — THE UNVEILING — etapas ── */}
+        {mainMode === 'experiencias' && expLevel === 'UNVEILING' && !expStage && (
+          <div className="category-stack">
+            <p style={{ fontSize: '10px', letterSpacing: '4px', color: goldColor, textAlign: 'center', marginBottom: '6px', fontWeight: 200 }}>{t.exp_levels.UNVEILING}</p>
+            <p style={{ fontSize: '9px', color: `${goldColor}77`, letterSpacing: '1px', textAlign: 'center', marginBottom: '16px', fontWeight: 200 }}>{t.exp_levels.UNVEILING_sub}</p>
+            {['TERRESTRE', 'DIVINO', 'INTERDIMENSIONAL'].map(stage => (
+              <div key={stage} className="pillar-card gold" onClick={() => setExpStage(stage)} style={{ maxWidth: '310px', width: '80%' }}>
+                <div style={{ fontSize: '10px', letterSpacing: '3px' }}>{t.unveiling_stages[stage]}</div>
+                <div style={{ fontSize: '9px', color: `${goldColor}88`, letterSpacing: '1px', marginTop: '3px', fontWeight: 200 }}>{t.unveiling_stages[`${stage}_sub`]}</div>
+              </div>
+            ))}
+          </div>
+        )}
+
+        {/* ── EXPERIENCIAS — THE UNVEILING — sesiones de etapa ── */}
+        {mainMode === 'experiencias' && expLevel === 'UNVEILING' && expStage && (
+          <div className="fade-in-smooth" style={{ width: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+            <p style={{ fontSize: '10px', letterSpacing: '3px', color: goldColor, textAlign: 'center', marginBottom: '4px', fontWeight: 200 }}>{t.unveiling_stages[expStage]}</p>
+            <p style={{ fontSize: '9px', color: `${goldColor}77`, textAlign: 'center', marginBottom: '16px', fontWeight: 200 }}>{t.unveiling_stages[`${expStage}_sub`]}</p>
+            {EXP_DATA.UNVEILING[expStage].map(s => <SessionCard key={s.id} session={s} color="gold" accent={goldColor} />)}
+          </div>
+        )}
+
+        {/* ── EXPERIENCIAS — otros niveles ── */}
+        {mainMode === 'experiencias' && expLevel && expLevel !== 'UNVEILING' && (
+          <div className="fade-in-smooth" style={{ width: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+            <p style={{ fontSize: '10px', letterSpacing: '3px', color: goldColor, textAlign: 'center', marginBottom: '4px', fontWeight: 200 }}>{t.exp_levels[expLevel]}</p>
+            <p style={{ fontSize: '9px', color: `${goldColor}77`, textAlign: 'center', marginBottom: '16px', fontWeight: 200 }}>{t.exp_levels[`${expLevel}_sub`]}</p>
+            {(EXP_DATA[expLevel] || []).map(s => <SessionCard key={s.id} session={s} color="gold" accent={goldColor} />)}
+          </div>
+        )}
+
       </div>
       <ResumeBar />
       <BottomBar />
