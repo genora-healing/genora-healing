@@ -514,10 +514,9 @@ const App = () => {
   }, [reminderTime]);
 
   useEffect(() => {
-    const tryPlay = () => {
-      if (!audioRef.current) return;
+    if (audioRef.current) {
       if (isPlaying) {
-        audioRef.current.play().catch(() => {});
+        audioRef.current.play().catch(() => console.log('Verificar audio en /public/audio/'));
         if (selectedTime && selectedTime !== 'inf') {
           if (timerRef.current) clearTimeout(timerRef.current);
           timerRef.current = setTimeout(() => setIsPlaying(false), selectedTime * 60000);
@@ -526,9 +525,7 @@ const App = () => {
         audioRef.current.pause();
         if (timerRef.current) clearTimeout(timerRef.current);
       }
-    };
-    const t = setTimeout(tryPlay, 100);
-    return () => clearTimeout(t);
+    }
   }, [isPlaying, selectedTrack, selectedTime]);
 
   useEffect(() => {
@@ -595,7 +592,7 @@ const App = () => {
     if (mainMode === 'experiencias') return '#d4af37';
     return '#22d3ee';
   };
-  const accentColor = selectedTrack ? '#22d3ee' : getAccentColor();
+  const accentColor = getAccentColor();
   const goldColor = '#d4af37';
   const violetColor = '#a855f7';
 
@@ -734,8 +731,9 @@ const App = () => {
   // ── TEMPLO ────────────────────────────────────────────────────────────────
   if (selectedTrack) {
     const progress = duration > 0 ? (currentTime / duration) * 100 : 0;
+    const temploAccent = "#22d3ee";
     return (
-      <div className="fade-in-smooth" style={{ backgroundColor: '#020617', minHeight: '100vh', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', textAlign: 'center', position: 'relative', padding: '20px' }}>
+      <div key={selectedTrack.id} className="fade-in-smooth" style={{ backgroundColor: '#020617', minHeight: '100vh', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', textAlign: 'center', position: 'relative', padding: '20px' }}>
         <style>{inlineStyles}</style>
         <audio ref={audioRef} src={selectedTrack.url}
           loop={selectedTime === 'inf' && activeTabRef.current !== 'favoritos'}
@@ -743,7 +741,7 @@ const App = () => {
           onLoadedMetadata={(e) => { handleTimeUpdate(); if (currentTime > 0 && e.target.duration > currentTime) e.target.currentTime = currentTime; }}
           onEnded={handleAudioEnded} />
         <div style={{ position: 'absolute', top: '35px', left: '30px', right: '30px', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-          <button onClick={() => { setIsPlaying(false); setSelectedTrack(null); setCurrentTime(0); setDuration(0); }} style={{ background: 'none', border: 'none', color: accentColor, fontSize: '40px', cursor: 'pointer', lineHeight: 1, padding: 0 }}>&#8249;</button>
+          <button onClick={() => { setIsPlaying(false); setSelectedTrack(null); setCurrentTime(0); setDuration(0); }} style={{ background: 'none', border: 'none', color: temploAccent, fontSize: '40px', cursor: 'pointer', lineHeight: 1, padding: 0 }}>&#8249;</button>
           {isSuggestion && <div className="suggestion-badge">✦ {t.suggestion_label}</div>}
           <button className="heart-btn" onClick={(e) => toggleFavorite(e, selectedTrack.id)} style={{ fontSize: '24px', color: isFavorite(selectedTrack.id) ? '#ff6b9d' : 'rgba(255,255,255,0.4)', padding: 0 }}>
             {isFavorite(selectedTrack.id) ? '♥' : '♡'}
