@@ -453,7 +453,8 @@ const App = () => {
   const [isPlaying, setIsPlaying] = useState(false);
   const [selectedTime, setSelectedTime] = useState(null);
   const [currentTime, setCurrentTime] = useState(0);
-
+  const [duration, setDuration] = useState(0);
+  
   const [activeTab, setActiveTab] = useState('catalogo');
   const [showBanner, setShowBanner] = useState(false);
   const [favorites, setFavorites] = useState(() => {
