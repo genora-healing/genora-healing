@@ -514,17 +514,21 @@ const App = () => {
   }, [reminderTime]);
 
   useEffect(() => {
-    if (!audioRef.current) return;
-    if (isPlaying) {
-      audioRef.current.play().catch(() => {});
-      if (selectedTime && selectedTime !== 'inf') {
+    const tryPlay = () => {
+      if (!audioRef.current) return;
+      if (isPlaying) {
+        audioRef.current.play().catch(() => {});
+        if (selectedTime && selectedTime !== 'inf') {
+          if (timerRef.current) clearTimeout(timerRef.current);
+          timerRef.current = setTimeout(() => setIsPlaying(false), selectedTime * 60000);
+        }
+      } else {
+        audioRef.current.pause();
         if (timerRef.current) clearTimeout(timerRef.current);
-        timerRef.current = setTimeout(() => setIsPlaying(false), selectedTime * 60000);
       }
-    } else {
-      audioRef.current.pause();
-      if (timerRef.current) clearTimeout(timerRef.current);
-    }
+    };
+    const t = setTimeout(tryPlay, 100);
+    return () => clearTimeout(t);
   }, [isPlaying, selectedTrack, selectedTime]);
 
   useEffect(() => {
@@ -591,7 +595,7 @@ const App = () => {
     if (mainMode === 'experiencias') return '#d4af37';
     return '#22d3ee';
   };
-  const accentColor = getAccentColor();
+  const accentColor = selectedTrack ? '#22d3ee' : getAccentColor();
   const goldColor = '#d4af37';
   const violetColor = '#a855f7';
 
