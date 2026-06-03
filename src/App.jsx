@@ -161,6 +161,14 @@ const SANCTUARY_TOOLS = [
   { id: "frecuencia-celular-001", name: "Regeneracion Celular — Campo Cuantico", type: "audio", description: "Soporte vibracional para procesos de sanacion celular.", duration: "45 min", url: "https://res.cloudinary.com/TU_CLOUD_NAME/video/upload/v1/genora/frecuencias/frecuencia-celular-001.wav" },
   { id: "video-meditacion-001", name: "Meditacion Guiada — Matrices Perinatales", type: "video", description: "Proceso guiado para liberacion de matrices perinatales.", duration: "35 min", url: "https://res.cloudinary.com/TU_CLOUD_NAME/video/upload/v1/genora/videos/meditacion-matrices-001.mp4", thumbnail: "" },
   { id: "frecuencia-ancestral-001", name: "Liberacion Ancestral — Limpieza de Campo", type: "audio", description: "Frecuencia para desbloqueo de patrones heredados.", duration: "55 min", url: "https://res.cloudinary.com/TU_CLOUD_NAME/video/upload/v1/genora/frecuencias/frecuencia-ancestral-001.wav" },
+{
+  id: "atraer-clientes-dinero",
+  name: "Atraer Clientes y Dinero",
+  type: "audio",
+  description: "Frecuencia de alta vibracion para activar el flujo de abundancia y prosperidad.",
+  duration: "60 min",
+  url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/atraer-clientes-dinero.wav"
+},
 ];
 
 const FREQ_TRACKS = {
