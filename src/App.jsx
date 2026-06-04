@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-
+ 
 const T = {
   es: {
     splash_title: "RESONANCIA ORIGEN",
@@ -154,7 +154,7 @@ const T = {
     }
   }
 };
-
+ 
 const SANCTUARY_CODE = "GENORA2026";
 const SANCTUARY_TOOLS = [
   { id: "frecuencia-adn-001", name: "Frecuencia ADN — Activacion Primaria", type: "audio", description: "Frecuencia de alta fidelidad para activacion genetica profunda.", duration: "60 min", url: "https://res.cloudinary.com/TU_CLOUD_NAME/video/upload/v1/genora/frecuencias/frecuencia-adn-001.wav" },
@@ -162,7 +162,7 @@ const SANCTUARY_TOOLS = [
   { id: "video-meditacion-001", name: "Meditacion Guiada — Matrices Perinatales", type: "video", description: "Proceso guiado para liberacion de matrices perinatales.", duration: "35 min", url: "https://res.cloudinary.com/TU_CLOUD_NAME/video/upload/v1/genora/videos/meditacion-matrices-001.mp4", thumbnail: "" },
   { id: "frecuencia-ancestral-001", name: "Liberacion Ancestral — Limpieza de Campo", type: "audio", description: "Frecuencia para desbloqueo de patrones heredados.", duration: "55 min", url: "https://res.cloudinary.com/TU_CLOUD_NAME/video/upload/v1/genora/frecuencias/frecuencia-ancestral-001.wav" },
 ];
-
+ 
 const FREQ_TRACKS = {
   MENTE: {
     "APRENDIZAJE": [
@@ -199,9 +199,9 @@ const FREQ_TRACKS = {
   EXPERIENCIAS_G: { "SESIONES": [], "RITUALES": [], "CEREMONIAS": [] },
   ARMONIZACION: { "ADN": [], "CAMPOS": [], "CELULAR": [] }
 };
-
+ 
 const ALL_TRACKS_FLAT = Object.values(FREQ_TRACKS).flatMap(p => Object.values(p).flat()).filter(t => t.url);
-
+ 
 const MED_DATA = {
   LINAJE: { sessions: [
     { id: "crimson-genesis", name: "Crimson Genesis", sub: "Sanacion del Linaje y Memorias Profundas", desc: "Exploracion de emociones profundas, memorias ancestrales y patrones grabados en las capas geneticas del ADN." },
@@ -216,26 +216,26 @@ const MED_DATA = {
     { id: "obsidian-light", name: "Obsidian Light", sub: "Transmutacion y Liberacion de Densidades", desc: "Proceso de limpieza energetica profunda para favorecer la liberacion, transmutacion y restauracion del equilibrio interno." }
   ]}
 };
-
+ 
 const EXP_DATA = {
   UNVEILING: {
     TERRESTRE: [
-      { id: "eternal-grace", name: "Eternal Grace", sub: "Maestrias de la Eternidad, el Poder y la Gracia", desc: "La primera iniciacion del camino. Un encuentro con los pilares fundamentales del potencial humano." },
-      { id: "sacred-power", name: "Sacred Power", sub: "Maestrias del Poder, la Sabiduria y la Energia", desc: "Experiencia para fortalecer la relacion consciente con la energia personal y la sabiduria interior." },
+      { id: "eternal-grace", name: "Eternal Grace", sub: "Maestrias de la Eternidad, el Poder y la Gracia", desc: "La primera iniciacion del camino." },
+      { id: "sacred-power", name: "Sacred Power", sub: "Maestrias del Poder, la Sabiduria y la Energia", desc: "Experiencia para fortalecer la relacion consciente con la energia personal." },
       { id: "grace-in-motion", name: "Grace in Motion", sub: "Maestrias de la Gracia, el Poder y la Energia", desc: "La integracion armonica entre la fuerza interior y la fluidez consciente." },
-      { id: "golden-freedom", name: "Golden Freedom", sub: "Maestrias del Amor, la Luz Dorada y la Libertad", desc: "Iniciacion orientada a la expansion del corazon y el reconocimiento de la luz interior." }
+      { id: "golden-freedom", name: "Golden Freedom", sub: "Maestrias del Amor, la Luz Dorada y la Libertad", desc: "Iniciacion orientada a la expansion del corazon." }
     ],
     DIVINO: [
-      { id: "nature-eternal", name: "Nature Eternal", sub: "Maestrias de la Naturaleza y la Eternidad", desc: "Reconexion con los principios vivos de la creacion y los ciclos eternos de la existencia." },
+      { id: "nature-eternal", name: "Nature Eternal", sub: "Maestrias de la Naturaleza y la Eternidad", desc: "Reconexion con los principios vivos de la creacion." },
       { id: "wisdom-freedom", name: "Wisdom of Freedom", sub: "Maestrias de la Sabiduria y la Libertad", desc: "La verdadera libertad surge del conocimiento consciente de uno mismo." },
       { id: "infinite-current", name: "Infinite Current", sub: "Maestrias de la Eternidad y la Energia", desc: "Inmersion en los principios energeticos que sostienen la continuidad de la vida." },
-      { id: "grace-eternity", name: "Grace of Eternity", sub: "Maestrias de la Sabiduria, la Gracia y la Eternidad", desc: "Integracion de la sabiduria y la gracia como expresiones naturales de una consciencia eterna." }
+      { id: "grace-eternity", name: "Grace of Eternity", sub: "Maestrias de la Sabiduria, la Gracia y la Eternidad", desc: "Integracion de la sabiduria y la gracia." }
     ],
     INTERDIMENSIONAL: [
-      { id: "heart-of-light", name: "Heart of Light", sub: "Maestrias de la Gracia, el Amor y la Energia", desc: "Activacion del corazon como puente entre la energia, la compasion y la expansion de la consciencia." },
-      { id: "golden-wisdom", name: "Golden Wisdom", sub: "Maestrias de la Sabiduria, la Luz Dorada y la Libertad", desc: "Integracion de la vision superior, la claridad interior y la libertad." },
-      { id: "eternal-nature", name: "Eternal Nature", sub: "Maestrias de la Naturaleza, la Energia y la Eternidad", desc: "Reconocimiento de la conexion profunda entre la vida, la energia universal y los principios eternos." },
-      { id: "sovereign-light", name: "Sovereign Light", sub: "Maestrias del Poder, la Energia y la Eternidad", desc: "La iniciacion final. Sintesis de las maestrias desarrolladas y reconocimiento del potencial luminoso del ser humano." }
+      { id: "heart-of-light", name: "Heart of Light", sub: "Maestrias de la Gracia, el Amor y la Energia", desc: "Activacion del corazon como puente entre la energia y la expansion de la consciencia." },
+      { id: "golden-wisdom", name: "Golden Wisdom", sub: "Maestrias de la Sabiduria, la Luz Dorada y la Libertad", desc: "Integracion de la vision superior y la claridad interior." },
+      { id: "eternal-nature", name: "Eternal Nature", sub: "Maestrias de la Naturaleza, la Energia y la Eternidad", desc: "Reconocimiento de la conexion profunda entre la vida y la energia universal." },
+      { id: "sovereign-light", name: "Sovereign Light", sub: "Maestrias del Poder, la Energia y la Eternidad", desc: "La iniciacion final. Sintesis de las maestrias desarrolladas." }
     ]
   },
   AWAKENING: [
@@ -267,27 +267,21 @@ const EXP_DATA = {
     { id: "omnipotencia", name: "Virtud de la Omnipotencia", desc: "Integracion del potencial creador ilimitado del ser." }
   ]
 };
-
+ 
 const formatTime = (secs) => {
   if (!secs || isNaN(secs) || !isFinite(secs)) return '00:00';
   const m = Math.floor(secs / 60);
   const s = Math.floor(secs % 60);
   return `${String(m).padStart(2, '0')}:${String(s).padStart(2, '0')}`;
 };
-
+ 
 const getTimeOfDay = () => {
   const h = new Date().getHours();
   if (h >= 5 && h < 12) return 'manana';
   if (h >= 12 && h < 19) return 'tarde';
   return 'noche';
 };
-
-// Colores dorados mejorados para legibilidad
-const GOLD = '#d4af37';
-const GOLD_BRIGHT = '#d4af37';
-const GOLD_LIGHT = '#c9a227';
-const GOLD_SHADOW = 'text-shadow: 0 0 8px rgba(212,175,55,0.4)';
-
+ 
 const inlineStyles = `
   @keyframes logo-breathe { 0%, 100% { transform: scale(1); opacity: 0.95; } 50% { transform: scale(1.05); opacity: 1; } }
   @keyframes aura-supernova {
@@ -313,25 +307,25 @@ const inlineStyles = `
   @keyframes fadeInDown { from { opacity: 0; transform: translateY(-8px); } to { opacity: 1; transform: translateY(0); } }
   @keyframes fadeInUp { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: translateY(0); } }
   @keyframes pulse-glow { 0%, 100% { opacity: 0.5; } 50% { opacity: 1; } }
+  @keyframes glance-sway {
+    0%   { transform: translateX(0); }
+    20%  { transform: translateX(4px); }
+    40%  { transform: translateX(-3px); }
+    60%  { transform: translateX(2px); }
+    80%  { transform: translateX(-1px); }
+    100% { transform: translateX(0); }
+  }
+  @keyframes golden-border-pulse {
+    0%, 100% { box-shadow: 0 0 0 1px rgba(212,175,55,0.5), 0 8px 32px rgba(212,175,55,0.15); }
+    50%       { box-shadow: 0 0 0 2px rgba(212,175,55,0.9), 0 12px 40px rgba(212,175,55,0.35); }
+  }
   .fade-in-smooth { animation: fadeIn 0.8s ease-in forwards; }
   .fade-in-up { animation: fadeInUp 0.6s ease forwards; }
   @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
   body, html { overflow-x: hidden; background-color: #020617; margin: 0; padding: 0; font-family: sans-serif; color: white; }
-
-  /* Textos dorados con brillo espiritual */
-  .gold-title {
-    color: #d4af37 !important;
-    text-shadow: 0 0 8px rgba(212,175,55,0.4);
-  }
-  .gold-sub {
-    color: #d4af37 !important;
-    opacity: 0.85;
-  }
-  .gold-micro {
-    color: #c9a227 !important;
-    opacity: 0.7;
-  }
-
+  .gold-title { color: #d4af37 !important; text-shadow: 0 0 8px rgba(212,175,55,0.4); }
+  .gold-sub { color: #d4af37 !important; opacity: 0.85; }
+  .gold-micro { color: #c9a227 !important; opacity: 0.7; }
   .home-btn {
     width: 75%; max-width: 290px; padding: 14px; margin: 6px 0;
     border-radius: 40px; color: white; font-size: 10px; letter-spacing: 5px;
@@ -346,9 +340,7 @@ const inlineStyles = `
   .home-btn.violet:hover { background: rgba(168,85,247,0.08); border-color: rgba(168,85,247,0.6); }
   .home-btn.sanctuary { border-color: rgba(212,175,55,0.4); background: rgba(212,175,55,0.04); margin-top: 16px; }
   .home-btn.sanctuary:hover { background: rgba(212,175,55,0.1); border-color: rgba(212,175,55,0.7); box-shadow: 0 0 15px rgba(212,175,55,0.15); }
-
   .category-stack { display: flex; flex-direction: column; align-items: center; gap: 6px; width: 100%; }
-
   .pillar-card {
     width: 75%; max-width: 290px; padding: 13px; border-radius: 40px;
     background: rgba(34,211,238,0.02); border: 1px solid rgba(34,211,238,0.25);
@@ -360,7 +352,6 @@ const inlineStyles = `
   .pillar-card.violet:hover { background: rgba(168,85,247,0.06); border-color: rgba(168,85,247,0.5); }
   .pillar-card.gold { border-color: rgba(212,175,55,0.3); background: rgba(212,175,55,0.02); }
   .pillar-card.gold:hover { background: rgba(212,175,55,0.06); border-color: rgba(212,175,55,0.5); }
-
   .track-card {
     width: 85%; max-width: 340px; padding: 18px 22px; margin: 6px 0; border-radius: 28px;
     background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.1);
@@ -368,7 +359,6 @@ const inlineStyles = `
   }
   .track-card:active { transform: scale(0.98); }
   .track-card.suggestion { border-color: rgba(34,211,238,0.3); background: rgba(34,211,238,0.04); }
-
   .session-card {
     width: 85%; max-width: 340px; padding: 18px 22px; margin: 6px 0; border-radius: 28px;
     background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.08);
@@ -377,7 +367,6 @@ const inlineStyles = `
   .session-card.violet { border-color: rgba(168,85,247,0.2); }
   .session-card.gold { border-color: rgba(212,175,55,0.2); }
   .session-card.gold:hover { background: rgba(212,175,55,0.04); border-color: rgba(212,175,55,0.35); }
-
   .back-button-genora {
     width: 42px; height: 42px; border-radius: 50%; border: 1px solid rgba(34,211,238,0.5);
     background: rgba(34,211,238,0.08); display: flex; align-items: center; justify-content: center; cursor: pointer;
@@ -435,8 +424,34 @@ const inlineStyles = `
   .micro-orbe-vivo { width: 7px; height: 7px; border-radius: 50%; background: #d4af37; display: inline-block; animation: micro-orbe-breathe 2.5s infinite ease-in-out; }
   .streaming-indicator { animation: pulse-glow 2s infinite ease-in-out; font-size: 10px; letter-spacing: 2px; color: #d4af37 !important; text-align: center; padding: 8px 0; font-weight: 200; }
   .sanctuary-video { width: 100%; border-radius: 16px; margin-top: 12px; background: #000; border: 1px solid rgba(212,175,55,0.2); }
+  .mi-al-card {
+    width: 85%; max-width: 340px; padding: 18px 22px; margin: 5px 0;
+    border-radius: 28px; background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(255,255,255,0.1);
+    display: flex; justify-content: space-between; align-items: center;
+    cursor: grab;
+    transition: transform 0.25s cubic-bezier(0.34,1.56,0.64,1), box-shadow 0.25s ease, background 0.2s ease;
+    user-select: none; -webkit-user-select: none;
+  }
+ 
+  .mi-al-card.is-dragging {
+    cursor: grabbing;
+    transform: translateY(-7px) scale(1.025);
+    background: rgba(212,175,55,0.06);
+    border-color: transparent;
+    animation: golden-border-pulse 1.1s ease-in-out infinite;
+    z-index: 999; position: relative;
+  }
+  .mi-al-card.is-over {
+    transform: translateY(-2px);
+    border-color: rgba(212,175,55,0.3);
+    background: rgba(212,175,55,0.025);
+  }
+  .mi-al-handle { display: flex; flex-direction: column; gap: 3px; padding: 4px 6px; opacity: 0.2; transition: opacity 0.2s; flex-shrink: 0; }
+  .mi-al-card:hover .mi-al-handle, .mi-al-card.is-dragging .mi-al-handle { opacity: 0.55; }
+  .mi-al-handle span { display: block; width: 16px; height: 1.5px; border-radius: 2px; background: #d4af37; }
 `;
-
+ 
 const App = () => {
   const [lang, setLang] = useState('es');
   const [showSplash, setShowSplash] = useState(true);
@@ -447,14 +462,11 @@ const App = () => {
   const [expLevel, setExpLevel] = useState(null);
   const [expStage, setExpStage] = useState(null);
   const [selectedTrack, setSelectedTrack] = useState(null);
-
-
   const [isSuggestion, setIsSuggestion] = useState(false);
   const [isPlaying, setIsPlaying] = useState(false);
   const [selectedTime, setSelectedTime] = useState(null);
   const [currentTime, setCurrentTime] = useState(0);
   const [duration, setDuration] = useState(0);
-  
   const [activeTab, setActiveTab] = useState('catalogo');
   const [showBanner, setShowBanner] = useState(false);
   const [favorites, setFavorites] = useState(() => {
@@ -469,7 +481,14 @@ const App = () => {
   const [sanctuaryError, setSanctuaryError] = useState(false);
   const [activeSanctuaryTool, setActiveSanctuaryTool] = useState(null);
   const [sanctuaryLoading, setSanctuaryLoading] = useState(false);
-
+ 
+  // ── DRAG & DROP ───────────────────────────────────────────────────────────
+  const [favOrder, setFavOrder] = useState([]);
+  const [draggingId, setDraggingId] = useState(null);
+  const [overIdx, setOverIdx] = useState(null);
+  const dragItem = useRef(null);
+  const dragOverItem = useRef(null);
+ 
   const audioRef = useRef(null);
   const sanctuaryMediaRef = useRef(null);
   const timerRef = useRef(null);
@@ -478,15 +497,23 @@ const App = () => {
   const favoritesRef = useRef(favorites);
   const selectedTrackRef = useRef(selectedTrack);
   const t = T[lang];
-
+ 
   useEffect(() => { activeTabRef.current = activeTab; }, [activeTab]);
   useEffect(() => { favoritesRef.current = favorites; }, [favorites]);
   useEffect(() => { selectedTrackRef.current = selectedTrack; }, [selectedTrack]);
-
+ 
+  useEffect(() => {
+    setFavOrder(prev => {
+      const kept  = prev.filter(id => favorites.includes(id));
+      const added = favorites.filter(id => !kept.includes(id));
+      return [...kept, ...added];
+    });
+  }, [favorites]);
+ 
   useEffect(() => {
     try { if (selectedTrack) localStorage.setItem('genora_last_track', JSON.stringify(selectedTrack)); } catch {}
   }, [selectedTrack]);
-
+ 
   useEffect(() => {
     const interval = setInterval(() => {
       if (audioRef.current && isPlaying) {
@@ -495,12 +522,12 @@ const App = () => {
     }, 5000);
     return () => clearInterval(interval);
   }, [isPlaying]);
-
+ 
   useEffect(() => {
     const timer = setTimeout(() => setShowSplash(false), 4500);
     return () => clearTimeout(timer);
   }, []);
-
+ 
   useEffect(() => {
     const check = () => {
       if (reminderTime && reminderTime === getTimeOfDay()) {
@@ -513,7 +540,7 @@ const App = () => {
     const interval = setInterval(check, 60000);
     return () => { clearInterval(interval); if (bannerTimerRef.current) clearTimeout(bannerTimerRef.current); };
   }, [reminderTime]);
-
+ 
   useEffect(() => {
     if (audioRef.current) {
       if (isPlaying) {
@@ -528,24 +555,24 @@ const App = () => {
       }
     }
   }, [isPlaying, selectedTrack, selectedTime]);
-
+ 
   useEffect(() => {
     try { localStorage.setItem('genora_favorites', JSON.stringify(favorites)); } catch {}
   }, [favorites]);
-
+ 
   useEffect(() => {
     try {
       if (reminderTime) localStorage.setItem('genora_reminder_time', reminderTime);
       else localStorage.removeItem('genora_reminder_time');
     } catch {}
   }, [reminderTime]);
-
+ 
   const handleTimeUpdate = () => {
     if (!audioRef.current) return;
     setCurrentTime(audioRef.current.currentTime || 0);
     setDuration(audioRef.current.duration || 0);
   };
-
+ 
   const handleAudioEnded = () => {
     try { localStorage.removeItem('genora_last_time'); } catch {}
     const currentFavs = favoritesRef.current;
@@ -567,27 +594,27 @@ const App = () => {
       }
     } else { setIsPlaying(false); }
   };
-
+ 
   const toggleFavorite = (e, trackId) => {
     e.stopPropagation();
     setFavorites(prev => prev.includes(trackId) ? prev.filter(id => id !== trackId) : [...prev, trackId]);
     if (isSuggestion && selectedTrack?.id === trackId) setIsSuggestion(false);
   };
-
+ 
   const handleReminderSelect = (key) => {
     const val = reminderTime === key ? null : key;
     setReminderTime(val);
     if (val) { setShowBanner(true); if (bannerTimerRef.current) clearTimeout(bannerTimerRef.current); bannerTimerRef.current = setTimeout(() => setShowBanner(false), 10000); }
     else setShowBanner(false);
   };
-
+ 
   const handleSanctuarySubmit = () => {
     if (sanctuaryCode.trim().toUpperCase() === SANCTUARY_CODE) { setSanctuaryUnlocked(true); setSanctuaryError(false); }
     else setSanctuaryError(true);
   };
-
+ 
   const isFavorite = (id) => favorites.includes(id);
-
+ 
   const getAccentColor = () => {
     if (mainMode === 'meditaciones') return '#a855f7';
     if (mainMode === 'experiencias') return '#d4af37';
@@ -596,7 +623,7 @@ const App = () => {
   const accentColor = getAccentColor();
   const goldColor = '#d4af37';
   const violetColor = '#a855f7';
-
+ 
   const handleBack = () => {
     if (mainMode === 'frecuencias') {
       if (freqSub) setFreqSub(null);
@@ -611,30 +638,30 @@ const App = () => {
       else setMainMode(null);
     } else setMainMode(null);
   };
-
+ 
   const handleProgressClick = (e) => {
     if (!audioRef.current || !duration) return;
     const rect = e.currentTarget.getBoundingClientRect();
     audioRef.current.currentTime = ((e.clientX - rect.left) / rect.width) * duration;
   };
-
+ 
   const playTrack = (track, suggestion = false) => {
     setSelectedTrack(track); setIsSuggestion(suggestion); setIsPlaying(true);
   };
-
+ 
   const getReminderText = () => {
     if (reminderTime === 'manana') return t.reminder_set_morning;
     if (reminderTime === 'tarde') return t.reminder_set_afternoon;
     return t.reminder_set_night;
   };
-
+ 
   const LangSwitch = ({ isGold = false, isViolet = false }) => (
     <div className={`lang-switch ${isGold ? 'gold-border' : ''} ${isViolet ? 'violet-border' : ''}`}>
       <button className={`lang-btn ${lang === 'es' ? 'active' : ''} ${isGold && lang === 'es' ? 'gold-text' : ''} ${isViolet && lang === 'es' ? 'violet-text' : ''}`} onClick={() => setLang('es')}>ES</button>
       <button className={`lang-btn ${lang === 'en' ? 'active' : ''} ${isGold && lang === 'en' ? 'gold-text' : ''} ${isViolet && lang === 'en' ? 'violet-text' : ''}`} onClick={() => setLang('en')}>EN</button>
     </div>
   );
-
+ 
   const BottomBar = ({ isGold = false }) => (
     <div className="bottom-bar">
       <button className={`bar-tab ${activeTab === 'catalogo' ? 'active' : ''} ${isGold && activeTab === 'catalogo' ? 'gold-tab' : ''}`} onClick={() => { setActiveTab('catalogo'); setShowSanctuary(false); }}>
@@ -646,7 +673,7 @@ const App = () => {
       </button>
     </div>
   );
-
+ 
   const ReminderSection = () => (
     <div style={{ width: '85%', maxWidth: '340px', margin: '0 auto 24px', padding: '18px', borderRadius: '24px', background: 'rgba(255,255,255,0.02)', border: '1px solid rgba(255,255,255,0.06)' }}>
       <p style={{ fontSize: '10px', letterSpacing: '3px', color: 'rgba(255,255,255,0.3)', textAlign: 'center', marginBottom: '14px', fontWeight: 200 }}>{t.reminder_title}</p>
@@ -660,7 +687,7 @@ const App = () => {
       {reminderTime && <p style={{ fontSize: '10px', color: 'rgba(34,211,238,0.5)', textAlign: 'center', marginTop: '10px', letterSpacing: '1px', fontWeight: 200 }}>{getReminderText()}</p>}
     </div>
   );
-
+ 
   const TrackCard = ({ track, onSelect, isSugg = false }) => (
     <div className={`track-card ${isSugg ? 'suggestion' : ''}`} onClick={() => onSelect(track)} style={{ borderLeft: `4px solid ${accentColor}` }}>
       <div style={{ textAlign: 'left', width: '75%' }}>
@@ -679,7 +706,7 @@ const App = () => {
       </div>
     </div>
   );
-
+ 
   const SessionCard = ({ session, color = 'white', accent = '#22d3ee' }) => (
     <div className={`session-card ${color === 'violet' ? 'violet' : color === 'gold' ? 'gold' : ''}`} style={{ borderLeft: `3px solid ${accent}33` }}>
       <div style={{ fontSize: '13px', color: 'white', fontWeight: 300, marginBottom: '4px' }}>{session.name}</div>
@@ -690,14 +717,14 @@ const App = () => {
       </div>
     </div>
   );
-
+ 
   const ComingSoon = ({ accent = '#22d3ee' }) => (
     <div className="coming-soon-box">
       <div className="coming-soon-icon" style={{ color: accent }}>◈</div>
       {t.coming_soon}
     </div>
   );
-
+ 
   const PageHeader = ({ isGold = false, isViolet = false }) => (
     <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '16px', paddingTop: '10px' }}>
       {mainMode ? (
@@ -710,13 +737,13 @@ const App = () => {
       <LangSwitch isGold={isGold} isViolet={isViolet} />
     </div>
   );
-
+ 
   const ADNOrb = ({ auraClass = 'aura-supernova', filterClass = 'logo-normal', size = '110px' }) => (
     <div style={{ width: size, height: size, borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '20px', transition: 'all 0.5s ease', animation: `${auraClass} 8s infinite ease-in-out` }}>
       <img src="/imagenes/adn-icon.png" className={filterClass} style={{ width: '100%', borderRadius: '50%' }} alt="ADN" />
     </div>
   );
-
+ 
   // ── SPLASH ────────────────────────────────────────────────────────────────
   if (showSplash) {
     return (
@@ -728,7 +755,7 @@ const App = () => {
       </div>
     );
   }
-
+ 
   // ── TEMPLO ────────────────────────────────────────────────────────────────
   if (selectedTrack) {
     const progress = duration > 0 ? (currentTime / duration) * 100 : 0;
@@ -776,7 +803,7 @@ const App = () => {
       </div>
     );
   }
-
+ 
   // ── SANTUARIO ─────────────────────────────────────────────────────────────
   if (showSanctuary) {
     if (sanctuaryUnlocked && activeSanctuaryTool) {
@@ -865,117 +892,121 @@ const App = () => {
       </div>
     );
   }
-
+ 
   // ── MI ALINEACION ─────────────────────────────────────────────────────────
   if (activeTab === 'favoritos') {
-  const orderedTracks = favOrder
-    .map(id => ALL_TRACKS_FLAT.find(tr => tr.id === id))
-    .filter(Boolean);
-
-  const handleDragStart = (e, id, idx) => {
-    dragItem.current = idx;
-    setDraggingId(id);
-    const ghost = document.createElement('div');
-    ghost.style.cssText = 'position:fixed;top:-999px;left:-999px;opacity:0;pointer-events:none';
-    document.body.appendChild(ghost);
-    e.dataTransfer.setDragImage(ghost, 0, 0);
-    e.dataTransfer.effectAllowed = 'move';
-    setTimeout(() => ghost.remove(), 0);
-  };
-
-  const handleDragEnter = (idx) => {
-    if (dragItem.current === null || dragItem.current === idx) return;
-    setFavOrder(prev => {
-      const next = [...prev];
-      const [moved] = next.splice(dragItem.current, 1);
-      next.splice(idx, 0, moved);
-      return next;
-    });
-    dragItem.current = idx;
-    setOverIdx(idx);
-  };
-
-  const handleDragEnd = () => {
-    dragItem.current = null;
-    dragOverItem.current = null;
-    setDraggingId(null);
-    setOverIdx(null);
-  };
-
-  return (
-    <div className="fade-in-smooth" style={{ backgroundColor: '#020617', minHeight: '100vh', color: 'white', padding: '20px', paddingBottom: '80px' }}>
-      <style>{inlineStyles}</style>
-      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '20px', paddingTop: '10px' }}>
-        <img src="/imagenes/genora-logo-white.png" style={{ height: '50px', borderRadius: '50%', objectFit: 'contain' }} alt="Logo" />
-        <LangSwitch />
+    const orderedTracks = favOrder
+      .map(id => ALL_TRACKS_FLAT.find(tr => tr.id === id))
+      .filter(Boolean);
+ 
+    const handleDragStart = (e, id, idx) => {
+      dragItem.current = idx;
+      setDraggingId(id);
+      const ghost = document.createElement('div');
+      ghost.style.cssText = 'position:fixed;top:-999px;left:-999px;opacity:0;pointer-events:none';
+      document.body.appendChild(ghost);
+      e.dataTransfer.setDragImage(ghost, 0, 0);
+      e.dataTransfer.effectAllowed = 'move';
+      setTimeout(() => ghost.remove(), 0);
+    };
+ 
+    const handleDragEnter = (idx) => {
+      if (dragItem.current === null || dragItem.current === idx) return;
+      setFavOrder(prev => {
+        const next = [...prev];
+        const [moved] = next.splice(dragItem.current, 1);
+        next.splice(idx, 0, moved);
+        return next;
+      });
+      dragItem.current = idx;
+      setOverIdx(idx);
+    };
+ 
+    const handleDragEnd = () => {
+      dragItem.current = null;
+      dragOverItem.current = null;
+      setDraggingId(null);
+      setOverIdx(null);
+    };
+ 
+    return (
+      <div className="fade-in-smooth" style={{ backgroundColor: '#020617', minHeight: '100vh', color: 'white', padding: '20px', paddingBottom: '80px' }}>
+        <style>{inlineStyles}</style>
+        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '20px', paddingTop: '10px' }}>
+          <img src="/imagenes/genora-logo-white.png" style={{ height: '50px', borderRadius: '50%', objectFit: 'contain' }} alt="Logo" />
+          <LangSwitch />
+        </div>
+        {showBanner && (
+          <div className="alineacion-banner">
+            <p style={{ fontSize: '11px', letterSpacing: '2px', color: '#22d3ee', margin: 0, fontWeight: 200 }}>{t.banner}</p>
+          </div>
+        )}
+        <p style={{ fontSize: '10px', letterSpacing: '4px', color: 'rgba(255,255,255,0.35)', textAlign: 'center', marginBottom: '20px', fontWeight: 200 }}>
+          {t.my_field}
+        </p>
+        <ReminderSection />
+        {orderedTracks.length === 0 ? (
+          <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', padding: '40px 20px', textAlign: 'center', color: 'rgba(255,255,255,0.25)' }}>
+            <div style={{ fontSize: '40px', marginBottom: '16px' }}>♡</div>
+            <p style={{ fontSize: '12px', letterSpacing: '2px', lineHeight: '1.8', fontWeight: 200 }}>
+              {t.empty_field}<br />{t.empty_sub}
+            </p>
+          </div>
+        ) : (
+          <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+            {orderedTracks.map((track, idx) => {
+              const isDragging = draggingId === track.id;
+              const isOver = overIdx === idx && !isDragging;
+              return (
+                <div
+                  key={track.id}
+                  className={['mi-al-card', isDragging ? 'is-dragging' : '', isOver ? 'is-over' : ''].filter(Boolean).join(' ')}
+                  style={{
+                    borderLeft: isDragging ? '4px solid rgba(212,175,55,0.7)' : `4px solid ${accentColor}`,
+                    animationName: 'glance-sway',
+                    animationDuration: '0.72s',
+                    animationTimingFunction: 'ease-in-out',
+                    animationFillMode: 'both',
+                    animationDelay: `${idx * 65}ms`,
+                  }}
+                  draggable
+                  onDragStart={(e) => handleDragStart(e, track.id, idx)}
+                  onDragEnter={() => handleDragEnter(idx)}
+                  onDragOver={(e) => e.preventDefault()}
+                  onDragEnd={handleDragEnd}
+                >
+                  <div className="mi-al-handle" aria-hidden="true">
+                    <span /><span /><span />
+                  </div>
+                  <div style={{ textAlign: 'left', flex: 1, margin: '0 10px' }}>
+                    <div style={{ fontSize: '14px', color: 'white', fontWeight: 300 }}>{track.name}</div>
+                    <div style={{ fontSize: '10px', color: '#fdfcf5', opacity: 0.6, marginTop: '4px', fontWeight: 200, letterSpacing: '1px' }}>
+                      {t.tracks[track.id] || ''}
+                    </div>
+                  </div>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '4px' }}>
+                    <button
+                      className="heart-btn"
+                      onClick={(e) => toggleFavorite(e, track.id)}
+                      style={{ color: isFavorite(track.id) ? '#ff6b9d' : 'rgba(255,255,255,0.25)' }}
+                    >
+                      {isFavorite(track.id) ? '♥' : '♡'}
+                    </button>
+                    <div style={{ textAlign: 'right' }}>
+                      <div style={{ fontSize: '9px', color: accentColor, opacity: 0.6 }}>{track.hz}</div>
+                      <span style={{ color: accentColor, fontSize: '18px', cursor: 'pointer' }} onClick={() => playTrack(track, false)}>▶</span>
+                    </div>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+        )}
+        <BottomBar />
       </div>
-      {showBanner && (
-        <div className="alineacion-banner">
-          <p style={{ fontSize: '11px', letterSpacing: '2px', color: '#22d3ee', margin: 0, fontWeight: 200 }}>{t.banner}</p>
-        </div>
-      )}
-      <p style={{ fontSize: '10px', letterSpacing: '4px', color: 'rgba(255,255,255,0.35)', textAlign: 'center', marginBottom: '20px', fontWeight: 200 }}>
-        {t.my_field}
-      </p>
-      <ReminderSection />
-      {orderedTracks.length === 0 ? (
-        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', padding: '40px 20px', textAlign: 'center', color: 'rgba(255,255,255,0.25)' }}>
-          <div style={{ fontSize: '40px', marginBottom: '16px' }}>♡</div>
-          <p style={{ fontSize: '12px', letterSpacing: '2px', lineHeight: '1.8', fontWeight: 200 }}>
-            {t.empty_field}<br />{t.empty_sub}
-          </p>
-        </div>
-      ) : (
-        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-          {orderedTracks.map((track, idx) => {
-            const isDragging = draggingId === track.id;
-            const isOver = overIdx === idx && !isDragging;
-            return (
-              <div
-                key={track.id}
-                className={['mi-al-card', 'mi-al-sway', isDragging ? 'is-dragging' : '', isOver ? 'is-over' : ''].filter(Boolean).join(' ')}
-                style={{
-                  '--sway-i': idx,
-                  borderLeft: isDragging ? '4px solid rgba(212,175,55,0.7)' : `4px solid ${accentColor}`,
-                }}
-                draggable
-                onDragStart={(e) => handleDragStart(e, track.id, idx)}
-                onDragEnter={() => handleDragEnter(idx)}
-                onDragOver={(e) => e.preventDefault()}
-                onDragEnd={handleDragEnd}
-              >
-                <div className="mi-al-handle" aria-hidden="true">
-                  <span /><span /><span />
-                </div>
-                <div style={{ textAlign: 'left', flex: 1, margin: '0 10px' }}>
-                  <div style={{ fontSize: '14px', color: 'white', fontWeight: 300 }}>{track.name}</div>
-                  <div style={{ fontSize: '10px', color: '#fdfcf5', opacity: 0.6, marginTop: '4px', fontWeight: 200, letterSpacing: '1px' }}>
-                    {t.tracks[track.id] || ''}
-                  </div>
-                </div>
-                <div style={{ display: 'flex', alignItems: 'center', gap: '4px' }}>
-                  <button
-                    className="heart-btn"
-                    onClick={(e) => toggleFavorite(e, track.id)}
-                    style={{ color: isFavorite(track.id) ? '#ff6b9d' : 'rgba(255,255,255,0.25)' }}
-                  >
-                    {isFavorite(track.id) ? '♥' : '♡'}
-                  </button>
-                  <div style={{ textAlign: 'right' }}>
-                    <div style={{ fontSize: '9px', color: accentColor, opacity: 0.6 }}>{track.hz}</div>
-                    <span style={{ color: accentColor, fontSize: '18px', cursor: 'pointer' }} onClick={() => playTrack(track, false)}>▶</span>
-                  </div>
-                </div>
-              </div>
-            );
-          })}
-        </div>
-      )}
-      <BottomBar />
-    </div>
-  );
-}
-
+    );
+  }
+ 
   // ── CATALOGO PRINCIPAL ────────────────────────────────────────────────────
   return (
     <div className="fade-in-smooth" style={{ backgroundColor: '#020617', minHeight: '100vh', color: 'white', padding: '20px', paddingBottom: '80px' }}>
@@ -988,8 +1019,6 @@ const App = () => {
           filterClass={mainMode === 'experiencias' ? 'logo-filtro-dorado' : mainMode === 'meditaciones' ? 'logo-filtro-violeta' : 'logo-normal'}
           size={!mainMode ? '130px' : '90px'}
         />
-
-        {/* HOME */}
         {!mainMode && (
           <div className="category-stack">
             <h2 style={{ fontSize: '9px', letterSpacing: '5px', color: '#22d3ee', marginBottom: '10px', fontWeight: 200 }}>{t.choose_path}</h2>
@@ -999,8 +1028,6 @@ const App = () => {
             <button className="home-btn sanctuary" onClick={() => { setShowSanctuary(true); setActiveTab('catalogo'); }}>{t.home_buttons.sanctuary}</button>
           </div>
         )}
-
-        {/* FRECUENCIAS — pilares */}
         {mainMode === 'frecuencias' && !freqPillar && (
           <div className="category-stack">
             <p style={{ fontSize: '10px', letterSpacing: '5px', color: '#22d3ee', textAlign: 'center', marginBottom: '16px', fontWeight: 200 }}>{t.home_buttons.frequencies}</p>
@@ -1009,8 +1036,6 @@ const App = () => {
             ))}
           </div>
         )}
-
-        {/* FRECUENCIAS — subcategorias */}
         {mainMode === 'frecuencias' && freqPillar && !freqSub && (
           <div className="category-stack">
             <p style={{ fontSize: '10px', letterSpacing: '4px', color: '#22d3ee', textAlign: 'center', marginBottom: '16px', fontWeight: 200 }}>{t.freq_pillars[freqPillar]}</p>
@@ -1019,8 +1044,6 @@ const App = () => {
             ))}
           </div>
         )}
-
-        {/* FRECUENCIAS — tracks */}
         {mainMode === 'frecuencias' && freqPillar && freqSub && (
           <div className="fade-in-smooth" style={{ width: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
             <p style={{ fontSize: '10px', letterSpacing: '3px', color: '#22d3ee', textAlign: 'center', marginBottom: '16px', fontWeight: 200 }}>{t.pillars[freqPillar]?.subs[freqSub]}</p>
@@ -1030,8 +1053,6 @@ const App = () => {
             }
           </div>
         )}
-
-        {/* MEDITACIONES — pilares */}
         {mainMode === 'meditaciones' && !medPillar && (
           <div className="category-stack">
             <p style={{ fontSize: '10px', letterSpacing: '5px', color: violetColor, textAlign: 'center', marginBottom: '16px', fontWeight: 200 }}>{t.home_buttons.meditations}</p>
@@ -1040,16 +1061,12 @@ const App = () => {
             ))}
           </div>
         )}
-
-        {/* MEDITACIONES — sesiones */}
         {mainMode === 'meditaciones' && medPillar && (
           <div className="fade-in-smooth" style={{ width: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
             <p style={{ fontSize: '10px', letterSpacing: '3px', color: violetColor, textAlign: 'center', marginBottom: '16px', fontWeight: 200 }}>{t.med_pillars[medPillar]}</p>
             {MED_DATA[medPillar].sessions.map(s => <SessionCard key={s.id} session={s} color="violet" accent={violetColor} />)}
           </div>
         )}
-
-        {/* EXPERIENCIAS — niveles */}
         {mainMode === 'experiencias' && !expLevel && (
           <div className="category-stack">
             <p className="gold-title" style={{ fontSize: '10px', letterSpacing: '5px', textAlign: 'center', marginBottom: '16px', fontWeight: 200 }}>{t.home_buttons.experiences}</p>
@@ -1069,8 +1086,6 @@ const App = () => {
             ))}
           </div>
         )}
-
-        {/* EXPERIENCIAS — THE UNVEILING — etapas */}
         {mainMode === 'experiencias' && expLevel === 'UNVEILING' && !expStage && (
           <div className="category-stack">
             <p className="gold-title" style={{ fontSize: '10px', letterSpacing: '4px', textAlign: 'center', marginBottom: '4px', fontWeight: 200 }}>{t.exp_levels.UNVEILING}</p>
@@ -1083,8 +1098,6 @@ const App = () => {
             ))}
           </div>
         )}
-
-        {/* EXPERIENCIAS — THE UNVEILING — sesiones de etapa */}
         {mainMode === 'experiencias' && expLevel === 'UNVEILING' && expStage && (
           <div className="fade-in-smooth" style={{ width: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
             <p className="gold-title" style={{ fontSize: '10px', letterSpacing: '3px', textAlign: 'center', marginBottom: '4px', fontWeight: 200 }}>{t.unveiling_stages[expStage]}</p>
@@ -1092,8 +1105,6 @@ const App = () => {
             {EXP_DATA.UNVEILING[expStage].map(s => <SessionCard key={s.id} session={s} color="gold" accent={goldColor} />)}
           </div>
         )}
-
-        {/* EXPERIENCIAS — otros niveles */}
         {mainMode === 'experiencias' && expLevel && expLevel !== 'UNVEILING' && (
           <div className="fade-in-smooth" style={{ width: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
             <p className="gold-title" style={{ fontSize: '10px', letterSpacing: '3px', textAlign: 'center', marginBottom: '4px', fontWeight: 200 }}>{t.exp_levels[expLevel]}</p>
@@ -1101,12 +1112,10 @@ const App = () => {
             {(EXP_DATA[expLevel] || []).map(s => <SessionCard key={s.id} session={s} color="gold" accent={goldColor} />)}
           </div>
         )}
-
       </div>
       <BottomBar />
     </div>
   );
 };
-
+ 
 export default App;
-
