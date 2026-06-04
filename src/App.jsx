@@ -161,14 +161,6 @@ const SANCTUARY_TOOLS = [
   { id: "frecuencia-celular-001", name: "Regeneracion Celular — Campo Cuantico", type: "audio", description: "Soporte vibracional para procesos de sanacion celular.", duration: "45 min", url: "https://res.cloudinary.com/TU_CLOUD_NAME/video/upload/v1/genora/frecuencias/frecuencia-celular-001.wav" },
   { id: "video-meditacion-001", name: "Meditacion Guiada — Matrices Perinatales", type: "video", description: "Proceso guiado para liberacion de matrices perinatales.", duration: "35 min", url: "https://res.cloudinary.com/TU_CLOUD_NAME/video/upload/v1/genora/videos/meditacion-matrices-001.mp4", thumbnail: "" },
   { id: "frecuencia-ancestral-001", name: "Liberacion Ancestral — Limpieza de Campo", type: "audio", description: "Frecuencia para desbloqueo de patrones heredados.", duration: "55 min", url: "https://res.cloudinary.com/TU_CLOUD_NAME/video/upload/v1/genora/frecuencias/frecuencia-ancestral-001.wav" },
-{
-  id: "atraer-clientes-dinero",
-  name: "Atraer Clientes y Dinero",
-  type: "audio",
-  description: "Frecuencia de alta vibracion para activar el flujo de abundancia y prosperidad.",
-  duration: "60 min",
-  url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/atraer-clientes-dinero.wav"
-},
 ];
 
 const FREQ_TRACKS = {
@@ -876,31 +868,113 @@ const App = () => {
 
   // ── MI ALINEACION ─────────────────────────────────────────────────────────
   if (activeTab === 'favoritos') {
-    const favTracks = ALL_TRACKS_FLAT.filter(tr => favorites.includes(tr.id));
-    return (
-      <div className="fade-in-smooth" style={{ backgroundColor: '#020617', minHeight: '100vh', color: 'white', padding: '20px', paddingBottom: '80px' }}>
-        <style>{inlineStyles}</style>
-        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '20px', paddingTop: '10px' }}>
-          <img src="/imagenes/genora-logo-white.png" style={{ height: '50px', borderRadius: '50%', objectFit: 'contain' }} alt="Logo" />
-          <LangSwitch />
-        </div>
-        {showBanner && <div className="alineacion-banner"><p style={{ fontSize: '11px', letterSpacing: '2px', color: '#22d3ee', margin: 0, fontWeight: 200 }}>{t.banner}</p></div>}
-        <p style={{ fontSize: '10px', letterSpacing: '4px', color: 'rgba(255,255,255,0.35)', textAlign: 'center', marginBottom: '20px', fontWeight: 200 }}>{t.my_field}</p>
-        <ReminderSection />
-        {favTracks.length === 0 ? (
-          <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', padding: '40px 20px', textAlign: 'center', color: 'rgba(255,255,255,0.25)' }}>
-            <div style={{ fontSize: '40px', marginBottom: '16px' }}>♡</div>
-            <p style={{ fontSize: '12px', letterSpacing: '2px', lineHeight: '1.8', fontWeight: 200 }}>{t.empty_field}<br />{t.empty_sub}</p>
-          </div>
-        ) : (
-          <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-            {favTracks.map((track) => <TrackCard key={track.id} track={track} onSelect={(tr) => playTrack(tr, false)} />)}
-          </div>
-        )}
-        <BottomBar />
+  const orderedTracks = favOrder
+    .map(id => ALL_TRACKS_FLAT.find(tr => tr.id === id))
+    .filter(Boolean);
+
+  const handleDragStart = (e, id, idx) => {
+    dragItem.current = idx;
+    setDraggingId(id);
+    const ghost = document.createElement('div');
+    ghost.style.cssText = 'position:fixed;top:-999px;left:-999px;opacity:0;pointer-events:none';
+    document.body.appendChild(ghost);
+    e.dataTransfer.setDragImage(ghost, 0, 0);
+    e.dataTransfer.effectAllowed = 'move';
+    setTimeout(() => ghost.remove(), 0);
+  };
+
+  const handleDragEnter = (idx) => {
+    if (dragItem.current === null || dragItem.current === idx) return;
+    setFavOrder(prev => {
+      const next = [...prev];
+      const [moved] = next.splice(dragItem.current, 1);
+      next.splice(idx, 0, moved);
+      return next;
+    });
+    dragItem.current = idx;
+    setOverIdx(idx);
+  };
+
+  const handleDragEnd = () => {
+    dragItem.current = null;
+    dragOverItem.current = null;
+    setDraggingId(null);
+    setOverIdx(null);
+  };
+
+  return (
+    <div className="fade-in-smooth" style={{ backgroundColor: '#020617', minHeight: '100vh', color: 'white', padding: '20px', paddingBottom: '80px' }}>
+      <style>{inlineStyles}</style>
+      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '20px', paddingTop: '10px' }}>
+        <img src="/imagenes/genora-logo-white.png" style={{ height: '50px', borderRadius: '50%', objectFit: 'contain' }} alt="Logo" />
+        <LangSwitch />
       </div>
-    );
-  }
+      {showBanner && (
+        <div className="alineacion-banner">
+          <p style={{ fontSize: '11px', letterSpacing: '2px', color: '#22d3ee', margin: 0, fontWeight: 200 }}>{t.banner}</p>
+        </div>
+      )}
+      <p style={{ fontSize: '10px', letterSpacing: '4px', color: 'rgba(255,255,255,0.35)', textAlign: 'center', marginBottom: '20px', fontWeight: 200 }}>
+        {t.my_field}
+      </p>
+      <ReminderSection />
+      {orderedTracks.length === 0 ? (
+        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', padding: '40px 20px', textAlign: 'center', color: 'rgba(255,255,255,0.25)' }}>
+          <div style={{ fontSize: '40px', marginBottom: '16px' }}>♡</div>
+          <p style={{ fontSize: '12px', letterSpacing: '2px', lineHeight: '1.8', fontWeight: 200 }}>
+            {t.empty_field}<br />{t.empty_sub}
+          </p>
+        </div>
+      ) : (
+        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+          {orderedTracks.map((track, idx) => {
+            const isDragging = draggingId === track.id;
+            const isOver = overIdx === idx && !isDragging;
+            return (
+              <div
+                key={track.id}
+                className={['mi-al-card', 'mi-al-sway', isDragging ? 'is-dragging' : '', isOver ? 'is-over' : ''].filter(Boolean).join(' ')}
+                style={{
+                  '--sway-i': idx,
+                  borderLeft: isDragging ? '4px solid rgba(212,175,55,0.7)' : `4px solid ${accentColor}`,
+                }}
+                draggable
+                onDragStart={(e) => handleDragStart(e, track.id, idx)}
+                onDragEnter={() => handleDragEnter(idx)}
+                onDragOver={(e) => e.preventDefault()}
+                onDragEnd={handleDragEnd}
+              >
+                <div className="mi-al-handle" aria-hidden="true">
+                  <span /><span /><span />
+                </div>
+                <div style={{ textAlign: 'left', flex: 1, margin: '0 10px' }}>
+                  <div style={{ fontSize: '14px', color: 'white', fontWeight: 300 }}>{track.name}</div>
+                  <div style={{ fontSize: '10px', color: '#fdfcf5', opacity: 0.6, marginTop: '4px', fontWeight: 200, letterSpacing: '1px' }}>
+                    {t.tracks[track.id] || ''}
+                  </div>
+                </div>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '4px' }}>
+                  <button
+                    className="heart-btn"
+                    onClick={(e) => toggleFavorite(e, track.id)}
+                    style={{ color: isFavorite(track.id) ? '#ff6b9d' : 'rgba(255,255,255,0.25)' }}
+                  >
+                    {isFavorite(track.id) ? '♥' : '♡'}
+                  </button>
+                  <div style={{ textAlign: 'right' }}>
+                    <div style={{ fontSize: '9px', color: accentColor, opacity: 0.6 }}>{track.hz}</div>
+                    <span style={{ color: accentColor, fontSize: '18px', cursor: 'pointer' }} onClick={() => playTrack(track, false)}>▶</span>
+                  </div>
+                </div>
+              </div>
+            );
+          })}
+        </div>
+      )}
+      <BottomBar />
+    </div>
+  );
+}
 
   // ── CATALOGO PRINCIPAL ────────────────────────────────────────────────────
   return (
