@@ -516,10 +516,11 @@ const App = () => {
       const cards = Array.from(list.querySelectorAll('[data-card]'));
       let newIdx = dragItem.current;
       cards.forEach((card, i) => {
+        if (i === dragItem.current) return;
         const rect = card.getBoundingClientRect();
-        const midY = rect.top + rect.height / 2;
-        if (touchY > midY && i > dragItem.current) newIdx = i;
-        if (touchY < midY && i < dragItem.current) newIdx = i;
+        const threshold = rect.height * 0.3;
+        if (i > dragItem.current && touchY > rect.top + threshold) newIdx = i;
+        if (i < dragItem.current && touchY < rect.bottom - threshold) newIdx = i;
       });
       if (newIdx !== touchCurrentIdx.current) {
         const currentOrder = favOrderRef.current;
