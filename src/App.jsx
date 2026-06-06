@@ -472,6 +472,9 @@ const App = () => {
   const [sanctuaryError, setSanctuaryError] = useState(false);
   const [activeSanctuaryTool, setActiveSanctuaryTool] = useState(null);
   const [sanctuaryLoading, setSanctuaryLoading] = useState(false);
+  const [sanctuaryPlaying, setSanctuaryPlaying] = useState(false);
+  const [sanctuaryCurrentTime, setSanctuaryCurrentTime] = useState(0);
+  const [sanctuaryDuration, setSanctuaryDuration] = useState(0);
   // ── DRAG & DROP ───────────────────────────────────────────────────────────
   const [favOrder, setFavOrder] = useState([]);
   const [draggingId, setDraggingId] = useState(null);
@@ -768,31 +771,91 @@ const App = () => {
   if (showSanctuary) {
     if (sanctuaryUnlocked && activeSanctuaryTool) {
       const tool = activeSanctuaryTool;
+      const sanctuaryProgress = sanctuaryDuration > 0 ? (sanctuaryCurrentTime / sanctuaryDuration) * 100 : 0;
+
+      const handleSanctuaryPlayPause = () => {
+        if (!sanctuaryMediaRef.current) return;
+        if (sanctuaryPlaying) {
+          sanctuaryMediaRef.current.pause();
+          setSanctuaryPlaying(false);
+        } else {
+          sanctuaryMediaRef.current.play().catch(() => {});
+          setSanctuaryPlaying(true);
+        }
+      };
+
+      const handleSanctuaryProgress = (e) => {
+        if (!sanctuaryMediaRef.current || !sanctuaryDuration) return;
+        const rect = e.currentTarget.getBoundingClientRect();
+        const pct = (e.clientX - rect.left) / rect.width;
+        sanctuaryMediaRef.current.currentTime = pct * sanctuaryDuration;
+      };
+
       return (
         <div className="fade-in-smooth" style={{ backgroundColor: '#020617', minHeight: '100vh', color: 'white', padding: '20px', paddingBottom: '80px' }}>
           <style>{inlineStyles}</style>
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '30px', paddingTop: '10px' }}>
-            <button onClick={() => setActiveSanctuaryTool(null)} style={{ background: 'none', border: 'none', color: goldColor, fontSize: '40px', cursor: 'pointer', lineHeight: 1, padding: 0 }}>&#8249;</button>
+            <button onClick={() => { setActiveSanctuaryTool(null); setSanctuaryPlaying(false); setSanctuaryCurrentTime(0); setSanctuaryDuration(0); }} style={{ background: 'none', border: 'none', color: goldColor, fontSize: '40px', cursor: 'pointer', lineHeight: 1, padding: 0 }}>&#8249;</button>
             <LangSwitch isGold />
           </div>
           <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center', paddingBottom: '40px' }}>
-            <ADNOrb auraClass="aura-gold-santuario" filterClass="logo-filtro-dorado" size="120px" />
+            <div style={{ width: '160px', height: '160px', marginBottom: '28px', display: 'flex', alignItems: 'center', justifyContent: 'center', animation: sanctuaryPlaying ? 'logo-breathe 4s infinite' : 'none' }}>
+              <img src="/imagenes/adn-icon.png" className="logo-filtro-dorado" style={{ width: '100%', borderRadius: '50%' }} alt="ADN" />
+            </div>
             <h2 className="gold-title" style={{ fontSize: '14px', letterSpacing: '4px', textTransform: 'uppercase', fontWeight: 200, marginBottom: '8px' }}>{tool.name}</h2>
             <p className="gold-sub" style={{ fontSize: '11px', letterSpacing: '1px', fontWeight: 200, marginBottom: '6px', maxWidth: '280px', lineHeight: 1.7 }}>{tool.description}</p>
-            <p className="gold-micro" style={{ fontSize: '10px', letterSpacing: '2px', fontWeight: 200, marginBottom: '24px' }}>{tool.duration}</p>
+            <p className="gold-micro" style={{ fontSize: '10px', letterSpacing: '2px', fontWeight: 200, marginBottom: '28px' }}>{tool.duration}</p>
             {sanctuaryLoading && <div className="streaming-indicator">◈ {t.sanctuary_loading}</div>}
+
             {tool.type === 'audio' && (
-              <audio ref={sanctuaryMediaRef} src={tool.url} controls preload="metadata"
-                onCanPlay={() => setSanctuaryLoading(false)} onLoadStart={() => setSanctuaryLoading(true)}
-                style={{ width: '85%', maxWidth: '340px', borderRadius: '30px', accentColor: goldColor }} />
+              <audio
+                ref={sanctuaryMediaRef}
+                src={tool.url}
+                preload="metadata"
+                onCanPlay={() => setSanctuaryLoading(false)}
+                onLoadStart={() => setSanctuaryLoading(true)}
+                onTimeUpdate={() => { if (sanctuaryMediaRef.current) { setSanctuaryCurrentTime(sanctuaryMediaRef.current.currentTime || 0); setSanctuaryDuration(sanctuaryMediaRef.current.duration || 0); }}}
+                onLoadedMetadata={() => { if (sanctuaryMediaRef.current) setSanctuaryDuration(sanctuaryMediaRef.current.duration || 0); }}
+                onEnded={() => { setSanctuaryPlaying(false); setSanctuaryCurrentTime(0); }}
+              />
             )}
             {tool.type === 'video' && (
-              <div style={{ width: '90%', maxWidth: '360px', borderRadius: '20px', overflow: 'hidden', border: `1px solid ${goldColor}33` }}>
-                <video ref={sanctuaryMediaRef} src={tool.url} poster={tool.thumbnail || ''} controls preload="metadata"
-                  playsInline onCanPlay={() => setSanctuaryLoading(false)} onLoadStart={() => setSanctuaryLoading(true)}
-                  className="sanctuary-video" style={{ display: 'block' }} />
-              </div>
+              <video
+                ref={sanctuaryMediaRef}
+                src={tool.url}
+                poster={tool.thumbnail || ''}
+                preload="metadata"
+                playsInline
+                onCanPlay={() => setSanctuaryLoading(false)}
+                onLoadStart={() => setSanctuaryLoading(true)}
+                onTimeUpdate={() => { if (sanctuaryMediaRef.current) { setSanctuaryCurrentTime(sanctuaryMediaRef.current.currentTime || 0); setSanctuaryDuration(sanctuaryMediaRef.current.duration || 0); }}}
+                onLoadedMetadata={() => { if (sanctuaryMediaRef.current) setSanctuaryDuration(sanctuaryMediaRef.current.duration || 0); }}
+                onEnded={() => { setSanctuaryPlaying(false); setSanctuaryCurrentTime(0); }}
+                style={{ display: 'none' }}
+              />
             )}
+
+            <div style={{ width: '80%', maxWidth: '300px', marginBottom: '32px' }}>
+              <div
+                onClick={handleSanctuaryProgress}
+                style={{ width: '100%', height: '2px', background: 'rgba(212,175,55,0.15)', borderRadius: '2px', cursor: 'pointer', margin: '0 0 8px' }}
+              >
+                <div style={{ width: `${sanctuaryProgress}%`, height: '100%', borderRadius: '2px', background: 'linear-gradient(90deg, #c9a227, #d4af37)', transition: 'width 0.5s linear' }} />
+              </div>
+              <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+                <span style={{ fontSize: '10px', color: 'rgba(212,175,55,0.5)', letterSpacing: '1px' }}>{formatTime(sanctuaryCurrentTime)}</span>
+                <span style={{ fontSize: '10px', color: 'rgba(212,175,55,0.5)', letterSpacing: '1px' }}>{formatTime(sanctuaryDuration)}</span>
+              </div>
+            </div>
+
+            <button
+              onClick={handleSanctuaryPlayPause}
+              style={{ width: '85px', height: '85px', borderRadius: '50%', border: '1px solid rgba(212,175,55,0.6)', background: 'rgba(212,175,55,0.06)', display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer', transition: 'all 0.3s ease' }}
+            >
+              <span style={{ fontSize: '28px', color: '#d4af37', textShadow: '0 0 12px rgba(212,175,55,0.5)' }}>
+                {sanctuaryPlaying ? '||' : '▶'}
+              </span>
+            </button>
           </div>
           <BottomBar isGold />
         </div>
