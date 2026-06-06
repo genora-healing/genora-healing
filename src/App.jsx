@@ -1,5 +1,8 @@
+# App.jsx — GENORA Healing
+*Touch Events + Frecuencias S3 — Santuario Genora*
+
+```jsx
 import React, { useState, useEffect, useRef } from 'react';
- 
 const T = {
   es: {
     splash_title: "RESONANCIA ORIGEN",
@@ -154,15 +157,15 @@ const T = {
     }
   }
 };
- 
 const SANCTUARY_CODE = "GENORA2026";
 const SANCTUARY_TOOLS = [
   { id: "frecuencia-adn-001", name: "Frecuencia ADN — Activacion Primaria", type: "audio", description: "Frecuencia de alta fidelidad para activacion genetica profunda.", duration: "60 min", url: "https://res.cloudinary.com/TU_CLOUD_NAME/video/upload/v1/genora/frecuencias/frecuencia-adn-001.wav" },
   { id: "frecuencia-celular-001", name: "Regeneracion Celular — Campo Cuantico", type: "audio", description: "Soporte vibracional para procesos de sanacion celular.", duration: "45 min", url: "https://res.cloudinary.com/TU_CLOUD_NAME/video/upload/v1/genora/frecuencias/frecuencia-celular-001.wav" },
   { id: "video-meditacion-001", name: "Meditacion Guiada — Matrices Perinatales", type: "video", description: "Proceso guiado para liberacion de matrices perinatales.", duration: "35 min", url: "https://res.cloudinary.com/TU_CLOUD_NAME/video/upload/v1/genora/videos/meditacion-matrices-001.mp4", thumbnail: "" },
   { id: "frecuencia-ancestral-001", name: "Liberacion Ancestral — Limpieza de Campo", type: "audio", description: "Frecuencia para desbloqueo de patrones heredados.", duration: "55 min", url: "https://res.cloudinary.com/TU_CLOUD_NAME/video/upload/v1/genora/frecuencias/frecuencia-ancestral-001.wav" },
+  { id: "atraer-clientes-dinero", name: "Atraer Clientes & Dinero", type: "audio", description: "Frecuencia de alta gama para activar el flujo de abundancia, clientes y prosperidad.", duration: "60 min", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/atraer-clientes-dinero.wav" },
+  { id: "ganar-dinero-tener-buena-suerte", name: "Ganar Dinero & Buena Suerte", type: "audio", description: "Frecuencia vibracional para sintonizar con la buena fortuna y la expansion financiera.", duration: "60 min", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/ganar-dinero-tener-buena-suerte.wav" },
 ];
- 
 const FREQ_TRACKS = {
   MENTE: {
     "APRENDIZAJE": [
@@ -199,9 +202,7 @@ const FREQ_TRACKS = {
   EXPERIENCIAS_G: { "SESIONES": [], "RITUALES": [], "CEREMONIAS": [] },
   ARMONIZACION: { "ADN": [], "CAMPOS": [], "CELULAR": [] }
 };
- 
 const ALL_TRACKS_FLAT = Object.values(FREQ_TRACKS).flatMap(p => Object.values(p).flat()).filter(t => t.url);
- 
 const MED_DATA = {
   LINAJE: { sessions: [
     { id: "crimson-genesis", name: "Crimson Genesis", sub: "Sanacion del Linaje y Memorias Profundas", desc: "Exploracion de emociones profundas, memorias ancestrales y patrones grabados en las capas geneticas del ADN." },
@@ -216,7 +217,6 @@ const MED_DATA = {
     { id: "obsidian-light", name: "Obsidian Light", sub: "Transmutacion y Liberacion de Densidades", desc: "Proceso de limpieza energetica profunda para favorecer la liberacion, transmutacion y restauracion del equilibrio interno." }
   ]}
 };
- 
 const EXP_DATA = {
   UNVEILING: {
     TERRESTRE: [
@@ -267,21 +267,18 @@ const EXP_DATA = {
     { id: "omnipotencia", name: "Virtud de la Omnipotencia", desc: "Integracion del potencial creador ilimitado del ser." }
   ]
 };
- 
 const formatTime = (secs) => {
   if (!secs || isNaN(secs) || !isFinite(secs)) return '00:00';
   const m = Math.floor(secs / 60);
   const s = Math.floor(secs % 60);
   return `${String(m).padStart(2, '0')}:${String(s).padStart(2, '0')}`;
 };
- 
 const getTimeOfDay = () => {
   const h = new Date().getHours();
   if (h >= 5 && h < 12) return 'manana';
   if (h >= 12 && h < 19) return 'tarde';
   return 'noche';
 };
- 
 const inlineStyles = `
   @keyframes logo-breathe { 0%, 100% { transform: scale(1); opacity: 0.95; } 50% { transform: scale(1.05); opacity: 1; } }
   @keyframes aura-supernova {
@@ -433,7 +430,6 @@ const inlineStyles = `
     transition: transform 0.25s cubic-bezier(0.34,1.56,0.64,1), box-shadow 0.25s ease, background 0.2s ease;
     user-select: none; -webkit-user-select: none;
   }
- 
   .mi-al-card.is-dragging {
     cursor: grabbing;
     transform: translateY(-7px) scale(1.025);
@@ -451,7 +447,6 @@ const inlineStyles = `
   .mi-al-card:hover .mi-al-handle, .mi-al-card.is-dragging .mi-al-handle { opacity: 0.55; }
   .mi-al-handle span { display: block; width: 16px; height: 1.5px; border-radius: 2px; background: #d4af37; }
 `;
- 
 const App = () => {
   const [lang, setLang] = useState('es');
   const [showSplash, setShowSplash] = useState(true);
@@ -481,14 +476,13 @@ const App = () => {
   const [sanctuaryError, setSanctuaryError] = useState(false);
   const [activeSanctuaryTool, setActiveSanctuaryTool] = useState(null);
   const [sanctuaryLoading, setSanctuaryLoading] = useState(false);
- 
   // ── DRAG & DROP ───────────────────────────────────────────────────────────
   const [favOrder, setFavOrder] = useState([]);
   const [draggingId, setDraggingId] = useState(null);
   const [overIdx, setOverIdx] = useState(null);
   const dragItem = useRef(null);
-  const dragOverItem = useRef(null);
- 
+  const touchStartY = useRef(null);
+  const touchCurrentIdx = useRef(null);
   const audioRef = useRef(null);
   const sanctuaryMediaRef = useRef(null);
   const timerRef = useRef(null);
@@ -497,11 +491,9 @@ const App = () => {
   const favoritesRef = useRef(favorites);
   const selectedTrackRef = useRef(selectedTrack);
   const t = T[lang];
- 
   useEffect(() => { activeTabRef.current = activeTab; }, [activeTab]);
   useEffect(() => { favoritesRef.current = favorites; }, [favorites]);
   useEffect(() => { selectedTrackRef.current = selectedTrack; }, [selectedTrack]);
- 
   useEffect(() => {
     setFavOrder(prev => {
       const kept  = prev.filter(id => favorites.includes(id));
@@ -509,11 +501,9 @@ const App = () => {
       return [...kept, ...added];
     });
   }, [favorites]);
- 
   useEffect(() => {
     try { if (selectedTrack) localStorage.setItem('genora_last_track', JSON.stringify(selectedTrack)); } catch {}
   }, [selectedTrack]);
- 
   useEffect(() => {
     const interval = setInterval(() => {
       if (audioRef.current && isPlaying) {
@@ -522,12 +512,10 @@ const App = () => {
     }, 5000);
     return () => clearInterval(interval);
   }, [isPlaying]);
- 
   useEffect(() => {
     const timer = setTimeout(() => setShowSplash(false), 4500);
     return () => clearTimeout(timer);
   }, []);
- 
   useEffect(() => {
     const check = () => {
       if (reminderTime && reminderTime === getTimeOfDay()) {
@@ -540,7 +528,6 @@ const App = () => {
     const interval = setInterval(check, 60000);
     return () => { clearInterval(interval); if (bannerTimerRef.current) clearTimeout(bannerTimerRef.current); };
   }, [reminderTime]);
- 
   useEffect(() => {
     if (audioRef.current) {
       if (isPlaying) {
@@ -555,24 +542,20 @@ const App = () => {
       }
     }
   }, [isPlaying, selectedTrack, selectedTime]);
- 
   useEffect(() => {
     try { localStorage.setItem('genora_favorites', JSON.stringify(favorites)); } catch {}
   }, [favorites]);
- 
   useEffect(() => {
     try {
       if (reminderTime) localStorage.setItem('genora_reminder_time', reminderTime);
       else localStorage.removeItem('genora_reminder_time');
     } catch {}
   }, [reminderTime]);
- 
   const handleTimeUpdate = () => {
     if (!audioRef.current) return;
     setCurrentTime(audioRef.current.currentTime || 0);
     setDuration(audioRef.current.duration || 0);
   };
- 
   const handleAudioEnded = () => {
     try { localStorage.removeItem('genora_last_time'); } catch {}
     const currentFavs = favoritesRef.current;
@@ -594,27 +577,22 @@ const App = () => {
       }
     } else { setIsPlaying(false); }
   };
- 
   const toggleFavorite = (e, trackId) => {
     e.stopPropagation();
     setFavorites(prev => prev.includes(trackId) ? prev.filter(id => id !== trackId) : [...prev, trackId]);
     if (isSuggestion && selectedTrack?.id === trackId) setIsSuggestion(false);
   };
- 
   const handleReminderSelect = (key) => {
     const val = reminderTime === key ? null : key;
     setReminderTime(val);
     if (val) { setShowBanner(true); if (bannerTimerRef.current) clearTimeout(bannerTimerRef.current); bannerTimerRef.current = setTimeout(() => setShowBanner(false), 10000); }
     else setShowBanner(false);
   };
- 
   const handleSanctuarySubmit = () => {
     if (sanctuaryCode.trim().toUpperCase() === SANCTUARY_CODE) { setSanctuaryUnlocked(true); setSanctuaryError(false); }
     else setSanctuaryError(true);
   };
- 
   const isFavorite = (id) => favorites.includes(id);
- 
   const getAccentColor = () => {
     if (mainMode === 'meditaciones') return '#a855f7';
     if (mainMode === 'experiencias') return '#d4af37';
@@ -623,7 +601,6 @@ const App = () => {
   const accentColor = getAccentColor();
   const goldColor = '#d4af37';
   const violetColor = '#a855f7';
- 
   const handleBack = () => {
     if (mainMode === 'frecuencias') {
       if (freqSub) setFreqSub(null);
@@ -638,30 +615,25 @@ const App = () => {
       else setMainMode(null);
     } else setMainMode(null);
   };
- 
   const handleProgressClick = (e) => {
     if (!audioRef.current || !duration) return;
     const rect = e.currentTarget.getBoundingClientRect();
     audioRef.current.currentTime = ((e.clientX - rect.left) / rect.width) * duration;
   };
- 
   const playTrack = (track, suggestion = false) => {
     setSelectedTrack(track); setIsSuggestion(suggestion); setIsPlaying(true);
   };
- 
   const getReminderText = () => {
     if (reminderTime === 'manana') return t.reminder_set_morning;
     if (reminderTime === 'tarde') return t.reminder_set_afternoon;
     return t.reminder_set_night;
   };
- 
   const LangSwitch = ({ isGold = false, isViolet = false }) => (
     <div className={`lang-switch ${isGold ? 'gold-border' : ''} ${isViolet ? 'violet-border' : ''}`}>
       <button className={`lang-btn ${lang === 'es' ? 'active' : ''} ${isGold && lang === 'es' ? 'gold-text' : ''} ${isViolet && lang === 'es' ? 'violet-text' : ''}`} onClick={() => setLang('es')}>ES</button>
       <button className={`lang-btn ${lang === 'en' ? 'active' : ''} ${isGold && lang === 'en' ? 'gold-text' : ''} ${isViolet && lang === 'en' ? 'violet-text' : ''}`} onClick={() => setLang('en')}>EN</button>
     </div>
   );
- 
   const BottomBar = ({ isGold = false }) => (
     <div className="bottom-bar">
       <button className={`bar-tab ${activeTab === 'catalogo' ? 'active' : ''} ${isGold && activeTab === 'catalogo' ? 'gold-tab' : ''}`} onClick={() => { setActiveTab('catalogo'); setShowSanctuary(false); }}>
@@ -673,7 +645,6 @@ const App = () => {
       </button>
     </div>
   );
- 
   const ReminderSection = () => (
     <div style={{ width: '85%', maxWidth: '340px', margin: '0 auto 24px', padding: '18px', borderRadius: '24px', background: 'rgba(255,255,255,0.02)', border: '1px solid rgba(255,255,255,0.06)' }}>
       <p style={{ fontSize: '10px', letterSpacing: '3px', color: 'rgba(255,255,255,0.3)', textAlign: 'center', marginBottom: '14px', fontWeight: 200 }}>{t.reminder_title}</p>
@@ -687,7 +658,6 @@ const App = () => {
       {reminderTime && <p style={{ fontSize: '10px', color: 'rgba(34,211,238,0.5)', textAlign: 'center', marginTop: '10px', letterSpacing: '1px', fontWeight: 200 }}>{getReminderText()}</p>}
     </div>
   );
- 
   const TrackCard = ({ track, onSelect, isSugg = false }) => (
     <div className={`track-card ${isSugg ? 'suggestion' : ''}`} onClick={() => onSelect(track)} style={{ borderLeft: `4px solid ${accentColor}` }}>
       <div style={{ textAlign: 'left', width: '75%' }}>
@@ -706,7 +676,6 @@ const App = () => {
       </div>
     </div>
   );
- 
   const SessionCard = ({ session, color = 'white', accent = '#22d3ee' }) => (
     <div className={`session-card ${color === 'violet' ? 'violet' : color === 'gold' ? 'gold' : ''}`} style={{ borderLeft: `3px solid ${accent}33` }}>
       <div style={{ fontSize: '13px', color: 'white', fontWeight: 300, marginBottom: '4px' }}>{session.name}</div>
@@ -717,14 +686,12 @@ const App = () => {
       </div>
     </div>
   );
- 
   const ComingSoon = ({ accent = '#22d3ee' }) => (
     <div className="coming-soon-box">
       <div className="coming-soon-icon" style={{ color: accent }}>◈</div>
       {t.coming_soon}
     </div>
   );
- 
   const PageHeader = ({ isGold = false, isViolet = false }) => (
     <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '16px', paddingTop: '10px' }}>
       {mainMode ? (
@@ -737,13 +704,11 @@ const App = () => {
       <LangSwitch isGold={isGold} isViolet={isViolet} />
     </div>
   );
- 
   const ADNOrb = ({ auraClass = 'aura-supernova', filterClass = 'logo-normal', size = '110px' }) => (
     <div style={{ width: size, height: size, borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '20px', transition: 'all 0.5s ease', animation: `${auraClass} 8s infinite ease-in-out` }}>
       <img src="/imagenes/adn-icon.png" className={filterClass} style={{ width: '100%', borderRadius: '50%' }} alt="ADN" />
     </div>
   );
- 
   // ── SPLASH ────────────────────────────────────────────────────────────────
   if (showSplash) {
     return (
@@ -755,7 +720,6 @@ const App = () => {
       </div>
     );
   }
- 
   // ── TEMPLO ────────────────────────────────────────────────────────────────
   if (selectedTrack) {
     const progress = duration > 0 ? (currentTime / duration) * 100 : 0;
@@ -803,7 +767,6 @@ const App = () => {
       </div>
     );
   }
- 
   // ── SANTUARIO ─────────────────────────────────────────────────────────────
   if (showSanctuary) {
     if (sanctuaryUnlocked && activeSanctuaryTool) {
@@ -892,43 +855,50 @@ const App = () => {
       </div>
     );
   }
- 
   // ── MI ALINEACION ─────────────────────────────────────────────────────────
   if (activeTab === 'favoritos') {
     const orderedTracks = favOrder
       .map(id => ALL_TRACKS_FLAT.find(tr => tr.id === id))
       .filter(Boolean);
- 
-    const handleDragStart = (e, id, idx) => {
+    const handleTouchStart = (e, id, idx) => {
       dragItem.current = idx;
+      touchCurrentIdx.current = idx;
+      touchStartY.current = e.touches[0].clientY;
       setDraggingId(id);
-      const ghost = document.createElement('div');
-      ghost.style.cssText = 'position:fixed;top:-999px;left:-999px;opacity:0;pointer-events:none';
-      document.body.appendChild(ghost);
-      e.dataTransfer.setDragImage(ghost, 0, 0);
-      e.dataTransfer.effectAllowed = 'move';
-      setTimeout(() => ghost.remove(), 0);
     };
- 
-    const handleDragEnter = (idx) => {
-      if (dragItem.current === null || dragItem.current === idx) return;
-      setFavOrder(prev => {
-        const next = [...prev];
-        const [moved] = next.splice(dragItem.current, 1);
-        next.splice(idx, 0, moved);
-        return next;
+    const handleTouchMove = (e) => {
+      if (dragItem.current === null) return;
+      e.preventDefault();
+      const touchY = e.touches[0].clientY;
+      const container = e.currentTarget.closest('[data-list]');
+      if (!container) return;
+      const cards = Array.from(container.querySelectorAll('[data-card]'));
+      let newIdx = dragItem.current;
+      cards.forEach((card, i) => {
+        const rect = card.getBoundingClientRect();
+        const midY = rect.top + rect.height / 2;
+        if (touchY > midY && i > dragItem.current) newIdx = i;
+        if (touchY < midY && i < dragItem.current) newIdx = i;
       });
-      dragItem.current = idx;
-      setOverIdx(idx);
+      if (newIdx !== touchCurrentIdx.current) {
+        setFavOrder(prev => {
+          const next = [...prev];
+          const [moved] = next.splice(dragItem.current, 1);
+          next.splice(newIdx, 0, moved);
+          return next;
+        });
+        dragItem.current = newIdx;
+        touchCurrentIdx.current = newIdx;
+        setOverIdx(newIdx);
+      }
     };
- 
-    const handleDragEnd = () => {
+    const handleTouchEnd = () => {
       dragItem.current = null;
-      dragOverItem.current = null;
+      touchCurrentIdx.current = null;
+      touchStartY.current = null;
       setDraggingId(null);
       setOverIdx(null);
     };
- 
     return (
       <div className="fade-in-smooth" style={{ backgroundColor: '#020617', minHeight: '100vh', color: 'white', padding: '20px', paddingBottom: '80px' }}>
         <style>{inlineStyles}</style>
@@ -953,7 +923,7 @@ const App = () => {
             </p>
           </div>
         ) : (
-          <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+          <div data-list style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
             {orderedTracks.map((track, idx) => {
               const isDragging = draggingId === track.id;
               const isOver = overIdx === idx && !isDragging;
@@ -969,11 +939,19 @@ const App = () => {
                     animationFillMode: 'both',
                     animationDelay: `${idx * 65}ms`,
                   }}
-                  draggable
-                  onDragStart={(e) => handleDragStart(e, track.id, idx)}
-                  onDragEnter={() => handleDragEnter(idx)}
-                  onDragOver={(e) => e.preventDefault()}
-                  onDragEnd={handleDragEnd}
+                  data-card
+                  onTouchStart={(e) => handleTouchStart(e, track.id, idx)}
+                  onTouchMove={handleTouchMove}
+                  onTouchEnd={handleTouchEnd}
+                  style={{
+                    borderLeft: isDragging ? '4px solid rgba(212,175,55,0.7)' : `4px solid ${accentColor}`,
+                    animationName: 'glance-sway',
+                    animationDuration: '0.72s',
+                    animationTimingFunction: 'ease-in-out',
+                    animationFillMode: 'both',
+                    animationDelay: `${idx * 65}ms`,
+                    touchAction: 'none',
+                  }}
                 >
                   <div className="mi-al-handle" aria-hidden="true">
                     <span /><span /><span />
@@ -1006,7 +984,6 @@ const App = () => {
       </div>
     );
   }
- 
   // ── CATALOGO PRINCIPAL ────────────────────────────────────────────────────
   return (
     <div className="fade-in-smooth" style={{ backgroundColor: '#020617', minHeight: '100vh', color: 'white', padding: '20px', paddingBottom: '80px' }}>
@@ -1117,5 +1094,5 @@ const App = () => {
     </div>
   );
 };
- 
 export default App;
+```
