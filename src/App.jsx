@@ -483,6 +483,8 @@ const App = () => {
   const touchStartY = useRef(null);
   const touchCurrentIdx = useRef(null);
   const touchListRef = useRef(null);
+  const listDOMRef = useRef(null);
+  const favOrderRef = useRef(favOrder);
   const audioRef = useRef(null);
   const sanctuaryMediaRef = useRef(null);
   const timerRef = useRef(null);
@@ -494,6 +496,7 @@ const App = () => {
   useEffect(() => { activeTabRef.current = activeTab; }, [activeTab]);
   useEffect(() => { favoritesRef.current = favorites; }, [favorites]);
   useEffect(() => { selectedTrackRef.current = selectedTrack; }, [selectedTrack]);
+  useEffect(() => { favOrderRef.current = favOrder; }, [favOrder]);
   useEffect(() => {
     setFavOrder(prev => {
       const kept  = prev.filter(id => favorites.includes(id));
@@ -501,6 +504,38 @@ const App = () => {
       return [...kept, ...added];
     });
   }, [favorites]);
+
+  // Touch listeners con passive:false para permitir preventDefault en mobile
+  useEffect(() => {
+    const list = listDOMRef.current;
+    if (!list) return;
+    const onTouchMove = (e) => {
+      if (dragItem.current === null) return;
+      e.preventDefault();
+      const touchY = e.touches[0].clientY;
+      const cards = Array.from(list.querySelectorAll('[data-card]'));
+      let newIdx = dragItem.current;
+      cards.forEach((card, i) => {
+        const rect = card.getBoundingClientRect();
+        const midY = rect.top + rect.height / 2;
+        if (touchY > midY && i > dragItem.current) newIdx = i;
+        if (touchY < midY && i < dragItem.current) newIdx = i;
+      });
+      if (newIdx !== touchCurrentIdx.current) {
+        const currentOrder = favOrderRef.current;
+        const next = [...currentOrder];
+        const [moved] = next.splice(dragItem.current, 1);
+        next.splice(newIdx, 0, moved);
+        setFavOrder(next);
+        favOrderRef.current = next;
+        dragItem.current = newIdx;
+        touchCurrentIdx.current = newIdx;
+        setOverIdx(newIdx);
+      }
+    };
+    list.addEventListener('touchmove', onTouchMove, { passive: false });
+    return () => list.removeEventListener('touchmove', onTouchMove);
+  }, [activeTab]);
   useEffect(() => {
     try { if (selectedTrack) localStorage.setItem('genora_last_track', JSON.stringify(selectedTrack)); } catch {}
   }, [selectedTrack]);
@@ -979,7 +1014,7 @@ const App = () => {
             </p>
           </div>
         ) : (
-          <div data-list style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+          <div ref={listDOMRef} data-list style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
             {orderedTracks.map((track, idx) => {
               const isDragging = draggingId === track.id;
               const isOver = overIdx === idx && !isDragging;
@@ -998,7 +1033,6 @@ const App = () => {
                     touchAction: 'none',
                   }}
                   onTouchStart={(e) => handleTouchStart(e, track.id, idx)}
-                  onTouchMove={handleTouchMove}
                   onTouchEnd={handleTouchEnd}
                 >
                   <div className="mi-al-handle" aria-hidden="true">
