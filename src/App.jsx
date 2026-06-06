@@ -1,7 +1,3 @@
-# App.jsx — GENORA Healing
-*Touch Events + Frecuencias S3 — Santuario Genora*
-
-```jsx
 import React, { useState, useEffect, useRef } from 'react';
 const T = {
   es: {
