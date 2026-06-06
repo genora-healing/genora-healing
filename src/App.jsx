@@ -479,6 +479,7 @@ const App = () => {
   const [favOrder, setFavOrder] = useState([]);
   const [draggingId, setDraggingId] = useState(null);
   const [overIdx, setOverIdx] = useState(null);
+  const [listMountKey, setListMountKey] = useState(0);
   const dragItem = useRef(null);
   const touchStartY = useRef(null);
   const touchCurrentIdx = useRef(null);
@@ -680,7 +681,7 @@ const App = () => {
       <button className={`bar-tab ${activeTab === 'catalogo' ? 'active' : ''} ${isGold && activeTab === 'catalogo' ? 'gold-tab' : ''}`} onClick={() => { setActiveTab('catalogo'); setShowSanctuary(false); }}>
         <span className="bar-tab-icon">◎</span>{t.catalog}
       </button>
-      <button className={`bar-tab ${activeTab === 'favoritos' ? 'active' : ''}`} onClick={() => { setActiveTab('favoritos'); setShowSanctuary(false); }}>
+      <button className={`bar-tab ${activeTab === 'favoritos' ? 'active' : ''}`} onClick={() => { setActiveTab('favoritos'); setShowSanctuary(false); setListMountKey(k => k + 1); }}>
         <span className="bar-tab-icon">{favorites.length > 0 ? '♥' : '♡'}</span>
         {favorites.length > 0 ? `${t.my_alignment} (${favorites.length})` : t.my_alignment}
       </button>
@@ -774,7 +775,7 @@ const App = () => {
           onLoadedMetadata={(e) => { handleTimeUpdate(); if (currentTime > 0 && e.target.duration > currentTime) e.target.currentTime = currentTime; }}
           onEnded={handleAudioEnded} />
         <div style={{ position: 'absolute', top: '35px', left: '30px', right: '30px', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-          <button onClick={() => { setIsPlaying(false); setSelectedTrack(null); setCurrentTime(0); setDuration(0); }} style={{ background: 'none', border: 'none', color: temploAccent, fontSize: '40px', cursor: 'pointer', lineHeight: 1, padding: 0 }}>&#8249;</button>
+          <button onClick={() => { setIsPlaying(false); setSelectedTrack(null); setCurrentTime(0); setDuration(0); setListMountKey(k => k + 1); }} style={{ background: 'none', border: 'none', color: temploAccent, fontSize: '40px', cursor: 'pointer', lineHeight: 1, padding: 0 }}>&#8249;</button>
           {isSuggestion && <div className="suggestion-badge">✦ {t.suggestion_label}</div>}
           <button className="heart-btn" onClick={(e) => toggleFavorite(e, selectedTrack.id)} style={{ fontSize: '24px', color: isFavorite(selectedTrack.id) ? '#ff6b9d' : 'rgba(255,255,255,0.4)', padding: 0 }}>
             {isFavorite(selectedTrack.id) ? '♥' : '♡'}
@@ -1020,7 +1021,7 @@ const App = () => {
             </p>
           </div>
         ) : (
-          <div ref={listCallbackRef} data-list style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+          <div key={listMountKey} ref={listCallbackRef} data-list style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
             {orderedTracks.map((track, idx) => {
               const isDragging = draggingId === track.id;
               const isOver = overIdx === idx && !isDragging;
