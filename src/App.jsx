@@ -479,6 +479,7 @@ const App = () => {
   const dragItem = useRef(null);
   const touchStartY = useRef(null);
   const touchCurrentIdx = useRef(null);
+  const touchListRef = useRef(null);
   const audioRef = useRef(null);
   const sanctuaryMediaRef = useRef(null);
   const timerRef = useRef(null);
@@ -860,13 +861,14 @@ const App = () => {
       dragItem.current = idx;
       touchCurrentIdx.current = idx;
       touchStartY.current = e.touches[0].clientY;
+      touchListRef.current = e.currentTarget.closest('[data-list]');
       setDraggingId(id);
     };
     const handleTouchMove = (e) => {
       if (dragItem.current === null) return;
       e.preventDefault();
       const touchY = e.touches[0].clientY;
-      const container = e.currentTarget.closest('[data-list]');
+      const container = touchListRef.current;
       if (!container) return;
       const cards = Array.from(container.querySelectorAll('[data-card]'));
       let newIdx = dragItem.current;
@@ -892,6 +894,7 @@ const App = () => {
       dragItem.current = null;
       touchCurrentIdx.current = null;
       touchStartY.current = null;
+      touchListRef.current = null;
       setDraggingId(null);
       setOverIdx(null);
     };
