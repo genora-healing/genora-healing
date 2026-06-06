@@ -485,35 +485,18 @@ const App = () => {
   const touchListRef = useRef(null);
   const listDOMRef = useRef(null);
   const favOrderRef = useRef(favOrder);
-  const audioRef = useRef(null);
-  const sanctuaryMediaRef = useRef(null);
-  const timerRef = useRef(null);
-  const bannerTimerRef = useRef(null);
-  const activeTabRef = useRef(activeTab);
-  const favoritesRef = useRef(favorites);
-  const selectedTrackRef = useRef(selectedTrack);
-  const t = T[lang];
-  useEffect(() => { activeTabRef.current = activeTab; }, [activeTab]);
-  useEffect(() => { favoritesRef.current = favorites; }, [favorites]);
-  useEffect(() => { selectedTrackRef.current = selectedTrack; }, [selectedTrack]);
-  useEffect(() => { favOrderRef.current = favOrder; }, [favOrder]);
-  useEffect(() => {
-    setFavOrder(prev => {
-      const kept  = prev.filter(id => favorites.includes(id));
-      const added = favorites.filter(id => !kept.includes(id));
-      return [...kept, ...added];
-    });
-  }, [favorites]);
 
-  // Touch listeners con passive:false para permitir preventDefault en mobile
-  useEffect(() => {
-    const list = listDOMRef.current;
-    if (!list) return;
+  const listCallbackRef = (node) => {
+    if (listDOMRef.current) {
+      listDOMRef.current.removeEventListener('touchmove', listDOMRef._touchMoveHandler);
+    }
+    listDOMRef.current = node;
+    if (!node) return;
     const onTouchMove = (e) => {
       if (dragItem.current === null) return;
       e.preventDefault();
       const touchY = e.touches[0].clientY;
-      const cards = Array.from(list.querySelectorAll('[data-card]'));
+      const cards = Array.from(node.querySelectorAll('[data-card]'));
       let newIdx = dragItem.current;
       cards.forEach((card, i) => {
         if (i === dragItem.current) return;
@@ -534,9 +517,31 @@ const App = () => {
         setOverIdx(newIdx);
       }
     };
-    list.addEventListener('touchmove', onTouchMove, { passive: false });
-    return () => list.removeEventListener('touchmove', onTouchMove);
-  }, [activeTab]);
+    listDOMRef._touchMoveHandler = onTouchMove;
+    node.addEventListener('touchmove', onTouchMove, { passive: false });
+  };
+  const audioRef = useRef(null);
+  const sanctuaryMediaRef = useRef(null);
+  const timerRef = useRef(null);
+  const bannerTimerRef = useRef(null);
+  const activeTabRef = useRef(activeTab);
+  const favoritesRef = useRef(favorites);
+  const selectedTrackRef = useRef(selectedTrack);
+  const t = T[lang];
+  useEffect(() => { activeTabRef.current = activeTab; }, [activeTab]);
+  useEffect(() => { favoritesRef.current = favorites; }, [favorites]);
+  useEffect(() => { selectedTrackRef.current = selectedTrack; }, [selectedTrack]);
+  useEffect(() => { favOrderRef.current = favOrder; }, [favOrder]);
+  useEffect(() => {
+    setFavOrder(prev => {
+      const kept  = prev.filter(id => favorites.includes(id));
+      const added = favorites.filter(id => !kept.includes(id));
+      return [...kept, ...added];
+    });
+  }, [favorites]);
+
+  // favOrderRef sync
+
   useEffect(() => {
     try { if (selectedTrack) localStorage.setItem('genora_last_track', JSON.stringify(selectedTrack)); } catch {}
   }, [selectedTrack]);
@@ -1015,7 +1020,7 @@ const App = () => {
             </p>
           </div>
         ) : (
-          <div ref={listDOMRef} data-list style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+          <div ref={listCallbackRef} data-list style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
             {orderedTracks.map((track, idx) => {
               const isDragging = draggingId === track.id;
               const isOver = overIdx === idx && !isDragging;
