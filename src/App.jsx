@@ -772,7 +772,6 @@ const App = () => {
     if (sanctuaryUnlocked && activeSanctuaryTool) {
       const tool = activeSanctuaryTool;
       const sanctuaryProgress = sanctuaryDuration > 0 ? (sanctuaryCurrentTime / sanctuaryDuration) * 100 : 0;
-
       const handleSanctuaryPlayPause = () => {
         if (!sanctuaryMediaRef.current) return;
         if (sanctuaryPlaying) {
@@ -783,14 +782,12 @@ const App = () => {
           setSanctuaryPlaying(true);
         }
       };
-
       const handleSanctuaryProgress = (e) => {
         if (!sanctuaryMediaRef.current || !sanctuaryDuration) return;
         const rect = e.currentTarget.getBoundingClientRect();
         const pct = (e.clientX - rect.left) / rect.width;
         sanctuaryMediaRef.current.currentTime = pct * sanctuaryDuration;
       };
-
       return (
         <div className="fade-in-smooth" style={{ backgroundColor: '#020617', minHeight: '100vh', color: 'white', padding: '20px', paddingBottom: '80px' }}>
           <style>{inlineStyles}</style>
@@ -806,7 +803,6 @@ const App = () => {
             <p className="gold-sub" style={{ fontSize: '11px', letterSpacing: '1px', fontWeight: 200, marginBottom: '6px', maxWidth: '280px', lineHeight: 1.7 }}>{tool.description}</p>
             <p className="gold-micro" style={{ fontSize: '10px', letterSpacing: '2px', fontWeight: 200, marginBottom: '28px' }}>{tool.duration}</p>
             {sanctuaryLoading && <div className="streaming-indicator">◈ {t.sanctuary_loading}</div>}
-
             {tool.type === 'audio' && (
               <audio
                 ref={sanctuaryMediaRef}
@@ -834,7 +830,6 @@ const App = () => {
                 style={{ display: 'none' }}
               />
             )}
-
             <div style={{ width: '80%', maxWidth: '300px', marginBottom: '32px' }}>
               <div
                 onClick={handleSanctuaryProgress}
@@ -847,7 +842,6 @@ const App = () => {
                 <span style={{ fontSize: '10px', color: 'rgba(212,175,55,0.5)', letterSpacing: '1px' }}>{formatTime(sanctuaryDuration)}</span>
               </div>
             </div>
-
             <button
               onClick={handleSanctuaryPlayPause}
               style={{ width: '85px', height: '85px', borderRadius: '50%', border: '1px solid rgba(212,175,55,0.6)', background: 'rgba(212,175,55,0.06)', display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer', transition: 'all 0.3s ease' }}
@@ -993,18 +987,7 @@ const App = () => {
                 <div
                   key={track.id}
                   className={['mi-al-card', isDragging ? 'is-dragging' : '', isOver ? 'is-over' : ''].filter(Boolean).join(' ')}
-                  style={{
-                    borderLeft: isDragging ? '4px solid rgba(212,175,55,0.7)' : `4px solid ${accentColor}`,
-                    animationName: 'glance-sway',
-                    animationDuration: '0.72s',
-                    animationTimingFunction: 'ease-in-out',
-                    animationFillMode: 'both',
-                    animationDelay: `${idx * 65}ms`,
-                  }}
                   data-card
-                  onTouchStart={(e) => handleTouchStart(e, track.id, idx)}
-                  onTouchMove={handleTouchMove}
-                  onTouchEnd={handleTouchEnd}
                   style={{
                     borderLeft: isDragging ? '4px solid rgba(212,175,55,0.7)' : `4px solid ${accentColor}`,
                     animationName: 'glance-sway',
@@ -1014,6 +997,9 @@ const App = () => {
                     animationDelay: `${idx * 65}ms`,
                     touchAction: 'none',
                   }}
+                  onTouchStart={(e) => handleTouchStart(e, track.id, idx)}
+                  onTouchMove={handleTouchMove}
+                  onTouchEnd={handleTouchEnd}
                 >
                   <div className="mi-al-handle" aria-hidden="true">
                     <span /><span /><span />
