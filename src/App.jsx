@@ -479,40 +479,25 @@ const App = () => {
   const [favOrder, setFavOrder] = useState([]);
   const [draggingId, setDraggingId] = useState(null);
   const [overIdx, setOverIdx] = useState(null);
+  const [listMountKey, setListMountKey] = useState(0);
   const dragItem = useRef(null);
   const touchStartY = useRef(null);
   const touchCurrentIdx = useRef(null);
   const touchListRef = useRef(null);
   const listDOMRef = useRef(null);
   const favOrderRef = useRef(favOrder);
-  const audioRef = useRef(null);
-  const sanctuaryMediaRef = useRef(null);
-  const timerRef = useRef(null);
-  const bannerTimerRef = useRef(null);
-  const activeTabRef = useRef(activeTab);
-  const favoritesRef = useRef(favorites);
-  const selectedTrackRef = useRef(selectedTrack);
-  const t = T[lang];
-  useEffect(() => { activeTabRef.current = activeTab; }, [activeTab]);
-  useEffect(() => { favoritesRef.current = favorites; }, [favorites]);
-  useEffect(() => { selectedTrackRef.current = selectedTrack; }, [selectedTrack]);
-  useEffect(() => { favOrderRef.current = favOrder; }, [favOrder]);
-  useEffect(() => {
-    setFavOrder(prev => {
-      const kept  = prev.filter(id => favorites.includes(id));
-      const added = favorites.filter(id => !kept.includes(id));
-      return [...kept, ...added];
-    });
-  }, [favorites]);
-  // Touch listeners con passive:false para permitir preventDefault en mobile
-  useEffect(() => {
-    const list = listDOMRef.current;
-    if (!list) return;
+
+  const listCallbackRef = (node) => {
+    if (listDOMRef.current && listDOMRef._touchMoveHandler) {
+      listDOMRef.current.removeEventListener('touchmove', listDOMRef._touchMoveHandler);
+    }
+    listDOMRef.current = node;
+    if (!node) return;
     const onTouchMove = (e) => {
       if (dragItem.current === null) return;
       e.preventDefault();
       const touchY = e.touches[0].clientY;
-      const cards = Array.from(list.querySelectorAll('[data-card]'));
+      const cards = Array.from(node.querySelectorAll('[data-card]'));
       let newIdx = dragItem.current;
       cards.forEach((card, i) => {
         if (i === dragItem.current) return;
@@ -533,9 +518,29 @@ const App = () => {
         setOverIdx(newIdx);
       }
     };
-    list.addEventListener('touchmove', onTouchMove, { passive: false });
-    return () => list.removeEventListener('touchmove', onTouchMove);
-  }, [activeTab]);
+    listDOMRef._touchMoveHandler = onTouchMove;
+    node.addEventListener('touchmove', onTouchMove, { passive: false });
+  };
+  const audioRef = useRef(null);
+  const sanctuaryMediaRef = useRef(null);
+  const timerRef = useRef(null);
+  const bannerTimerRef = useRef(null);
+  const activeTabRef = useRef(activeTab);
+  const favoritesRef = useRef(favorites);
+  const selectedTrackRef = useRef(selectedTrack);
+  const t = T[lang];
+  useEffect(() => { activeTabRef.current = activeTab; }, [activeTab]);
+  useEffect(() => { favoritesRef.current = favorites; }, [favorites]);
+  useEffect(() => { selectedTrackRef.current = selectedTrack; }, [selectedTrack]);
+  useEffect(() => { favOrderRef.current = favOrder; }, [favOrder]);
+  useEffect(() => {
+    setFavOrder(prev => {
+      const kept  = prev.filter(id => favorites.includes(id));
+      const added = favorites.filter(id => !kept.includes(id));
+      return [...kept, ...added];
+    });
+  }, [favorites]);
+
   useEffect(() => {
     try { if (selectedTrack) localStorage.setItem('genora_last_track', JSON.stringify(selectedTrack)); } catch {}
   }, [selectedTrack]);
@@ -678,7 +683,7 @@ const App = () => {
       <button className={`bar-tab ${activeTab === 'catalogo' ? 'active' : ''} ${isGold && activeTab === 'catalogo' ? 'gold-tab' : ''}`} onClick={() => { setActiveTab('catalogo'); setShowSanctuary(false); }}>
         <span className="bar-tab-icon">◎</span>{t.catalog}
       </button>
-      <button className={`bar-tab ${activeTab === 'favoritos' ? 'active' : ''}`} onClick={() => { setActiveTab('favoritos'); setShowSanctuary(false); }}>
+      <button className={`bar-tab ${activeTab === 'favoritos' ? 'active' : ''}`} onClick={() => { setActiveTab('favoritos'); setShowSanctuary(false); setListMountKey(k => k + 1); }}>
         <span className="bar-tab-icon">{favorites.length > 0 ? '♥' : '♡'}</span>
         {favorites.length > 0 ? `${t.my_alignment} (${favorites.length})` : t.my_alignment}
       </button>
@@ -772,7 +777,7 @@ const App = () => {
           onLoadedMetadata={(e) => { handleTimeUpdate(); if (currentTime > 0 && e.target.duration > currentTime) e.target.currentTime = currentTime; }}
           onEnded={handleAudioEnded} />
         <div style={{ position: 'absolute', top: '35px', left: '30px', right: '30px', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-          <button onClick={() => { setIsPlaying(false); setSelectedTrack(null); setCurrentTime(0); setDuration(0); }} style={{ background: 'none', border: 'none', color: temploAccent, fontSize: '40px', cursor: 'pointer', lineHeight: 1, padding: 0 }}>&#8249;</button>
+          <button onClick={() => { setIsPlaying(false); setSelectedTrack(null); setCurrentTime(0); setDuration(0); setListMountKey(k => k + 1); }} style={{ background: 'none', border: 'none', color: temploAccent, fontSize: '40px', cursor: 'pointer', lineHeight: 1, padding: 0 }}>&#8249;</button>
           {isSuggestion && <div className="suggestion-badge">✦ {t.suggestion_label}</div>}
           <button className="heart-btn" onClick={(e) => toggleFavorite(e, selectedTrack.id)} style={{ fontSize: '24px', color: isFavorite(selectedTrack.id) ? '#ff6b9d' : 'rgba(255,255,255,0.4)', padding: 0 }}>
             {isFavorite(selectedTrack.id) ? '♥' : '♡'}
@@ -1018,7 +1023,7 @@ const App = () => {
             </p>
           </div>
         ) : (
-          <div ref={listDOMRef} data-list style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+          <div key={listMountKey} ref={listCallbackRef} data-list style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
             {orderedTracks.map((track, idx) => {
               const isDragging = draggingId === track.id;
               const isOver = overIdx === idx && !isDragging;
