@@ -50,8 +50,8 @@ const T = {
       MENTE: { label: "MENTE", subs: { "APRENDIZAJE": "APRENDIZAJE & ENFOQUE", "CREATIVIDAD": "CREATIVIDAD & RESOLUCION", "CLARIDAD": "CLARIDAD MENTAL", "RENDIMIENTO": "ACTIVACION MENTAL & RENDIMIENTO" } },
       COHERENCIA: { label: "COHERENCIA", subs: { "REGULACION": "REGULACION EMOCIONAL", "EQUILIBRIO": "EQUILIBRIO INTERNO", "INTEGRACION": "INTEGRACION MENTE-CUERPO" } },
       CUERPO: { label: "CUERPO", subs: { "REGENERACION": "REGENERACION & SANACION", "ORGANOS": "ORGANOS & SISTEMAS", "DOLOR": "DOLOR & RECUPERACION" } },
-      EXPANSION: { label: "EXPANSION", subs: { "MEDITACION": "MEDITACION & ESTADOS INTERNOS", "PERCEPCION": "PERCEPCION & INTUICION", "EXPERIENCIAS": "EXPERIENCIAS EXPANDIDAS" } },
-      EXPERIENCIAS_G: { label: "EXPERIENCIAS GENORA", subs: { "SESIONES": "SESIONES EN VIVO", "RITUALES": "RITUALES DE ACTIVACION", "CEREMONIAS": "CEREMONIAS SONORAS" } },
+      EXPANSION: { label: "EXPANSION", subs: { "MEDITACION": "MEDITACION & ESTADOS INTERNOS", "PERCEPCION": "PERCEPCION & INTUICION", "EXPERIENCIAS": "EXPERIENCIAS EXPANDIDAS", "CONSCIENCIA_EXP": "CONSCIENCIA EXPANDIDA" } },
+      EXPERIENCIAS_G: { label: "EXPERIENCIAS GENORA", subs: { "RITUALES": "PROCESOS DE ACTIVACION", "CEREMONIAS": "CEREMONIAS SONORAS", "BIENESTAR_F": "BIENESTAR FEMENINO" } },
       ARMONIZACION: { label: "ARMONIZACION BIOLOGICA", subs: { "ADN": "REPROGRAMACION DE ADN", "CAMPOS": "CAMPOS BIOENERGETICOS", "CELULAR": "REGENERACION CELULAR" } }
     },
     tracks: {
@@ -73,7 +73,15 @@ const T = {
       "beta-active-mind": "Aumenta la atencion externa y actividad mental.",
       "beta-vital-mind": "Genera energia mental y enfoque en tareas.",
       "beta-cortex": "Procesamiento avanzado e inteligencia.",
-      "alpha-focus": "Concentracion y enfoque mental sostenido."
+      "alpha-focus": "Concentracion y enfoque mental sostenido.",
+      "alpha-dreambridge": "Visualizacion consciente, estados luidos y exploracion interior.",
+      "alpha-gateway-exp": "Acceso consciente a estados de sueno y visualizacion profunda.",
+      "alpha-gateway-mente": "Transicion entre estados de atencion y relajacion.",
+      "alpha-eros": "Conexion con el cuerpo y la energia vital, consciencia corporal.",
+      "alpha-lucent-mente": "Observacion consciente y comprension de procesos internos.",
+      "alpha-lucent-cuerpo": "Equilibrio asociado al sistema reproductor masculino.",
+      "femin-essence": "Experiencia para el bienestar femenino, equilibrio y armonia hormonal.",
+      "theta-emotional-reset": "Estados de calma emocional, receptividad y equilibrio interior."
     }
   },
   en: {
@@ -126,8 +134,8 @@ const T = {
       MENTE: { label: "MIND", subs: { "APRENDIZAJE": "LEARNING & FOCUS", "CREATIVIDAD": "CREATIVITY & RESOLUTION", "CLARIDAD": "MENTAL CLARITY", "RENDIMIENTO": "MENTAL ACTIVATION & PERFORMANCE" } },
       COHERENCIA: { label: "COHERENCE", subs: { "REGULACION": "EMOTIONAL REGULATION", "EQUILIBRIO": "INNER BALANCE", "INTEGRACION": "MIND-BODY INTEGRATION" } },
       CUERPO: { label: "BODY", subs: { "REGENERACION": "REGENERATION & HEALING", "ORGANOS": "ORGANS & SYSTEMS", "DOLOR": "PAIN & RECOVERY" } },
-      EXPANSION: { label: "EXPANSION", subs: { "MEDITACION": "MEDITATION & INNER STATES", "PERCEPCION": "PERCEPTION & INTUITION", "EXPERIENCIAS": "EXPANDED EXPERIENCES" } },
-      EXPERIENCIAS_G: { label: "GENORA EXPERIENCES", subs: { "SESIONES": "LIVE SESSIONS", "RITUALES": "ACTIVATION RITUALS", "CEREMONIAS": "SOUND CEREMONIES" } },
+      EXPANSION: { label: "EXPANSION", subs: { "MEDITACION": "MEDITATION & INNER STATES", "PERCEPCION": "PERCEPTION & INTUITION", "EXPERIENCIAS": "EXPANDED EXPERIENCES", "CONSCIENCIA_EXP": "EXPANDED CONSCIOUSNESS" } },
+      EXPERIENCIAS_G: { label: "GENORA EXPERIENCES", subs: { "RITUALES": "ACTIVATION PROCESSES", "CEREMONIAS": "SOUND CEREMONIES", "BIENESTAR_F": "FEMININE WELLBEING" } },
       ARMONIZACION: { label: "BIOLOGICAL HARMONIZATION", subs: { "ADN": "DNA REPROGRAMMING", "CAMPOS": "BIOENERGETIC FIELDS", "CELULAR": "CELLULAR REGENERATION" } }
     },
     tracks: {
@@ -149,7 +157,15 @@ const T = {
       "beta-active-mind": "Increases external attention and mental activity.",
       "beta-vital-mind": "Generates mental energy and task focus.",
       "beta-cortex": "Advanced processing and intelligence.",
-      "alpha-focus": "Sustained concentration and mental focus."
+      "alpha-focus": "Sustained concentration and mental focus.",
+      "alpha-dreambridge": "Conscious visualization, lucid states and inner exploration.",
+      "alpha-gateway-exp": "Conscious access to sleep states and deep visualization.",
+      "alpha-gateway-mente": "Transition between states of attention and relaxation.",
+      "alpha-eros": "Connection with the body and vital energy, body awareness.",
+      "alpha-lucent-mente": "Conscious observation and understanding of internal processes.",
+      "alpha-lucent-cuerpo": "Balance associated with the male reproductive system.",
+      "femin-essence": "Experience for feminine wellbeing, hormonal balance and harmony.",
+      "theta-emotional-reset": "States of emotional calm, receptivity and inner balance."
     }
   }
 };
@@ -183,7 +199,9 @@ const FREQ_TRACKS = {
       { id: "beta-decision-c", name: "Beta Decision", hz: "13.8 Hz", url: "/audio/beta-decision.mp3" },
       { id: "alpha-calm-alert", name: "Alpha Calm Alert", hz: "10.6 Hz", url: "/audio/alpha-calm-alert.mp3" },
       { id: "alpha-clarity", name: "Alpha Clarity", hz: "10.5 Hz", url: "/audio/alpha-clarity.mp3" },
-      { id: "gamma-insight", name: "Gamma Insight", hz: "40 Hz", url: "/audio/gamma-insight.mp3" }
+      { id: "gamma-insight", name: "Gamma Insight", hz: "40 Hz", url: "/audio/gamma-insight.mp3" },
+      { id: "alpha-gateway-mente", name: "Alpha Gateway", hz: "9.5-10 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/alpha-gateway.wav" },
+      { id: "alpha-lucent-mente", name: "Alpha Lucent", hz: "9.4 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/alpha-lucent.wav" }
     ],
     "RENDIMIENTO": [
       { id: "beta-active-mind", name: "Beta Active Mind", hz: "13-27 Hz", url: "/audio/beta-active-mind.mp3" },
@@ -192,10 +210,21 @@ const FREQ_TRACKS = {
       { id: "alpha-focus", name: "Alpha Focus", hz: "11-14 Hz", url: "/audio/alpha-focus.mp3" }
     ]
   },
-  COHERENCIA: { "REGULACION": [], "EQUILIBRIO": [], "INTEGRACION": [] },
-  CUERPO: { "REGENERACION": [], "ORGANOS": [], "DOLOR": [] },
-  EXPANSION: { "MEDITACION": [], "PERCEPCION": [], "EXPERIENCIAS": [] },
-  EXPERIENCIAS_G: { "SESIONES": [], "RITUALES": [], "CEREMONIAS": [] },
+  COHERENCIA: { "REGULACION": [
+    { id: "theta-emotional-reset", name: "Theta Emotional Reset", hz: "3.5 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/theta-emotional-reset.mp3" }
+  ], "EQUILIBRIO": [
+    { id: "alpha-eros", name: "Alpha Eros", hz: "9 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/alpha-eros.wav" }
+  ], "INTEGRACION": [] },
+  CUERPO: { "REGENERACION": [], "ORGANOS": [
+    { id: "alpha-lucent-cuerpo", name: "Alpha Lucent", hz: "9.4 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/alpha-lucent.wav" }
+  ], "DOLOR": [] },
+  EXPANSION: { "MEDITACION": [], "PERCEPCION": [], "EXPERIENCIAS": [], "CONSCIENCIA_EXP": [
+    { id: "alpha-dreambridge", name: "Alpha Dreambridge", hz: "9-13 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/alpha-dreambridge.wav" },
+    { id: "alpha-gateway-exp", name: "Alpha Gateway", hz: "9.5-10 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/alpha-gateway.wav" }
+  ] },
+  EXPERIENCIAS_G: { "RITUALES": [], "CEREMONIAS": [], "BIENESTAR_F": [
+    { id: "femin-essence", name: "Feminine Essence", hz: "—", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/femin-essence.mp3" }
+  ] },
   ARMONIZACION: { "ADN": [], "CAMPOS": [], "CELULAR": [] }
 };
 const ALL_TRACKS_FLAT = Object.values(FREQ_TRACKS).flatMap(p => Object.values(p).flat()).filter(t => t.url);
@@ -443,6 +472,54 @@ const inlineStyles = `
   .mi-al-card:hover .mi-al-handle, .mi-al-card.is-dragging .mi-al-handle { opacity: 0.55; }
   .mi-al-handle span { display: block; width: 16px; height: 1.5px; border-radius: 2px; background: #d4af37; }
 `;
+
+const MICROCOPYS = {
+  es: {
+    APRENDIZAJE: "Frecuencias orientadas a potenciar la concentracion, la memoria y la integracion de nueva informacion.",
+    CLARIDAD: "Facilita estados de atencion consciente, estabilidad mental y toma de decisiones.",
+    CREATIVIDAD: "Estimula el pensamiento creativo, la inspiracion y la resolucion de desafios mentales.",
+    RENDIMIENTO: "Frecuencias orientadas a potenciar la atencion, la agilidad mental y el rendimiento cognitivo.",
+    REGENERACION: "Frecuencias orientadas al descanso, la restauracion energetica y los procesos naturales de recuperacion.",
+    ORGANOS: "Agrupa frecuencias asociadas al equilibrio funcional de organos y sistemas corporales.",
+    DOLOR: "Apoya procesos de confort fisico, relajacion y recuperacion corporal.",
+    CONSCIENCIA_EXP: "Favorece la introspeccion, la percepcion ampliada y la conexion interior.",
+    PERCEPCION: "Frecuencias disenadas para fortalecer la sensibilidad, la observacion y la comprension interna.",
+    MEDITACION: "Facilita el acceso a estados profundos de descanso, meditacion y exploracion interior.",
+    EXPERIENCIAS: "Experiencias de expansion consciencial guiadas por frecuencias.",
+    REGULACION: "Favorece estados de estabilidad, calma y autorregulacion emocional.",
+    EQUILIBRIO: "Promueve la armonia entre mente, emocion y cuerpo.",
+    INTEGRACION: "Ayuda a sostener estados de atencion plena y coherencia personal.",
+    RITUALES: "Procesos de activacion disenados para anclar frecuencias en el campo energetico personal.",
+    CEREMONIAS: "Experiencias sonoras colectivas para la armonizacion y expansion de la consciencia.",
+    BIENESTAR_F: "Experiencia disenada para acompanar el bienestar femenino, equilibrio y armonia durante los cambios naturales del sistema hormonal.",
+    ADN: "Frecuencias orientadas a la reprogramacion y activacion del potencial genetico.",
+    CAMPOS: "Apoyo vibracional para el equilibrio y coherencia de los campos bioenergeticos.",
+    CELULAR: "Frecuencias para acompanar procesos de regeneracion y vitalidad celular.",
+  },
+  en: {
+    APRENDIZAJE: "Frequencies oriented to enhance concentration, memory and integration of new information.",
+    CLARIDAD: "Facilitates states of conscious attention, mental stability and decision making.",
+    CREATIVIDAD: "Stimulates creative thinking, inspiration and resolution of mental challenges.",
+    RENDIMIENTO: "Frequencies oriented to enhance attention, mental agility and cognitive performance.",
+    REGENERACION: "Frequencies oriented to rest, energetic restoration and natural recovery processes.",
+    ORGANOS: "Groups frequencies associated with functional balance of organs and body systems.",
+    DOLOR: "Supports processes of physical comfort, relaxation and body recovery.",
+    CONSCIENCIA_EXP: "Favors introspection, expanded perception and inner connection.",
+    PERCEPCION: "Frequencies designed to strengthen sensitivity, observation and internal understanding.",
+    MEDITACION: "Facilitates access to deep states of rest, meditation and inner exploration.",
+    EXPERIENCIAS: "Consciousness expansion experiences guided by frequencies.",
+    REGULACION: "Favors states of stability, calm and emotional self-regulation.",
+    EQUILIBRIO: "Promotes harmony between mind, emotion and body.",
+    INTEGRACION: "Helps sustain states of full attention and personal coherence.",
+    RITUALES: "Activation processes designed to anchor frequencies in the personal energetic field.",
+    CEREMONIAS: "Collective sound experiences for harmonization and expansion of consciousness.",
+    BIENESTAR_F: "Experience designed to support feminine wellbeing, balance and harmony during natural hormonal changes.",
+    ADN: "Frequencies oriented to reprogramming and activation of genetic potential.",
+    CAMPOS: "Vibrational support for balance and coherence of bioenergetic fields.",
+    CELULAR: "Frequencies to accompany processes of regeneration and cellular vitality.",
+  }
+};
+
 const App = () => {
   const [lang, setLang] = useState('es');
   const [showSplash, setShowSplash] = useState(true);
@@ -486,7 +563,6 @@ const App = () => {
   const touchListRef = useRef(null);
   const listDOMRef = useRef(null);
   const favOrderRef = useRef(favOrder);
-
   const listCallbackRef = (node) => {
     if (listDOMRef.current && listDOMRef._touchMoveHandler) {
       listDOMRef.current.removeEventListener('touchmove', listDOMRef._touchMoveHandler);
@@ -540,7 +616,6 @@ const App = () => {
       return [...kept, ...added];
     });
   }, [favorites]);
-
   useEffect(() => {
     try { if (selectedTrack) localStorage.setItem('genora_last_track', JSON.stringify(selectedTrack)); } catch {}
   }, [selectedTrack]);
@@ -1114,7 +1189,12 @@ const App = () => {
         )}
         {mainMode === 'frecuencias' && freqPillar && freqSub && (
           <div className="fade-in-smooth" style={{ width: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-            <p style={{ fontSize: '10px', letterSpacing: '3px', color: '#22d3ee', textAlign: 'center', marginBottom: '16px', fontWeight: 200 }}>{t.pillars[freqPillar]?.subs[freqSub]}</p>
+            <p style={{ fontSize: '10px', letterSpacing: '3px', color: '#22d3ee', textAlign: 'center', marginBottom: '4px', fontWeight: 200 }}>{t.pillars[freqPillar]?.subs[freqSub]}</p>
+            {MICROCOPYS[lang]?.[freqSub] && (
+              <p style={{ fontSize: '10px', color: 'rgba(255,255,255,0.35)', textAlign: 'center', marginBottom: '16px', fontWeight: 200, letterSpacing: '0.5px', maxWidth: '300px', lineHeight: 1.6, fontStyle: 'italic' }}>
+                {MICROCOPYS[lang][freqSub]}
+              </p>
+            )}
             {(FREQ_TRACKS[freqPillar]?.[freqSub] || []).length === 0
               ? <ComingSoon accent="#22d3ee" />
               : FREQ_TRACKS[freqPillar][freqSub].map(track => <TrackCard key={track.id} track={track} onSelect={playTrack} />)
