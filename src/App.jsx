@@ -592,6 +592,8 @@ const App = () => {
   const [sanctuaryCurrentTime, setSanctuaryCurrentTime] = useState(0);
   const [sanctuaryDuration, setSanctuaryDuration] = useState(0);
   // ── DRAG & DROP ───────────────────────────────────────────────────────────
+  const [showSearch, setShowSearch] = useState(false);
+  const [searchQuery, setSearchQuery] = useState('');
   const [favOrder, setFavOrder] = useState([]);
   const [draggingId, setDraggingId] = useState(null);
   const [overIdx, setOverIdx] = useState(null);
@@ -868,6 +870,99 @@ const App = () => {
     </div>
   );
   // ── SPLASH ────────────────────────────────────────────────────────────────
+
+  const searchResults = searchQuery.trim().length > 0
+    ? ALL_TRACKS_FLAT.filter(tr =>
+        tr.name.toLowerCase().includes(searchQuery.trim().toLowerCase())
+      )
+    : [];
+
+  const FloatingSearchButton = () => (
+    <button
+      onClick={() => setShowSearch(true)}
+      style={{
+        position: 'fixed',
+        bottom: '90px',
+        right: '20px',
+        width: '50px',
+        height: '50px',
+        borderRadius: '50%',
+        background: 'rgba(212,175,55,0.1)',
+        border: '1px solid rgba(212,175,55,0.5)',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        cursor: 'pointer',
+        boxShadow: '0 0 16px rgba(212,175,55,0.3)',
+        zIndex: 90,
+      }}
+    >
+      <span style={{ color: '#d4af37', fontSize: '20px' }}>&#9737;</span>
+    </button>
+  );
+
+  const SearchOverlay = () => (
+    <div
+      className="fade-in-smooth"
+      style={{
+        position: 'fixed', top: 0, left: 0, right: 0, bottom: 0,
+        backgroundColor: 'rgba(2,6,23,0.97)', backdropFilter: 'blur(10px)',
+        zIndex: 200, display: 'flex', flexDirection: 'column',
+        padding: '24px 20px', overflowY: 'auto',
+      }}
+    >
+      <div style={{ display: 'flex', alignItems: 'center', gap: '12px', marginBottom: '24px' }}>
+        <button
+          onClick={() => { setShowSearch(false); setSearchQuery(''); }}
+          style={{ background: 'none', border: 'none', color: '#d4af37', fontSize: '32px', cursor: 'pointer', lineHeight: 1, padding: 0 }}
+        >&#8249;</button>
+        <input
+          autoFocus
+          type="text"
+          value={searchQuery}
+          onChange={(e) => setSearchQuery(e.target.value)}
+          placeholder={lang === 'es' ? 'Buscar frecuencia...' : 'Search frequency...'}
+          style={{
+            flex: 1, background: 'rgba(212,175,55,0.05)', border: '1px solid rgba(212,175,55,0.3)',
+            borderRadius: '24px', padding: '12px 18px', color: 'white', fontSize: '14px',
+            letterSpacing: '1px', outline: 'none',
+          }}
+        />
+      </div>
+      {searchQuery.trim().length === 0 ? (
+        <p style={{ textAlign: 'center', color: 'rgba(212,175,55,0.4)', fontSize: '11px', letterSpacing: '2px', marginTop: '40px', fontWeight: 200 }}>
+          {lang === 'es' ? 'Escribe el nombre de una frecuencia' : 'Type a frequency name'}
+        </p>
+      ) : searchResults.length === 0 ? (
+        <p style={{ textAlign: 'center', color: 'rgba(255,255,255,0.25)', fontSize: '11px', letterSpacing: '2px', marginTop: '40px', fontWeight: 200 }}>
+          {lang === 'es' ? 'No se encontraron resultados' : 'No results found'}
+        </p>
+      ) : (
+        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '6px' }}>
+          {searchResults.map(track => (
+            <div
+              key={track.id}
+              onClick={() => { setShowSearch(false); setSearchQuery(''); playTrack(track, false); }}
+              className="track-card"
+              style={{ borderLeft: '4px solid #d4af37', width: '100%', maxWidth: '340px' }}
+            >
+              <div style={{ textAlign: 'left', width: '75%' }}>
+                <div style={{ fontSize: '14px', color: 'white', fontWeight: 300 }}>{track.name}</div>
+                <div style={{ fontSize: '10px', color: '#fdfcf5', opacity: 0.6, marginTop: '4px', fontWeight: 200, letterSpacing: '1px' }}>
+                  {t.tracks[track.id] || ''}
+                </div>
+              </div>
+              <div style={{ textAlign: 'right' }}>
+                <div style={{ fontSize: '9px', color: '#d4af37', opacity: 0.7 }}>{track.hz}</div>
+                <span style={{ color: '#d4af37', fontSize: '18px' }}>&#9658;</span>
+              </div>
+            </div>
+          ))}
+        </div>
+      )}
+    </div>
+  );
+
   if (showSplash) {
     return (
       <div className="fade-in-smooth" style={{ backgroundColor: '#020617', minHeight: '100vh', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', textAlign: 'center' }}>
@@ -1195,6 +1290,11 @@ const App = () => {
       </div>
     );
   }
+  // ── BUSCADOR ──────────────────────────────────────────────────────────────
+  if (showSearch) {
+    return <SearchOverlay />;
+  }
+
   // ── CATALOGO PRINCIPAL ────────────────────────────────────────────────────
   return (
     <div className="fade-in-smooth" style={{ backgroundColor: '#020617', minHeight: '100vh', color: 'white', padding: '20px', paddingBottom: '80px' }}>
@@ -1306,6 +1406,7 @@ const App = () => {
           </div>
         )}
       </div>
+      {mainMode && <FloatingSearchButton />}
       <BottomBar />
     </div>
   );
