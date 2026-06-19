@@ -496,11 +496,21 @@ const inlineStyles = `
     border-color: rgba(212,175,55,0.3);
     background: rgba(212,175,55,0.025);
   }
-  .mi-al-handle { display: flex; flex-direction: column; gap: 3px; padding: 4px 6px; opacity: 0.2; transition: opacity 0.2s; flex-shrink: 0; }
-  .mi-al-card:hover .mi-al-handle, .mi-al-card.is-dragging .mi-al-handle { opacity: 0.55; }
-  .mi-al-handle span { display: block; width: 16px; height: 1.5px; border-radius: 2px; background: #d4af37; }
+  .mi-al-handle {
+    display: flex; flex-direction: column; gap: 3px;
+    padding: 12px 10px; margin: -12px -4px -12px -4px; opacity: 0.25;
+    transition: opacity 0.2s, transform 0.2s;
+    flex-shrink: 0; cursor: grab; touch-action: none;
+  }
+  .mi-al-card:hover .mi-al-handle { opacity: 0.55; }
+  .mi-al-handle.is-grabbing {
+    opacity: 0.9;
+    cursor: grabbing;
+    transform: scale(1.25);
+  }
+  .mi-al-handle span { display: block; width: 16px; height: 1.5px; border-radius: 2px; background: #d4af37; transition: background 0.2s; }
+  .mi-al-handle.is-grabbing span { background: #f0d896; box-shadow: 0 0 4px rgba(212,175,55,0.6); }
 `;
-
 const MICROCOPYS = {
   es: {
     APRENDIZAJE: "Frecuencias orientadas a potenciar la concentracion, la memoria y la integracion de nueva informacion.",
@@ -549,7 +559,6 @@ const MICROCOPYS = {
     CELULAR: "Frequencies to accompany processes of regeneration and cellular vitality.",
   }
 };
-
 const App = () => {
   const [lang, setLang] = useState('es');
   const [showSplash, setShowSplash] = useState(true);
@@ -1144,12 +1153,18 @@ const App = () => {
                     animationTimingFunction: 'ease-in-out',
                     animationFillMode: 'both',
                     animationDelay: `${idx * 65}ms`,
-                    touchAction: 'none',
                   }}
-                  onTouchStart={(e) => handleTouchStart(e, track.id, idx)}
-                  onTouchEnd={handleTouchEnd}
                 >
-                  <div className="mi-al-handle" aria-hidden="true">
+                  <div
+                    className={['mi-al-handle', isDragging ? 'is-grabbing' : ''].filter(Boolean).join(' ')}
+                    aria-hidden="true"
+                    style={{ touchAction: 'none' }}
+                    onTouchStart={(e) => {
+                      if (navigator.vibrate) navigator.vibrate(8);
+                      handleTouchStart(e, track.id, idx);
+                    }}
+                    onTouchEnd={handleTouchEnd}
+                  >
                     <span /><span /><span />
                   </div>
                   <div style={{ textAlign: 'left', flex: 1, margin: '0 10px' }}>
