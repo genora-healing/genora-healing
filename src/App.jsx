@@ -49,13 +49,13 @@ const T = {
     pillars: {
       MENTE: { label: "MENTE", subs: { "APRENDIZAJE": "APRENDIZAJE & ENFOQUE", "CREATIVIDAD": "CREATIVIDAD & RESOLUCION", "CLARIDAD": "CLARIDAD MENTAL", "RENDIMIENTO": "ACTIVACION MENTAL & RENDIMIENTO" } },
       COHERENCIA: { label: "COHERENCIA", subs: { "REGULACION": "REGULACION EMOCIONAL", "EQUILIBRIO": "EQUILIBRIO INTERNO", "INTEGRACION": "INTEGRACION MENTE-CUERPO" } },
-      CUERPO: { label: "CUERPO", subs: { "REGENERACION": "REGENERACION & SANACION", "ORGANOS": "ORGANOS & SISTEMAS", "DOLOR": "DOLOR & RECUPERACION" } },
+      CUERPO: { label: "CUERPO", subs: { "REGENERACION": "REGENERACION & SANACION", "ORGANOS": "ORGANOS & SISTEMAS", "DOLOR": "DOLOR & RECUPERACION", "VITALIDAD": "VITALIDAD FISICA" } },
       EXPANSION: { label: "EXPANSION", subs: { "MEDITACION": "MEDITACION & ESTADOS INTERNOS", "PERCEPCION": "PERCEPCION & INTUICION", "EXPERIENCIAS": "EXPERIENCIAS EXPANDIDAS", "CONSCIENCIA_EXP": "CONSCIENCIA EXPANDIDA" } },
       EXPERIENCIAS_G: { label: "EXPERIENCIAS GENORA", subs: { "RITUALES": "PROCESOS DE ACTIVACION", "CEREMONIAS": "CEREMONIAS SONORAS", "BIENESTAR_F": "BIENESTAR FEMENINO" } },
       ARMONIZACION: { label: "ARMONIZACION BIOLOGICA", subs: { "ADN": "REPROGRAMACION DE ADN", "CAMPOS": "CAMPOS BIOENERGETICOS", "CELULAR": "REGENERACION CELULAR" } }
     },
     tracks: {
-      "alpha-integration": "Integracion de informacion desde un estado de calma.",
+      "alpha-integration": "Integracion y aprendizaje de informacion desde un estado de calma y enfoque.",
       "beta-learning": "Absorcion pasiva de informacion sin esfuerzo.",
       "alpha-intelligence": "Mejora la capacidad de procesamiento cognitivo.",
       "beta-focus": "Concentracion y claridad mental sostenida.",
@@ -81,7 +81,15 @@ const T = {
       "alpha-lucent-mente": "Observacion consciente y comprension de procesos internos.",
       "alpha-lucent-cuerpo": "Equilibrio asociado al sistema reproductor masculino.",
       "femin-essence": "Experiencia para el bienestar femenino, equilibrio y armonia hormonal.",
-      "theta-emotional-reset": "Estados de calma emocional, receptividad y equilibrio interior."
+      "theta-emotional-reset": "Estados de calma emocional, receptividad y equilibrio interior.",
+      "alpha-origen-regen": "Reparacion y restauracion biologica.",
+      "alpha-origen-organos": "Equilibrio energetico de rinones y suprarrenales.",
+      "alpha-origen-vitalidad": "Recuperacion de energia corporal.",
+      "alpha-origen-aprend": "Sincronizacion cerebral e integracion mental.",
+      "alpha-origen-exp": "Estado expandido de presencia y apertura consciente.",
+      "alpha-voice": "Expresion verbal y comunicacion consciente.",
+      "alpha-void": "Silencio mental e introspeccion profunda.",
+      "gaia-vision": "Visualizacion interna, percepcion de imagenes mentales."
     }
   },
   en: {
@@ -133,13 +141,13 @@ const T = {
     pillars: {
       MENTE: { label: "MIND", subs: { "APRENDIZAJE": "LEARNING & FOCUS", "CREATIVIDAD": "CREATIVITY & RESOLUTION", "CLARIDAD": "MENTAL CLARITY", "RENDIMIENTO": "MENTAL ACTIVATION & PERFORMANCE" } },
       COHERENCIA: { label: "COHERENCE", subs: { "REGULACION": "EMOTIONAL REGULATION", "EQUILIBRIO": "INNER BALANCE", "INTEGRACION": "MIND-BODY INTEGRATION" } },
-      CUERPO: { label: "BODY", subs: { "REGENERACION": "REGENERATION & HEALING", "ORGANOS": "ORGANS & SYSTEMS", "DOLOR": "PAIN & RECOVERY" } },
+      CUERPO: { label: "BODY", subs: { "REGENERACION": "REGENERATION & HEALING", "ORGANOS": "ORGANS & SYSTEMS", "DOLOR": "PAIN & RECOVERY", "VITALIDAD": "PHYSICAL VITALITY" } },
       EXPANSION: { label: "EXPANSION", subs: { "MEDITACION": "MEDITATION & INNER STATES", "PERCEPCION": "PERCEPTION & INTUITION", "EXPERIENCIAS": "EXPANDED EXPERIENCES", "CONSCIENCIA_EXP": "EXPANDED CONSCIOUSNESS" } },
       EXPERIENCIAS_G: { label: "GENORA EXPERIENCES", subs: { "RITUALES": "ACTIVATION PROCESSES", "CEREMONIAS": "SOUND CEREMONIES", "BIENESTAR_F": "FEMININE WELLBEING" } },
       ARMONIZACION: { label: "BIOLOGICAL HARMONIZATION", subs: { "ADN": "DNA REPROGRAMMING", "CAMPOS": "BIOENERGETIC FIELDS", "CELULAR": "CELLULAR REGENERATION" } }
     },
     tracks: {
-      "alpha-integration": "Information integration from a state of calm.",
+      "alpha-integration": "Integration and learning of information from a state of calm and focus.",
       "beta-learning": "Passive information absorption without effort.",
       "alpha-intelligence": "Improves cognitive processing capacity.",
       "beta-focus": "Concentration and sustained mental clarity.",
@@ -165,7 +173,15 @@ const T = {
       "alpha-lucent-mente": "Conscious observation and understanding of internal processes.",
       "alpha-lucent-cuerpo": "Balance associated with the male reproductive system.",
       "femin-essence": "Experience for feminine wellbeing, hormonal balance and harmony.",
-      "theta-emotional-reset": "States of emotional calm, receptivity and inner balance."
+      "theta-emotional-reset": "States of emotional calm, receptivity and inner balance.",
+      "alpha-origen-regen": "Biological repair and restoration.",
+      "alpha-origen-organos": "Energetic balance of kidneys and adrenal glands.",
+      "alpha-origen-vitalidad": "Recovery of body energy.",
+      "alpha-origen-aprend": "Brain synchronization and mental integration.",
+      "alpha-origen-exp": "Expanded state of presence and conscious openness.",
+      "alpha-voice": "Verbal expression and conscious communication.",
+      "alpha-void": "Mental silence and deep introspection.",
+      "gaia-vision": "Inner visualization, perception of mental images."
     }
   }
 };
@@ -185,13 +201,15 @@ const FREQ_TRACKS = {
       { id: "beta-learning", name: "Beta Learning", hz: "12-14 Hz", url: "/audio/beta-learning.mp3" },
       { id: "alpha-intelligence", name: "Alpha Intelligence", hz: "11.5-14.5 Hz", url: "/audio/alpha-intelligence.mp3" },
       { id: "beta-focus", name: "Beta Focus", hz: "15-18 Hz", url: "/audio/beta-focus.mp3" },
-      { id: "beta-decision", name: "Beta Decision", hz: "13.8 Hz", url: "/audio/beta-decision.mp3" }
+      { id: "beta-decision", name: "Beta Decision", hz: "13.8 Hz", url: "/audio/beta-decision.mp3" },
+      { id: "alpha-origen-aprend", name: "Alpha Origen", hz: "8 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/alpha-origen.wav" }
     ],
     "CREATIVIDAD": [
       { id: "alpha-creator", name: "Alpha Creator", hz: "8-12 Hz", url: "/audio/alpha-creator.mp3" },
       { id: "beta-solution", name: "Beta Solution", hz: "12-36 Hz", url: "/audio/beta-solution.mp3" },
       { id: "beta-logic", name: "Beta Logic", hz: "13-40 Hz", url: "/audio/beta-logic.mp3" },
-      { id: "beta-attention", name: "Beta Attention", hz: "12-15 Hz", url: "/audio/beta-attention.mp3" }
+      { id: "beta-attention", name: "Beta Attention", hz: "12-15 Hz", url: "/audio/beta-attention.mp3" },
+      { id: "alpha-voice", name: "Alpha Voice", hz: "8.22 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/alpha-voice.wav" }
     ],
     "CLARIDAD": [
       { id: "alpha-balance-mind", name: "Alpha Balance Mind", hz: "11 Hz", url: "/audio/alpha-balance-mind.mp3" },
@@ -206,7 +224,7 @@ const FREQ_TRACKS = {
     "RENDIMIENTO": [
       { id: "beta-active-mind", name: "Beta Active Mind", hz: "13-27 Hz", url: "/audio/beta-active-mind.mp3" },
       { id: "beta-vital-mind", name: "Beta Vital Mind", hz: "14 Hz", url: "/audio/beta-vital-mind.mp3" },
-      { id: "beta-cortex", name: "Beta Cortex", hz: "15.4 Hz", url: "/audio/beta-cortex.mp3" },
+      { id: "beta-cortex", name: "Beta Cortex", hz: "15.4 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/beta-cortex.wav" },
       { id: "alpha-focus", name: "Alpha Focus", hz: "11-14 Hz", url: "/audio/alpha-focus.mp3" }
     ]
   },
@@ -215,12 +233,22 @@ const FREQ_TRACKS = {
   ], "EQUILIBRIO": [
     { id: "alpha-eros", name: "Alpha Eros", hz: "9 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/alpha-eros.wav" }
   ], "INTEGRACION": [] },
-  CUERPO: { "REGENERACION": [], "ORGANOS": [
-    { id: "alpha-lucent-cuerpo", name: "Alpha Lucent", hz: "9.4 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/alpha-lucent.wav" }
-  ], "DOLOR": [] },
-  EXPANSION: { "MEDITACION": [], "PERCEPCION": [], "EXPERIENCIAS": [], "CONSCIENCIA_EXP": [
+  CUERPO: { "REGENERACION": [
+    { id: "alpha-origen-regen", name: "Alpha Origen", hz: "8 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/alpha-origen.wav" }
+  ], "ORGANOS": [
+    { id: "alpha-lucent-cuerpo", name: "Alpha Lucent", hz: "9.4 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/alpha-lucent.wav" },
+    { id: "alpha-origen-organos", name: "Alpha Origen", hz: "8 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/alpha-origen.wav" }
+  ], "DOLOR": [], "VITALIDAD": [
+    { id: "alpha-origen-vitalidad", name: "Alpha Origen", hz: "8 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/alpha-origen.wav" }
+  ] },
+  EXPANSION: { "MEDITACION": [], "PERCEPCION": [
+    { id: "gaia-vision", name: "Gaia Vision", hz: "8.3 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/gaia-vision.wav" }
+  ], "EXPERIENCIAS": [
+    { id: "alpha-origen-exp", name: "Alpha Origen", hz: "8 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/alpha-origen.wav" }
+  ], "CONSCIENCIA_EXP": [
     { id: "alpha-dreambridge", name: "Alpha Dreambridge", hz: "9-13 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/alpha-dreambridge.wav" },
-    { id: "alpha-gateway-exp", name: "Alpha Gateway", hz: "9.5-10 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/alpha-gateway.wav" }
+    { id: "alpha-gateway-exp", name: "Alpha Gateway", hz: "9.5-10 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/alpha-gateway.wav" },
+    { id: "alpha-void", name: "Alpha Void", hz: "8-13 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/alpha-void.wav" }
   ] },
   EXPERIENCIAS_G: { "RITUALES": [], "CEREMONIAS": [], "BIENESTAR_F": [
     { id: "femin-essence", name: "Feminine Essence", hz: "—", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/femin-essence.wav" }
@@ -482,6 +510,7 @@ const MICROCOPYS = {
     REGENERACION: "Frecuencias orientadas al descanso, la restauracion energetica y los procesos naturales de recuperacion.",
     ORGANOS: "Agrupa frecuencias asociadas al equilibrio funcional de organos y sistemas corporales.",
     DOLOR: "Apoya procesos de confort fisico, relajacion y recuperacion corporal.",
+    VITALIDAD: "Frecuencias orientadas a la recuperacion y sostenimiento de la energia fisica.",
     CONSCIENCIA_EXP: "Favorece la introspeccion, la percepcion ampliada y la conexion interior.",
     PERCEPCION: "Frecuencias disenadas para fortalecer la sensibilidad, la observacion y la comprension interna.",
     MEDITACION: "Facilita el acceso a estados profundos de descanso, meditacion y exploracion interior.",
@@ -504,6 +533,7 @@ const MICROCOPYS = {
     REGENERACION: "Frequencies oriented to rest, energetic restoration and natural recovery processes.",
     ORGANOS: "Groups frequencies associated with functional balance of organs and body systems.",
     DOLOR: "Supports processes of physical comfort, relaxation and body recovery.",
+    VITALIDAD: "Frequencies oriented to recovery and sustaining physical energy.",
     CONSCIENCIA_EXP: "Favors introspection, expanded perception and inner connection.",
     PERCEPCION: "Frequencies designed to strengthen sensitivity, observation and internal understanding.",
     MEDITACION: "Facilitates access to deep states of rest, meditation and inner exploration.",
