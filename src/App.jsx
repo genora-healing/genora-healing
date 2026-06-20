@@ -853,18 +853,18 @@ const App = () => {
     </div>
   );
   const PageHeader = ({ isGold = false, isViolet = false }) => (
-    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '16px', paddingTop: '10px' }}>
+    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '16px', paddingTop: '10px' }}>
       {mainMode ? (
-        <div onClick={handleBack} className="back-button-genora" style={{ borderColor: `${accentColor}88` }}>
-          <span style={{ color: accentColor, fontSize: '20px' }}>&#8249;</span>
+        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '8px' }}>
+          <div onClick={handleBack} className="back-button-genora" style={{ borderColor: `${accentColor}88` }}>
+            <span style={{ color: accentColor, fontSize: '20px' }}>&#8249;</span>
+          </div>
+          <SmallSearchButton />
         </div>
       ) : (
         <img src="/imagenes/genora-logo-white.png" style={{ height: '55px', borderRadius: '50%', objectFit: 'contain' }} alt="Logo" />
       )}
-      <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
-        {mainMode && <SmallSearchButton />}
-        <LangSwitch isGold={isGold} isViolet={isViolet} />
-      </div>
+      <LangSwitch isGold={isGold} isViolet={isViolet} />
     </div>
   );
   const ADNOrb = ({ auraClass = 'aura-supernova', filterClass = 'logo-normal', size = '110px' }) => (
