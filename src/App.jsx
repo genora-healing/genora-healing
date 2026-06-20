@@ -861,7 +861,10 @@ const App = () => {
       ) : (
         <img src="/imagenes/genora-logo-white.png" style={{ height: '55px', borderRadius: '50%', objectFit: 'contain' }} alt="Logo" />
       )}
-      <LangSwitch isGold={isGold} isViolet={isViolet} />
+      <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+        {mainMode && <SmallSearchButton />}
+        <LangSwitch isGold={isGold} isViolet={isViolet} />
+      </div>
     </div>
   );
   const ADNOrb = ({ auraClass = 'aura-supernova', filterClass = 'logo-normal', size = '110px' }) => (
@@ -877,27 +880,23 @@ const App = () => {
       )
     : [];
 
-  const FloatingSearchButton = () => (
+  const SmallSearchButton = () => (
     <button
       onClick={() => setShowSearch(true)}
       style={{
-        position: 'fixed',
-        bottom: '90px',
-        right: '20px',
-        width: '50px',
-        height: '50px',
+        width: '30px',
+        height: '30px',
         borderRadius: '50%',
-        background: 'rgba(212,175,55,0.1)',
-        border: '1px solid rgba(212,175,55,0.5)',
+        background: 'rgba(212,175,55,0.08)',
+        border: '1px solid rgba(212,175,55,0.45)',
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
         cursor: 'pointer',
-        boxShadow: '0 0 16px rgba(212,175,55,0.3)',
-        zIndex: 90,
+        flexShrink: 0,
       }}
     >
-      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#d4af37" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#d4af37" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
         <circle cx="11" cy="11" r="7" />
         <line x1="21" y1="21" x2="16.65" y2="16.65" />
       </svg>
@@ -1409,7 +1408,6 @@ const App = () => {
           </div>
         )}
       </div>
-      {mainMode && <FloatingSearchButton />}
       <BottomBar />
     </div>
   );
