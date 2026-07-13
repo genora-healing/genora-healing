@@ -89,7 +89,15 @@ const T = {
       "alpha-origen-exp": "Estado expandido de presencia y apertura consciente.",
       "alpha-voice": "Expresion verbal y comunicacion consciente.",
       "alpha-void": "Silencio mental e introspeccion profunda.",
-      "gaia-vision": "Visualizacion interna, percepcion de imagenes mentales."
+      "gaia-vision": "Visualizacion interna, percepcion de imagenes mentales.",
+      "alpha-harmony": "Armonia interior y equilibrio vibracional.",
+      "pyramid-resonance": "Resonancia geometrica sagrada para la coherencia energetica.",
+      "gaia-pulse": "Pulso terrestre para el arraigo y la vitalidad.",
+      "alpha-lucid-flow": "Flujo consciente y claridad en estados expandidos.",
+      "alpha-eros-organos": "Regula el sistema reproductor y las gonadas.",
+      "alpha-eros-integracion": "Consciencia del origen de los desequilibrios.",
+      "alpha-eros-meditacion": "Observacion interior y autoconocimiento.",
+      "alpha-eros-reproductor": "Equilibrio del sistema reproductor."
     }
   },
   en: {
@@ -181,7 +189,15 @@ const T = {
       "alpha-origen-exp": "Expanded state of presence and conscious openness.",
       "alpha-voice": "Verbal expression and conscious communication.",
       "alpha-void": "Mental silence and deep introspection.",
-      "gaia-vision": "Inner visualization, perception of mental images."
+      "gaia-vision": "Inner visualization, perception of mental images.",
+      "alpha-harmony": "Inner harmony and vibrational balance.",
+      "pyramid-resonance": "Sacred geometric resonance for energetic coherence.",
+      "gaia-pulse": "Earth pulse for grounding and vitality.",
+      "alpha-lucid-flow": "Conscious flow and clarity in expanded states.",
+      "alpha-eros-organos": "Regulates the reproductive system and gonads.",
+      "alpha-eros-integracion": "Awareness of the origin of imbalances.",
+      "alpha-eros-meditacion": "Inner observation and self-knowledge.",
+      "alpha-eros-reproductor": "Balance of the reproductive system."
     }
   }
 };
@@ -229,19 +245,24 @@ const FREQ_TRACKS = {
     ]
   },
   COHERENCIA: { "REGULACION": [
-    { id: "theta-emotional-reset", name: "Theta Emotional Reset", hz: "3.5 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/theta-emotional-reset.mp3" }
+    { id: "theta-emotional-reset", name: "Theta Emotional Reset", hz: "3.5 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/theta-emotional-reset.wav" }
   ], "EQUILIBRIO": [
     { id: "alpha-eros", name: "Alpha Eros", hz: "9 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/alpha-eros.wav" }
-  ], "INTEGRACION": [] },
+  ], "INTEGRACION": [
+    { id: "alpha-eros-integracion", name: "Alpha Eros", hz: "9 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/alpha-eros.wav" }
+  ] },
   CUERPO: { "REGENERACION": [
     { id: "alpha-origen-regen", name: "Alpha Origen", hz: "8 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/alpha-origen.wav" }
   ], "ORGANOS": [
     { id: "alpha-lucent-cuerpo", name: "Alpha Lucent", hz: "9.4 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/alpha-lucent.wav" },
-    { id: "alpha-origen-organos", name: "Alpha Origen", hz: "8 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/alpha-origen.wav" }
+    { id: "alpha-origen-organos", name: "Alpha Origen", hz: "8 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/alpha-origen.wav" },
+    { id: "alpha-eros-organos", name: "Alpha Eros", hz: "9 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/alpha-eros.wav" }
   ], "DOLOR": [], "VITALIDAD": [
     { id: "alpha-origen-vitalidad", name: "Alpha Origen", hz: "8 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/alpha-origen.wav" }
   ] },
-  EXPANSION: { "MEDITACION": [], "PERCEPCION": [
+  EXPANSION: { "MEDITACION": [
+    { id: "alpha-eros-meditacion", name: "Alpha Eros", hz: "9 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/alpha-eros.wav" }
+  ], "PERCEPCION": [
     { id: "gaia-vision", name: "Gaia Vision", hz: "8.3 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/gaia-vision.wav" }
   ], "EXPERIENCIAS": [
     { id: "alpha-origen-exp", name: "Alpha Origen", hz: "8 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/alpha-origen.wav" }
@@ -253,7 +274,9 @@ const FREQ_TRACKS = {
   EXPERIENCIAS_G: { "RITUALES": [], "CEREMONIAS": [], "BIENESTAR_F": [
     { id: "femin-essence", name: "Feminine Essence", hz: "—", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/femin-essence.wav" }
   ] },
-  ARMONIZACION: { "ADN": [], "CAMPOS": [], "CELULAR": [] }
+  ARMONIZACION: { "ADN": [], "CAMPOS": [], "CELULAR": [], "REPRODUCTOR": [
+    { id: "alpha-eros-reproductor", name: "Alpha Eros", hz: "9 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/alpha-eros.wav" }
+  ] }
 };
 const ALL_TRACKS_FLAT = Object.values(FREQ_TRACKS).flatMap(p => Object.values(p).flat()).filter(t => t.url);
 const MED_DATA = {
@@ -339,8 +362,8 @@ const inlineStyles = `
     50% { transform: scale(1.03); box-shadow: 0 0 50px rgba(34,211,238,0.9), 0 0 120px rgba(34,211,238,0.6), 0 0 250px rgba(34,211,238,0.4); }
   }
   @keyframes aura-violet {
-    0%, 100% { transform: scale(1); box-shadow: 0 0 80px rgba(168,85,247,0.35), 0 0 150px rgba(168,85,247,0.15); }
-    50% { transform: scale(1.03); box-shadow: 0 0 50px rgba(168,85,247,0.8), 0 0 120px rgba(168,85,247,0.5), 0 0 250px rgba(168,85,247,0.3); }
+    0%, 100% { transform: scale(1); box-shadow: 0 0 60px rgba(120,60,200,0.25), 0 0 120px rgba(100,40,180,0.12); }
+    50% { transform: scale(1.02); box-shadow: 0 0 40px rgba(120,60,200,0.45), 0 0 100px rgba(100,40,180,0.28), 0 0 180px rgba(90,30,160,0.15); }
   }
   @keyframes aura-gold {
     0%, 100% { transform: scale(1); box-shadow: 0 0 80px rgba(212,175,55,0.35), 0 0 150px rgba(212,175,55,0.15); }
@@ -386,8 +409,8 @@ const inlineStyles = `
   .home-btn:hover { background: rgba(34,211,238,0.08); border-color: rgba(34,211,238,0.6); }
   .home-btn.bright { border-color: rgba(34,211,238,0.4); }
   .home-btn.bright:hover { background: rgba(34,211,238,0.1); border-color: rgba(34,211,238,0.8); box-shadow: 0 0 20px rgba(34,211,238,0.2); }
-  .home-btn.violet { border-color: rgba(168,85,247,0.3); background: rgba(168,85,247,0.03); }
-  .home-btn.violet:hover { background: rgba(168,85,247,0.08); border-color: rgba(168,85,247,0.6); }
+  .home-btn.violet { border-color: rgba(124,58,237,0.3); background: rgba(124,58,237,0.03); }
+  .home-btn.violet:hover { background: rgba(124,58,237,0.07); border-color: rgba(124,58,237,0.55); }
   .home-btn.sanctuary { border-color: rgba(212,175,55,0.4); background: rgba(212,175,55,0.04); margin-top: 16px; }
   .home-btn.sanctuary:hover { background: rgba(212,175,55,0.1); border-color: rgba(212,175,55,0.7); box-shadow: 0 0 15px rgba(212,175,55,0.15); }
   .category-stack { display: flex; flex-direction: column; align-items: center; gap: 6px; width: 100%; }
@@ -398,8 +421,8 @@ const inlineStyles = `
     text-transform: uppercase; font-weight: 200; transition: all 0.3s ease; color: white;
   }
   .pillar-card:hover { background: rgba(34,211,238,0.06); border-color: rgba(34,211,238,0.5); }
-  .pillar-card.violet { border-color: rgba(168,85,247,0.25); background: rgba(168,85,247,0.02); }
-  .pillar-card.violet:hover { background: rgba(168,85,247,0.06); border-color: rgba(168,85,247,0.5); }
+  .pillar-card.violet { border-color: rgba(124,58,237,0.25); background: rgba(124,58,237,0.02); }
+  .pillar-card.violet:hover { background: rgba(124,58,237,0.06); border-color: rgba(124,58,237,0.45); }
   .pillar-card.gold { border-color: rgba(212,175,55,0.3); background: rgba(212,175,55,0.02); }
   .pillar-card.gold:hover { background: rgba(212,175,55,0.06); border-color: rgba(212,175,55,0.5); }
   .track-card {
@@ -414,7 +437,7 @@ const inlineStyles = `
     background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.08);
     cursor: default; transition: all 0.3s ease;
   }
-  .session-card.violet { border-color: rgba(168,85,247,0.2); }
+  .session-card.violet { border-color: rgba(124,58,237,0.2); }
   .session-card.gold { border-color: rgba(212,175,55,0.2); }
   .session-card.gold:hover { background: rgba(212,175,55,0.04); border-color: rgba(212,175,55,0.35); }
   .back-button-genora {
@@ -448,11 +471,11 @@ const inlineStyles = `
   .bar-tab-icon { font-size: 18px; line-height: 1; }
   .lang-switch { display: flex; border: 1px solid rgba(34,211,238,0.35); border-radius: 20px; overflow: hidden; }
   .lang-switch.gold-border { border-color: rgba(212,175,55,0.35); }
-  .lang-switch.violet-border { border-color: rgba(168,85,247,0.35); }
+  .lang-switch.violet-border { border-color: rgba(124,58,237,0.3); }
   .lang-btn { padding: 5px 12px; background: none; border: none; font-size: 10px; letter-spacing: 2px; cursor: pointer; transition: all 0.2s; color: rgba(255,255,255,0.35); font-weight: 200; }
   .lang-btn.active { background: rgba(34,211,238,0.15); color: #22d3ee; }
   .lang-btn.active.gold-text { background: rgba(212,175,55,0.1); color: #d4af37; }
-  .lang-btn.active.violet-text { background: rgba(168,85,247,0.1); color: #a855f7; }
+  .lang-btn.active.violet-text { background: rgba(124,58,237,0.1); color: #7c3aed; }
   .progress-bar-container { width: 100%; height: 2px; background: rgba(255,255,255,0.1); border-radius: 2px; margin: 8px 0 4px; cursor: pointer; }
   .progress-bar-fill { height: 100%; border-radius: 2px; background: #22d3ee; transition: width 0.5s linear; }
   .reminder-btn { padding: 8px 16px; border-radius: 30px; border: 1px solid rgba(34,211,238,0.25); background: none; color: rgba(255,255,255,0.4); font-size: 10px; letter-spacing: 2px; cursor: pointer; transition: all 0.3s ease; text-transform: uppercase; font-weight: 200; }
@@ -462,7 +485,7 @@ const inlineStyles = `
   .coming-soon-box { text-align: center; color: rgba(255,255,255,0.2); padding: 40px 20px; font-size: 11px; letter-spacing: 3px; font-weight: 200; line-height: 2; }
   .coming-soon-icon { font-size: 28px; margin-bottom: 16px; opacity: 0.4; }
   .logo-filtro-dorado { filter: sepia(1) hue-rotate(-12deg) saturate(2.3) brightness(0.88) drop-shadow(0 0 20px rgba(212,175,55,0.65)) !important; transition: all 0.8s ease-in-out; }
-  .logo-filtro-violeta { filter: sepia(1) hue-rotate(220deg) saturate(3) brightness(0.85) drop-shadow(0 0 20px rgba(168,85,247,0.65)) !important; transition: all 0.8s ease-in-out; }
+  .logo-filtro-violeta { filter: sepia(1) hue-rotate(225deg) saturate(2.2) brightness(0.75) drop-shadow(0 0 16px rgba(100,40,180,0.5)) !important; transition: all 0.8s ease-in-out; }
   .logo-normal { filter: drop-shadow(0 0 15px #22d3ee); transition: all 0.8s ease-in-out; }
   .sanctuary-input { width: 70%; max-width: 260px; padding: 14px 20px; border-radius: 30px; background: rgba(255,255,255,0.03); border: 1px solid rgba(212,175,55,0.3); color: white; font-size: 12px; letter-spacing: 3px; text-align: center; text-transform: uppercase; outline: none; transition: all 0.3s ease; font-weight: 200; }
   .sanctuary-input:focus { border-color: rgba(212,175,55,0.7); background: rgba(212,175,55,0.05); }
@@ -534,6 +557,7 @@ const MICROCOPYS = {
     ADN: "Frecuencias orientadas a la reprogramacion y activacion del potencial genetico.",
     CAMPOS: "Apoyo vibracional para el equilibrio y coherencia de los campos bioenergeticos.",
     CELULAR: "Frecuencias para acompanar procesos de regeneracion y vitalidad celular.",
+    REPRODUCTOR: "Frecuencias orientadas al equilibrio y bienestar del sistema reproductor.",
   },
   en: {
     APRENDIZAJE: "Frequencies oriented to enhance concentration, memory and integration of new information.",
@@ -557,6 +581,7 @@ const MICROCOPYS = {
     ADN: "Frequencies oriented to reprogramming and activation of genetic potential.",
     CAMPOS: "Vibrational support for balance and coherence of bioenergetic fields.",
     CELULAR: "Frequencies to accompany processes of regeneration and cellular vitality.",
+    REPRODUCTOR: "Frequencies oriented to the balance and wellbeing of the reproductive system.",
   }
 };
 const App = () => {
@@ -594,6 +619,7 @@ const App = () => {
   // ── DRAG & DROP ───────────────────────────────────────────────────────────
   const [showSearch, setShowSearch] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
+  const [listMountKey, setListMountKey] = useState(0);
   const [favOrder, setFavOrder] = useState([]);
   const [draggingId, setDraggingId] = useState(null);
   const [overIdx, setOverIdx] = useState(null);
@@ -754,13 +780,13 @@ const App = () => {
   };
   const isFavorite = (id) => favorites.includes(id);
   const getAccentColor = () => {
-    if (mainMode === 'meditaciones') return '#a855f7';
+    if (mainMode === 'meditaciones') return '#7c3aed';
     if (mainMode === 'experiencias') return '#d4af37';
     return '#22d3ee';
   };
   const accentColor = getAccentColor();
   const goldColor = '#d4af37';
-  const violetColor = '#a855f7';
+  const violetColor = '#7c3aed';
   const handleBack = () => {
     if (mainMode === 'frecuencias') {
       if (freqSub) setFreqSub(null);
@@ -884,16 +910,10 @@ const App = () => {
     <button
       onClick={() => setShowSearch(true)}
       style={{
-        width: '30px',
-        height: '30px',
-        borderRadius: '50%',
-        background: 'rgba(212,175,55,0.08)',
-        border: '1px solid rgba(212,175,55,0.45)',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-        cursor: 'pointer',
-        flexShrink: 0,
+        width: '30px', height: '30px', borderRadius: '50%',
+        background: 'rgba(212,175,55,0.08)', border: '1px solid rgba(212,175,55,0.45)',
+        display: 'flex', alignItems: 'center', justifyContent: 'center',
+        cursor: 'pointer', flexShrink: 0,
       }}
     >
       <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#d4af37" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -904,31 +924,12 @@ const App = () => {
   );
 
   const SearchOverlay = () => (
-    <div
-      className="fade-in-smooth"
-      style={{
-        position: 'fixed', top: 0, left: 0, right: 0, bottom: 0,
-        backgroundColor: 'rgba(2,6,23,0.97)', backdropFilter: 'blur(10px)',
-        zIndex: 200, display: 'flex', flexDirection: 'column',
-        padding: '24px 20px', overflowY: 'auto',
-      }}
-    >
+    <div className="fade-in-smooth" style={{ position: 'fixed', top: 0, left: 0, right: 0, bottom: 0, backgroundColor: 'rgba(2,6,23,0.97)', backdropFilter: 'blur(10px)', zIndex: 200, display: 'flex', flexDirection: 'column', padding: '24px 20px', overflowY: 'auto' }}>
       <div style={{ display: 'flex', alignItems: 'center', gap: '12px', marginBottom: '24px' }}>
-        <button
-          onClick={() => { setShowSearch(false); setSearchQuery(''); }}
-          style={{ background: 'none', border: 'none', color: '#d4af37', fontSize: '32px', cursor: 'pointer', lineHeight: 1, padding: 0 }}
-        >&#8249;</button>
-        <input
-          autoFocus
-          type="text"
-          value={searchQuery}
-          onChange={(e) => setSearchQuery(e.target.value)}
+        <button onClick={() => { setShowSearch(false); setSearchQuery(''); }} style={{ background: 'none', border: 'none', color: '#d4af37', fontSize: '32px', cursor: 'pointer', lineHeight: 1, padding: 0 }}>&#8249;</button>
+        <input autoFocus type="text" value={searchQuery} onChange={(e) => setSearchQuery(e.target.value)}
           placeholder={lang === 'es' ? 'Buscar frecuencia...' : 'Search frequency...'}
-          style={{
-            flex: 1, background: 'rgba(212,175,55,0.05)', border: '1px solid rgba(212,175,55,0.3)',
-            borderRadius: '24px', padding: '12px 18px', color: 'white', fontSize: '14px',
-            letterSpacing: '1px', outline: 'none',
-          }}
+          style={{ flex: 1, background: 'rgba(212,175,55,0.05)', border: '1px solid rgba(212,175,55,0.3)', borderRadius: '24px', padding: '12px 18px', color: 'white', fontSize: '14px', letterSpacing: '1px', outline: 'none' }}
         />
       </div>
       {searchQuery.trim().length === 0 ? (
@@ -942,17 +943,11 @@ const App = () => {
       ) : (
         <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '6px' }}>
           {searchResults.map(track => (
-            <div
-              key={track.id}
-              onClick={() => { setShowSearch(false); setSearchQuery(''); playTrack(track, false); }}
-              className="track-card"
-              style={{ borderLeft: '4px solid #d4af37', width: '100%', maxWidth: '340px' }}
-            >
+            <div key={track.id} onClick={() => { setShowSearch(false); setSearchQuery(''); playTrack(track, false); }}
+              className="track-card" style={{ borderLeft: '4px solid #d4af37', width: '100%', maxWidth: '340px' }}>
               <div style={{ textAlign: 'left', width: '75%' }}>
                 <div style={{ fontSize: '14px', color: 'white', fontWeight: 300 }}>{track.name}</div>
-                <div style={{ fontSize: '10px', color: '#fdfcf5', opacity: 0.6, marginTop: '4px', fontWeight: 200, letterSpacing: '1px' }}>
-                  {t.tracks[track.id] || ''}
-                </div>
+                <div style={{ fontSize: '10px', color: '#fdfcf5', opacity: 0.6, marginTop: '4px', fontWeight: 200, letterSpacing: '1px' }}>{t.tracks[track.id] || ''}</div>
               </div>
               <div style={{ textAlign: 'right' }}>
                 <div style={{ fontSize: '9px', color: '#d4af37', opacity: 0.7 }}>{track.hz}</div>
@@ -1292,7 +1287,6 @@ const App = () => {
       </div>
     );
   }
-  // ── BUSCADOR ──────────────────────────────────────────────────────────────
   if (showSearch) {
     return <SearchOverlay />;
   }
