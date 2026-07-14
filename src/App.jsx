@@ -491,7 +491,7 @@ const inlineStyles = `
   .lang-btn { padding: 5px 12px; background: none; border: none; font-size: 10px; letter-spacing: 2px; cursor: pointer; transition: all 0.2s; color: rgba(255,255,255,0.35); font-weight: 200; }
   .lang-btn.active { background: rgba(34,211,238,0.15); color: #22d3ee; }
   .lang-btn.active.gold-text { background: rgba(212,175,55,0.1); color: #d4af37; }
-  .lang-btn.active.violet-text { background: rgba(63,77,107,0.15); color: #3f4d6b; }
+  .lang-btn.active.violet-text { background: rgba(79,61,161); color: #4f3da1; }
   .progress-bar-container { width: 100%; height: 2px; background: rgba(255,255,255,0.1); border-radius: 2px; margin: 8px 0 4px; cursor: pointer; }
   .progress-bar-fill { height: 100%; border-radius: 2px; background: #22d3ee; transition: width 0.5s linear; }
   .reminder-btn { padding: 8px 16px; border-radius: 30px; border: 1px solid rgba(34,211,238,0.25); background: none; color: rgba(255,255,255,0.4); font-size: 10px; letter-spacing: 2px; cursor: pointer; transition: all 0.3s ease; text-transform: uppercase; font-weight: 200; }
@@ -501,7 +501,7 @@ const inlineStyles = `
   .coming-soon-box { text-align: center; color: rgba(255,255,255,0.2); padding: 40px 20px; font-size: 11px; letter-spacing: 3px; font-weight: 200; line-height: 2; }
   .coming-soon-icon { font-size: 28px; margin-bottom: 16px; opacity: 0.4; }
   .logo-filtro-dorado { filter: sepia(1) hue-rotate(-12deg) saturate(2.3) brightness(0.88) drop-shadow(0 0 20px rgba(212,175,55,0.65)) !important; transition: all 0.8s ease-in-out; }
-  .logo-filtro-violeta { filter: sepia(1) hue-rotate(195deg) saturate(1.4) brightness(0.7) drop-shadow(0 0 14px rgba(63,77,107,0.6)) !important; transition: all 0.8s ease-in-out; }
+  .logo-filtro-violeta { filter: sepia(1) hue-rotate(195deg) saturate(1.4) brightness(0.7) drop-shadow(0 0 14px rgba(79,61,161,0.6)) !important; transition: all 0.8s ease-in-out; }
   .logo-normal { filter: drop-shadow(0 0 15px #22d3ee); transition: all 0.8s ease-in-out; }
   .sanctuary-input { width: 70%; max-width: 260px; padding: 14px 20px; border-radius: 30px; background: rgba(255,255,255,0.03); border: 1px solid rgba(212,175,55,0.3); color: white; font-size: 12px; letter-spacing: 3px; text-align: center; text-transform: uppercase; outline: none; transition: all 0.3s ease; font-weight: 200; }
   .sanctuary-input:focus { border-color: rgba(212,175,55,0.7); background: rgba(212,175,55,0.05); }
