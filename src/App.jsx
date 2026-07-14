@@ -50,7 +50,7 @@ const T = {
       MENTE: { label: "MENTE", subs: { "APRENDIZAJE": "APRENDIZAJE & ENFOQUE", "CREATIVIDAD": "CREATIVIDAD & RESOLUCION", "CLARIDAD": "CLARIDAD MENTAL", "RENDIMIENTO": "ACTIVACION MENTAL & RENDIMIENTO" } },
       COHERENCIA: { label: "COHERENCIA", subs: { "REGULACION": "REGULACION EMOCIONAL", "EQUILIBRIO": "EQUILIBRIO INTERNO", "INTEGRACION": "INTEGRACION MENTE-CUERPO" } },
       CUERPO: { label: "CUERPO", subs: { "REGENERACION": "REGENERACION & SANACION", "ORGANOS": "ORGANOS & SISTEMAS", "DOLOR": "DOLOR & RECUPERACION", "VITALIDAD": "VITALIDAD FISICA" } },
-      EXPANSION: { label: "EXPANSION", subs: { "MEDITACION": "MEDITACION & ESTADOS INTERNOS", "PERCEPCION": "PERCEPCION & INTUICION", "EXPERIENCIAS": "EXPERIENCIAS EXPANDIDAS", "CONSCIENCIA_EXP": "CONSCIENCIA EXPANDIDA" } },
+      EXPANSION: { label: "EXPANSION", subs: { "MEDITACION": "MEDITACION & ESTADOS INTERNOS", "PERCEPCION": "INTUICION & PERCEPCION", "EXPERIENCIAS": "EXPERIENCIAS EXPANDIDAS", "CONSCIENCIA_EXP": "CONSCIENCIA EXPANDIDA" } },
       EXPERIENCIAS_G: { label: "EXPERIENCIAS GENORA", subs: { "RITUALES": "PROCESOS DE ACTIVACION", "CEREMONIAS": "CEREMONIAS SONORAS", "BIENESTAR_F": "BIENESTAR FEMENINO" } },
       ARMONIZACION: { label: "ARMONIZACION BIOLOGICA", subs: { "ADN": "REPROGRAMACION DE ADN", "CAMPOS": "CAMPOS BIOENERGETICOS", "CELULAR": "REGENERACION CELULAR" } }
     },
@@ -90,6 +90,12 @@ const T = {
       "alpha-voice": "Expresion verbal y comunicacion consciente.",
       "alpha-void": "Silencio mental e introspeccion profunda.",
       "gaia-vision": "Visualizacion interna, percepcion de imagenes mentales.",
+      "gaia-pulse-consciencia": "Facilita la conexion con ritmos naturales de la Tierra.",
+      "gaia-pulse-exp": "Favorece la sensacion de estabilidad y sincronizacion natural.",
+      "pyramid-resonance": "Favorece estados de introspeccion y percepcion ampliada.",
+      "alpha-harmony-reg": "Favorece la armonizacion emocional y la comprension interpersonal.",
+      "alpha-harmony-perc": "Favorece la armonia interior y la percepcion intuitiva.",
+      "alpha-lucid-flow": "Manifestacion mediante visualizacion consciente.",
       "alpha-harmony": "Armonia interior y equilibrio vibracional.",
       "pyramid-resonance": "Resonancia geometrica sagrada para la coherencia energetica.",
       "gaia-pulse": "Pulso terrestre para el arraigo y la vitalidad.",
@@ -150,7 +156,7 @@ const T = {
       MENTE: { label: "MIND", subs: { "APRENDIZAJE": "LEARNING & FOCUS", "CREATIVIDAD": "CREATIVITY & RESOLUTION", "CLARIDAD": "MENTAL CLARITY", "RENDIMIENTO": "MENTAL ACTIVATION & PERFORMANCE" } },
       COHERENCIA: { label: "COHERENCE", subs: { "REGULACION": "EMOTIONAL REGULATION", "EQUILIBRIO": "INNER BALANCE", "INTEGRACION": "MIND-BODY INTEGRATION" } },
       CUERPO: { label: "BODY", subs: { "REGENERACION": "REGENERATION & HEALING", "ORGANOS": "ORGANS & SYSTEMS", "DOLOR": "PAIN & RECOVERY", "VITALIDAD": "PHYSICAL VITALITY" } },
-      EXPANSION: { label: "EXPANSION", subs: { "MEDITACION": "MEDITATION & INNER STATES", "PERCEPCION": "PERCEPTION & INTUITION", "EXPERIENCIAS": "EXPANDED EXPERIENCES", "CONSCIENCIA_EXP": "EXPANDED CONSCIOUSNESS" } },
+      EXPANSION: { label: "EXPANSION", subs: { "MEDITACION": "MEDITATION & INNER STATES", "PERCEPCION": "INTUITION & PERCEPTION", "EXPERIENCIAS": "EXPANDED EXPERIENCES", "CONSCIENCIA_EXP": "EXPANDED CONSCIOUSNESS" } },
       EXPERIENCIAS_G: { label: "GENORA EXPERIENCES", subs: { "RITUALES": "ACTIVATION PROCESSES", "CEREMONIAS": "SOUND CEREMONIES", "BIENESTAR_F": "FEMININE WELLBEING" } },
       ARMONIZACION: { label: "BIOLOGICAL HARMONIZATION", subs: { "ADN": "DNA REPROGRAMMING", "CAMPOS": "BIOENERGETIC FIELDS", "CELULAR": "CELLULAR REGENERATION" } }
     },
@@ -190,6 +196,12 @@ const T = {
       "alpha-voice": "Verbal expression and conscious communication.",
       "alpha-void": "Mental silence and deep introspection.",
       "gaia-vision": "Inner visualization, perception of mental images.",
+      "gaia-pulse-consciencia": "Facilitates connection with natural rhythms of the Earth.",
+      "gaia-pulse-exp": "Favors stability and natural synchronization.",
+      "pyramid-resonance": "Favors states of introspection and expanded perception.",
+      "alpha-harmony-reg": "Favors emotional harmonization and interpersonal understanding.",
+      "alpha-harmony-perc": "Favors inner harmony and intuitive perception.",
+      "alpha-lucid-flow": "Manifestation through conscious visualization.",
       "alpha-harmony": "Inner harmony and vibrational balance.",
       "pyramid-resonance": "Sacred geometric resonance for energetic coherence.",
       "gaia-pulse": "Earth pulse for grounding and vitality.",
@@ -232,7 +244,7 @@ const FREQ_TRACKS = {
       { id: "alpha-center", name: "Alpha Center", hz: "12 Hz", url: "/audio/alpha-center.mp3" },
       { id: "beta-decision-c", name: "Beta Decision", hz: "13.8 Hz", url: "/audio/beta-decision.mp3" },
       { id: "alpha-calm-alert", name: "Alpha Calm Alert", hz: "10.6 Hz", url: "/audio/alpha-calm-alert.mp3" },
-      { id: "alpha-clarity", name: "Alpha Clarity", hz: "10.5 Hz", url: "/audio/alpha-clarity.mp3" },
+      { id: "alpha-clarity", name: "Alpha Clarity", hz: "9.8-10.6 Hz", url: "/audio/alpha-clarity.mp3" },
       { id: "gamma-insight", name: "Gamma Insight", hz: "40 Hz", url: "/audio/gamma-insight.mp3" },
       { id: "alpha-gateway-mente", name: "Alpha Gateway", hz: "9.5-10 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/alpha-gateway.wav" },
       { id: "alpha-lucent-mente", name: "Alpha Lucent", hz: "9.4 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/alpha-lucent.wav" }
@@ -263,13 +275,17 @@ const FREQ_TRACKS = {
   EXPANSION: { "MEDITACION": [
     { id: "alpha-eros-meditacion", name: "Alpha Eros", hz: "9 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/alpha-eros.wav" }
   ], "PERCEPCION": [
-    { id: "gaia-vision", name: "Gaia Vision", hz: "8.3 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/gaia-vision.wav" }
+    { id: "gaia-vision", name: "Gaia Vision", hz: "8.3 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/gaia-vision.wav" },
+    { id: "alpha-harmony-perc", name: "Alpha Harmony", hz: "9.19 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/alpha-harmony.wav" }
   ], "EXPERIENCIAS": [
-    { id: "alpha-origen-exp", name: "Alpha Origen", hz: "8 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/alpha-origen.wav" }
+    { id: "alpha-origen-exp", name: "Alpha Origen", hz: "8 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/alpha-origen.wav" },
+    { id: "gaia-pulse-exp", name: "Gaia Pulse", hz: "9.6 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/gaia-pulse.wav" }
   ], "CONSCIENCIA_EXP": [
     { id: "alpha-dreambridge", name: "Alpha Dreambridge", hz: "9-13 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/alpha-dreambridge.wav" },
     { id: "alpha-gateway-exp", name: "Alpha Gateway", hz: "9.5-10 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/alpha-gateway.wav" },
-    { id: "alpha-void", name: "Alpha Void", hz: "8-13 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/alpha-void.wav" }
+    { id: "alpha-void", name: "Alpha Void", hz: "8-13 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/alpha-void.wav" },
+    { id: "gaia-pulse-consciencia", name: "Gaia Pulse", hz: "9.6 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/gaia-pulse.wav" },
+    { id: "pyramid-resonance", name: "Pyramid Resonance", hz: "9.41 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/pyramid-resonance.wav" }
   ] },
   EXPERIENCIAS_G: { "RITUALES": [], "CEREMONIAS": [], "BIENESTAR_F": [
     { id: "femin-essence", name: "Feminine Essence", hz: "—", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/femin-essence.wav" }
@@ -362,8 +378,8 @@ const inlineStyles = `
     50% { transform: scale(1.03); box-shadow: 0 0 50px rgba(34,211,238,0.9), 0 0 120px rgba(34,211,238,0.6), 0 0 250px rgba(34,211,238,0.4); }
   }
   @keyframes aura-violet {
-    0%, 100% { transform: scale(1); box-shadow: 0 0 60px rgba(120,60,200,0.25), 0 0 120px rgba(100,40,180,0.12); }
-    50% { transform: scale(1.02); box-shadow: 0 0 40px rgba(120,60,200,0.45), 0 0 100px rgba(100,40,180,0.28), 0 0 180px rgba(90,30,160,0.15); }
+    0%, 100% { transform: scale(1); box-shadow: 0 0 60px rgba(63,77,107,0.4), 0 0 120px rgba(63,77,107,0.2); }
+    50% { transform: scale(1.02); box-shadow: 0 0 50px rgba(63,77,107,0.65), 0 0 110px rgba(63,77,107,0.4), 0 0 200px rgba(63,77,107,0.2); }
   }
   @keyframes aura-gold {
     0%, 100% { transform: scale(1); box-shadow: 0 0 80px rgba(212,175,55,0.35), 0 0 150px rgba(212,175,55,0.15); }
@@ -409,8 +425,8 @@ const inlineStyles = `
   .home-btn:hover { background: rgba(34,211,238,0.08); border-color: rgba(34,211,238,0.6); }
   .home-btn.bright { border-color: rgba(34,211,238,0.4); }
   .home-btn.bright:hover { background: rgba(34,211,238,0.1); border-color: rgba(34,211,238,0.8); box-shadow: 0 0 20px rgba(34,211,238,0.2); }
-  .home-btn.violet { border-color: rgba(124,58,237,0.3); background: rgba(124,58,237,0.03); }
-  .home-btn.violet:hover { background: rgba(124,58,237,0.07); border-color: rgba(124,58,237,0.55); }
+  .home-btn.violet { border-color: rgba(63,77,107,0.5); background: rgba(63,77,107,0.04); }
+  .home-btn.violet:hover { background: rgba(63,77,107,0.1); border-color: rgba(63,77,107,0.75); box-shadow: 0 0 14px rgba(63,77,107,0.35); }
   .home-btn.sanctuary { border-color: rgba(212,175,55,0.4); background: rgba(212,175,55,0.04); margin-top: 16px; }
   .home-btn.sanctuary:hover { background: rgba(212,175,55,0.1); border-color: rgba(212,175,55,0.7); box-shadow: 0 0 15px rgba(212,175,55,0.15); }
   .category-stack { display: flex; flex-direction: column; align-items: center; gap: 6px; width: 100%; }
@@ -421,8 +437,8 @@ const inlineStyles = `
     text-transform: uppercase; font-weight: 200; transition: all 0.3s ease; color: white;
   }
   .pillar-card:hover { background: rgba(34,211,238,0.06); border-color: rgba(34,211,238,0.5); }
-  .pillar-card.violet { border-color: rgba(124,58,237,0.25); background: rgba(124,58,237,0.02); }
-  .pillar-card.violet:hover { background: rgba(124,58,237,0.06); border-color: rgba(124,58,237,0.45); }
+  .pillar-card.violet { border-color: rgba(63,77,107,0.5); background: rgba(63,77,107,0.04); }
+  .pillar-card.violet:hover { background: rgba(63,77,107,0.1); border-color: rgba(63,77,107,0.7); box-shadow: 0 0 12px rgba(63,77,107,0.3); }
   .pillar-card.gold { border-color: rgba(212,175,55,0.3); background: rgba(212,175,55,0.02); }
   .pillar-card.gold:hover { background: rgba(212,175,55,0.06); border-color: rgba(212,175,55,0.5); }
   .track-card {
@@ -437,7 +453,7 @@ const inlineStyles = `
     background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.08);
     cursor: default; transition: all 0.3s ease;
   }
-  .session-card.violet { border-color: rgba(124,58,237,0.2); }
+  .session-card.violet { border-color: rgba(63,77,107,0.4); }
   .session-card.gold { border-color: rgba(212,175,55,0.2); }
   .session-card.gold:hover { background: rgba(212,175,55,0.04); border-color: rgba(212,175,55,0.35); }
   .back-button-genora {
@@ -471,11 +487,11 @@ const inlineStyles = `
   .bar-tab-icon { font-size: 18px; line-height: 1; }
   .lang-switch { display: flex; border: 1px solid rgba(34,211,238,0.35); border-radius: 20px; overflow: hidden; }
   .lang-switch.gold-border { border-color: rgba(212,175,55,0.35); }
-  .lang-switch.violet-border { border-color: rgba(124,58,237,0.3); }
+  .lang-switch.violet-border { border-color: rgba(63,77,107,0.5); }
   .lang-btn { padding: 5px 12px; background: none; border: none; font-size: 10px; letter-spacing: 2px; cursor: pointer; transition: all 0.2s; color: rgba(255,255,255,0.35); font-weight: 200; }
   .lang-btn.active { background: rgba(34,211,238,0.15); color: #22d3ee; }
   .lang-btn.active.gold-text { background: rgba(212,175,55,0.1); color: #d4af37; }
-  .lang-btn.active.violet-text { background: rgba(124,58,237,0.1); color: #7c3aed; }
+  .lang-btn.active.violet-text { background: rgba(63,77,107,0.15); color: #3f4d6b; }
   .progress-bar-container { width: 100%; height: 2px; background: rgba(255,255,255,0.1); border-radius: 2px; margin: 8px 0 4px; cursor: pointer; }
   .progress-bar-fill { height: 100%; border-radius: 2px; background: #22d3ee; transition: width 0.5s linear; }
   .reminder-btn { padding: 8px 16px; border-radius: 30px; border: 1px solid rgba(34,211,238,0.25); background: none; color: rgba(255,255,255,0.4); font-size: 10px; letter-spacing: 2px; cursor: pointer; transition: all 0.3s ease; text-transform: uppercase; font-weight: 200; }
@@ -485,7 +501,7 @@ const inlineStyles = `
   .coming-soon-box { text-align: center; color: rgba(255,255,255,0.2); padding: 40px 20px; font-size: 11px; letter-spacing: 3px; font-weight: 200; line-height: 2; }
   .coming-soon-icon { font-size: 28px; margin-bottom: 16px; opacity: 0.4; }
   .logo-filtro-dorado { filter: sepia(1) hue-rotate(-12deg) saturate(2.3) brightness(0.88) drop-shadow(0 0 20px rgba(212,175,55,0.65)) !important; transition: all 0.8s ease-in-out; }
-  .logo-filtro-violeta { filter: sepia(1) hue-rotate(225deg) saturate(2.2) brightness(0.75) drop-shadow(0 0 16px rgba(100,40,180,0.5)) !important; transition: all 0.8s ease-in-out; }
+  .logo-filtro-violeta { filter: sepia(1) hue-rotate(195deg) saturate(1.4) brightness(0.7) drop-shadow(0 0 14px rgba(63,77,107,0.6)) !important; transition: all 0.8s ease-in-out; }
   .logo-normal { filter: drop-shadow(0 0 15px #22d3ee); transition: all 0.8s ease-in-out; }
   .sanctuary-input { width: 70%; max-width: 260px; padding: 14px 20px; border-radius: 30px; background: rgba(255,255,255,0.03); border: 1px solid rgba(212,175,55,0.3); color: white; font-size: 12px; letter-spacing: 3px; text-align: center; text-transform: uppercase; outline: none; transition: all 0.3s ease; font-weight: 200; }
   .sanctuary-input:focus { border-color: rgba(212,175,55,0.7); background: rgba(212,175,55,0.05); }
@@ -545,7 +561,7 @@ const MICROCOPYS = {
     DOLOR: "Apoya procesos de confort fisico, relajacion y recuperacion corporal.",
     VITALIDAD: "Frecuencias orientadas a la recuperacion y sostenimiento de la energia fisica.",
     CONSCIENCIA_EXP: "Favorece la introspeccion, la percepcion ampliada y la conexion interior.",
-    PERCEPCION: "Frecuencias disenadas para fortalecer la sensibilidad, la observacion y la comprension interna.",
+    PERCEPCION: "Frecuencias disenadas para fortalecer la intuicion, la sensibilidad y la comprension interna.",
     MEDITACION: "Facilita el acceso a estados profundos de descanso, meditacion y exploracion interior.",
     EXPERIENCIAS: "Experiencias de expansion consciencial guiadas por frecuencias.",
     REGULACION: "Favorece estados de estabilidad, calma y autorregulacion emocional.",
@@ -569,7 +585,7 @@ const MICROCOPYS = {
     DOLOR: "Supports processes of physical comfort, relaxation and body recovery.",
     VITALIDAD: "Frequencies oriented to recovery and sustaining physical energy.",
     CONSCIENCIA_EXP: "Favors introspection, expanded perception and inner connection.",
-    PERCEPCION: "Frequencies designed to strengthen sensitivity, observation and internal understanding.",
+    PERCEPCION: "Frequencies designed to strengthen intuition, sensitivity and internal understanding.",
     MEDITACION: "Facilitates access to deep states of rest, meditation and inner exploration.",
     EXPERIENCIAS: "Consciousness expansion experiences guided by frequencies.",
     REGULACION: "Favors states of stability, calm and emotional self-regulation.",
@@ -623,6 +639,7 @@ const App = () => {
   const [favOrder, setFavOrder] = useState([]);
   const [draggingId, setDraggingId] = useState(null);
   const [overIdx, setOverIdx] = useState(null);
+  const [listMountKey, setListMountKey] = useState(0);
   const dragItem = useRef(null);
   const touchStartY = useRef(null);
   const touchCurrentIdx = useRef(null);
@@ -779,13 +796,13 @@ const App = () => {
   };
   const isFavorite = (id) => favorites.includes(id);
   const getAccentColor = () => {
-    if (mainMode === 'meditaciones') return '#7c3aed';
+    if (mainMode === 'meditaciones') return '#3f4d6b';
     if (mainMode === 'experiencias') return '#d4af37';
     return '#22d3ee';
   };
   const accentColor = getAccentColor();
   const goldColor = '#d4af37';
-  const violetColor = '#7c3aed';
+  const violetColor = '#3f4d6b';
   const handleBack = () => {
     if (mainMode === 'frecuencias') {
       if (freqSub) setFreqSub(null);
