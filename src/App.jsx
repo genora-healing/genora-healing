@@ -639,7 +639,7 @@ const App = () => {
   const [favOrder, setFavOrder] = useState([]);
   const [draggingId, setDraggingId] = useState(null);
   const [overIdx, setOverIdx] = useState(null);
-  const dragItem = useRef(null);
+    const dragItem = useRef(null);
   const touchStartY = useRef(null);
   const touchCurrentIdx = useRef(null);
   const touchListRef = useRef(null);
