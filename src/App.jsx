@@ -611,11 +611,12 @@ const inlineStyles = `
   .sp7 { top: 15%; left: 20%; animation: sparkle-appear 2s infinite 1.0s; width: 3px; height: 3px; }
   .sp8 { bottom: 25%; left: 5%; animation: sparkle-appear 2s infinite 1.8s; width: 3px; height: 3px; }
   .templo-adn-img {
-    width: 140px;
-    height: 140px;
+    width: 180px;
+    height: 180px;
     object-fit: contain;
     position: relative;
     z-index: 2;
+    mix-blend-mode: screen;
   }
   .templo-adn-img.playing {
     animation: adn-breathe-deep 4s ease-in-out infinite;
@@ -992,7 +993,7 @@ const App = () => {
   );
   const ADNOrb = ({ auraClass = 'aura-supernova', filterClass = 'logo-normal', size = '110px' }) => (
     <div style={{ width: size, height: size, display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '20px', transition: 'all 0.5s ease', animation: `${auraClass} 8s infinite ease-in-out`, position: 'relative' }}>
-      <img src="/imagenes/adn-icon.png" className={filterClass} style={{ width: '100%', objectFit: 'contain' }} alt="ADN" />
+      <img src="/imagenes/adn-icon.png" className={filterClass} style={{ width: '80%', objectFit: 'contain', mixBlendMode: 'screen' }} alt="ADN" />
     </div>
   );
   // ── SPLASH ────────────────────────────────────────────────────────────────
@@ -1095,7 +1096,7 @@ const App = () => {
           <span className="templo-sparkle sp6" />
           <span className="templo-sparkle sp7" />
           <span className="templo-sparkle sp8" />
-          <img src="/imagenes/adn-icon.png" className={`templo-adn-img ${isPlaying ? 'playing' : ''}`} alt="ADN" />
+          <img src="/imagenes/adn-icon.png" className={`templo-adn-img ${isPlaying ? 'playing' : ''}`} style={{ mixBlendMode: 'screen' }} alt="ADN" />
         </div>
         <h2 style={{ fontSize: '20px', letterSpacing: '4px', textTransform: 'uppercase', fontWeight: 200 }}>{selectedTrack.name}</h2>
         <p style={{ color: accentColor, fontSize: '11px', letterSpacing: '3px', fontWeight: 300, marginBottom: '8px' }}>{selectedTrack.hz}</p>
@@ -1405,7 +1406,7 @@ const App = () => {
         <ADNOrb
           auraClass={mainMode === 'meditaciones' ? 'aura-violet' : mainMode === 'experiencias' ? 'aura-gold' : 'aura-supernova'}
           filterClass={mainMode === 'experiencias' ? 'logo-filtro-dorado' : mainMode === 'meditaciones' ? 'logo-filtro-violeta' : 'logo-normal'}
-          size={!mainMode ? '130px' : '90px'}
+          size={!mainMode ? '140px' : '110px'}
         />
         {!mainMode && (
           <div className="category-stack">
