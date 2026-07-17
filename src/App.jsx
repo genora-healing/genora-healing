@@ -547,6 +547,88 @@ const inlineStyles = `
     cursor: grabbing;
     transform: scale(1.25);
   }
+
+  @keyframes ring-pulse-1 {
+    0% { transform: scale(0.85); opacity: 0.7; }
+    100% { transform: scale(1.6); opacity: 0; }
+  }
+  @keyframes ring-pulse-2 {
+    0% { transform: scale(0.85); opacity: 0.5; }
+    100% { transform: scale(1.9); opacity: 0; }
+  }
+  @keyframes ring-pulse-3 {
+    0% { transform: scale(0.85); opacity: 0.35; }
+    100% { transform: scale(2.2); opacity: 0; }
+  }
+  @keyframes sparkle-appear {
+    0%, 100% { opacity: 0; transform: scale(0); }
+    50% { opacity: 1; transform: scale(1); }
+  }
+  @keyframes adn-breathe-deep {
+    0%, 100% { transform: scale(1) rotate(0deg); filter: drop-shadow(0 0 12px #22d3ee); }
+    25% { transform: scale(1.06) rotate(1deg); filter: drop-shadow(0 0 22px #22d3ee); }
+    50% { transform: scale(1.1) rotate(0deg); filter: drop-shadow(0 0 30px #22d3ee) brightness(1.15); }
+    75% { transform: scale(1.06) rotate(-1deg); filter: drop-shadow(0 0 22px #22d3ee); }
+  }
+  @keyframes slow-rotate {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+  }
+  .templo-orb-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 240px;
+    height: 240px;
+    margin-bottom: 30px;
+  }
+  .templo-ring {
+    position: absolute;
+    border-radius: 50%;
+    border: 1px solid rgba(34,211,238,0.6);
+    width: 100%;
+    height: 100%;
+    top: 0; left: 0;
+  }
+  .templo-ring-1 { animation: ring-pulse-1 2.5s ease-out infinite; }
+  .templo-ring-2 { animation: ring-pulse-2 2.5s ease-out infinite 0.7s; }
+  .templo-ring-3 { animation: ring-pulse-3 2.5s ease-out infinite 1.4s; }
+  .templo-sparkle {
+    position: absolute;
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    background: #22d3ee;
+    box-shadow: 0 0 6px 2px #22d3ee;
+  }
+  .sp1 { top: 8%; left: 50%; animation: sparkle-appear 2s infinite 0s; }
+  .sp2 { top: 25%; right: 5%; animation: sparkle-appear 2s infinite 0.4s; }
+  .sp3 { bottom: 10%; right: 15%; animation: sparkle-appear 2s infinite 0.8s; }
+  .sp4 { bottom: 8%; left: 20%; animation: sparkle-appear 2s infinite 1.2s; }
+  .sp5 { top: 30%; left: 3%; animation: sparkle-appear 2s infinite 1.6s; }
+  .sp6 { top: 60%; right: 8%; animation: sparkle-appear 2s infinite 0.3s; }
+  .sp7 { top: 15%; left: 20%; animation: sparkle-appear 2s infinite 1.0s; width: 3px; height: 3px; }
+  .sp8 { bottom: 25%; left: 5%; animation: sparkle-appear 2s infinite 1.8s; width: 3px; height: 3px; }
+  .templo-adn-img {
+    width: 140px;
+    height: 140px;
+    object-fit: contain;
+    position: relative;
+    z-index: 2;
+  }
+  .templo-adn-img.playing {
+    animation: adn-breathe-deep 4s ease-in-out infinite;
+  }
+  .templo-rotate-ring {
+    position: absolute;
+    width: 85%;
+    height: 85%;
+    border-radius: 50%;
+    border: 1px solid rgba(34,211,238,0.12);
+    border-top-color: rgba(34,211,238,0.4);
+    animation: slow-rotate 12s linear infinite;
+  }
   .mi-al-handle span { display: block; width: 16px; height: 1.5px; border-radius: 2px; background: #d4af37; transition: background 0.2s; }
   .mi-al-handle.is-grabbing span { background: #f0d896; box-shadow: 0 0 4px rgba(212,175,55,0.6); }
 `;
@@ -909,18 +991,16 @@ const App = () => {
     </div>
   );
   const ADNOrb = ({ auraClass = 'aura-supernova', filterClass = 'logo-normal', size = '110px' }) => (
-    <div style={{ width: size, height: size, borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '20px', transition: 'all 0.5s ease', animation: `${auraClass} 8s infinite ease-in-out` }}>
-      <img src="/imagenes/adn-icon.png" className={filterClass} style={{ width: '100%', borderRadius: '50%' }} alt="ADN" />
+    <div style={{ width: size, height: size, display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '20px', transition: 'all 0.5s ease', animation: `${auraClass} 8s infinite ease-in-out`, position: 'relative' }}>
+      <img src="/imagenes/adn-icon.png" className={filterClass} style={{ width: '100%', objectFit: 'contain' }} alt="ADN" />
     </div>
   );
   // ── SPLASH ────────────────────────────────────────────────────────────────
-
   const searchResults = searchQuery.trim().length > 0
     ? ALL_TRACKS_FLAT.filter(tr =>
         tr.name.toLowerCase().includes(searchQuery.trim().toLowerCase())
       )
     : [];
-
   const SmallSearchButton = () => (
     <button
       onClick={() => setShowSearch(true)}
@@ -937,7 +1017,6 @@ const App = () => {
       </svg>
     </button>
   );
-
   const SearchOverlay = () => (
     <div className="fade-in-smooth" style={{ position: 'fixed', top: 0, left: 0, right: 0, bottom: 0, backgroundColor: 'rgba(2,6,23,0.97)', backdropFilter: 'blur(10px)', zIndex: 200, display: 'flex', flexDirection: 'column', padding: '24px 20px', overflowY: 'auto' }}>
       <div style={{ display: 'flex', alignItems: 'center', gap: '12px', marginBottom: '24px' }}>
@@ -974,7 +1053,6 @@ const App = () => {
       )}
     </div>
   );
-
   if (showSplash) {
     return (
       <div className="fade-in-smooth" style={{ backgroundColor: '#020617', minHeight: '100vh', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', textAlign: 'center' }}>
@@ -1004,8 +1082,20 @@ const App = () => {
             {isFavorite(selectedTrack.id) ? '♥' : '♡'}
           </button>
         </div>
-        <div style={{ width: '220px', height: '220px', marginBottom: '30px', display: 'flex', alignItems: 'center', justifyContent: 'center', animation: isPlaying ? 'logo-breathe 4s infinite' : 'none' }}>
-          <img src="/imagenes/adn-icon.png" style={{ width: '100%', filter: `drop-shadow(0 0 15px ${accentColor})` }} alt="ADN" />
+        <div className="templo-orb-container">
+          <div className="templo-ring templo-ring-1" />
+          <div className="templo-ring templo-ring-2" />
+          <div className="templo-ring templo-ring-3" />
+          <div className="templo-rotate-ring" />
+          <span className="templo-sparkle sp1" />
+          <span className="templo-sparkle sp2" />
+          <span className="templo-sparkle sp3" />
+          <span className="templo-sparkle sp4" />
+          <span className="templo-sparkle sp5" />
+          <span className="templo-sparkle sp6" />
+          <span className="templo-sparkle sp7" />
+          <span className="templo-sparkle sp8" />
+          <img src="/imagenes/adn-icon.png" className={`templo-adn-img ${isPlaying ? 'playing' : ''}`} alt="ADN" />
         </div>
         <h2 style={{ fontSize: '20px', letterSpacing: '4px', textTransform: 'uppercase', fontWeight: 200 }}>{selectedTrack.name}</h2>
         <p style={{ color: accentColor, fontSize: '11px', letterSpacing: '3px', fontWeight: 300, marginBottom: '8px' }}>{selectedTrack.hz}</p>
@@ -1305,7 +1395,6 @@ const App = () => {
   if (showSearch) {
     return <SearchOverlay />;
   }
-
   // ── CATALOGO PRINCIPAL ────────────────────────────────────────────────────
   return (
     <div className="fade-in-smooth" style={{ backgroundColor: '#020617', minHeight: '100vh', color: 'white', padding: '20px', paddingBottom: '80px' }}>
