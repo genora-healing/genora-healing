@@ -547,7 +547,6 @@ const inlineStyles = `
     cursor: grabbing;
     transform: scale(1.25);
   }
-
   @keyframes ring-pulse-1 {
     0% { transform: scale(0.85); opacity: 0.7; }
     100% { transform: scale(1.6); opacity: 0; }
@@ -586,30 +585,49 @@ const inlineStyles = `
   .templo-ring {
     position: absolute;
     border-radius: 50%;
-    border: 1px solid rgba(34,211,238,0.6);
     width: 100%;
     height: 100%;
     top: 0; left: 0;
+    border: none;
+    background: transparent;
   }
-  .templo-ring-1 { animation: ring-pulse-1 2.5s ease-out infinite; }
-  .templo-ring-2 { animation: ring-pulse-2 2.5s ease-out infinite 0.7s; }
-  .templo-ring-3 { animation: ring-pulse-3 2.5s ease-out infinite 1.4s; }
+  .templo-ring::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    padding: 3px;
+    background: conic-gradient(
+      from 0deg,
+      transparent 0%,
+      rgba(34,211,238,0.0) 20%,
+      rgba(34,211,238,0.9) 50%,
+      rgba(34,211,238,0.0) 80%,
+      transparent 100%
+    );
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+  }
+  .templo-ring-1 { animation: ring-pulse-1 3s ease-out infinite; }
+  .templo-ring-2 { animation: ring-pulse-2 3s ease-out infinite 0.9s; }
+  .templo-ring-3 { animation: ring-pulse-3 3s ease-out infinite 1.8s; }
   .templo-sparkle {
     position: absolute;
-    width: 4px;
-    height: 4px;
+    width: 5px;
+    height: 5px;
     border-radius: 50%;
-    background: #22d3ee;
-    box-shadow: 0 0 6px 2px #22d3ee;
+    background: #ffffff;
+    box-shadow: 0 0 8px 3px #22d3ee, 0 0 16px 4px rgba(34,211,238,0.4);
   }
-  .sp1 { top: 8%; left: 50%; animation: sparkle-appear 2s infinite 0s; }
-  .sp2 { top: 25%; right: 5%; animation: sparkle-appear 2s infinite 0.4s; }
-  .sp3 { bottom: 10%; right: 15%; animation: sparkle-appear 2s infinite 0.8s; }
-  .sp4 { bottom: 8%; left: 20%; animation: sparkle-appear 2s infinite 1.2s; }
-  .sp5 { top: 30%; left: 3%; animation: sparkle-appear 2s infinite 1.6s; }
-  .sp6 { top: 60%; right: 8%; animation: sparkle-appear 2s infinite 0.3s; }
-  .sp7 { top: 15%; left: 20%; animation: sparkle-appear 2s infinite 1.0s; width: 3px; height: 3px; }
-  .sp8 { bottom: 25%; left: 5%; animation: sparkle-appear 2s infinite 1.8s; width: 3px; height: 3px; }
+  .sp1 { top: 5%; left: 48%; animation: sparkle-appear 2.2s infinite 0s; }
+  .sp2 { top: 20%; right: 3%; animation: sparkle-appear 2.2s infinite 0.4s; }
+  .sp3 { bottom: 8%; right: 12%; animation: sparkle-appear 2.2s infinite 0.8s; }
+  .sp4 { bottom: 5%; left: 18%; animation: sparkle-appear 2.2s infinite 1.2s; }
+  .sp5 { top: 28%; left: 1%; animation: sparkle-appear 2.2s infinite 1.6s; }
+  .sp6 { top: 58%; right: 4%; animation: sparkle-appear 2.2s infinite 0.3s; }
+  .sp7 { top: 12%; left: 18%; animation: sparkle-appear 2.2s infinite 1.0s; width: 4px; height: 4px; }
+  .sp8 { bottom: 22%; left: 2%; animation: sparkle-appear 2.2s infinite 1.8s; width: 4px; height: 4px; }
   .templo-adn-img {
     width: 180px;
     height: 180px;
@@ -623,12 +641,15 @@ const inlineStyles = `
   }
   .templo-rotate-ring {
     position: absolute;
-    width: 85%;
-    height: 85%;
+    width: 88%;
+    height: 88%;
     border-radius: 50%;
-    border: 1px solid rgba(34,211,238,0.12);
-    border-top-color: rgba(34,211,238,0.4);
-    animation: slow-rotate 12s linear infinite;
+    border: 2px solid transparent;
+    background: conic-gradient(from 0deg, rgba(34,211,238,0.0) 0%, rgba(34,211,238,0.6) 30%, rgba(34,211,238,0.0) 60%) border-box;
+    -webkit-mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: destination-out;
+    mask-composite: exclude;
+    animation: slow-rotate 10s linear infinite;
   }
   .mi-al-handle span { display: block; width: 16px; height: 1.5px; border-radius: 2px; background: #d4af37; transition: background 0.2s; }
   .mi-al-handle.is-grabbing span { background: #f0d896; box-shadow: 0 0 4px rgba(212,175,55,0.6); }
