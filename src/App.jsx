@@ -555,6 +555,13 @@ const inlineStyles = `
     0%   { transform: scale(0.5); opacity: 1;   filter: blur(2px); }
     100% { transform: scale(4.0); opacity: 0;   filter: blur(10px); }
   }
+  @keyframes waveRing1 {
+    0%   { r: 48; opacity: 1; filter: blur(1px); }
+    25%  { r: 52; }
+    50%  { r: 48; }
+    75%  { r: 53; }
+    100% { r: 48; opacity: 0.7; filter: blur(2px); }
+  }
   @keyframes sparkle-appear {
     0%, 100% { opacity: 0; transform: scale(0); }
     50% { opacity: 1; transform: scale(1); }
@@ -1096,18 +1103,37 @@ const App = () => {
           </button>
         </div>
         <div className="templo-orb-container">
-          <div className="templo-ring templo-ring-1" />
-          <div className="templo-ring templo-ring-2" />
-          <div className="templo-ring templo-ring-3" />
-          <div className="templo-rotate-ring" />
-          <span className="templo-sparkle sp1" />
-          <span className="templo-sparkle sp2" />
-          <span className="templo-sparkle sp3" />
-          <span className="templo-sparkle sp4" />
-          <span className="templo-sparkle sp5" />
-          <span className="templo-sparkle sp6" />
-          <span className="templo-sparkle sp7" />
-          <span className="templo-sparkle sp8" />
+          {/* SVG ondas etéreas con borde vibrante */}
+          <svg style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)', overflow: 'visible', zIndex: 1, width: '160px', height: '160px' }} viewBox="0 0 160 160">
+            <defs>
+              <filter id="glow1">
+                <feGaussianBlur stdDeviation="3" result="blur"/>
+                <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+              </filter>
+              <filter id="glow2">
+                <feGaussianBlur stdDeviation="5" result="blur"/>
+                <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+              </filter>
+            </defs>
+            {/* Aro 1 */}
+            <circle cx="80" cy="80" r="60" fill="none" stroke="rgba(34,211,238,0.9)" strokeWidth="1.5" filter="url(#glow1)" style={{ animation: 'ringExpand 3.6s linear infinite 0s', transformOrigin: '80px 80px' }}>
+              <animate attributeName="r" values="55;60;57;62;55" dur="0.8s" repeatCount="indefinite"/>
+            </circle>
+            {/* Aro 2 */}
+            <circle cx="80" cy="80" r="60" fill="none" stroke="rgba(34,211,238,0.7)" strokeWidth="1.5" filter="url(#glow1)" style={{ animation: 'ringExpand 3.6s linear infinite 1.2s', transformOrigin: '80px 80px' }}>
+              <animate attributeName="r" values="57;62;58;63;57" dur="0.9s" repeatCount="indefinite"/>
+            </circle>
+            {/* Aro 3 */}
+            <circle cx="80" cy="80" r="60" fill="none" stroke="rgba(34,211,238,0.5)" strokeWidth="1.5" filter="url(#glow2)" style={{ animation: 'ringExpand 3.6s linear infinite 2.4s', transformOrigin: '80px 80px' }}>
+              <animate attributeName="r" values="58;63;56;61;58" dur="1.1s" repeatCount="indefinite"/>
+            </circle>
+            {/* Destellos */}
+            <circle cx="80" cy="22" r="2.5" fill="#22d3ee" filter="url(#glow1)" style={{ animation: 'sparkle-appear 2.2s infinite 0s' }}/>
+            <circle cx="138" cy="58" r="2" fill="#22d3ee" filter="url(#glow1)" style={{ animation: 'sparkle-appear 2.2s infinite 0.5s' }}/>
+            <circle cx="130" cy="125" r="2.5" fill="#22d3ee" filter="url(#glow1)" style={{ animation: 'sparkle-appear 2.2s infinite 1s' }}/>
+            <circle cx="30" cy="115" r="2" fill="#22d3ee" filter="url(#glow1)" style={{ animation: 'sparkle-appear 2.2s infinite 1.5s' }}/>
+            <circle cx="22" cy="50" r="2" fill="#22d3ee" filter="url(#glow1)" style={{ animation: 'sparkle-appear 2.2s infinite 0.8s' }}/>
+          </svg>
           <img src="/imagenes/adn-icon.png" className={`templo-adn-img ${isPlaying ? 'playing' : ''}`} alt="ADN" />
         </div>
         <h2 style={{ fontSize: '20px', letterSpacing: '4px', textTransform: 'uppercase', fontWeight: 200 }}>{selectedTrack.name}</h2>
