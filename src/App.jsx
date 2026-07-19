@@ -547,14 +547,13 @@ const inlineStyles = `
     cursor: grabbing;
     transform: scale(1.25);
   }
-  @keyframes ring-expand {
-    0%   { transform: scale(0.3); opacity: 0.9; }
-    60%  { opacity: 0.4; }
-    100% { transform: scale(3.2); opacity: 0; }
+  @keyframes centralPulse {
+    0%, 100% { transform: scale(1); }
+    50%       { transform: scale(1.05); }
   }
-  @keyframes adn-pulse {
-    0%, 100% { box-shadow: 0 0 18px 4px rgba(34,211,238,0.35), 0 0 40px 8px rgba(34,211,238,0.12); }
-    50%       { box-shadow: 0 0 28px 8px rgba(34,211,238,0.65), 0 0 70px 16px rgba(34,211,238,0.25); }
+  @keyframes ringExpand {
+    0%   { transform: scale(0.5); opacity: 1;   filter: blur(2px); }
+    100% { transform: scale(4.0); opacity: 0;   filter: blur(10px); }
   }
   @keyframes sparkle-appear {
     0%, 100% { opacity: 0; transform: scale(0); }
@@ -586,12 +585,14 @@ const inlineStyles = `
     width: 100%;
     height: 100%;
     top: 0; left: 0;
-    border: 1.5px solid rgba(34,211,238,0.8);
+    border: 1px solid rgba(34,211,238,0.9);
     box-shadow:
-      0 0 6px 1px rgba(34,211,238,0.6),
-      inset 0 0 6px 1px rgba(34,211,238,0.3);
+      0 0 8px 3px rgba(34,211,238,0.7),
+      0 0 20px 6px rgba(34,211,238,0.3),
+      inset 0 0 8px 2px rgba(34,211,238,0.2);
     transform-origin: center center;
-    animation: ring-expand 3.6s cubic-bezier(0.2, 0.6, 0.4, 1) infinite;
+    animation: ringExpand 3.6s linear infinite;
+    z-index: 1;
   }
   .templo-ring-1 { animation-delay: 0s; }
   .templo-ring-2 { animation-delay: 1.2s; }
@@ -619,12 +620,14 @@ const inlineStyles = `
     position: relative;
     z-index: 2;
     border-radius: 50%;
-    background: radial-gradient(circle, rgba(10,20,40,0.95) 60%, rgba(2,6,23,0.98) 100%);
-    padding: 16px;
-    animation: adn-pulse 4s ease-in-out infinite;
+    background: radial-gradient(circle, #0a1628 50%, #020617 100%);
+    padding: 18px;
+    animation: centralPulse 3s ease-in-out infinite;
+    box-shadow: 0 0 0 1px rgba(34,211,238,0.15);
   }
   .templo-adn-img.playing {
-    animation: adn-pulse 3s ease-in-out infinite;
+    animation: centralPulse 2.5s ease-in-out infinite;
+    box-shadow: 0 0 12px 2px rgba(34,211,238,0.3), 0 0 0 1px rgba(34,211,238,0.2);
   }
   .templo-adn-img.playing {
     animation: adn-breathe-deep 4s ease-in-out infinite;
