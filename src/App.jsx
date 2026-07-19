@@ -547,17 +547,14 @@ const inlineStyles = `
     cursor: grabbing;
     transform: scale(1.25);
   }
-  @keyframes ring-pulse-1 {
-    0% { transform: scale(1); opacity: 1; }
-    100% { transform: scale(2.8); opacity: 0; }
+  @keyframes ring-expand {
+    0%   { transform: scale(0.3); opacity: 0.9; }
+    60%  { opacity: 0.4; }
+    100% { transform: scale(3.2); opacity: 0; }
   }
-  @keyframes ring-pulse-2 {
-    0% { transform: scale(1); opacity: 0.8; }
-    100% { transform: scale(3.4); opacity: 0; }
-  }
-  @keyframes ring-pulse-3 {
-    0% { transform: scale(1); opacity: 0.6; }
-    100% { transform: scale(4.0); opacity: 0; }
+  @keyframes adn-pulse {
+    0%, 100% { box-shadow: 0 0 18px 4px rgba(34,211,238,0.35), 0 0 40px 8px rgba(34,211,238,0.12); }
+    50%       { box-shadow: 0 0 28px 8px rgba(34,211,238,0.65), 0 0 70px 16px rgba(34,211,238,0.25); }
   }
   @keyframes sparkle-appear {
     0%, 100% { opacity: 0; transform: scale(0); }
@@ -589,32 +586,16 @@ const inlineStyles = `
     width: 100%;
     height: 100%;
     top: 0; left: 0;
-    border: none;
-    background: transparent;
+    border: 1.5px solid rgba(34,211,238,0.8);
+    box-shadow:
+      0 0 6px 1px rgba(34,211,238,0.6),
+      inset 0 0 6px 1px rgba(34,211,238,0.3);
+    transform-origin: center center;
+    animation: ring-expand 3.6s cubic-bezier(0.2, 0.6, 0.4, 1) infinite;
   }
-  .templo-ring::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    border-radius: 50%;
-    padding: 7px;
-    background: conic-gradient(
-      from 180deg,
-      rgba(34,211,238,0.0) 0%,
-      rgba(34,211,238,0.0) 15%,
-      rgba(34,211,238,0.5) 35%,
-      rgba(34,211,238,1.0) 50%,
-      rgba(34,211,238,0.5) 65%,
-      rgba(34,211,238,0.0) 85%,
-      rgba(34,211,238,0.0) 100%
-    );
-    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-    -webkit-mask-composite: xor;
-    mask-composite: exclude;
-  }
-  .templo-ring-1 { animation: ring-pulse-1 3.5s ease-out infinite; }
-  .templo-ring-2 { animation: ring-pulse-2 3.5s ease-out infinite 1.1s; }
-  .templo-ring-3 { animation: ring-pulse-3 3.5s ease-out infinite 2.2s; }
+  .templo-ring-1 { animation-delay: 0s; }
+  .templo-ring-2 { animation-delay: 1.2s; }
+  .templo-ring-3 { animation-delay: 2.4s; }
   .templo-sparkle {
     position: absolute;
     width: 5px;
@@ -638,24 +619,25 @@ const inlineStyles = `
     position: relative;
     z-index: 2;
     border-radius: 50%;
-    background: rgba(2,6,23,0.85);
-    padding: 14px;
-    box-shadow: 0 0 0 1px rgba(34,211,238,0.08);
+    background: radial-gradient(circle, rgba(10,20,40,0.95) 60%, rgba(2,6,23,0.98) 100%);
+    padding: 16px;
+    animation: adn-pulse 4s ease-in-out infinite;
+  }
+  .templo-adn-img.playing {
+    animation: adn-pulse 3s ease-in-out infinite;
   }
   .templo-adn-img.playing {
     animation: adn-breathe-deep 4s ease-in-out infinite;
   }
   .templo-rotate-ring {
     position: absolute;
-    width: 88%;
-    height: 88%;
+    width: 92%;
+    height: 92%;
     border-radius: 50%;
-    border: 2px solid transparent;
-    background: conic-gradient(from 0deg, rgba(34,211,238,0.0) 0%, rgba(34,211,238,0.6) 30%, rgba(34,211,238,0.0) 60%) border-box;
-    -webkit-mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
-    -webkit-mask-composite: destination-out;
-    mask-composite: exclude;
-    animation: slow-rotate 10s linear infinite;
+    border: 1px solid rgba(34,211,238,0.15);
+    border-top-color: rgba(34,211,238,0.5);
+    border-right-color: rgba(34,211,238,0.3);
+    animation: slow-rotate 8s linear infinite;
   }
   .mi-al-handle span { display: block; width: 16px; height: 1.5px; border-radius: 2px; background: #d4af37; transition: background 0.2s; }
   .mi-al-handle.is-grabbing span { background: #f0d896; box-shadow: 0 0 4px rgba(212,175,55,0.6); }
