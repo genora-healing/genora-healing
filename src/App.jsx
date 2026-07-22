@@ -590,62 +590,6 @@ const inlineStyles = `
     50% { transform: scale(1.1) rotate(0deg); filter: drop-shadow(0 0 30px #22d3ee) brightness(1.15); }
     75% { transform: scale(1.06) rotate(-1deg); filter: drop-shadow(0 0 22px #22d3ee); }
   }
-    /* --- ANIMACIÓN DE ONDAS LÍQUIDAS REALES --- */
-@keyframes liquidWaveExpand {
-  0% {
-    transform: scale(0.4) rotate(0deg);
-    opacity: 0.9;
-    filter: blur(2px);
-  }
-  50% {
-    opacity: 0.55;
-    filter: blur(8px);
-  }
-  80% {
-    opacity: 0.2;
-  }
-  100% {
-    transform: scale(2.2) rotate(180deg);
-    opacity: 0;
-    filter: blur(16px);
-  }
-}
-
-.ripple-container {
-  position: relative;
-  width: 220px;
-  height: 220px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin: 0 auto 20px auto;
-}
-
-.svg-liquid-wave {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  pointer-events: none;
-}
-
-/* Animaciones escalonadas para las 3 ondas */
-.wave-svg-1 { animation: liquidWaveExpand 4.5s ease-out infinite 0s; }
-.wave-svg-2 { animation: liquidWaveExpand 4.5s ease-out infinite 1.5s; }
-.wave-svg-3 { animation: liquidWaveExpand 4.5s ease-out infinite 3s; }
-
-.dna-center-circle {
-  position: relative;
-  z-index: 2;
-  width: 130px;
-  height: 130px;
-  border-radius: 50%;
-  background: #080d1a;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  box-shadow: 0 0 25px rgba(0, 255, 255, 0.3);
-}
-
   @keyframes slow-rotate {
     from { transform: rotate(0deg); }
     to { transform: rotate(360deg); }
@@ -699,9 +643,6 @@ const inlineStyles = `
     animation: centralPulse 3s ease-in-out infinite;
   }
   .templo-adn-img.playing {
-    animation: centralPulse 2.5s ease-in-out infinite;
-  }
-  .templo-adn-img.playing {
     animation: adn-breathe-deep 4s ease-in-out infinite;
   }
   .templo-rotate-ring {
@@ -713,6 +654,18 @@ const inlineStyles = `
     border-top-color: rgba(34,211,238,0.5);
     border-right-color: rgba(34,211,238,0.3);
     animation: slow-rotate 8s linear infinite;
+  }
+  .dna-center-circle {
+    position: relative;
+    z-index: 2;
+    width: 130px;
+    height: 130px;
+    border-radius: 50%;
+    background: #080d1a;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 0 25px rgba(0, 255, 255, 0.3);
   }
   .mi-al-handle span { display: block; width: 16px; height: 1.5px; border-radius: 2px; background: #d4af37; transition: background 0.2s; }
   .mi-al-handle.is-grabbing span { background: #f0d896; box-shadow: 0 0 4px rgba(212,175,55,0.6); }
@@ -806,7 +759,7 @@ const App = () => {
   const [favOrder, setFavOrder] = useState([]);
   const [draggingId, setDraggingId] = useState(null);
   const [overIdx, setOverIdx] = useState(null);
-    const dragItem = useRef(null);
+  const dragItem = useRef(null);
   const touchStartY = useRef(null);
   const touchCurrentIdx = useRef(null);
   const touchListRef = useRef(null);
@@ -925,7 +878,6 @@ const App = () => {
     const currentFavs = favoritesRef.current;
     const currentTrack = selectedTrackRef.current;
     if (activeTabRef.current === 'favoritos') {
-      // Usar favOrderRef para respetar el orden personalizado del usuario
       const orderedIds = favOrderRef.current.length > 0 ? favOrderRef.current : currentFavs;
       const orderedTracks = orderedIds
         .map(id => ALL_TRACKS_FLAT.find(tr => tr.id === id))
@@ -1013,90 +965,27 @@ const App = () => {
       </button>
     </div>
   );
+  // ── ReminderSection: CORREGIDO ──────────────────────────────────────────
+  // Antes había DOS contenedores .ripple-container (uno con paths SVG tipo
+  // "blob" y otro con clases .ethereal-wave inexistentes en el CSS), lo que
+  // producía el doble ADN y las formas irregulares. Ahora usa un único
+  // contenedor reutilizando .templo-wave-ring / .templo-rotate-ring / 
+  // .dna-center-circle, que ya están definidos y funcionan correctamente
+  // en la pantalla "Templo".
   const ReminderSection = () => (
-    <>
-      {/* ETÉREAS Y ADN CENTRAL */}
-      {/* 1. MATRIZ SVG (Pégala justo aquí, antes del contenedor) */}
-      <svg style={{ position: 'absolute', width: 0, height: 0 }}>
-        <filter id="waveFilter">
-          <feTurbulence type="fractalNoise" baseFrequency="0.03" numOctaves="2" result="noise" />
-          <feDisplacementMap in="SourceGraphic" in2="noise" scale="12" xChannelSelector="R" yChannelSelector="G" />
-        </filter>
-      </svg>
-
-{/* CONTENEDOR DE ONDAS LÍQUIDAS Y ADN CENTRAL */}
-<div className="ripple-container">
-  {isPlaying && (
-    <div className="waves-wrapper" style={{ position: 'absolute', width: '100%', height: '100%' }}>
-      {/* Onda Líquida 1 */}
-      <svg className="svg-liquid-wave wave-svg-1" viewBox="0 0 200 200">
-        <path 
-          d="M 100,10 C 130,20 170,10 180,60 C 190,110 180,160 140,185 C 100,195 50,180 20,140 C 0,100 20,50 60,20 Z" 
-          fill="none" 
-          stroke="cyan" 
-          strokeWidth="2" 
-          style={{ filter: 'drop-shadow(0 0 10px #00ffff)' }}
+    <div className="templo-orb-container" style={{ margin: '0 auto 20px' }}>
+      <div className="templo-wave-ring" style={{ animationDelay: '0s' }} />
+      <div className="templo-wave-ring" style={{ animationDelay: '1.2s' }} />
+      <div className="templo-wave-ring" style={{ animationDelay: '2.4s' }} />
+      <div className="templo-rotate-ring" />
+      <div className="dna-center-circle">
+        <img
+          src="/imagenes/adn-icon.png"
+          alt="ADN GENORA"
+          style={{ width: '70px', height: '70px', objectFit: 'contain' }}
         />
-      </svg>
-
-      {/* Onda Líquida 2 */}
-      <svg className="svg-liquid-wave wave-svg-2" viewBox="0 0 200 200">
-        <path 
-          d="M 95,15 C 145,5 185,45 175,95 C 185,145 135,185 85,175 C 35,185 -5,135 15,85 C -5,35 45,-5 95,15 Z" 
-          fill="none" 
-          stroke="cyan" 
-          strokeWidth="1.5" 
-          style={{ filter: 'drop-shadow(0 0 12px #8a2be2)' }}
-        />
-      </svg>
-
-      {/* Onda Líquida 3 */}
-      <svg className="svg-liquid-wave wave-svg-3" viewBox="0 0 200 200">
-        <path 
-          d="M 100,5 C 150,25 175,75 160,125 C 175,165 115,195 75,175 C 25,165 5,115 35,65 C 15,25 65,-5 100,5 Z" 
-          fill="none" 
-          stroke="rgba(0, 255, 255, 0.8)" 
-          strokeWidth="2" 
-          style={{ filter: 'drop-shadow(0 0 15px #00ffff)' }}
-        />
-      </svg>
-    </div>
-  )}
-
-  <div className="dna-center-circle">
-    <img 
-      src="/assets/adn-icon.png" 
-      alt="ADN GENORA" 
-      style={{ width: '70px', height: '70px', objectFit: 'contain' }} 
-    />
-  </div>
-</div>
-      <div className="ripple-container">
-        {/* FILTRO MATRIZ ETÉREA (Hace que los aros sean verdaderas ondas líquidas) */}
-        <svg style={{ position: 'absolute', width: 0, height: 0, overflow: 'hidden' }}>
-          <defs>
-            <filter id="etherealWaveFilter">
-              <feTurbulence type="fractalNoise" baseFrequency="0.015" numOctaves="3" result="noise" />
-              <feDisplacementMap in="SourceGraphic" in2="noise" scale="22" xChannelSelector="R" yChannelSelector="G" />
-            </filter>
-          </defs>
-        </svg>
-        {isPlaying && (
-          <>
-            <div className="ethereal-wave wave-1" />
-            <div className="ethereal-wave wave-2" />
-            <div className="ethereal-wave wave-3" />
-          </>
-        )}
-        <div className="dna-center-circle">
-          <img 
-            src="/assets/adn-icon.png" 
-            alt="ADN GENORA" 
-            style={{ width: '70px', height: '70px', objectFit: 'contain' }} 
-          />
-        </div>
       </div>
-    </>
+    </div>
   );
   const TrackCard = ({ track, onSelect, isSugg = false }) => (
     <div className={`track-card ${isSugg ? 'suggestion' : ''}`} onClick={() => onSelect(track)} style={{ borderLeft: `4px solid ${accentColor}` }}>
@@ -1664,3 +1553,4 @@ const App = () => {
   );
 };
 export default App;
+ 
