@@ -590,6 +590,63 @@ const inlineStyles = `
     50% { transform: scale(1.1) rotate(0deg); filter: drop-shadow(0 0 30px #22d3ee) brightness(1.15); }
     75% { transform: scale(1.06) rotate(-1deg); filter: drop-shadow(0 0 22px #22d3ee); }
   }
+    /* --- ONDAS ETÉREAS EXPANSIVAS --- */
+@keyframes etherealRipple {
+  0% {
+    transform: scale(0.6);
+    opacity: 0.8;
+    filter: blur(8px);
+  }
+  50% {
+    opacity: 0.5;
+    filter: blur(14px);
+  }
+  80% {
+    opacity: 0.15;
+  }
+  100% {
+    transform: scale(2.2);
+    opacity: 0;
+    filter: blur(22px);
+  }
+}
+
+.ripple-container {
+  position: relative;
+  width: 220px;
+  height: 220px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 20px auto;
+}
+
+.ethereal-wave {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  border: 1.5px solid rgba(0, 255, 255, 0.4);
+  box-shadow: 0 0 25px rgba(0, 255, 255, 0.3), inset 0 0 15px rgba(138, 43, 226, 0.2);
+  pointer-events: none;
+}
+
+.wave-1 { animation: etherealRipple 4s cubic-bezier(0.25, 1, 0.5, 1) infinite; animation-delay: 0s; }
+.wave-2 { animation: etherealRipple 4s cubic-bezier(0.25, 1, 0.5, 1) infinite; animation-delay: 1.3s; }
+.wave-3 { animation: etherealRipple 4s cubic-bezier(0.25, 1, 0.5, 1) infinite; animation-delay: 2.6s; }
+
+.dna-center-circle {
+  position: relative;
+  z-index: 2;
+  width: 140px;
+  height: 140px;
+  border-radius: 50%;
+  background: #080d1a;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 0 25px rgba(0, 255, 255, 0.2);
+}
   @keyframes slow-rotate {
     from { transform: rotate(0deg); }
     to { transform: rotate(360deg); }
@@ -958,17 +1015,26 @@ const App = () => {
     </div>
   );
   const ReminderSection = () => (
-    <div style={{ width: '85%', maxWidth: '340px', margin: '0 auto 24px', padding: '18px', borderRadius: '24px', background: 'rgba(255,255,255,0.02)', border: '1px solid rgba(255,255,255,0.06)' }}>
-      <p style={{ fontSize: '10px', letterSpacing: '3px', color: 'rgba(255,255,255,0.3)', textAlign: 'center', marginBottom: '14px', fontWeight: 200 }}>{t.reminder_title}</p>
-      <div style={{ display: 'flex', gap: '8px', justifyContent: 'center', flexWrap: 'wrap' }}>
-        {[{ key: 'manana', label: t.reminder_morning, icon: '☀' }, { key: 'tarde', label: t.reminder_afternoon, icon: '◐' }, { key: 'noche', label: t.reminder_night, icon: '☽' }].map(opt => (
-          <button key={opt.key} className={`reminder-btn ${reminderTime === opt.key ? 'active' : ''}`} onClick={() => handleReminderSelect(opt.key)}>
-            {opt.icon} {opt.label}
-          </button>
-        ))}
+    <>
+      {/* CONTENEDOR DE ONDAS ETÉREAS Y ADN CENTRAL */}
+      <div className="ripple-container">
+        {isPlaying && (
+          <div className="waves-wrapper">
+            <div className="ethereal-wave wave-1"></div>
+            <div className="ethereal-wave wave-2"></div>
+            <div className="ethereal-wave wave-3"></div>
+          </div>
+        )}
+        
+        <div className="dna-center-circle">
+          <img 
+            src="/assets/adn-icon.png" 
+            alt="ADN GENORA" 
+            style={{ width: '70px', height: '70px', objectFit: 'contain' }} 
+          />
+        </div>
       </div>
-      {reminderTime && <p style={{ fontSize: '10px', color: 'rgba(34,211,238,0.5)', textAlign: 'center', marginTop: '10px', letterSpacing: '1px', fontWeight: 200 }}>{getReminderText()}</p>}
-    </div>
+    </>
   );
   const TrackCard = ({ track, onSelect, isSugg = false }) => (
     <div className={`track-card ${isSugg ? 'suggestion' : ''}`} onClick={() => onSelect(track)} style={{ borderLeft: `4px solid ${accentColor}` }}>
