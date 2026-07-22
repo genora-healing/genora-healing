@@ -591,7 +591,7 @@ const inlineStyles = `
     transform-origin: center center;
     animation: etherealWave 4s ease-out infinite;
     filter: url(#etherealWaveFilter) blur(4px);
-    box-shadow: 0 0 18px 8px rgba(34,211,238,0.7), 0 0 45px 18px rgba(34,211,238,0.35), 0 0 90px 35px rgba(34,211,238,0.15);
+    box-shadow: 0 0 25px 12px rgba(34,211,238,0.95), 0 0 60px 25px rgba(34,211,238,0.6), 0 0 120px 50px rgba(34,211,238,0.3);
     z-index: 1;
   }
   .templo-sparkle {
@@ -611,14 +611,14 @@ const inlineStyles = `
   .sp7 { top: 12%; left: 18%; animation: sparkle-appear 2.2s infinite 1.0s; width: 4px; height: 4px; }
   .sp8 { bottom: 22%; left: 2%; animation: sparkle-appear 2.2s infinite 1.8s; width: 4px; height: 4px; }
   .templo-adn-img {
-    width: 120px;
-    height: 120px;
+    width: 85px;
+    height: 85px;
     object-fit: contain;
     position: relative;
     z-index: 3;
     border-radius: 50%;
     background: radial-gradient(circle, #0d1f3c 40%, #020617 100%);
-    padding: 16px;
+    padding: 12px;
     animation: centralPulse 3s ease-in-out infinite;
   }
   .templo-adn-img.playing {
@@ -1093,19 +1093,31 @@ const App = () => {
         </div>
         <svg style={{ position: 'absolute', width: 0, height: 0, pointerEvents: 'none' }}>
           <filter id="etherealWaveFilter">
-            <feTurbulence type="fractalNoise" baseFrequency="0.02" numOctaves="3" result="noise" seed="2" />
-            <feDisplacementMap in="SourceGraphic" in2="noise" scale="18" xChannelSelector="R" yChannelSelector="G" />
+            <feTurbulence type="fractalNoise" baseFrequency="0.015" numOctaves="5" result="noise" seed="2" />
+            <feDisplacementMap in="SourceGraphic" in2="noise" scale="45" xChannelSelector="R" yChannelSelector="G" />
           </filter>
         </svg>
         <div className="templo-orb-container">
           <div className="templo-wave-ring" style={{ animationDelay: '0s' }} />
-          <div className="templo-wave-ring" style={{ animationDelay: '1.2s' }} />
+          <div className="templo-wave-ring" style={{ animationDelay: '0.8s' }} />
+          <div className="templo-wave-ring" style={{ animationDelay: '1.6s' }} />
           <div className="templo-wave-ring" style={{ animationDelay: '2.4s' }} />
+          <div className="templo-wave-ring" style={{ animationDelay: '3.2s' }} />
           <span className="templo-sparkle sp1" />
           <span className="templo-sparkle sp2" />
           <span className="templo-sparkle sp3" />
           <span className="templo-sparkle sp4" />
           <span className="templo-sparkle sp5" />
+          <div style={{
+            position: 'absolute',
+            width: '130px',
+            height: '130px',
+            borderRadius: '50%',
+            border: '2px solid rgba(34,211,238,0.9)',
+            boxShadow: '0 0 20px 8px rgba(34,211,238,0.8), 0 0 50px 20px rgba(34,211,238,0.4), inset 0 0 20px 5px rgba(34,211,238,0.3)',
+            zIndex: 2,
+            pointerEvents: 'none',
+          }} />
           <img src="/imagenes/adn-icon.png" className={`templo-adn-img ${isPlaying ? 'playing' : ''}`} alt="ADN" />
         </div>
         <h2 style={{ fontSize: '20px', letterSpacing: '4px', textTransform: 'uppercase', fontWeight: 200 }}>{selectedTrack.name}</h2>
