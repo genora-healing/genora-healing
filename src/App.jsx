@@ -779,6 +779,17 @@ const App = () => {
   const selectedTrackRef = useRef(selectedTrack);
   const t = T[lang];
   useEffect(() => { activeTabRef.current = activeTab; }, [activeTab]);
+
+  // Reanudar audio cuando el usuario vuelve a la pantalla
+  useEffect(() => {
+    const handleVisibility = () => {
+      if (document.visibilityState === 'visible' && isPlaying && audioRef.current) {
+        audioRef.current.play().catch(() => {});
+      }
+    };
+    document.addEventListener('visibilitychange', handleVisibility);
+    return () => document.removeEventListener('visibilitychange', handleVisibility);
+  }, [isPlaying]);
   useEffect(() => { favoritesRef.current = favorites; }, [favorites]);
   useEffect(() => { selectedTrackRef.current = selectedTrack; }, [selectedTrack]);
   useEffect(() => { favOrderRef.current = favOrder; }, [favOrder]);
@@ -820,6 +831,22 @@ const App = () => {
     if (audioRef.current) {
       if (isPlaying) {
         audioRef.current.play().catch(() => console.log('Verificar audio en /public/audio/'));
+        // Media Session API — controles en pantalla de bloqueo
+        if ('mediaSession' in navigator && selectedTrack) {
+          navigator.mediaSession.metadata = new MediaMetadata({
+            title: selectedTrack.name || 'GENORA Healing',
+            artist: 'GENORA',
+            album: `${selectedTrack.hz || ''} Hz`,
+          });
+          navigator.mediaSession.setActionHandler('play', () => {
+            audioRef.current?.play().catch(() => {});
+            setIsPlaying(true);
+          });
+          navigator.mediaSession.setActionHandler('pause', () => {
+            audioRef.current?.pause();
+            setIsPlaying(false);
+          });
+        }
         if (selectedTime && selectedTime !== 'inf') {
           if (timerRef.current) clearTimeout(timerRef.current);
           timerRef.current = setTimeout(() => setIsPlaying(false), selectedTime * 60000);
@@ -1093,8 +1120,8 @@ const App = () => {
         </div>
         <svg style={{ position: 'absolute', width: 0, height: 0, pointerEvents: 'none' }}>
           <filter id="etherealWaveFilter">
-            <feTurbulence type="fractalNoise" baseFrequency="0.015" numOctaves="5" result="noise" seed="2" />
-            <feDisplacementMap in="SourceGraphic" in2="noise" scale="45" xChannelSelector="R" yChannelSelector="G" />
+            <feTurbulence type="turbulence" baseFrequency="0.03 0.008" numOctaves="3" result="noise" seed="5" />
+            <feDisplacementMap in="SourceGraphic" in2="noise" scale="28" xChannelSelector="R" yChannelSelector="G" />
           </filter>
         </svg>
         <div className="templo-orb-container">
