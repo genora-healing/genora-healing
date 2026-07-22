@@ -555,31 +555,25 @@ const inlineStyles = `
     0% {
       transform: scale(0.3);
       opacity: 0.6;
+      box-shadow: 0 0 15px 8px rgba(34,211,238,0.9), 0 0 40px 15px rgba(34,211,238,0.5);
       filter: blur(8px);
-      box-shadow: 0 0 12px 6px rgba(34,211,238,0.8), 0 0 30px 12px rgba(34,211,238,0.4);
     }
-    40% {
+    35% {
       opacity: 0.75;
-      filter: blur(12px);
-      box-shadow: 0 0 20px 12px rgba(34,211,238,0.6), 0 0 50px 20px rgba(34,211,238,0.25);
+      box-shadow: 0 0 25px 15px rgba(34,211,238,0.6), 0 0 70px 30px rgba(34,211,238,0.3);
+      filter: blur(14px);
     }
-    75% {
-      opacity: 0.35;
-      filter: blur(20px);
-      box-shadow: 0 0 35px 20px rgba(34,211,238,0.3), 0 0 80px 35px rgba(34,211,238,0.1);
-    }
-    90% {
-      opacity: 0.08;
+    80% {
+      opacity: 0.1;
+      box-shadow: 0 0 50px 30px rgba(34,211,238,0.15), 0 0 100px 50px rgba(34,211,238,0.05);
       filter: blur(30px);
-      box-shadow: 0 0 50px 30px rgba(34,211,238,0.1), 0 0 100px 50px rgba(34,211,238,0.04);
     }
     100% {
       transform: scale(4.2);
       opacity: 0;
-      filter: blur(40px);
       box-shadow: 0 0 60px 40px rgba(34,211,238,0), 0 0 120px 60px rgba(34,211,238,0);
-    }
-  }
+      filter: blur(40px);
+    }  
   @keyframes sparkle-appear {
     0%, 100% { opacity: 0; transform: scale(0); }
     50% { opacity: 1; transform: scale(1); }
@@ -604,7 +598,7 @@ const inlineStyles = `
     margin-bottom: 30px;
     overflow: visible;
   }
-  .templo-wave-ring {
+      .templo-wave-ring {
     position: absolute;
     border-radius: 50%;
     width: 100%;
