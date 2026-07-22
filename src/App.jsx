@@ -590,21 +590,24 @@ const inlineStyles = `
     50% { transform: scale(1.1) rotate(0deg); filter: drop-shadow(0 0 30px #22d3ee) brightness(1.15); }
     75% { transform: scale(1.06) rotate(-1deg); filter: drop-shadow(0 0 22px #22d3ee); }
   }
-    /* --- ONDAS LÍQUIDAS REALMENTE ONDULADAS --- */
-@keyframes etherealRipple {
+    /* --- ANIMACIÓN DE ONDAS LÍQUIDAS REALES --- */
+@keyframes liquidWaveExpand {
   0% {
-    transform: scale(0.5) rotate(0deg);
-    opacity: 0.85;
+    transform: scale(0.4) rotate(0deg);
+    opacity: 0.9;
+    filter: blur(2px);
   }
   50% {
-    opacity: 0.5;
+    opacity: 0.55;
+    filter: blur(8px);
   }
   80% {
-    opacity: 0.15;
+    opacity: 0.2;
   }
   100% {
-    transform: scale(2.3) rotate(180deg);
+    transform: scale(2.2) rotate(180deg);
     opacity: 0;
+    filter: blur(16px);
   }
 }
 
@@ -618,34 +621,31 @@ const inlineStyles = `
   margin: 0 auto 20px auto;
 }
 
-.ethereal-wave {
+.svg-liquid-wave {
   position: absolute;
   width: 100%;
   height: 100%;
-  border-radius: 50%;
-  border: 2px solid rgba(0, 255, 255, 0.6);
-  box-shadow: 0 0 20px rgba(0, 255, 255, 0.4), inset 0 0 12px rgba(138, 43, 226, 0.3);
-  /* APLICAMOS EL FILTRO DE TURBULENCIA SVG Y UN LEVE BLUR */
-  filter: url(#waveFilter) blur(2px);
   pointer-events: none;
 }
 
-.wave-1 { animation: etherealRipple 4s cubic-bezier(0.25, 1, 0.5, 1) infinite; animation-delay: 0s; }
-.wave-2 { animation: etherealRipple 4s cubic-bezier(0.25, 1, 0.5, 1) infinite; animation-delay: 1.3s; }
-.wave-3 { animation: etherealRipple 4s cubic-bezier(0.25, 1, 0.5, 1) infinite; animation-delay: 2.6s; }
+/* Animaciones escalonadas para las 3 ondas */
+.wave-svg-1 { animation: liquidWaveExpand 4.5s ease-out infinite 0s; }
+.wave-svg-2 { animation: liquidWaveExpand 4.5s ease-out infinite 1.5s; }
+.wave-svg-3 { animation: liquidWaveExpand 4.5s ease-out infinite 3s; }
 
 .dna-center-circle {
   position: relative;
   z-index: 2;
-  width: 140px;
-  height: 140px;
+  width: 130px;
+  height: 130px;
   border-radius: 50%;
   background: #080d1a;
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 0 25px rgba(0, 255, 255, 0.2);
+  box-shadow: 0 0 25px rgba(0, 255, 255, 0.3);
 }
+
   @keyframes slow-rotate {
     from { transform: rotate(0deg); }
     to { transform: rotate(360deg); }
@@ -1015,25 +1015,54 @@ const App = () => {
   );
   const ReminderSection = () => (
     <>
-      {/* CONTENEDOR DE ONDAS ETÉREAS Y ADN CENTRAL */}
+      {/* ETÉREAS Y ADN CENTRAL */}
       {/* 1. MATRIZ SVG (Pégala justo aquí, antes del contenedor) */}
-<svg style={{ position: 'absolute', width: 0, height: 0 }}>
-  <filter id="waveFilter">
-    <feTurbulence type="fractalNoise" baseFrequency="0.03" numOctaves="2" result="noise" />
-    <feDisplacementMap in="SourceGraphic" in2="noise" scale="12" xChannelSelector="R" yChannelSelector="G" />
-  </filter>
-</svg>
+      <svg style={{ position: 'absolute', width: 0, height: 0 }}>
+        <filter id="waveFilter">
+          <feTurbulence type="fractalNoise" baseFrequency="0.03" numOctaves="2" result="noise" />
+          <feDisplacementMap in="SourceGraphic" in2="noise" scale="12" xChannelSelector="R" yChannelSelector="G" />
+        </filter>
+      </svg>
 
-{/* 2. CONTENEDOR DE ONDAS Y ADN */}
+{/* CONTENEDOR DE ONDAS LÍQUIDAS Y ADN CENTRAL */}
 <div className="ripple-container">
   {isPlaying && (
-    <div className="waves-wrapper">
-      <div className="ethereal-wave wave-1"></div>
-      <div className="ethereal-wave wave-2"></div>
-      <div className="ethereal-wave wave-3"></div>
+    <div className="waves-wrapper" style={{ position: 'absolute', width: '100%', height: '100%' }}>
+      {/* Onda Líquida 1 */}
+      <svg className="svg-liquid-wave wave-svg-1" viewBox="0 0 200 200">
+        <path 
+          d="M 100,10 C 130,20 170,10 180,60 C 190,110 180,160 140,185 C 100,195 50,180 20,140 C 0,100 20,50 60,20 Z" 
+          fill="none" 
+          stroke="cyan" 
+          strokeWidth="2" 
+          style={{ filter: 'drop-shadow(0 0 10px #00ffff)' }}
+        />
+      </svg>
+
+      {/* Onda Líquida 2 */}
+      <svg className="svg-liquid-wave wave-svg-2" viewBox="0 0 200 200">
+        <path 
+          d="M 95,15 C 145,5 185,45 175,95 C 185,145 135,185 85,175 C 35,185 -5,135 15,85 C -5,35 45,-5 95,15 Z" 
+          fill="none" 
+          stroke="cyan" 
+          strokeWidth="1.5" 
+          style={{ filter: 'drop-shadow(0 0 12px #8a2be2)' }}
+        />
+      </svg>
+
+      {/* Onda Líquida 3 */}
+      <svg className="svg-liquid-wave wave-svg-3" viewBox="0 0 200 200">
+        <path 
+          d="M 100,5 C 150,25 175,75 160,125 C 175,165 115,195 75,175 C 25,165 5,115 35,65 C 15,25 65,-5 100,5 Z" 
+          fill="none" 
+          stroke="rgba(0, 255, 255, 0.8)" 
+          strokeWidth="2" 
+          style={{ filter: 'drop-shadow(0 0 15px #00ffff)' }}
+        />
+      </svg>
     </div>
   )}
-  
+
   <div className="dna-center-circle">
     <img 
       src="/assets/adn-icon.png" 
