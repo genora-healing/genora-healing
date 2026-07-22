@@ -552,33 +552,10 @@ const inlineStyles = `
     50%       { transform: scale(1.06); box-shadow: 0 0 25px 10px rgba(34,211,238,0.5); }
   }
   @keyframes etherealWave {
-    0% {
-      transform: scale(0.3);
-      opacity: 0.6;
-      filter: blur(8px);
-      box-shadow: 0 0 12px 6px rgba(34,211,238,0.8), 0 0 30px 12px rgba(34,211,238,0.4);
-    }
-    40% {
-      opacity: 0.75;
-      filter: blur(12px);
-      box-shadow: 0 0 20px 12px rgba(34,211,238,0.6), 0 0 50px 20px rgba(34,211,238,0.25);
-    }
-    75% {
-      opacity: 0.35;
-      filter: blur(20px);
-      box-shadow: 0 0 35px 20px rgba(34,211,238,0.3), 0 0 80px 35px rgba(34,211,238,0.1);
-    }
-    90% {
-      opacity: 0.08;
-      filter: blur(30px);
-      box-shadow: 0 0 50px 30px rgba(34,211,238,0.1), 0 0 100px 50px rgba(34,211,238,0.04);
-    }
-    100% {
-      transform: scale(4.2);
-      opacity: 0;
-      filter: blur(40px);
-      box-shadow: 0 0 60px 40px rgba(34,211,238,0), 0 0 120px 60px rgba(34,211,238,0);
-    }
+    0%   { transform: scale(0.5) rotate(0deg);   opacity: 0.85; }
+    35%  { opacity: 0.6; }
+    70%  { opacity: 0.25; }
+    100% { transform: scale(2.3) rotate(180deg); opacity: 0; }
   }
   @keyframes sparkle-appear {
     0%, 100% { opacity: 0; transform: scale(0); }
@@ -606,13 +583,15 @@ const inlineStyles = `
   }
   .templo-wave-ring {
     position: absolute;
-    border-radius: 50%;
     width: 100%;
     height: 100%;
     top: 0; left: 0;
-    border: 1px solid rgba(34,211,238,0.15);
+    border-radius: 50%;
+    border: 1px solid rgba(34,211,238,0.3);
     transform-origin: center center;
     animation: etherealWave 4s ease-out infinite;
+    filter: url(#etherealWaveFilter) blur(4px);
+    box-shadow: 0 0 18px 8px rgba(34,211,238,0.7), 0 0 45px 18px rgba(34,211,238,0.35), 0 0 90px 35px rgba(34,211,238,0.15);
     z-index: 1;
   }
   .templo-sparkle {
@@ -632,15 +611,19 @@ const inlineStyles = `
   .sp7 { top: 12%; left: 18%; animation: sparkle-appear 2.2s infinite 1.0s; width: 4px; height: 4px; }
   .sp8 { bottom: 22%; left: 2%; animation: sparkle-appear 2.2s infinite 1.8s; width: 4px; height: 4px; }
   .templo-adn-img {
-    width: 110px;
-    height: 110px;
+    width: 120px;
+    height: 120px;
     object-fit: contain;
     position: relative;
     z-index: 3;
     border-radius: 50%;
-    background: radial-gradient(circle, #0d1f3c 40%, #060f1e 70%, #020617 100%);
-    padding: 18px;
+    background: radial-gradient(circle, #0d1f3c 40%, #020617 100%);
+    padding: 16px;
     animation: centralPulse 3s ease-in-out infinite;
+  }
+  .templo-adn-img.playing {
+    animation: centralPulse 2.5s ease-in-out infinite;
+    box-shadow: 0 0 20px 6px rgba(34,211,238,0.3);
   }
   .templo-adn-img.playing {
     animation: adn-breathe-deep 4s ease-in-out infinite;
@@ -654,18 +637,6 @@ const inlineStyles = `
     border-top-color: rgba(34,211,238,0.5);
     border-right-color: rgba(34,211,238,0.3);
     animation: slow-rotate 8s linear infinite;
-  }
-  .dna-center-circle {
-    position: relative;
-    z-index: 2;
-    width: 130px;
-    height: 130px;
-    border-radius: 50%;
-    background: #080d1a;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    box-shadow: 0 0 25px rgba(0, 255, 255, 0.3);
   }
   .mi-al-handle span { display: block; width: 16px; height: 1.5px; border-radius: 2px; background: #d4af37; transition: background 0.2s; }
   .mi-al-handle.is-grabbing span { background: #f0d896; box-shadow: 0 0 4px rgba(212,175,55,0.6); }
@@ -759,7 +730,7 @@ const App = () => {
   const [favOrder, setFavOrder] = useState([]);
   const [draggingId, setDraggingId] = useState(null);
   const [overIdx, setOverIdx] = useState(null);
-  const dragItem = useRef(null);
+    const dragItem = useRef(null);
   const touchStartY = useRef(null);
   const touchCurrentIdx = useRef(null);
   const touchListRef = useRef(null);
@@ -878,6 +849,7 @@ const App = () => {
     const currentFavs = favoritesRef.current;
     const currentTrack = selectedTrackRef.current;
     if (activeTabRef.current === 'favoritos') {
+      // Usar favOrderRef para respetar el orden personalizado del usuario
       const orderedIds = favOrderRef.current.length > 0 ? favOrderRef.current : currentFavs;
       const orderedTracks = orderedIds
         .map(id => ALL_TRACKS_FLAT.find(tr => tr.id === id))
@@ -965,26 +937,17 @@ const App = () => {
       </button>
     </div>
   );
-  // ── ReminderSection: CORREGIDO ──────────────────────────────────────────
-  // Antes había DOS contenedores .ripple-container (uno con paths SVG tipo
-  // "blob" y otro con clases .ethereal-wave inexistentes en el CSS), lo que
-  // producía el doble ADN y las formas irregulares. Ahora usa un único
-  // contenedor reutilizando .templo-wave-ring / .templo-rotate-ring / 
-  // .dna-center-circle, que ya están definidos y funcionan correctamente
-  // en la pantalla "Templo".
   const ReminderSection = () => (
-    <div className="templo-orb-container" style={{ margin: '0 auto 20px' }}>
-      <div className="templo-wave-ring" style={{ animationDelay: '0s' }} />
-      <div className="templo-wave-ring" style={{ animationDelay: '1.2s' }} />
-      <div className="templo-wave-ring" style={{ animationDelay: '2.4s' }} />
-      <div className="templo-rotate-ring" />
-      <div className="dna-center-circle">
-        <img
-          src="/imagenes/adn-icon.png"
-          alt="ADN GENORA"
-          style={{ width: '70px', height: '70px', objectFit: 'contain' }}
-        />
+    <div style={{ width: '85%', maxWidth: '340px', margin: '0 auto 24px', padding: '18px', borderRadius: '24px', background: 'rgba(255,255,255,0.02)', border: '1px solid rgba(255,255,255,0.06)' }}>
+      <p style={{ fontSize: '10px', letterSpacing: '3px', color: 'rgba(255,255,255,0.3)', textAlign: 'center', marginBottom: '14px', fontWeight: 200 }}>{t.reminder_title}</p>
+      <div style={{ display: 'flex', gap: '8px', justifyContent: 'center', flexWrap: 'wrap' }}>
+        {[{ key: 'manana', label: t.reminder_morning, icon: '☀' }, { key: 'tarde', label: t.reminder_afternoon, icon: '◐' }, { key: 'noche', label: t.reminder_night, icon: '☽' }].map(opt => (
+          <button key={opt.key} className={`reminder-btn ${reminderTime === opt.key ? 'active' : ''}`} onClick={() => handleReminderSelect(opt.key)}>
+            {opt.icon} {opt.label}
+          </button>
+        ))}
       </div>
+      {reminderTime && <p style={{ fontSize: '10px', color: 'rgba(34,211,238,0.5)', textAlign: 'center', marginTop: '10px', letterSpacing: '1px', fontWeight: 200 }}>{getReminderText()}</p>}
     </div>
   );
   const TrackCard = ({ track, onSelect, isSugg = false }) => (
@@ -1128,6 +1091,12 @@ const App = () => {
             {isFavorite(selectedTrack.id) ? '♥' : '♡'}
           </button>
         </div>
+        <svg style={{ position: 'absolute', width: 0, height: 0, pointerEvents: 'none' }}>
+          <filter id="etherealWaveFilter">
+            <feTurbulence type="fractalNoise" baseFrequency="0.02" numOctaves="3" result="noise" seed="2" />
+            <feDisplacementMap in="SourceGraphic" in2="noise" scale="18" xChannelSelector="R" yChannelSelector="G" />
+          </filter>
+        </svg>
         <div className="templo-orb-container">
           <div className="templo-wave-ring" style={{ animationDelay: '0s' }} />
           <div className="templo-wave-ring" style={{ animationDelay: '1.2s' }} />
@@ -1553,4 +1522,3 @@ const App = () => {
   );
 };
 export default App;
- 
