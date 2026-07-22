@@ -552,10 +552,9 @@ const inlineStyles = `
     50%       { transform: scale(1.06); box-shadow: 0 0 25px 10px rgba(34,211,238,0.5); }
   }
   @keyframes etherealWave {
-    0%   { transform: scale(0.5) rotate(0deg);   opacity: 0.85; }
-    35%  { opacity: 0.6; }
-    70%  { opacity: 0.25; }
-    100% { transform: scale(2.3) rotate(180deg); opacity: 0; }
+    0%   { transform: scale(1.0); opacity: 0.8; }
+    70%  { opacity: 0.2; }
+    100% { transform: scale(2.2); opacity: 0; }
   }
   @keyframes sparkle-appear {
     0%, 100% { opacity: 0; transform: scale(0); }
@@ -576,9 +575,9 @@ const inlineStyles = `
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 160px;
-    height: 160px;
-    margin-bottom: 30px;
+    width: 120px;
+    height: 120px;
+    margin-bottom: 40px;
     overflow: visible;
   }
   .templo-wave-ring {
@@ -587,11 +586,10 @@ const inlineStyles = `
     height: 100%;
     top: 0; left: 0;
     border-radius: 50%;
-    border: 1px solid rgba(34,211,238,0.3);
+    border: 1px solid #22d3ee;
     transform-origin: center center;
     animation: etherealWave 4s ease-out infinite;
-    filter: url(#etherealWaveFilter) blur(4px);
-    box-shadow: 0 0 25px 12px rgba(34,211,238,0.95), 0 0 60px 25px rgba(34,211,238,0.6), 0 0 120px 50px rgba(34,211,238,0.3);
+    filter: drop-shadow(0 0 4px #22d3ee);
     z-index: 1;
   }
   .templo-sparkle {
@@ -611,14 +609,15 @@ const inlineStyles = `
   .sp7 { top: 12%; left: 18%; animation: sparkle-appear 2.2s infinite 1.0s; width: 4px; height: 4px; }
   .sp8 { bottom: 22%; left: 2%; animation: sparkle-appear 2.2s infinite 1.8s; width: 4px; height: 4px; }
   .templo-adn-img {
-    width: 85px;
-    height: 85px;
+    width: 65px;
+    height: 65px;
     object-fit: contain;
     position: relative;
     z-index: 3;
     border-radius: 50%;
     background: radial-gradient(circle, #0d1f3c 40%, #020617 100%);
-    padding: 12px;
+    box-shadow: 0 0 15px rgba(34,211,238,0.3);
+    padding: 10px;
     animation: centralPulse 3s ease-in-out infinite;
   }
   .templo-adn-img.playing {
@@ -727,7 +726,9 @@ const App = () => {
   const [showSearch, setShowSearch] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
   const [listMountKey, setListMountKey] = useState(0);
-  const [favOrder, setFavOrder] = useState([]);
+  const [favOrder, setFavOrder] = useState(() => {
+    try { const saved = localStorage.getItem('genora_fav_order'); return saved ? JSON.parse(saved) : []; } catch { return []; }
+  });
   const [draggingId, setDraggingId] = useState(null);
   const [overIdx, setOverIdx] = useState(null);
     const dragItem = useRef(null);
@@ -792,7 +793,10 @@ const App = () => {
   }, [isPlaying]);
   useEffect(() => { favoritesRef.current = favorites; }, [favorites]);
   useEffect(() => { selectedTrackRef.current = selectedTrack; }, [selectedTrack]);
-  useEffect(() => { favOrderRef.current = favOrder; }, [favOrder]);
+  useEffect(() => {
+    favOrderRef.current = favOrder;
+    try { if (favOrder.length > 0) localStorage.setItem('genora_fav_order', JSON.stringify(favOrder)); } catch {}
+  }, [favOrder]);
   useEffect(() => {
     setFavOrder(prev => {
       const kept  = prev.filter(id => favorites.includes(id));
@@ -1118,12 +1122,7 @@ const App = () => {
             {isFavorite(selectedTrack.id) ? '♥' : '♡'}
           </button>
         </div>
-        <svg style={{ position: 'absolute', width: 0, height: 0, pointerEvents: 'none' }}>
-          <filter id="etherealWaveFilter">
-            <feTurbulence type="turbulence" baseFrequency="0.03 0.008" numOctaves="3" result="noise" seed="5" />
-            <feDisplacementMap in="SourceGraphic" in2="noise" scale="28" xChannelSelector="R" yChannelSelector="G" />
-          </filter>
-        </svg>
+
         <div className="templo-orb-container">
           <div className="templo-wave-ring" style={{ animationDelay: '0s' }} />
           <div className="templo-wave-ring" style={{ animationDelay: '0.8s' }} />
@@ -1137,11 +1136,11 @@ const App = () => {
           <span className="templo-sparkle sp5" />
           <div style={{
             position: 'absolute',
-            width: '130px',
-            height: '130px',
+            width: '95px',
+            height: '95px',
             borderRadius: '50%',
-            border: '2px solid rgba(34,211,238,0.9)',
-            boxShadow: '0 0 20px 8px rgba(34,211,238,0.8), 0 0 50px 20px rgba(34,211,238,0.4), inset 0 0 20px 5px rgba(34,211,238,0.3)',
+            border: '1px solid rgba(34,211,238,0.8)',
+            boxShadow: '0 0 8px 3px rgba(34,211,238,0.5), inset 0 0 8px 2px rgba(34,211,238,0.2)',
             zIndex: 2,
             pointerEvents: 'none',
           }} />
