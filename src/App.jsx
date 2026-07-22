@@ -590,24 +590,21 @@ const inlineStyles = `
     50% { transform: scale(1.1) rotate(0deg); filter: drop-shadow(0 0 30px #22d3ee) brightness(1.15); }
     75% { transform: scale(1.06) rotate(-1deg); filter: drop-shadow(0 0 22px #22d3ee); }
   }
-    /* --- ONDAS ETÉREAS EXPANSIVAS --- */
+    /* --- ONDAS LÍQUIDAS REALMENTE ONDULADAS --- */
 @keyframes etherealRipple {
   0% {
-    transform: scale(0.6);
-    opacity: 0.8;
-    filter: blur(8px);
+    transform: scale(0.5) rotate(0deg);
+    opacity: 0.85;
   }
   50% {
     opacity: 0.5;
-    filter: blur(14px);
   }
   80% {
     opacity: 0.15;
   }
   100% {
-    transform: scale(2.2);
+    transform: scale(2.3) rotate(180deg);
     opacity: 0;
-    filter: blur(22px);
   }
 }
 
@@ -626,8 +623,10 @@ const inlineStyles = `
   width: 100%;
   height: 100%;
   border-radius: 50%;
-  border: 1.5px solid rgba(0, 255, 255, 0.4);
-  box-shadow: 0 0 25px rgba(0, 255, 255, 0.3), inset 0 0 15px rgba(138, 43, 226, 0.2);
+  border: 2px solid rgba(0, 255, 255, 0.6);
+  box-shadow: 0 0 20px rgba(0, 255, 255, 0.4), inset 0 0 12px rgba(138, 43, 226, 0.3);
+  /* APLICAMOS EL FILTRO DE TURBULENCIA SVG Y UN LEVE BLUR */
+  filter: url(#waveFilter) blur(2px);
   pointer-events: none;
 }
 
@@ -1017,6 +1016,32 @@ const App = () => {
   const ReminderSection = () => (
     <>
       {/* CONTENEDOR DE ONDAS ETÉREAS Y ADN CENTRAL */}
+      {/* 1. MATRIZ SVG (Pégala justo aquí, antes del contenedor) */}
+<svg style={{ position: 'absolute', width: 0, height: 0 }}>
+  <filter id="waveFilter">
+    <feTurbulence type="fractalNoise" baseFrequency="0.03" numOctaves="2" result="noise" />
+    <feDisplacementMap in="SourceGraphic" in2="noise" scale="12" xChannelSelector="R" yChannelSelector="G" />
+  </filter>
+</svg>
+
+{/* 2. CONTENEDOR DE ONDAS Y ADN */}
+<div className="ripple-container">
+  {isPlaying && (
+    <div className="waves-wrapper">
+      <div className="ethereal-wave wave-1"></div>
+      <div className="ethereal-wave wave-2"></div>
+      <div className="ethereal-wave wave-3"></div>
+    </div>
+  )}
+  
+  <div className="dna-center-circle">
+    <img 
+      src="/assets/adn-icon.png" 
+      alt="ADN GENORA" 
+      style={{ width: '70px', height: '70px', objectFit: 'contain' }} 
+    />
+  </div>
+</div>
       <div className="ripple-container">
         {/* FILTRO MATRIZ ETÉREA (Hace que los aros sean verdaderas ondas líquidas) */}
         <svg style={{ position: 'absolute', width: 0, height: 0, overflow: 'hidden' }}>
