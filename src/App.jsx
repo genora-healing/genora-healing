@@ -1018,14 +1018,22 @@ const App = () => {
     <>
       {/* CONTENEDOR DE ONDAS ETÉREAS Y ADN CENTRAL */}
       <div className="ripple-container">
+        {/* FILTRO MATRIZ ETÉREA (Hace que los aros sean verdaderas ondas líquidas) */}
+        <svg style={{ position: 'absolute', width: 0, height: 0, overflow: 'hidden' }}>
+          <defs>
+            <filter id="etherealWaveFilter">
+              <feTurbulence type="fractalNoise" baseFrequency="0.015" numOctaves="3" result="noise" />
+              <feDisplacementMap in="SourceGraphic" in2="noise" scale="22" xChannelSelector="R" yChannelSelector="G" />
+            </filter>
+          </defs>
+        </svg>
         {isPlaying && (
-          <div className="waves-wrapper">
-            <div className="ethereal-wave wave-1"></div>
-            <div className="ethereal-wave wave-2"></div>
-            <div className="ethereal-wave wave-3"></div>
-          </div>
+          <>
+            <div className="ethereal-wave wave-1" />
+            <div className="ethereal-wave wave-2" />
+            <div className="ethereal-wave wave-3" />
+          </>
         )}
-        
         <div className="dna-center-circle">
           <img 
             src="/assets/adn-icon.png" 
