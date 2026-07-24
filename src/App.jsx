@@ -552,10 +552,25 @@ const inlineStyles = `
     50%       { transform: scale(1.06); box-shadow: 0 0 25px 10px rgba(34,211,238,0.5); }
   }
   @keyframes etherealWave {
-    0%   { transform: scale(0.5) rotate(0deg);   opacity: 0.85; }
-    30%  { opacity: 0.75; }
-    65%  { opacity: 0.4; }
-    100% { transform: scale(2.4) rotate(180deg); opacity: 0; }
+    0% {
+      transform: scale(1) rotate(0deg);
+      border-radius: 48% 52% 50% 50% / 51% 49% 51% 49%;
+      opacity: 0.78;
+    }
+    30% {
+      border-radius: 52% 48% 49% 51% / 49% 52% 48% 51%;
+      opacity: 0.6;
+    }
+    60% {
+      transform: scale(1.7) rotate(180deg);
+      border-radius: 49% 51% 52% 48% / 48% 50% 52% 50%;
+      opacity: 0.3;
+    }
+    100% {
+      transform: scale(2.3) rotate(360deg);
+      border-radius: 48% 52% 50% 50% / 51% 49% 51% 49%;
+      opacity: 0;
+    }
   }
   @keyframes sparkle-appear {
     0%, 100% { opacity: 0; transform: scale(0); }
@@ -586,13 +601,13 @@ const inlineStyles = `
     width: 100%;
     height: 100%;
     top: 0; left: 0;
-    border-radius: 50%;
-    border: 1.5px solid rgba(0,243,255,0.85);
+    border-radius: 48% 52% 50% 50% / 51% 49% 51% 49%;
+    border: 1.5px solid rgba(0,243,255,0.7);
     transform-origin: center center;
     animation: etherealWave 4s ease-out infinite;
-    filter: drop-shadow(0 0 6px #00f3ff);
-    box-shadow: 0 0 10px rgba(0,243,255,0.6);
+    filter: drop-shadow(0 0 6px rgba(0,243,255,0.6));
     z-index: 1;
+    pointer-events: none;
   }
   .templo-sparkle {
     position: absolute;
@@ -611,14 +626,15 @@ const inlineStyles = `
   .sp7 { top: 12%; left: 18%; animation: sparkle-appear 2.2s infinite 1.0s; width: 4px; height: 4px; }
   .sp8 { bottom: 22%; left: 2%; animation: sparkle-appear 2.2s infinite 1.8s; width: 4px; height: 4px; }
   .templo-adn-img {
-    width: 120px;
-    height: 120px;
+    width: 108px;
+    height: 108px;
     object-fit: contain;
     position: relative;
     z-index: 3;
     border-radius: 50%;
     background: radial-gradient(circle, #0d1f3c 40%, #020617 100%);
     padding: 16px;
+    box-shadow: 0 0 20px rgba(0,243,255,0.25);
     animation: centralPulse 3s ease-in-out infinite;
   }
   .templo-adn-img.playing {
@@ -1091,16 +1107,11 @@ const App = () => {
             {isFavorite(selectedTrack.id) ? '♥' : '♡'}
           </button>
         </div>
-        <svg style={{ position: 'absolute', width: 0, height: 0, pointerEvents: 'none' }}>
-          <filter id="etherealWaveFilter">
-            <feTurbulence type="fractalNoise" baseFrequency="0.02" numOctaves="3" result="noise" seed="2" />
-            <feDisplacementMap in="SourceGraphic" in2="noise" scale="18" xChannelSelector="R" yChannelSelector="G" />
-          </filter>
-        </svg>
         <div className="templo-orb-container">
           <div className="templo-wave-ring" style={{ animationDelay: '0s' }} />
-          <div className="templo-wave-ring" style={{ animationDelay: '1.2s' }} />
-          <div className="templo-wave-ring" style={{ animationDelay: '2.4s' }} />
+          <div className="templo-wave-ring" style={{ animationDelay: '1s' }} />
+          <div className="templo-wave-ring" style={{ animationDelay: '2s' }} />
+          <div className="templo-wave-ring" style={{ animationDelay: '3s' }} />
           <span className="templo-sparkle sp1" />
           <span className="templo-sparkle sp2" />
           <span className="templo-sparkle sp3" />
