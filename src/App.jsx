@@ -552,9 +552,10 @@ const inlineStyles = `
     50%       { transform: scale(1.06); box-shadow: 0 0 25px 10px rgba(34,211,238,0.5); }
   }
   @keyframes etherealWave {
-    0%   { transform: scale(1.0); opacity: 0.8; }
-    70%  { opacity: 0.2; }
-    100% { transform: scale(2.2); opacity: 0; }
+    0%   { transform: scale(0.5) rotate(0deg);   opacity: 0.85; }
+    30%  { opacity: 0.75; }
+    65%  { opacity: 0.4; }
+    100% { transform: scale(2.4) rotate(180deg); opacity: 0; }
   }
   @keyframes sparkle-appear {
     0%, 100% { opacity: 0; transform: scale(0); }
@@ -575,9 +576,9 @@ const inlineStyles = `
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 120px;
-    height: 120px;
-    margin-bottom: 40px;
+    width: 160px;
+    height: 160px;
+    margin-bottom: 30px;
     overflow: visible;
   }
   .templo-wave-ring {
@@ -586,10 +587,11 @@ const inlineStyles = `
     height: 100%;
     top: 0; left: 0;
     border-radius: 50%;
-    border: 1px solid #22d3ee;
+    border: 1.5px solid rgba(0,243,255,0.85);
     transform-origin: center center;
     animation: etherealWave 4s ease-out infinite;
-    filter: drop-shadow(0 0 4px #22d3ee);
+    filter: drop-shadow(0 0 6px #00f3ff);
+    box-shadow: 0 0 10px rgba(0,243,255,0.6);
     z-index: 1;
   }
   .templo-sparkle {
@@ -609,15 +611,14 @@ const inlineStyles = `
   .sp7 { top: 12%; left: 18%; animation: sparkle-appear 2.2s infinite 1.0s; width: 4px; height: 4px; }
   .sp8 { bottom: 22%; left: 2%; animation: sparkle-appear 2.2s infinite 1.8s; width: 4px; height: 4px; }
   .templo-adn-img {
-    width: 65px;
-    height: 65px;
+    width: 120px;
+    height: 120px;
     object-fit: contain;
     position: relative;
     z-index: 3;
     border-radius: 50%;
     background: radial-gradient(circle, #0d1f3c 40%, #020617 100%);
-    box-shadow: 0 0 15px rgba(34,211,238,0.3);
-    padding: 10px;
+    padding: 16px;
     animation: centralPulse 3s ease-in-out infinite;
   }
   .templo-adn-img.playing {
@@ -726,9 +727,7 @@ const App = () => {
   const [showSearch, setShowSearch] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
   const [listMountKey, setListMountKey] = useState(0);
-  const [favOrder, setFavOrder] = useState(() => {
-    try { const saved = localStorage.getItem('genora_fav_order'); return saved ? JSON.parse(saved) : []; } catch { return []; }
-  });
+  const [favOrder, setFavOrder] = useState([]);
   const [draggingId, setDraggingId] = useState(null);
   const [overIdx, setOverIdx] = useState(null);
     const dragItem = useRef(null);
@@ -780,23 +779,9 @@ const App = () => {
   const selectedTrackRef = useRef(selectedTrack);
   const t = T[lang];
   useEffect(() => { activeTabRef.current = activeTab; }, [activeTab]);
-
-  // Reanudar audio cuando el usuario vuelve a la pantalla
-  useEffect(() => {
-    const handleVisibility = () => {
-      if (document.visibilityState === 'visible' && isPlaying && audioRef.current) {
-        audioRef.current.play().catch(() => {});
-      }
-    };
-    document.addEventListener('visibilitychange', handleVisibility);
-    return () => document.removeEventListener('visibilitychange', handleVisibility);
-  }, [isPlaying]);
   useEffect(() => { favoritesRef.current = favorites; }, [favorites]);
   useEffect(() => { selectedTrackRef.current = selectedTrack; }, [selectedTrack]);
-  useEffect(() => {
-    favOrderRef.current = favOrder;
-    try { if (favOrder.length > 0) localStorage.setItem('genora_fav_order', JSON.stringify(favOrder)); } catch {}
-  }, [favOrder]);
+  useEffect(() => { favOrderRef.current = favOrder; }, [favOrder]);
   useEffect(() => {
     setFavOrder(prev => {
       const kept  = prev.filter(id => favorites.includes(id));
@@ -835,22 +820,6 @@ const App = () => {
     if (audioRef.current) {
       if (isPlaying) {
         audioRef.current.play().catch(() => console.log('Verificar audio en /public/audio/'));
-        // Media Session API — controles en pantalla de bloqueo
-        if ('mediaSession' in navigator && selectedTrack) {
-          navigator.mediaSession.metadata = new MediaMetadata({
-            title: selectedTrack.name || 'GENORA Healing',
-            artist: 'GENORA',
-            album: `${selectedTrack.hz || ''} Hz`,
-          });
-          navigator.mediaSession.setActionHandler('play', () => {
-            audioRef.current?.play().catch(() => {});
-            setIsPlaying(true);
-          });
-          navigator.mediaSession.setActionHandler('pause', () => {
-            audioRef.current?.pause();
-            setIsPlaying(false);
-          });
-        }
         if (selectedTime && selectedTime !== 'inf') {
           if (timerRef.current) clearTimeout(timerRef.current);
           timerRef.current = setTimeout(() => setIsPlaying(false), selectedTime * 60000);
@@ -1122,28 +1091,21 @@ const App = () => {
             {isFavorite(selectedTrack.id) ? '♥' : '♡'}
           </button>
         </div>
-
+        <svg style={{ position: 'absolute', width: 0, height: 0, pointerEvents: 'none' }}>
+          <filter id="etherealWaveFilter">
+            <feTurbulence type="fractalNoise" baseFrequency="0.02" numOctaves="3" result="noise" seed="2" />
+            <feDisplacementMap in="SourceGraphic" in2="noise" scale="18" xChannelSelector="R" yChannelSelector="G" />
+          </filter>
+        </svg>
         <div className="templo-orb-container">
           <div className="templo-wave-ring" style={{ animationDelay: '0s' }} />
-          <div className="templo-wave-ring" style={{ animationDelay: '0.8s' }} />
-          <div className="templo-wave-ring" style={{ animationDelay: '1.6s' }} />
+          <div className="templo-wave-ring" style={{ animationDelay: '1.2s' }} />
           <div className="templo-wave-ring" style={{ animationDelay: '2.4s' }} />
-          <div className="templo-wave-ring" style={{ animationDelay: '3.2s' }} />
           <span className="templo-sparkle sp1" />
           <span className="templo-sparkle sp2" />
           <span className="templo-sparkle sp3" />
           <span className="templo-sparkle sp4" />
           <span className="templo-sparkle sp5" />
-          <div style={{
-            position: 'absolute',
-            width: '95px',
-            height: '95px',
-            borderRadius: '50%',
-            border: '1px solid rgba(34,211,238,0.8)',
-            boxShadow: '0 0 8px 3px rgba(34,211,238,0.5), inset 0 0 8px 2px rgba(34,211,238,0.2)',
-            zIndex: 2,
-            pointerEvents: 'none',
-          }} />
           <img src="/imagenes/adn-icon.png" className={`templo-adn-img ${isPlaying ? 'playing' : ''}`} alt="ADN" />
         </div>
         <h2 style={{ fontSize: '20px', letterSpacing: '4px', textTransform: 'uppercase', fontWeight: 200 }}>{selectedTrack.name}</h2>
