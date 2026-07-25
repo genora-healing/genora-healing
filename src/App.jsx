@@ -596,11 +596,11 @@ const inlineStyles = `
     animation: etherealWave 4s ease-out infinite;
   }
   @keyframes haloBlurTravel {
-    0%   { filter: blur(1.5px); stroke-width: 10px; opacity: 0.95; }
-    35%  { filter: blur(5px);   stroke-width: 13px; opacity: 0.6; }
-    70%  { filter: blur(11px);  stroke-width: 17px; opacity: 0.3; }
-    100% { filter: blur(18px);  stroke-width: 22px; opacity: 0; }
-  }
+  0%   { filter: blur(0px); stroke-width: 8px;  opacity: 1; }
+  35%  { filter: blur(0px); stroke-width: 12px; opacity: 0.7; }
+  70%  { filter: blur(0px); stroke-width: 16px; opacity: 0.35; }
+  100% { filter: blur(0px); stroke-width: 20px; opacity: 0; }
+}
   .templo-wave-halo {
     fill: none;
     stroke: rgba(0, 243, 255, 0.95);
