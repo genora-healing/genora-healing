@@ -589,7 +589,6 @@ const inlineStyles = `
     overflow: visible;
     pointer-events: none;
     z-index: 1;
-    filter: saturate(1.6) brightness(1.25);
   }
   .templo-wave-group {
     transform-box: fill-box;
@@ -597,14 +596,16 @@ const inlineStyles = `
     animation: etherealWave 4s ease-out infinite;
   }
   @keyframes haloBlurTravel {
-    0%   { filter: blur(5px); stroke-width: 8px;  opacity: 1; }
-    35%  { filter: blur(5px); stroke-width: 12px; opacity: 0.95; }
-    70%  { filter: blur(5px); stroke-width: 16px; opacity: 0.75; }
-    100% { filter: blur(5px); stroke-width: 20px; opacity: 0; }
+    0%   { opacity: 1; }
+    35%  { opacity: 0.95; }
+    70%  { opacity: 0.75; }
+    100% { opacity: 0; }
   }
   .templo-wave-halo {
     fill: none;
     stroke: rgba(0, 243, 255, 1);
+    stroke-width: 14px;
+    filter: blur(5px);
     transform-box: fill-box;
     transform-origin: 50% 50%;
     animation: haloBlurTravel 4s ease-out infinite;
