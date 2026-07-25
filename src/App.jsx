@@ -604,7 +604,6 @@ const inlineStyles = `
   .templo-wave-halo {
     fill: none;
     stroke: rgba(0, 243, 255, 1);
-    transform: scale(0.93);
     transform-box: fill-box;
     transform-origin: 50% 50%;
     animation: haloBlurTravel 4s ease-out infinite;
@@ -615,6 +614,9 @@ const inlineStyles = `
     stroke-width: 1.5px;
     vector-effect: non-scaling-stroke;
     filter: drop-shadow(0 0 6px #00f3ff);
+    transform: scale(0.93);
+    transform-box: fill-box;
+    transform-origin: 50% 50%;
   }
   .templo-sparkle {
     position: absolute;
