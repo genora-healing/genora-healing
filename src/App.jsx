@@ -555,19 +555,19 @@ const inlineStyles = `
     0% {
       transform: scale(1) rotate(0deg);
       border-radius: 48% 52% 50% 50% / 51% 49% 51% 49%;
-      opacity: 0.78;
+      opacity: 0.85;
     }
-    30% {
-      border-radius: 52% 48% 49% 51% / 49% 52% 48% 51%;
-      opacity: 0.6;
+    35% {
+      border-radius: 53% 47% 52% 48% / 48% 52% 49% 51%;
+      opacity: 0.65;
     }
-    60% {
-      transform: scale(1.7) rotate(180deg);
-      border-radius: 49% 51% 52% 48% / 48% 50% 52% 50%;
+    70% {
+      transform: scale(1.8) rotate(180deg);
+      border-radius: 49% 51% 48% 52% / 52% 48% 51% 49%;
       opacity: 0.3;
     }
     100% {
-      transform: scale(2.3) rotate(360deg);
+      transform: scale(2.4) rotate(360deg);
       border-radius: 48% 52% 50% 50% / 51% 49% 51% 49%;
       opacity: 0;
     }
@@ -591,8 +591,8 @@ const inlineStyles = `
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 160px;
-    height: 160px;
+    width: 170px;
+    height: 170px;
     margin-bottom: 30px;
     overflow: visible;
   }
@@ -602,10 +602,10 @@ const inlineStyles = `
     height: 100%;
     top: 0; left: 0;
     border-radius: 48% 52% 50% 50% / 51% 49% 51% 49%;
-    border: 1.5px solid rgba(0,243,255,0.7);
+    border: 1.5px solid rgba(0, 243, 255, 0.75);
     transform-origin: center center;
-    animation: etherealWave 4s ease-out infinite;
-    filter: drop-shadow(0 0 6px rgba(0,243,255,0.6));
+    animation: etherealWave 4.5s ease-out infinite;
+    filter: drop-shadow(0 0 8px rgba(0, 243, 255, 0.65));
     z-index: 1;
     pointer-events: none;
   }
@@ -638,11 +638,8 @@ const inlineStyles = `
     animation: centralPulse 3s ease-in-out infinite;
   }
   .templo-adn-img.playing {
-    animation: centralPulse 2.5s ease-in-out infinite;
-    box-shadow: 0 0 20px 6px rgba(34,211,238,0.3);
-  }
-  .templo-adn-img.playing {
     animation: adn-breathe-deep 4s ease-in-out infinite;
+    box-shadow: 0 0 20px 6px rgba(34,211,238,0.3);
   }
   .templo-rotate-ring {
     position: absolute;
