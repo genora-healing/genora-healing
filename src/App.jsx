@@ -552,10 +552,24 @@ const inlineStyles = `
     50%       { transform: scale(1.06); box-shadow: 0 0 25px 10px rgba(34,211,238,0.5); }
   }
   @keyframes etherealWave {
-    0%   { transform: scale(0.5) rotate(0deg);   opacity: 0.85; }
-    35%  { opacity: 0.6; }
-    70%  { opacity: 0.25; }
-    100% { transform: scale(2.7) rotate(90deg); opacity: 0; }
+    0% {
+      transform: scale(0.5) rotate(0deg);
+      opacity: 0.85;
+      filter: drop-shadow(0 0 4px rgba(34,211,238,0.9)) drop-shadow(0 0 10px rgba(34,211,238,0.5)) drop-shadow(0 0 18px rgba(34,211,238,0.25));
+    }
+    35% {
+      opacity: 0.6;
+      filter: drop-shadow(0 0 10px rgba(34,211,238,0.8)) drop-shadow(0 0 26px rgba(34,211,238,0.45)) drop-shadow(0 0 50px rgba(34,211,238,0.22));
+    }
+    70% {
+      opacity: 0.25;
+      filter: drop-shadow(0 0 14px rgba(34,211,238,0.55)) drop-shadow(0 0 38px rgba(34,211,238,0.3)) drop-shadow(0 0 75px rgba(34,211,238,0.15));
+    }
+    100% {
+      transform: scale(2.7) rotate(90deg);
+      opacity: 0;
+      filter: drop-shadow(0 0 18px rgba(34,211,238,0)) drop-shadow(0 0 50px rgba(34,211,238,0)) drop-shadow(0 0 95px rgba(34,211,238,0));
+    }
   }
   @keyframes sparkle-appear {
     0%, 100% { opacity: 0; transform: scale(0); }
@@ -595,7 +609,7 @@ const inlineStyles = `
     stroke: rgba(34,211,238,0.85);
     stroke-width: 1.5px;
     vector-effect: non-scaling-stroke;
-    filter: drop-shadow(0 0 8px rgba(34,211,238,0.85)) drop-shadow(0 0 20px rgba(34,211,238,0.5)) drop-shadow(0 0 42px rgba(34,211,238,0.25));
+    filter: drop-shadow(0 0 4px rgba(34,211,238,0.9)) drop-shadow(0 0 10px rgba(34,211,238,0.5)) drop-shadow(0 0 18px rgba(34,211,238,0.25));
     transform-box: fill-box;
     transform-origin: 50% 50%;
     animation: etherealWave 4s ease-out infinite;
