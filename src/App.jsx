@@ -589,6 +589,7 @@ const inlineStyles = `
     overflow: visible;
     pointer-events: none;
     z-index: 1;
+    filter: saturate(1.6) brightness(1.25);
   }
   .templo-wave-group {
     transform-box: fill-box;
@@ -597,8 +598,8 @@ const inlineStyles = `
   }
   @keyframes haloBlurTravel {
     0%   { filter: blur(5px); stroke-width: 8px;  opacity: 1; }
-    35%  { filter: blur(5px); stroke-width: 12px; opacity: 0.85; }
-    70%  { filter: blur(5px); stroke-width: 16px; opacity: 0.55; }
+    35%  { filter: blur(5px); stroke-width: 12px; opacity: 0.95; }
+    70%  { filter: blur(5px); stroke-width: 16px; opacity: 0.75; }
     100% { filter: blur(5px); stroke-width: 20px; opacity: 0; }
   }
   .templo-wave-halo {
@@ -613,7 +614,7 @@ const inlineStyles = `
     stroke: #e0ffff;
     stroke-width: 1.5px;
     vector-effect: non-scaling-stroke;
-    filter: drop-shadow(0 0 6px #00f3ff);
+    filter: drop-shadow(0 0 6px #00f3ff) drop-shadow(0 0 14px rgba(0,243,255,0.7));
     transform: scale(0.93);
     transform-box: fill-box;
     transform-origin: 50% 50%;
