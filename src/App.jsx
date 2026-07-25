@@ -1099,6 +1099,8 @@ const App = () => {
           onTimeUpdate={handleTimeUpdate}
           onLoadedMetadata={(e) => { handleTimeUpdate(); if (currentTime > 0 && e.target.duration > currentTime) e.target.currentTime = currentTime; }}
           onEnded={handleAudioEnded} />
+        
+        {/* BOTÓN REGRESAR Y FAVORITO */}
         <div style={{ position: 'absolute', top: '35px', left: '30px', right: '30px', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
           <button onClick={() => { setIsPlaying(false); setSelectedTrack(null); setCurrentTime(0); setDuration(0); setListMountKey(k => k + 1); }} style={{ background: 'none', border: 'none', color: temploAccent, fontSize: '40px', cursor: 'pointer', lineHeight: 1, padding: 0 }}>&#8249;</button>
           {isSuggestion && <div className="suggestion-badge">✦ {t.suggestion_label}</div>}
@@ -1106,23 +1108,24 @@ const App = () => {
             {isFavorite(selectedTrack.id) ? '♥' : '♡'}
           </button>
         </div>
-        <div className="templo-orb-container">
-          <svg className="templo-wave-svg" viewBox="0 0 200 200" preserveAspectRatio="xMidYMid meet">
-            <path className="templo-wave-path" style={{ animationDelay: '0s' }} d="M 192.79,100.00 C 196.03,108.36 197.63,119.58 195.18,127.95 C 192.74,136.32 184.01,143.34 178.13,150.21 C 172.25,157.07 166.98,164.49 159.90,169.13 C 152.82,173.77 143.85,177.21 135.64,178.04 C 127.43,178.88 118.51,173.86 110.66,174.14 C 102.81,174.42 96.67,178.15 88.54,179.71 C 80.40,181.28 70.04,185.16 61.85,183.54 C 53.66,181.91 46.51,175.22 39.37,169.97 C 32.24,164.71 24.48,159.12 19.06,152.02 C 13.64,144.91 7.25,136.02 6.87,127.35 C 6.49,118.68 13.55,108.16 16.79,100.00 C 20.03,91.84 24.10,85.85 26.31,78.36 C 28.53,70.87 27.01,62.10 30.07,55.06 C 33.12,48.02 39.24,42.30 44.65,36.12 C 50.06,29.94 55.70,23.98 62.53,17.95 C 69.36,11.92 77.10,2.01 85.61,-0.07 C 94.12,-2.14 105.36,1.59 113.59,5.51 C 121.81,9.42 128.12,18.20 134.96,23.44 C 141.80,28.68 149.27,31.38 154.63,36.95 C 159.99,42.52 163.60,50.06 167.12,56.86 C 170.64,63.67 171.46,70.57 175.74,77.76 C 180.02,84.95 189.55,91.64 192.79,100.00 Z" />
-            <path className="templo-wave-path" style={{ animationDelay: '1.1s' }} d="M 199.50,100.00 C 197.98,108.67 189.01,117.21 184.04,124.68 C 179.08,132.15 175.68,139.63 169.72,144.81 C 163.76,149.98 153.54,149.25 148.30,155.74 C 143.05,162.23 143.97,176.89 138.25,183.75 C 132.52,190.61 122.54,195.28 113.93,196.89 C 105.32,198.50 94.94,196.33 86.57,193.43 C 78.19,190.53 69.34,185.97 63.70,179.49 C 58.06,173.01 58.81,160.01 52.73,154.55 C 46.65,149.10 34.21,151.50 27.22,146.77 C 20.24,142.04 15.18,133.97 10.84,126.18 C 6.51,118.38 1.22,108.73 1.22,100.00 C 1.22,91.27 4.82,80.54 10.83,73.82 C 16.83,67.09 31.36,65.67 37.24,59.67 C 43.12,53.66 41.57,44.08 46.08,37.78 C 50.60,31.48 57.69,27.93 64.31,21.86 C 70.93,15.78 77.55,4.41 85.82,1.35 C 94.08,-1.72 105.96,-0.82 113.88,3.45 C 121.81,7.72 126.83,21.07 133.35,26.96 C 139.88,32.86 147.53,33.74 153.02,38.81 C 158.52,43.88 159.63,51.74 166.31,57.38 C 173.00,63.02 187.60,65.55 193.13,72.65 C 198.66,79.76 201.01,91.33 199.50,100.00 Z" />
-            <path className="templo-wave-path" style={{ animationDelay: '2.2s' }} d="M 184.05,100.00 C 182.11,108.34 181.45,115.64 179.35,123.30 C 177.25,130.95 174.11,137.60 171.46,145.93 C 168.82,154.25 168.92,166.77 163.46,173.24 C 158.01,179.72 147.48,184.35 138.72,184.78 C 129.96,185.21 119.37,175.89 110.90,175.81 C 102.43,175.72 96.29,182.47 87.88,184.28 C 79.47,186.08 68.42,189.14 60.43,186.64 C 52.44,184.15 45.51,175.93 39.94,169.31 C 34.38,162.68 29.60,154.75 27.03,146.89 C 24.46,139.04 27.10,129.98 24.51,122.17 C 21.91,114.35 14.89,108.40 11.45,100.00 C 8.01,91.60 1.09,79.47 3.87,71.78 C 6.66,64.08 20.80,59.13 28.13,53.81 C 35.47,48.50 42.00,45.48 47.90,39.87 C 53.79,34.26 57.04,25.36 63.53,20.14 C 70.02,14.92 78.52,10.92 86.85,8.55 C 95.18,6.18 105.64,3.14 113.53,5.91 C 121.42,8.68 127.91,19.32 134.18,25.17 C 140.44,31.01 143.40,37.14 151.14,40.98 C 158.89,44.81 173.98,42.80 180.63,48.18 C 187.28,53.56 190.47,64.63 191.04,73.27 C 191.61,81.91 186.00,91.66 184.05,100.00 Z" />
-            <path className="templo-wave-path" style={{ animationDelay: '3.3s' }} d="M 181.13,100.00 C 181.02,107.59 177.96,114.45 177.25,122.68 C 176.54,130.92 178.46,140.16 176.87,149.40 C 175.28,158.65 173.77,171.60 167.71,178.14 C 161.65,184.69 149.80,187.90 140.50,188.67 C 131.19,189.44 120.56,184.26 111.90,182.76 C 103.24,181.26 96.19,181.06 88.55,179.66 C 80.90,178.26 72.84,177.58 66.04,174.37 C 59.23,171.15 54.18,164.95 47.71,160.35 C 41.24,155.75 34.65,152.08 27.24,146.76 C 19.83,141.44 8.05,136.20 3.26,128.41 C -1.53,120.61 -3.62,108.85 -1.50,100.00 C 0.62,91.15 10.32,82.56 15.98,75.33 C 21.65,68.10 27.41,62.80 32.49,56.62 C 37.57,50.43 40.76,43.14 46.45,38.20 C 52.15,33.26 59.69,30.32 66.65,26.97 C 73.61,23.63 80.38,21.88 88.23,18.13 C 96.08,14.38 104.60,6.54 113.73,4.48 C 122.87,2.41 135.25,1.46 143.05,5.73 C 150.86,10.00 156.36,21.70 160.57,30.10 C 164.77,38.50 165.38,48.29 168.28,56.12 C 171.17,63.96 175.77,69.81 177.92,77.12 C 180.06,84.43 181.24,92.41 181.13,100.00 Z" />
-          </svg>
-          <span className="templo-sparkle sp1" />
-          <span className="templo-sparkle sp2" />
-          <span className="templo-sparkle sp3" />
-          <span className="templo-sparkle sp4" />
-          <span className="templo-sparkle sp5" />
-          <img src="/imagenes/adn-icon.png" className={`templo-adn-img ${isPlaying ? 'playing' : ''}`} alt="ADN" />
+
+        {/* CONTENEDOR DE ONDAS Y ADN */}
+        <div style={{ position: 'relative', width: '220px', height: '220px', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '25px' }}>
+          
+          {/* ONDAS FLUIDAS CON DEFORMACIÓN ORGÁNICA */}
+          <div style={{ position: 'absolute', width: '100%', height: '100%', borderRadius: '48% 52% 50% 50% / 51% 49% 51% 49%', border: '1.5px solid rgba(0, 243, 255, 0.75)', animation: 'etherealWave 4s ease-out infinite', filter: 'drop-shadow(0 0 8px rgba(0,243,255,0.6))', animationDelay: '0s', pointerEvents: 'none' }} />
+          <div style={{ position: 'absolute', width: '100%', height: '100%', borderRadius: '52% 48% 49% 51% / 49% 52% 48% 51%', border: '1.5px solid rgba(0, 243, 255, 0.6)', animation: 'etherealWave 4s ease-out infinite', filter: 'drop-shadow(0 0 8px rgba(0,243,255,0.5))', animationDelay: '1s', pointerEvents: 'none' }} />
+          <div style={{ position: 'absolute', width: '100%', height: '100%', borderRadius: '49% 51% 52% 48% / 48% 50% 52% 50%', border: '1.5px solid rgba(0, 243, 255, 0.45)', animation: 'etherealWave 4s ease-out infinite', filter: 'drop-shadow(0 0 8px rgba(0,243,255,0.4))', animationDelay: '2s', pointerEvents: 'none' }} />
+          <div style={{ position: 'absolute', width: '100%', height: '100%', borderRadius: '51% 49% 50% 50% / 50% 48% 52% 48%', border: '1.5px solid rgba(0, 243, 255, 0.3)', animation: 'etherealWave 4s ease-out infinite', filter: 'drop-shadow(0 0 8px rgba(0,243,255,0.3))', animationDelay: '3s', pointerEvents: 'none' }} />
+
+          {/* NÚCLEO CENTRAL NEGRO CON LOGO ADN */}
+          <img src="/imagenes/adn-icon.png" className={`templo-adn-img ${isPlaying ? 'playing' : ''}`} style={{ width: '95px', height: '95px', borderRadius: '50%', background: 'radial-gradient(circle, #0d1f3c 40%, #020617 100%)', padding: '14px', boxShadow: '0 0 20px rgba(0,243,255,0.25)', position: 'relative', zIndex: 5, objectFit: 'contain' }} alt="ADN" />
         </div>
+
         <h2 style={{ fontSize: '20px', letterSpacing: '4px', textTransform: 'uppercase', fontWeight: 200 }}>{selectedTrack.name}</h2>
         <p style={{ color: accentColor, fontSize: '11px', letterSpacing: '3px', fontWeight: 300, marginBottom: '8px' }}>{selectedTrack.hz}</p>
         <p style={{ fontSize: '12px', opacity: 0.6, maxWidth: '300px', lineHeight: '1.6', marginBottom: '20px', fontWeight: 200 }}>{t.tracks[selectedTrack.id] || ''}</p>
+        
         <div style={{ width: '80%', maxWidth: '300px', marginBottom: '20px' }}>
           <div className="progress-bar-container" onClick={handleProgressClick}>
             <div className="progress-bar-fill" style={{ width: `${progress}%` }} />
@@ -1132,6 +1135,7 @@ const App = () => {
             <span style={{ fontSize: '10px', color: 'rgba(255,255,255,0.3)', letterSpacing: '1px' }}>{formatTime(duration)}</span>
           </div>
         </div>
+
         <div style={{ display: 'flex', gap: '12px', marginBottom: '40px' }}>
           {[15, 30, 60, 'inf'].map((time) => (
             <button key={time} onClick={() => setSelectedTime(time)} className="time-button" style={{ border: `1px solid ${selectedTime === time ? accentColor : 'rgba(255,255,255,0.1)'}`, background: selectedTime === time ? `${accentColor}22` : 'none' }}>
@@ -1139,6 +1143,7 @@ const App = () => {
             </button>
           ))}
         </div>
+
         <button onClick={() => setIsPlaying(!isPlaying)} style={{ width: '85px', height: '85px', borderRadius: '50%', border: `1px solid ${accentColor}`, background: 'none', display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer' }}>
           <span style={{ fontSize: '30px', color: 'white' }}>{isPlaying ? '||' : '▶'}</span>
         </button>
