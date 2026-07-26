@@ -374,16 +374,34 @@ const getTimeOfDay = () => {
 const inlineStyles = `
   @keyframes logo-breathe { 0%, 100% { transform: scale(1); opacity: 0.95; } 50% { transform: scale(1.05); opacity: 1; } }
   @keyframes aura-supernova {
-    0%, 100% { transform: scale(1); box-shadow: 0 0 80px rgba(34,211,238,0.4), 0 0 150px rgba(34,211,238,0.2); }
-    50% { transform: scale(1.03); box-shadow: 0 0 50px rgba(34,211,238,0.9), 0 0 120px rgba(34,211,238,0.6), 0 0 250px rgba(34,211,238,0.4); }
+    0%, 100% {
+      transform: scale(1.0);
+      box-shadow: 0 0 45px rgba(34, 211, 238, 0.45), 0 0 90px rgba(34, 211, 238, 0.2);
+    }
+    50% {
+      transform: scale(1.18);
+      box-shadow: 0 0 85px rgba(34, 211, 238, 0.85), 0 0 150px rgba(34, 211, 238, 0.5), 0 0 220px rgba(34, 211, 238, 0.25);
+    }
   }
   @keyframes aura-violet {
-    0%, 100% { transform: scale(1); box-shadow: 0 0 60px rgba(124,92,230,0.35), 0 0 130px rgba(79,61,161,0.2); }
-    50% { transform: scale(1.02); box-shadow: 0 0 50px rgba(124,92,230,0.65), 0 0 110px rgba(79,61,161,0.45), 0 0 200px rgba(79,61,161,0.2); }
+    0%, 100% {
+      transform: scale(1.0);
+      box-shadow: 0 0 45px rgba(124, 92, 230, 0.45), 0 0 90px rgba(79, 61, 161, 0.2);
+    }
+    50% {
+      transform: scale(1.18);
+      box-shadow: 0 0 85px rgba(124, 92, 230, 0.85), 0 0 150px rgba(124, 92, 230, 0.5), 0 0 220px rgba(79, 61, 161, 0.25);
+    }
   }
   @keyframes aura-gold {
-    0%, 100% { transform: scale(1); box-shadow: 0 0 80px rgba(212,175,55,0.35), 0 0 150px rgba(212,175,55,0.15); }
-    50% { transform: scale(1.03); box-shadow: 0 0 50px rgba(212,175,55,0.8), 0 0 120px rgba(212,175,55,0.5), 0 0 250px rgba(212,175,55,0.3); }
+    0%, 100% {
+      transform: scale(1.0);
+      box-shadow: 0 0 45px rgba(212, 175, 55, 0.45), 0 0 90px rgba(212, 175, 55, 0.2);
+    }
+    50% {
+      transform: scale(1.18);
+      box-shadow: 0 0 85px rgba(212, 175, 55, 0.85), 0 0 150px rgba(212, 175, 55, 0.5), 0 0 220px rgba(212, 175, 55, 0.25);
+    }
   }
   @keyframes aura-gold-santuario {
     0%, 100% { transform: scale(1); box-shadow: 0 0 60px rgba(212,175,55,0.25), 0 0 120px rgba(212,175,55,0.12); }
@@ -546,22 +564,6 @@ const inlineStyles = `
     opacity: 0.9;
     cursor: grabbing;
     transform: scale(1.25);
-  }
-  @keyframes adnOrbExpand {
-    0%   { transform: scale(0.75); opacity: 0.65; }
-    70%  { opacity: 0.15; }
-    100% { transform: scale(1.55); opacity: 0; }
-  }
-  .adn-orb-ring {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    top: 0; left: 0;
-    border-radius: 50%;
-    border: 1px solid;
-    animation: adnOrbExpand 3.6s ease-out infinite;
-    pointer-events: none;
-    z-index: 1;
   }
   @keyframes centralPulse {
     0%, 100% { transform: scale(1); box-shadow: 0 0 15px 5px rgba(34,211,238,0.3); }
@@ -1077,17 +1079,11 @@ const App = () => {
       <LangSwitch isGold={isGold} isViolet={isViolet} />
     </div>
   );
-  const ADNOrb = ({ auraClass = 'aura-supernova', filterClass = 'logo-normal', size = '110px' }) => {
-    const ringColor = auraClass === 'aura-violet' ? 'rgba(124,92,230,0.55)' : auraClass === 'aura-gold' ? 'rgba(212,175,55,0.55)' : 'rgba(34,211,238,0.6)';
-    return (
-      <div style={{ width: size, height: size, display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '20px', transition: 'all 0.5s ease', animation: `${auraClass} 8s infinite ease-in-out`, position: 'relative', borderRadius: '50%' }}>
-        <div className="adn-orb-ring" style={{ borderColor: ringColor, animationDelay: '0s' }} />
-        <div className="adn-orb-ring" style={{ borderColor: ringColor, animationDelay: '1.4s' }} />
-        <div className="adn-orb-ring" style={{ borderColor: ringColor, animationDelay: '2.8s' }} />
-        <img src="/imagenes/adn-icon.png" className={filterClass} style={{ width: '62%', objectFit: 'contain', borderRadius: '50%', background: 'rgba(2,6,23,0.85)', padding: '6%', position: 'relative', zIndex: 2 }} alt="ADN" />
-      </div>
-    );
-  };
+  const ADNOrb = ({ auraClass = 'aura-supernova', filterClass = 'logo-normal', size = '110px' }) => (
+    <div style={{ width: size, height: size, display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '20px', transition: 'all 0.5s ease', animation: `${auraClass} 5s ease-in-out infinite`, position: 'relative', borderRadius: '50%' }}>
+      <img src="/imagenes/adn-icon.png" className={filterClass} style={{ width: '62%', objectFit: 'contain', borderRadius: '50%', background: 'rgba(2,6,23,0.85)', padding: '6%', position: 'relative', zIndex: 2 }} alt="ADN" />
+    </div>
+  );
   // ── SPLASH ────────────────────────────────────────────────────────────────
   const searchResults = searchQuery.trim().length > 0
     ? ALL_TRACKS_FLAT.filter(tr =>
