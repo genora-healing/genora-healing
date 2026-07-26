@@ -380,7 +380,7 @@ const inlineStyles = `
     }
     50% {
       transform: scale(1.18);
-      box-shadow: 0 0 85px rgba(34, 211, 238, 0.85), 0 0 150px rgba(34, 211, 238, 0.5), 0 0 220px rgba(34, 211, 238, 0.25);
+      box-shadow: 0 0 60px 0 rgba(34, 211, 238, 0.6), 0 0 140px 0 rgba(34, 211, 238, 0.35), 0 0 240px 0 rgba(34, 211, 238, 0.15);
     }
   }
   @keyframes aura-violet {
@@ -390,7 +390,7 @@ const inlineStyles = `
     }
     50% {
       transform: scale(1.18);
-      box-shadow: 0 0 85px rgba(124, 92, 230, 0.85), 0 0 150px rgba(124, 92, 230, 0.5), 0 0 220px rgba(79, 61, 161, 0.25);
+      box-shadow: 0 0 60px 0 rgba(124, 92, 230, 0.6), 0 0 140px 0 rgba(124, 92, 230, 0.35), 0 0 240px 0 rgba(79, 61, 161, 0.15);
     }
   }
   @keyframes aura-gold {
@@ -400,7 +400,7 @@ const inlineStyles = `
     }
     50% {
       transform: scale(1.18);
-      box-shadow: 0 0 85px rgba(212, 175, 55, 0.85), 0 0 150px rgba(212, 175, 55, 0.5), 0 0 220px rgba(212, 175, 55, 0.25);
+      box-shadow: 0 0 60px 0 rgba(212, 175, 55, 0.6), 0 0 140px 0 rgba(212, 175, 55, 0.35), 0 0 240px 0 rgba(212, 175, 55, 0.15);
     }
   }
   @keyframes aura-gold-santuario {
@@ -1080,8 +1080,8 @@ const App = () => {
     </div>
   );
   const ADNOrb = ({ auraClass = 'aura-supernova', filterClass = 'logo-normal', size = '110px' }) => (
-    <div style={{ width: size, height: size, display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '20px', transition: 'all 0.5s ease', animation: `${auraClass} 5s ease-in-out infinite`, position: 'relative', borderRadius: '50%' }}>
-      <img src="/imagenes/adn-icon.png" className={filterClass} style={{ width: '62%', objectFit: 'contain', borderRadius: '50%', background: 'radial-gradient(circle, rgba(2,6,23,0.92) 0%, rgba(2,6,23,0.92) 78%, rgba(2,6,23,0.55) 90%, rgba(2,6,23,0) 100%)', padding: '6%', position: 'relative', zIndex: 2 }} alt="ADN" />
+    <div style={{ width: size, height: size, display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '20px', transition: 'all 0.5s ease', animation: `${auraClass} 5s ease-in-out infinite`, position: 'relative', borderRadius: '50%', overflow: 'visible' }}>
+      <img src="/imagenes/adn-icon.png" className={filterClass} style={{ width: '62%', objectFit: 'contain', borderRadius: '50%', background: 'rgba(2,6,23,0.92)', padding: '6%', position: 'relative', zIndex: 2 }} alt="ADN" />
     </div>
   );
   // ── SPLASH ────────────────────────────────────────────────────────────────
@@ -1361,7 +1361,7 @@ const App = () => {
       );
     }
     return (
-      <div className="fade-in-smooth" style={{ backgroundColor: '#020617', minHeight: '100vh', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', textAlign: 'center', padding: '30px', position: 'relative' }}>
+      <div className="fade-in-smooth" style={{ backgroundColor: '#020617', minHeight: '100vh', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', textAlign: 'center', padding: '30px', position: 'relative', overflow: 'visible' }}>
         <style>{inlineStyles}</style>
         <button onClick={() => { setShowSanctuary(false); setSanctuaryCode(''); setSanctuaryError(false); }} style={{ position: 'absolute', top: '35px', left: '30px', background: 'none', border: 'none', color: goldColor, fontSize: '40px', cursor: 'pointer', lineHeight: 1, padding: 0 }}>&#8249;</button>
         <ADNOrb auraClass="aura-gold-santuario" filterClass="logo-filtro-dorado" size="160px" />
@@ -1515,7 +1515,7 @@ const App = () => {
       <style>{inlineStyles}</style>
       {showBanner && <div className="alineacion-banner" style={{ marginTop: '10px' }}><p style={{ fontSize: '11px', letterSpacing: '2px', color: '#22d3ee', margin: 0, fontWeight: 200 }}>{t.banner}</p></div>}
       <PageHeader isGold={mainMode === 'experiencias'} isViolet={mainMode === 'meditaciones'} />
-      <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+      <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', overflow: 'visible' }}>
         <ADNOrb
           auraClass={mainMode === 'meditaciones' ? 'aura-violet' : mainMode === 'experiencias' ? 'aura-gold' : 'aura-supernova'}
           filterClass={mainMode === 'experiencias' ? 'logo-filtro-dorado' : mainMode === 'meditaciones' ? 'logo-filtro-violeta' : 'logo-normal'}
