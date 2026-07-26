@@ -568,10 +568,10 @@ const inlineStyles = `
     50%       { transform: scale(1.06); box-shadow: 0 0 25px 10px rgba(34,211,238,0.5); }
   }
   @keyframes etherealWave {
-    0%   { transform: scale(0.5);   opacity: 0.85; }
+    0%   { transform: scale(0.5) translateZ(0);   opacity: 0.85; }
     35%  { opacity: 0.6; }
     70%  { opacity: 0.25; }
-    100% { transform: scale(3.0); opacity: 0; }
+    100% { transform: scale(3.0) translateZ(0); opacity: 0; }
   }
   @keyframes sparkle-appear {
     0%, 100% { opacity: 0; transform: scale(0); }
@@ -595,14 +595,18 @@ const inlineStyles = `
     width: 190px;
     height: 190px;
     margin-bottom: 30px;
-    overflow: visible;
+    overflow: visible !important;
+    will-change: transform, opacity;
+    transform: translateZ(0);
+    backface-visibility: hidden;
+    perspective: 1000px;
   }
   .templo-wave-svg {
     position: absolute;
     top: 0; left: 0;
     width: 100%;
     height: 100%;
-    overflow: visible;
+    overflow: visible !important;
     pointer-events: none;
     z-index: 1;
   }
@@ -610,6 +614,8 @@ const inlineStyles = `
     transform-box: fill-box;
     transform-origin: 50% 50%;
     animation: etherealWave 4s ease-out infinite;
+    will-change: transform, opacity;
+    backface-visibility: hidden;
   }
   @keyframes haloBlurTravel {
     0%   { opacity: 1; }
@@ -625,6 +631,8 @@ const inlineStyles = `
     transform-box: fill-box;
     transform-origin: 50% 50%;
     animation: haloBlurTravel 4s ease-out infinite;
+    will-change: opacity;
+    backface-visibility: hidden;
   }
   .templo-wave-line {
     fill: none;
@@ -632,7 +640,8 @@ const inlineStyles = `
     stroke-width: 1.5px;
     vector-effect: non-scaling-stroke;
     filter: drop-shadow(0 0 6px #00f3ff) drop-shadow(0 0 14px rgba(0,243,255,0.7));
-    transform: scale(0.93);
+    transform: scale(0.93) translateZ(0);
+    backface-visibility: hidden;
     transform-box: fill-box;
     transform-origin: 50% 50%;
   }
