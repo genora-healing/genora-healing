@@ -547,6 +547,22 @@ const inlineStyles = `
     cursor: grabbing;
     transform: scale(1.25);
   }
+  @keyframes adnOrbExpand {
+    0%   { transform: scale(0.75); opacity: 0.65; }
+    70%  { opacity: 0.15; }
+    100% { transform: scale(1.55); opacity: 0; }
+  }
+  .adn-orb-ring {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0; left: 0;
+    border-radius: 50%;
+    border: 1px solid;
+    animation: adnOrbExpand 3.6s ease-out infinite;
+    pointer-events: none;
+    z-index: 1;
+  }
   @keyframes centralPulse {
     0%, 100% { transform: scale(1); box-shadow: 0 0 15px 5px rgba(34,211,238,0.3); }
     50%       { transform: scale(1.06); box-shadow: 0 0 25px 10px rgba(34,211,238,0.5); }
@@ -576,8 +592,8 @@ const inlineStyles = `
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 160px;
-    height: 160px;
+    width: 190px;
+    height: 190px;
     margin-bottom: 30px;
     overflow: visible;
   }
@@ -637,8 +653,8 @@ const inlineStyles = `
   .sp7 { top: 12%; left: 18%; animation: sparkle-appear 2.2s infinite 1.0s; width: 4px; height: 4px; }
   .sp8 { bottom: 22%; left: 2%; animation: sparkle-appear 2.2s infinite 1.8s; width: 4px; height: 4px; }
   .templo-adn-img {
-    width: 85px;
-    height: 85px;
+    width: 125px;
+    height: 125px;
     object-fit: contain;
     position: relative;
     z-index: 3;
@@ -1052,11 +1068,17 @@ const App = () => {
       <LangSwitch isGold={isGold} isViolet={isViolet} />
     </div>
   );
-  const ADNOrb = ({ auraClass = 'aura-supernova', filterClass = 'logo-normal', size = '110px' }) => (
-    <div style={{ width: size, height: size, display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '20px', transition: 'all 0.5s ease', animation: `${auraClass} 8s infinite ease-in-out`, position: 'relative', borderRadius: '50%' }}>
-      <img src="/imagenes/adn-icon.png" className={filterClass} style={{ width: '70%', objectFit: 'contain', borderRadius: '50%', background: 'rgba(2,6,23,0.85)', padding: '12%' }} alt="ADN" />
-    </div>
-  );
+  const ADNOrb = ({ auraClass = 'aura-supernova', filterClass = 'logo-normal', size = '110px' }) => {
+    const ringColor = auraClass === 'aura-violet' ? 'rgba(124,92,230,0.55)' : auraClass === 'aura-gold' ? 'rgba(212,175,55,0.55)' : 'rgba(34,211,238,0.6)';
+    return (
+      <div style={{ width: size, height: size, display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '20px', transition: 'all 0.5s ease', animation: `${auraClass} 8s infinite ease-in-out`, position: 'relative', borderRadius: '50%' }}>
+        <div className="adn-orb-ring" style={{ borderColor: ringColor, animationDelay: '0s' }} />
+        <div className="adn-orb-ring" style={{ borderColor: ringColor, animationDelay: '1.4s' }} />
+        <div className="adn-orb-ring" style={{ borderColor: ringColor, animationDelay: '2.8s' }} />
+        <img src="/imagenes/adn-icon.png" className={filterClass} style={{ width: '62%', objectFit: 'contain', borderRadius: '50%', background: 'rgba(2,6,23,0.85)', padding: '6%', position: 'relative', zIndex: 2 }} alt="ADN" />
+      </div>
+    );
+  };
   // ── SPLASH ────────────────────────────────────────────────────────────────
   const searchResults = searchQuery.trim().length > 0
     ? ALL_TRACKS_FLAT.filter(tr =>
