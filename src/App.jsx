@@ -1081,7 +1081,7 @@ const App = () => {
   );
   const ADNOrb = ({ auraClass = 'aura-supernova', filterClass = 'logo-normal', size = '110px' }) => (
     <div style={{ width: size, height: size, display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '20px', position: 'relative', overflow: 'visible' }}>
-      <img src="/imagenes/adn-icon.png" className={filterClass} style={{ width: '82%', objectFit: 'contain', borderRadius: '50%', background: 'rgba(2,6,23,0.92)', padding: '2%', position: 'relative', zIndex: 2, animation: `${auraClass} 5s ease-in-out infinite`, transition: 'all 0.5s ease' }} alt="ADN" />
+      <img src="/imagenes/adn-icon.png" className={filterClass} style={{ width: '90%', objectFit: 'contain', borderRadius: '50%', background: 'rgba(2,6,23,0.92)', padding: '2%', position: 'relative', zIndex: 2, animation: `${auraClass} 5s ease-in-out infinite`, transition: 'all 0.5s ease' }} alt="ADN" />
     </div>
   );
   // ── SPLASH ────────────────────────────────────────────────────────────────
