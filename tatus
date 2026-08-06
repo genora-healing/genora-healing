@@ -1,0 +1,52 @@
+[33mcommit a093d7fd9e4f3fc1dee28daa53266b8e2e55fc6b[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmain[m[33m, [m[1;31morigin/main[m[33m)[m
+Author: Pamela.Cadavid <marushna@gmail.com>
+Date:   Sun Jul 26 10:41:59 2026 -0500
+
+    fix: circulo solido + glow difuso sin spread rigido, overflow visible en padres
+
+ src/App.jsx | 14 [32m+++++++[m[31m-------[m
+ 1 file changed, 7 insertions(+), 7 deletions(-)
+
+[33mcommit 0351accf2e67ef613695f281ae0149f3fd2c234a[m
+Author: Pamela.Cadavid <marushna@gmail.com>
+Date:   Sat Jul 25 22:24:36 2026 -0500
+
+    fix: suavizar borde del circulo ADNOrb con degradado radial
+
+ src/App.jsx | 2 [32m+[m[31m-[m
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+[33mcommit 3916e44c9b3aa09a7764c1b109db57eae38eb797[m
+Author: Pamela.Cadavid <marushna@gmail.com>
+Date:   Sat Jul 25 22:17:51 2026 -0500
+
+    feat: amplificar respiracion del Home/catalogo, quitar aros (exclusivos del reproductor)
+
+ src/App.jsx | 62 [32m+++++++++++++++++++++++++++++[m[31m--------------------------------[m
+ 1 file changed, 29 insertions(+), 33 deletions(-)
+[33mcommit f64e99d19a336b97e3c25c923f9cfff2127fd7ac[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmain[m[33m, [m[1;31morigin/main[m[33m)[m
+Author: Pamela.Cadavid <marushna@gmail.com>
+Date:   Wed Aug 5 19:57:14 2026 -0500
+
+    feat: reorganizar el circculo en la app
+
+ src/App.jsx | 20 [32m+++++++++[m[31m-----------[m
+ 1 file changed, 9 insertions(+), 11 deletions(-)
+
+[33mcommit 0312c165f084b1a8a5d15cc98a6447793a5b5bee[m
+Author: Pamela.Cadavid <marushna@gmail.com>
+Date:   Wed Aug 5 19:50:52 2026 -0500
+
+    feat: renombrar y agregar frecuencias del Santuario GENORA1
+
+ src/App.jsx | 6 [32m+++[m[31m---[m
+ 1 file changed, 3 insertions(+), 3 deletions(-)
+
+[33mcommit 6f5d4e7b88c08b42808e55deb8cc536e1f5b89a0[m
+Author: Pamela.Cadavid <marushna@gmail.com>
+Date:   Wed Aug 5 19:00:07 2026 -0500
+
+    feat: renombrar y agregar frecuencias del Santuario GENORA
+
+ src/App.jsx | 18 [32m++++++++++[m[31m--------[m
+ 1 file changed, 10 insertions(+), 8 deletions(-)

@@ -573,7 +573,7 @@ const inlineStyles = `
     0%   { transform: scale(0.5) translateZ(0);   opacity: 0.85; }
     35%  { opacity: 0.6; }
     70%  { opacity: 0.25; }
-    100% { transform: scale(3.0) translateZ(0); opacity: 0; }
+    100% { transform: scale(1.8) translateZ(0); opacity: 0; }
   }
   @keyframes sparkle-appear {
     0%, 100% { opacity: 0; transform: scale(0); }
@@ -590,19 +590,19 @@ const inlineStyles = `
     to { transform: rotate(360deg); }
   }
   .templo-orb-container {
-    position: relative;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 190px;
-    height: 190px;
-    margin-bottom: 30px;
-    overflow: visible !important;
-    will-change: transform, opacity;
-    transform: translateZ(0);
-    backface-visibility: hidden;
-    perspective: 1000px;
-  }
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 170px;            /* Reducido de 190px a 170px */
+  height: 170px;           /* Reducido de 190px a 170px */
+  margin-bottom: 24px;
+  overflow: visible !important;
+  will-change: transform, opacity;
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  perspective: 1000px;
+}
   .templo-wave-svg {
     position: absolute;
     top: 0; left: 0;
@@ -1080,10 +1080,23 @@ const App = () => {
     </div>
   );
   const ADNOrb = ({ auraClass = 'aura-supernova', filterClass = 'logo-normal', size = '110px' }) => (
-    <div style={{ width: size, height: size, display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '20px', position: 'relative', overflow: 'visible' }}>
-      <img src="/imagenes/adn-icon.png" className={filterClass} style={{ width: '180%', objectFit: 'contain', borderRadius: '50%', background: 'rgba(2,6,23,0.92)', padding: '2%', position: 'relative', zIndex: 2, animation: `${auraClass} 5s ease-in-out infinite`, transition: 'all 0.5s ease' }} alt="ADN" />
-    </div>
-  );
+  <div style={{ width: size, height: size, display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '20px', position: 'relative' }}>
+    <img 
+      src="/imagenes/adn-icon.png" 
+      className={filterClass} 
+      style={{ 
+        width: '100%', 
+        height: '100%', 
+        objectFit: 'contain', 
+        borderRadius: '50%', 
+        background: 'rgba(2,6,23,0.92)', 
+        animation: `${auraClass} 5s ease-in-out infinite`, 
+        transition: 'all 0.5s ease' 
+      }} 
+      alt="ADN" 
+    />
+  </div>
+);
   // ── SPLASH ────────────────────────────────────────────────────────────────
   const searchResults = searchQuery.trim().length > 0
     ? ALL_TRACKS_FLAT.filter(tr =>
