@@ -215,15 +215,12 @@ const T = {
 };
 const SANCTUARY_CODE = "GENORA2026";
 const SANCTUARY_TOOLS = [
-  { id: "energy-full-reset", name: "Energy Full Reset", type: "audio", description: "Limpieza de oscuridad y recalibracion de energia.", duration: "60 min", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/energy-full-reset.wav" },
+  { id: "frecuencia-adn-001", name: "Frecuencia ADN — Activacion Primaria", type: "audio", description: "Frecuencia de alta fidelidad para activacion genetica profunda.", duration: "60 min", url: "https://res.cloudinary.com/TU_CLOUD_NAME/video/upload/v1/genora/frecuencias/frecuencia-adn-001.wav" },
+  { id: "frecuencia-celular-001", name: "Regeneracion Celular — Campo Cuantico", type: "audio", description: "Soporte vibracional para procesos de sanacion celular.", duration: "45 min", url: "https://res.cloudinary.com/TU_CLOUD_NAME/video/upload/v1/genora/frecuencias/frecuencia-celular-001.wav" },
+  { id: "video-meditacion-001", name: "Meditacion Guiada — Matrices Perinatales", type: "video", description: "Proceso guiado para liberacion de matrices perinatales.", duration: "35 min", url: "https://res.cloudinary.com/TU_CLOUD_NAME/video/upload/v1/genora/videos/meditacion-matrices-001.mp4", thumbnail: "" },
   { id: "frecuencia-ancestral-001", name: "Liberacion Ancestral — Limpieza de Campo", type: "audio", description: "Frecuencia para desbloqueo de patrones heredados.", duration: "55 min", url: "https://res.cloudinary.com/TU_CLOUD_NAME/video/upload/v1/genora/frecuencias/frecuencia-ancestral-001.wav" },
-  { id: "business-magnet", name: "Business Magnet", type: "audio", description: "Frecuencia para atraer clientes y dinero, expansion de tu empresa.", duration: "60 min", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/business-magnet.wav" },
-  { id: "lucky-flow", name: "Lucky Flow", type: "audio", description: "Frecuencia para ganar la loteria, ganar dinero y sintonizar con la buena suerte — el poder interior.", duration: "60 min", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/lucky-flow.wav" },
-  { id: "lumina", name: "Lumina", type: "audio", description: "Claridad mental.", duration: "60 min", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/lumina.wav" },
-  { id: "momentum", name: "Momentum", type: "audio", description: "Frecuencia para deshacer situaciones y facilitar cambios — tambien asociada a ganar loteria.", duration: "60 min", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/momentum.wav" },
-  { id: "crystal-reset", name: "Crystal Reset", type: "audio", description: "Purificacion de cristales.", duration: "60 min", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/crystal-reset.wav" },
-  { id: "mental-flow-balance", name: "Mental Flow Balance", type: "audio", description: "Equilibrio mental, desactivacion de dialogos mentales.", duration: "60 min", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/mental-flow-balance.wav" },
-  { id: "safe-within", name: "Safe Within", type: "audio", description: "Desactivacion de miedos y ansiedades profundas, recuperacion del equilibrio interior.", duration: "60 min", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/safe-within.wav" },
+  { id: "atraer-clientes-dinero", name: "Atraer Clientes & Dinero", type: "audio", description: "Frecuencia de alta gama para activar el flujo de abundancia, clientes y prosperidad.", duration: "60 min", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/atraer-clientes-dinero.wav" },
+  { id: "ganar-dinero-tener-buena-suerte", name: "Ganar Dinero & Buena Suerte", type: "audio", description: "Frecuencia vibracional para sintonizar con la buena fortuna y la expansion financiera.", duration: "60 min", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/ganar-dinero-tener-buena-suerte.wav" },
 ];
 const FREQ_TRACKS = {
   MENTE: {
@@ -835,6 +832,7 @@ const App = () => {
   const selectedTrackRef = useRef(selectedTrack);
   const t = T[lang];
   useEffect(() => { activeTabRef.current = activeTab; }, [activeTab]);
+
   // Reanudar audio cuando el usuario vuelve a la pantalla
   useEffect(() => {
     const handleVisibility = () => {
@@ -1083,7 +1081,7 @@ const App = () => {
   );
   const ADNOrb = ({ auraClass = 'aura-supernova', filterClass = 'logo-normal', size = '110px' }) => (
     <div style={{ width: size, height: size, display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '20px', position: 'relative', overflow: 'visible' }}>
-      <img src="/imagenes/adn-icon.png" className={filterClass} style={{ width: '100%', objectFit: 'contain', borderRadius: '50%', background: 'rgba(2,6,23,0.92)', padding: '2%', position: 'relative', zIndex: 2, animation: `${auraClass} 5s ease-in-out infinite`, transition: 'all 0.5s ease' }} alt="ADN" />
+      <img src="/imagenes/adn-icon.png" className={filterClass} style={{ width: '180%', objectFit: 'contain', borderRadius: '50%', background: 'rgba(2,6,23,0.92)', padding: '2%', position: 'relative', zIndex: 2, animation: `${auraClass} 5s ease-in-out infinite`, transition: 'all 0.5s ease' }} alt="ADN" />
     </div>
   );
   // ── SPLASH ────────────────────────────────────────────────────────────────
@@ -1366,7 +1364,7 @@ const App = () => {
       <div className="fade-in-smooth" style={{ backgroundColor: '#020617', minHeight: '100vh', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', textAlign: 'center', padding: '30px', position: 'relative', overflow: 'visible' }}>
         <style>{inlineStyles}</style>
         <button onClick={() => { setShowSanctuary(false); setSanctuaryCode(''); setSanctuaryError(false); }} style={{ position: 'absolute', top: '35px', left: '30px', background: 'none', border: 'none', color: goldColor, fontSize: '40px', cursor: 'pointer', lineHeight: 1, padding: 0 }}>&#8249;</button>
-        <ADNOrb auraClass="aura-gold-santuario" filterClass="logo-filtro-dorado" size="290px" />
+        <ADNOrb auraClass="aura-gold-santuario" filterClass="logo-filtro-dorado" size="160px" />
         <h2 className="gold-title" style={{ fontSize: '13px', letterSpacing: '5px', fontWeight: 200, textTransform: 'uppercase', marginBottom: '10px' }}>{t.sanctuary_title}</h2>
         <p className="gold-sub" style={{ fontSize: '11px', maxWidth: '260px', lineHeight: 1.8, fontWeight: 200, marginBottom: '6px' }}>{t.sanctuary_micro}</p>
         <p className="gold-micro" style={{ fontSize: '10px', letterSpacing: '2px', fontWeight: 200, marginBottom: '36px' }}>{t.sanctuary_access}</p>
@@ -1521,7 +1519,7 @@ const App = () => {
         <ADNOrb
           auraClass={mainMode === 'meditaciones' ? 'aura-violet' : mainMode === 'experiencias' ? 'aura-gold' : 'aura-supernova'}
           filterClass={mainMode === 'experiencias' ? 'logo-filtro-dorado' : mainMode === 'meditaciones' ? 'logo-filtro-violeta' : 'logo-normal'}
-          size={!mainMode ? '250px' : '200px'}
+          size={!mainMode ? '140px' : '110px'}
         />
         {!mainMode && (
           <div className="category-stack">
