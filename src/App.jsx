@@ -1111,8 +1111,12 @@ const App = () => {
   );
   const ADNOrb = ({ auraClass = 'aura-supernova', filterClass = 'logo-normal', size = '110px' }) => (
   <div style={{ width: size, height: size, display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '20px', position: 'relative' }}>
-    <img 
-      src="/imagenes/adn-icon.png" 
+    <video
+      src="/imagenes/adn-animado.mp4"
+      autoPlay
+      loop
+      muted
+      playsInline
       className={filterClass} 
       style={{ 
         width: '100%', 
@@ -1123,7 +1127,6 @@ const App = () => {
         animation: `${auraClass} 5s ease-in-out infinite`, 
         transition: 'all 0.5s ease' 
       }} 
-      alt="ADN" 
     />
   </div>
 );
@@ -1252,7 +1255,7 @@ const App = () => {
             zIndex: 2,
             pointerEvents: 'none',
           }} />
-          <img src="/imagenes/adn-icon.png" className={`templo-adn-img ${isPlaying ? 'playing' : ''}`} alt="ADN" />
+          <video src="/imagenes/adn-animado.mp4" autoPlay loop muted playsInline className={`templo-adn-img ${isPlaying ? 'playing' : ''}`} style={{ pointerEvents: 'none' }} />
         </div>
         <h2 style={{ fontSize: '20px', letterSpacing: '4px', textTransform: 'uppercase', fontWeight: 200 }}>{selectedTrack.name}</h2>
         <p style={{ color: accentColor, fontSize: '11px', letterSpacing: '3px', fontWeight: 300, marginBottom: '8px' }}>{selectedTrack.hz}</p>
@@ -1331,7 +1334,7 @@ const App = () => {
                   <path className="santuario-wave-line" d="M 188.68,100.00 C 186.52,103.80 182.32,107.18 180.12,110.55 C 177.92,113.92 175.99,116.67 175.47,120.22 C 174.95,123.78 176.39,127.66 176.98,131.89 C 177.56,136.11 179.39,141.38 178.97,145.59 C 178.55,149.80 177.18,154.29 174.47,157.14 C 171.76,160.00 166.92,161.54 162.71,162.71 C 158.49,163.87 153.14,163.29 149.20,164.11 C 145.26,164.94 141.95,165.52 139.07,167.66 C 136.18,169.81 134.46,173.57 131.89,176.98 C 129.31,180.38 126.87,185.40 123.60,188.08 C 120.33,190.76 116.19,192.96 112.25,193.06 C 108.32,193.16 103.80,190.84 100.00,188.68 C 96.20,186.52 92.82,182.32 89.45,180.12 C 86.08,177.92 83.33,175.99 79.78,175.47 C 76.22,174.95 72.34,176.39 68.11,176.98 C 63.89,177.56 58.62,179.39 54.41,178.97 C 50.20,178.55 45.71,177.18 42.86,174.47 C 40.00,171.76 38.46,166.92 37.29,162.71 C 36.13,158.49 36.71,153.14 35.89,149.20 C 35.06,145.26 34.48,141.95 32.34,139.07 C 30.19,136.18 26.43,134.46 23.02,131.89 C 19.62,129.31 14.60,126.87 11.92,123.60 C 9.24,120.33 7.04,116.19 6.94,112.25 C 6.84,108.32 9.16,103.80 11.32,100.00 C 13.48,96.20 17.68,92.82 19.88,89.45 C 22.08,86.08 24.01,83.33 24.53,79.78 C 25.05,76.22 23.61,72.34 23.02,68.11 C 22.44,63.89 20.61,58.62 21.03,54.41 C 21.45,50.20 22.82,45.71 25.53,42.86 C 28.24,40.00 33.08,38.46 37.29,37.29 C 41.51,36.13 46.86,36.71 50.80,35.89 C 54.74,35.06 58.05,34.48 60.93,32.34 C 63.82,30.19 65.54,26.43 68.11,23.02 C 70.69,19.62 73.13,14.60 76.40,11.92 C 79.67,9.24 83.81,7.04 87.75,6.94 C 91.68,6.84 96.20,9.16 100.00,11.32 C 103.80,13.48 107.18,17.68 110.55,19.88 C 113.92,22.08 116.67,24.01 120.22,24.53 C 123.78,25.05 127.66,23.61 131.89,23.02 C 136.11,22.44 141.38,20.61 145.59,21.03 C 149.80,21.45 154.29,22.82 157.14,25.53 C 160.00,28.24 161.54,33.08 162.71,37.29 C 163.87,41.51 163.29,46.86 164.11,50.80 C 164.94,54.74 165.52,58.05 167.66,60.93 C 169.81,63.82 173.57,65.54 176.98,68.11 C 180.38,70.69 185.40,73.13 188.08,76.40 C 190.76,79.67 192.96,83.81 193.06,87.75 C 193.16,91.68 190.84,96.20 188.68,100.00 Z" />
                 </g>
               </svg>
-              <img src="/imagenes/adn-icon.png" className="templo-adn-img logo-filtro-dorado" alt="ADN" />
+              <video src="/imagenes/adn-animado.mp4" autoPlay loop muted playsInline className="templo-adn-img logo-filtro-dorado" style={{ pointerEvents: 'none' }} />
             </div>
             <h2 className="gold-title" style={{ fontSize: '14px', letterSpacing: '4px', textTransform: 'uppercase', fontWeight: 200, marginBottom: '8px' }}>{tool.name}</h2>
             <p className="gold-sub" style={{ fontSize: '11px', letterSpacing: '1px', fontWeight: 200, marginBottom: '6px', maxWidth: '280px', lineHeight: 1.7 }}>{tool.description}</p>
