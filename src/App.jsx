@@ -623,10 +623,15 @@ const inlineStyles = `
     backface-visibility: hidden;
   }
   .templo-wave-group.paused {
-    animation-play-state: paused;
+    animation: none !important;
+    opacity: 0 !important;
   }
   .templo-wave-group.paused .santuario-wave-halo {
-    animation-play-state: paused;
+    animation: none !important;
+    opacity: 0 !important;
+  }
+  .templo-wave-group.paused .santuario-wave-line {
+    opacity: 0 !important;
   }
   @keyframes haloBlurTravel {
     0%   { opacity: 1; }
@@ -1402,7 +1407,7 @@ const App = () => {
           </div>
           <div style={{ textAlign: 'center', marginBottom: '28px' }}>
             <div style={{ display: 'flex', justifyContent: 'center', marginBottom: '4px' }}>
-              <ADNOrb auraClass="aura-gold-santuario" filterClass="logo-filtro-dorado" size="140px" />
+              <ADNOrb auraClass="aura-gold-santuario" filterClass="logo-filtro-dorado" size="200px" />
             </div>
             <h2 className="gold-title" style={{ fontSize: '13px', letterSpacing: '5px', fontWeight: 200, textTransform: 'uppercase', marginBottom: '6px' }}>{t.sanctuary_title}</h2>
             <p className="gold-sub" style={{ fontSize: '11px', letterSpacing: '1px', fontWeight: 200, maxWidth: '260px', margin: '0 auto', lineHeight: 1.7 }}>{t.sanctuary_library_sub}</p>
@@ -1432,7 +1437,7 @@ const App = () => {
       <div className="fade-in-smooth" style={{ backgroundColor: '#020617', minHeight: '100vh', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', textAlign: 'center', padding: '30px', position: 'relative', overflow: 'visible' }}>
         <style>{inlineStyles}</style>
         <button onClick={() => { setShowSanctuary(false); setSanctuaryCode(''); setSanctuaryError(false); }} style={{ position: 'absolute', top: '35px', left: '30px', background: 'none', border: 'none', color: goldColor, fontSize: '40px', cursor: 'pointer', lineHeight: 1, padding: 0 }}>&#8249;</button>
-        <ADNOrb auraClass="aura-gold-santuario" filterClass="logo-filtro-dorado" size="290px" />
+        <ADNOrb auraClass="aura-gold-santuario" filterClass="logo-filtro-dorado" size="200px" />
         <h2 className="gold-title" style={{ fontSize: '13px', letterSpacing: '5px', fontWeight: 200, textTransform: 'uppercase', marginBottom: '10px' }}>{t.sanctuary_title}</h2>
         <p className="gold-sub" style={{ fontSize: '11px', maxWidth: '260px', lineHeight: 1.8, fontWeight: 200, marginBottom: '6px' }}>{t.sanctuary_micro}</p>
         <p className="gold-micro" style={{ fontSize: '10px', letterSpacing: '2px', fontWeight: 200, marginBottom: '36px' }}>{t.sanctuary_access}</p>
@@ -1587,7 +1592,7 @@ const App = () => {
         <ADNOrb
           auraClass={mainMode === 'meditaciones' ? 'aura-violet' : mainMode === 'experiencias' ? 'aura-gold' : 'aura-supernova'}
           filterClass={mainMode === 'experiencias' ? 'logo-filtro-dorado' : mainMode === 'meditaciones' ? 'logo-filtro-violeta' : 'logo-normal'}
-          size={!mainMode ? '250px' : '200px'}
+          size="200px"
         />
         {!mainMode && (
           <div className="category-stack">
