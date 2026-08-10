@@ -371,7 +371,7 @@ const FREQ_TRACKS = {
     { id: "gaia-pulse-consciencia", name: "Gaia Pulse", hz: "9.6 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/gaia-pulse.wav" },
     { id: "pyramid-resonance", name: "Pyramid Resonance", hz: "9.41 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/pyramid-resonance.wav" },
       { id: "beta-elevation-conciencia", name: "Beta Elevation", hz: "15.0 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/beta-elevation.wav" },
-      { id: "beta-ascension-ascension", name: "Beta Ascension", hz: "16.4 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/beta-ascencion.wav" },
+      { id: "beta-ascension-ascension", name: "Beta Ascension", hz: "16.4 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/beta-asension.wav" },
       { id: "alpha-airis-conciencia", name: "Alpha Airis", hz: "8-11 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/alpha-airis.wav" }
   ] },
   EXPERIENCIAS_G: { "RITUALES": [
