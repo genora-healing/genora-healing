@@ -6,7 +6,7 @@ import React, { useState, useEffect, useRef } from 'react';
 const AdnVideo = React.memo(function AdnVideo({ className, style }) {
   return (
     <video
-      src="/imagenes/adn-animado.mp4"
+      src="https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/adn-animado.mp4"
       autoPlay
       loop
       muted
@@ -1196,7 +1196,7 @@ const App = () => {
           <SmallSearchButton />
         </div>
       ) : (
-        <img src="/imagenes/genora-logo-white.png" style={{ height: '55px', borderRadius: '50%', objectFit: 'contain' }} alt="Logo" />
+        <img src="https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/genora-logo-white.png" style={{ height: '55px', borderRadius: '50%', objectFit: 'contain' }} alt="Logo" />
       )}
       <LangSwitch isGold={isGold} isViolet={isViolet} />
     </div>
@@ -1275,7 +1275,7 @@ const App = () => {
     return (
       <div className="fade-in-smooth" style={{ backgroundColor: '#020617', minHeight: '100vh', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', textAlign: 'center' }}>
         <style>{inlineStyles}</style>
-        <img src="/imagenes/genora-logo-white.png" style={{ width: '180px', borderRadius: '50%', animation: 'logo-breathe 3s infinite ease-in-out', objectFit: 'contain' }} alt="Logo" />
+        <img src="https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/genora-logo-white.png" style={{ width: '180px', borderRadius: '50%', animation: 'logo-breathe 3s infinite ease-in-out', objectFit: 'contain' }} alt="Logo" />
         <h1 style={{ fontSize: '18px', fontWeight: 200, letterSpacing: '6px', color: '#22d3ee', textTransform: 'uppercase', marginTop: '35px', marginBottom: '8px' }}>{t.splash_title}</h1>
         <p style={{ fontSize: '10px', fontWeight: 200, letterSpacing: '3px', color: '#fdfcf5', opacity: 0.7 }}>{t.splash_sub}</p>
       </div>
@@ -1579,7 +1579,7 @@ const App = () => {
       <div className="fade-in-smooth" style={{ backgroundColor: '#020617', minHeight: '100vh', color: 'white', padding: '20px', paddingBottom: '80px' }}>
         <style>{inlineStyles}</style>
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '20px', paddingTop: '10px' }}>
-          <img src="/imagenes/genora-logo-white.png" style={{ height: '50px', borderRadius: '50%', objectFit: 'contain' }} alt="Logo" />
+          <img src="https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/genora-logo-white.png" style={{ height: '50px', borderRadius: '50%', objectFit: 'contain' }} alt="Logo" />
           <LangSwitch />
         </div>
         {showBanner && (
