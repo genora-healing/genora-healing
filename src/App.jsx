@@ -1,4 +1,21 @@
 import React, { useState, useEffect, useRef } from 'react';
+ 
+// Componente aislado y memoizado: el video del ADN NO debe re-renderizarse
+// cuando cambian currentTime u otros estados del reproductor. React.memo
+// evita el trabajo de reconciliacion en cada tick de reproduccion.
+const AdnVideo = React.memo(function AdnVideo({ className, style }) {
+  return (
+    <video
+      src="/imagenes/adn-animado.mp4"
+      autoPlay
+      loop
+      muted
+      playsInline
+      className={className}
+      style={style}
+    />
+  );
+});
 const T = {
   es: {
     splash_title: "RESONANCIA ORIGEN",
@@ -56,6 +73,21 @@ const T = {
     },
     tracks: {
       "alpha-integration": "Integracion y aprendizaje de informacion desde un estado de calma y enfoque.",
+      "beta-oculos-percepcion": "Visualizacion y percepcion visual.",
+      "beta-reflex-integracion": "Reprogramacion de reflejos condicionados.",
+      "beta-somnia-experiencias": "Sueno ligero, estado de sueno REM 2.",
+      "beta-matrix-rendimiento": "Optimizacion mental y poder de procesamiento.",
+      "beta-gaia-healing-regeneracion": "Sincronizacion con la resonancia terrestre.",
+      "beta-euphoria-regulacion": "Bienestar y expansion emocional.",
+      "beta-euphoria-meditacion": "Felicidad y equilibrio interno.",
+      "beta-elevation-conciencia": "Integracion espiritual y consciencia superior.",
+      "beta-elevation-integracion": "Integracion de la personalidad.",
+      "beta-elevation-dolor": "Alivio de dolor cronico.",
+      "beta-resonance-organos": "Audicion, oxigenacion y calcio.",
+      "beta-ascension-ascension": "Liberacion y trascendencia espiritual.",
+      "alpha-airis-regulacion": "Relajacion y respiracion consciente.",
+      "alpha-airis-conciencia": "Relajacion y respiracion consciente.",
+      "alpha-airis-rituales": "Procesos de activacion.",
       "beta-learning": "Absorcion pasiva de informacion sin esfuerzo.",
       "alpha-intelligence": "Mejora la capacidad de procesamiento cognitivo.",
       "beta-focus": "Concentracion y claridad mental sostenida.",
@@ -99,7 +131,6 @@ const T = {
       "alpha-harmony": "Armonia interior y equilibrio vibracional.",
       "pyramid-resonance": "Resonancia geometrica sagrada para la coherencia energetica.",
       "gaia-pulse": "Pulso terrestre para el arraigo y la vitalidad.",
-      "alpha-lucid-flow": "Flujo consciente y claridad en estados expandidos.",
       "alpha-eros-organos": "Regula el sistema reproductor y las gonadas.",
       "alpha-eros-integracion": "Consciencia del origen de los desequilibrios.",
       "alpha-eros-meditacion": "Observacion interior y autoconocimiento.",
@@ -162,6 +193,21 @@ const T = {
     },
     tracks: {
       "alpha-integration": "Integration and learning of information from a state of calm and focus.",
+      "beta-oculos-percepcion": "Visualization and visual perception.",
+      "beta-reflex-integracion": "Reprogramming of conditioned reflexes.",
+      "beta-somnia-experiencias": "Light sleep, REM 2 sleep state.",
+      "beta-matrix-rendimiento": "Mental optimization and processing power.",
+      "beta-gaia-healing-regeneracion": "Synchronization with earth resonance.",
+      "beta-euphoria-regulacion": "Wellbeing and emotional expansion.",
+      "beta-euphoria-meditacion": "Happiness and inner balance.",
+      "beta-elevation-conciencia": "Spiritual integration and higher consciousness.",
+      "beta-elevation-integracion": "Personality integration.",
+      "beta-elevation-dolor": "Chronic pain relief.",
+      "beta-resonance-organos": "Hearing, oxygenation and calcium.",
+      "beta-ascension-ascension": "Spiritual liberation and transcendence.",
+      "alpha-airis-regulacion": "Relaxation and conscious breathing.",
+      "alpha-airis-conciencia": "Relaxation and conscious breathing.",
+      "alpha-airis-rituales": "Activation processes.",
       "beta-learning": "Passive information absorption without effort.",
       "alpha-intelligence": "Improves cognitive processing capacity.",
       "beta-focus": "Concentration and sustained mental clarity.",
@@ -205,7 +251,6 @@ const T = {
       "alpha-harmony": "Inner harmony and vibrational balance.",
       "pyramid-resonance": "Sacred geometric resonance for energetic coherence.",
       "gaia-pulse": "Earth pulse for grounding and vitality.",
-      "alpha-lucid-flow": "Conscious flow and clarity in expanded states.",
       "alpha-eros-organos": "Regulates the reproductive system and gonads.",
       "alpha-eros-integracion": "Awareness of the origin of imbalances.",
       "alpha-eros-meditacion": "Inner observation and self-knowledge.",
@@ -214,17 +259,41 @@ const T = {
   }
 };
 const SANCTUARY_CODE = "GENORA2026";
+ 
+// Estilos estaticos (referencia estable) para que React.memo funcione:
+// un objeto literal inline se recrea en cada render y rompe la memoizacion.
+const ADN_ORB_VIDEO_STYLE = {
+  width: '100%',
+  height: '100%',
+  objectFit: 'contain',
+  borderRadius: '50%',
+  background: 'rgba(2,6,23,0.92)',
+  willChange: 'transform',
+  transform: 'translateZ(0)',
+};
+const TEMPLO_ADN_VIDEO_STYLE = {
+  pointerEvents: 'none',
+  willChange: 'transform',
+  transform: 'translateZ(0)',
+};
+ 
 const SANCTUARY_TOOLS = [
-  { id: "energy-full-reset", name: "Energy Full Reset", type: "audio", description: "Limpieza de oscuridad y recalibracion de energia.", duration: "60 min", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/energy-full-reset.wav?v=2" },
-  { id: "frecuencia-ancestral-001", name: "Liberacion Ancestral — Limpieza de Campo", type: "audio", description: "Frecuencia para desbloqueo de patrones heredados.", duration: "55 min", url: "https://res.cloudinary.com/TU_CLOUD_NAME/video/upload/v1/genora/frecuencias/frecuencia-ancestral-001.wav" },
-  { id: "business-magnet", name: "Business Magnet", type: "audio", description: "Frecuencia para atraer clientes y dinero, expansion de tu empresa.", duration: "60 min", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/business-magnet.wav" },
-  { id: "lucky-flow", name: "Lucky Flow", type: "audio", description: "Frecuencia para ganar la loteria, ganar dinero y sintonizar con la buena suerte — el poder interior.", duration: "60 min", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/lucky-flow.wav" },
-  { id: "lumina", name: "Lumina", type: "audio", description: "Claridad mental.", duration: "60 min", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/lumina.wav" },
-  { id: "momentum", name: "Momentum", type: "audio", description: "Frecuencia para deshacer situaciones y facilitar cambios — tambien asociada a ganar loteria.", duration: "60 min", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/momentum.wav" },
-  { id: "crystal-reset", name: "Crystal Reset", type: "audio", description: "Purificacion de cristales.", duration: "60 min", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/crystal-reset.wav?v=2" },
-  { id: "mental-flow-balance", name: "Mental Flow Balance", type: "audio", description: "Equilibrio mental, desactivacion de dialogos mentales.", duration: "60 min", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/mental-flow-balance.wav" },
-  { id: "safe-within", name: "Safe Within", type: "audio", description: "Desactivacion de miedos y ansiedades profundas, recuperacion del equilibrio interior.", duration: "60 min", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/safe-within.wav?v=2" },
+  { id: "vital-restore", name: "Vital Restore", type: "audio", description: "Restauracion vital y recuperacion de energia.", duration: "60 min", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/vital-restore.wav", v: 1 },
+  { id: "energy-full-reset", name: "Energy Full Reset", type: "audio", description: "Limpieza de oscuridad y recalibracion de energia.", duration: "60 min", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/energy-full-reset.wav", v: 2 },
+  { id: "business-magnet", name: "Business Magnet", type: "audio", description: "Frecuencia para atraer clientes y dinero, expansion de tu empresa.", duration: "60 min", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/business-magnet.wav", v: 1 },
+  { id: "lucky-flow", name: "Lucky Flow", type: "audio", description: "Frecuencia para ganar la loteria, ganar dinero y sintonizar con la buena suerte — el poder interior.", duration: "60 min", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/lucky-flow.wav", v: 1 },
+  { id: "lumina", name: "Lumina", type: "audio", description: "Claridad mental.", duration: "60 min", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/lumina.wav", v: 1 },
+  { id: "momentum", name: "Momentum", type: "audio", description: "Frecuencia para deshacer situaciones y facilitar cambios — tambien asociada a ganar loteria.", duration: "60 min", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/momentum.wav", v: 1 },
+  { id: "crystal-reset", name: "Crystal Reset", type: "audio", description: "Purificacion de cristales.", duration: "60 min", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/crystal-reset.wav", v: 2 },
+  { id: "mental-flow-balance", name: "Mental Flow Balance", type: "audio", description: "Equilibrio mental, desactivacion de dialogos mentales.", duration: "60 min", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/mental-flow-balance.wav", v: 1 },
+  { id: "safe-within", name: "Safe Within", type: "audio", description: "Desactivacion de miedos y ansiedades profundas, recuperacion del equilibrio interior.", duration: "60 min", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/safe-within.wav", v: 2 },
 ];
+ 
+// Agrega automaticamente la version a la URL para forzar refresco de cache
+// cuando se sube un archivo nuevo con el mismo nombre.
+function versionedUrl(item) {
+  return `${item.url}?v=${item.v || 1}`;
+}
 const FREQ_TRACKS = {
   MENTE: {
     "APRENDIZAJE": [
@@ -256,41 +325,59 @@ const FREQ_TRACKS = {
       { id: "beta-active-mind", name: "Beta Active Mind", hz: "13-27 Hz", url: "/audio/beta-active-mind.mp3" },
       { id: "beta-vital-mind", name: "Beta Vital Mind", hz: "14 Hz", url: "/audio/beta-vital-mind.mp3" },
       { id: "beta-cortex", name: "Beta Cortex", hz: "15.4 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/beta-cortex.wav" },
-      { id: "alpha-focus", name: "Alpha Focus", hz: "11-14 Hz", url: "/audio/alpha-focus.mp3" }
+      { id: "alpha-focus", name: "Alpha Focus", hz: "11-14 Hz", url: "/audio/alpha-focus.mp3" },
+      { id: "beta-matrix-rendimiento", name: "Beta Matrix", hz: "14-18 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/beta-matrix.wav" }
     ]
   },
   COHERENCIA: { "REGULACION": [
-    { id: "theta-emotional-reset", name: "Theta Emotional Reset", hz: "3.5 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/theta-emotional-reset.wav" }
+    { id: "theta-emotional-reset", name: "Theta Emotional Reset", hz: "3.5 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/theta-emotional-reset.wav" },
+      { id: "beta-euphoria-regulacion", name: "Beta Euphoria", hz: "12-16 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/beta-euphoria.wav" },
+      { id: "alpha-airis-regulacion", name: "Alpha Airis", hz: "8-11 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/alpha-airis.wav" }
   ], "EQUILIBRIO": [
     { id: "alpha-eros", name: "Alpha Eros", hz: "9 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/alpha-eros.wav" }
   ], "INTEGRACION": [
-    { id: "alpha-eros-integracion", name: "Alpha Eros", hz: "9 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/alpha-eros.wav" }
+    { id: "alpha-eros-integracion", name: "Alpha Eros", hz: "9 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/alpha-eros.wav" },
+      { id: "beta-reflex-integracion", name: "Beta Reflex", hz: "13-15 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/beta-reflex.wav" },
+      { id: "beta-elevation-integracion", name: "Beta Elevation", hz: "13-17 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/beta-elevation.wav" }
   ] },
   CUERPO: { "REGENERACION": [
-    { id: "alpha-origen-regen", name: "Alpha Origen", hz: "8 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/alpha-origen.wav" }
+    { id: "alpha-origen-regen", name: "Alpha Origen", hz: "8 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/alpha-origen.wav" },
+      { id: "beta-gaia-healing-regeneracion", name: "Beta Gaia Healing", hz: "10-12 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/beta-gaia-healing.wav" }
   ], "ORGANOS": [
     { id: "alpha-lucent-cuerpo", name: "Alpha Lucent", hz: "9.4 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/alpha-lucent.wav" },
     { id: "alpha-origen-organos", name: "Alpha Origen", hz: "8 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/alpha-origen.wav" },
-    { id: "alpha-eros-organos", name: "Alpha Eros", hz: "9 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/alpha-eros.wav" }
-  ], "DOLOR": [], "VITALIDAD": [
+    { id: "alpha-eros-organos", name: "Alpha Eros", hz: "9 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/alpha-eros.wav" },
+      { id: "beta-resonance-organos", name: "Beta Resonance", hz: "14-19 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/beta-resonance.wav" }
+  ], "DOLOR": [
+      { id: "beta-elevation-dolor", name: "Beta Elevation", hz: "13-17 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/beta-elevation.wav" }
+    ], "VITALIDAD": [
     { id: "alpha-origen-vitalidad", name: "Alpha Origen", hz: "8 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/alpha-origen.wav" }
   ] },
   EXPANSION: { "MEDITACION": [
-    { id: "alpha-eros-meditacion", name: "Alpha Eros", hz: "9 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/alpha-eros.wav" }
+    { id: "alpha-eros-meditacion", name: "Alpha Eros", hz: "9 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/alpha-eros.wav" },
+      { id: "beta-euphoria-meditacion", name: "Beta Euphoria", hz: "12-16 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/beta-euphoria.wav" }
   ], "PERCEPCION": [
     { id: "gaia-vision", name: "Gaia Vision", hz: "8.3 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/gaia-vision.wav" },
-    { id: "alpha-harmony-perc", name: "Alpha Harmony", hz: "9.19 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/alpha-harmony.wav" }
+    { id: "alpha-harmony-perc", name: "Alpha Harmony", hz: "9.19 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/alpha-harmony.wav" },
+      { id: "beta-oculos-percepcion", name: "Beta Oculos", hz: "14-16 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/beta-oculos.wav" }
   ], "EXPERIENCIAS": [
     { id: "alpha-origen-exp", name: "Alpha Origen", hz: "8 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/alpha-origen.wav" },
-    { id: "gaia-pulse-exp", name: "Gaia Pulse", hz: "9.6 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/gaia-pulse.wav" }
+    { id: "gaia-pulse-exp", name: "Gaia Pulse", hz: "9.6 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/gaia-pulse.wav" },
+      { id: "beta-somnia-experiencias", name: "Beta Somnia", hz: "12-14 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/beta-somnia.wav" }
   ], "CONSCIENCIA_EXP": [
     { id: "alpha-dreambridge", name: "Alpha Dreambridge", hz: "9-13 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/alpha-dreambridge.wav" },
     { id: "alpha-gateway-exp", name: "Alpha Gateway", hz: "9.5-10 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/alpha-gateway.wav" },
     { id: "alpha-void", name: "Alpha Void", hz: "8-13 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/alpha-void.wav" },
     { id: "gaia-pulse-consciencia", name: "Gaia Pulse", hz: "9.6 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/gaia-pulse.wav" },
-    { id: "pyramid-resonance", name: "Pyramid Resonance", hz: "9.41 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/pyramid-resonance.wav" }
+    { id: "pyramid-resonance", name: "Pyramid Resonance", hz: "9.41 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/pyramid-resonance.wav" },
+      { id: "beta-elevation-conciencia", name: "Beta Elevation", hz: "13-17 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/beta-elevation.wav" },
+      { id: "beta-ascension-ascension", name: "Beta Ascension", hz: "15-20 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/beta-ascension.wav" },
+      { id: "alpha-airis-conciencia", name: "Alpha Airis", hz: "8-11 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/alpha-airis.wav" }
   ] },
-  EXPERIENCIAS_G: { "RITUALES": [], "CEREMONIAS": [], "BIENESTAR_F": [
+  EXPERIENCIAS_G: { "RITUALES": [
+      { id: "alpha-airis-rituales", name: "Alpha Airis", hz: "8-11 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/alpha-airis.wav" },
+      { id: "alpha-lucid-flow", name: "Alpha Lucid Flow", hz: "8-11 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/alpha-lucid-flow.wav" }
+    ], "CEREMONIAS": [], "BIENESTAR_F": [
     { id: "femin-essence", name: "Feminine Essence", hz: "—", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/femin-essence.wav" }
   ] },
   ARMONIZACION: { "ADN": [], "CAMPOS": [], "CELULAR": [], "REPRODUCTOR": [
@@ -623,10 +710,15 @@ const inlineStyles = `
     backface-visibility: hidden;
   }
   .templo-wave-group.paused {
-    animation-play-state: paused;
+    animation: none !important;
+    opacity: 0 !important;
   }
   .templo-wave-group.paused .santuario-wave-halo {
-    animation-play-state: paused;
+    animation: none !important;
+    opacity: 0 !important;
+  }
+  .templo-wave-group.paused .santuario-wave-line {
+    opacity: 0 !important;
   }
   @keyframes haloBlurTravel {
     0%   { opacity: 1; }
@@ -1111,22 +1203,13 @@ const App = () => {
   );
   const ADNOrb = ({ auraClass = 'aura-supernova', filterClass = 'logo-normal', size = '110px' }) => (
   <div style={{ width: size, height: size, display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '20px', position: 'relative' }}>
-    <video
-      src="/imagenes/adn-animado.mp4"
-      autoPlay
-      loop
-      muted
-      playsInline
-      className={filterClass} 
-      style={{ 
-        width: '100%', 
-        height: '100%', 
-        objectFit: 'contain', 
-        borderRadius: '50%', 
-        background: 'rgba(2,6,23,0.92)', 
-        animation: `${auraClass} 5s ease-in-out infinite`, 
-        transition: 'all 0.5s ease' 
-      }} 
+    <AdnVideo
+      className={filterClass}
+      style={{
+        ...ADN_ORB_VIDEO_STYLE,
+        animation: `${auraClass} 5s ease-in-out infinite`,
+        transition: 'all 0.5s ease',
+      }}
     />
   </div>
 );
@@ -1255,7 +1338,7 @@ const App = () => {
             zIndex: 2,
             pointerEvents: 'none',
           }} />
-          <video src="/imagenes/adn-animado.mp4" autoPlay loop muted playsInline className={`templo-adn-img ${isPlaying ? 'playing' : ''}`} style={{ pointerEvents: 'none' }} />
+          <AdnVideo className={`templo-adn-img ${isPlaying ? 'playing' : ''}`} style={TEMPLO_ADN_VIDEO_STYLE} />
         </div>
         <h2 style={{ fontSize: '20px', letterSpacing: '4px', textTransform: 'uppercase', fontWeight: 200 }}>{selectedTrack.name}</h2>
         <p style={{ color: accentColor, fontSize: '11px', letterSpacing: '3px', fontWeight: 300, marginBottom: '8px' }}>{selectedTrack.hz}</p>
@@ -1334,7 +1417,7 @@ const App = () => {
                   <path className="santuario-wave-line" d="M 188.68,100.00 C 186.52,103.80 182.32,107.18 180.12,110.55 C 177.92,113.92 175.99,116.67 175.47,120.22 C 174.95,123.78 176.39,127.66 176.98,131.89 C 177.56,136.11 179.39,141.38 178.97,145.59 C 178.55,149.80 177.18,154.29 174.47,157.14 C 171.76,160.00 166.92,161.54 162.71,162.71 C 158.49,163.87 153.14,163.29 149.20,164.11 C 145.26,164.94 141.95,165.52 139.07,167.66 C 136.18,169.81 134.46,173.57 131.89,176.98 C 129.31,180.38 126.87,185.40 123.60,188.08 C 120.33,190.76 116.19,192.96 112.25,193.06 C 108.32,193.16 103.80,190.84 100.00,188.68 C 96.20,186.52 92.82,182.32 89.45,180.12 C 86.08,177.92 83.33,175.99 79.78,175.47 C 76.22,174.95 72.34,176.39 68.11,176.98 C 63.89,177.56 58.62,179.39 54.41,178.97 C 50.20,178.55 45.71,177.18 42.86,174.47 C 40.00,171.76 38.46,166.92 37.29,162.71 C 36.13,158.49 36.71,153.14 35.89,149.20 C 35.06,145.26 34.48,141.95 32.34,139.07 C 30.19,136.18 26.43,134.46 23.02,131.89 C 19.62,129.31 14.60,126.87 11.92,123.60 C 9.24,120.33 7.04,116.19 6.94,112.25 C 6.84,108.32 9.16,103.80 11.32,100.00 C 13.48,96.20 17.68,92.82 19.88,89.45 C 22.08,86.08 24.01,83.33 24.53,79.78 C 25.05,76.22 23.61,72.34 23.02,68.11 C 22.44,63.89 20.61,58.62 21.03,54.41 C 21.45,50.20 22.82,45.71 25.53,42.86 C 28.24,40.00 33.08,38.46 37.29,37.29 C 41.51,36.13 46.86,36.71 50.80,35.89 C 54.74,35.06 58.05,34.48 60.93,32.34 C 63.82,30.19 65.54,26.43 68.11,23.02 C 70.69,19.62 73.13,14.60 76.40,11.92 C 79.67,9.24 83.81,7.04 87.75,6.94 C 91.68,6.84 96.20,9.16 100.00,11.32 C 103.80,13.48 107.18,17.68 110.55,19.88 C 113.92,22.08 116.67,24.01 120.22,24.53 C 123.78,25.05 127.66,23.61 131.89,23.02 C 136.11,22.44 141.38,20.61 145.59,21.03 C 149.80,21.45 154.29,22.82 157.14,25.53 C 160.00,28.24 161.54,33.08 162.71,37.29 C 163.87,41.51 163.29,46.86 164.11,50.80 C 164.94,54.74 165.52,58.05 167.66,60.93 C 169.81,63.82 173.57,65.54 176.98,68.11 C 180.38,70.69 185.40,73.13 188.08,76.40 C 190.76,79.67 192.96,83.81 193.06,87.75 C 193.16,91.68 190.84,96.20 188.68,100.00 Z" />
                 </g>
               </svg>
-              <video src="/imagenes/adn-animado.mp4" autoPlay loop muted playsInline className="templo-adn-img logo-filtro-dorado" style={{ pointerEvents: 'none' }} />
+              <AdnVideo className="templo-adn-img logo-filtro-dorado" style={TEMPLO_ADN_VIDEO_STYLE} />
             </div>
             <h2 className="gold-title" style={{ fontSize: '14px', letterSpacing: '4px', textTransform: 'uppercase', fontWeight: 200, marginBottom: '8px' }}>{tool.name}</h2>
             <p className="gold-sub" style={{ fontSize: '11px', letterSpacing: '1px', fontWeight: 200, marginBottom: '6px', maxWidth: '280px', lineHeight: 1.7 }}>{tool.description}</p>
@@ -1343,7 +1426,7 @@ const App = () => {
             {tool.type === 'audio' && (
               <audio
                 ref={sanctuaryMediaRef}
-                src={tool.url}
+                src={versionedUrl(tool)}
                 preload="metadata"
                 onCanPlay={() => setSanctuaryLoading(false)}
                 onLoadStart={() => setSanctuaryLoading(true)}
@@ -1355,7 +1438,7 @@ const App = () => {
             {tool.type === 'video' && (
               <video
                 ref={sanctuaryMediaRef}
-                src={tool.url}
+                src={versionedUrl(tool)}
                 poster={tool.thumbnail || ''}
                 preload="metadata"
                 playsInline
@@ -1402,7 +1485,7 @@ const App = () => {
           </div>
           <div style={{ textAlign: 'center', marginBottom: '28px' }}>
             <div style={{ display: 'flex', justifyContent: 'center', marginBottom: '4px' }}>
-              <ADNOrb auraClass="aura-gold-santuario" filterClass="logo-filtro-dorado" size="140px" />
+              <ADNOrb auraClass="aura-gold-santuario" filterClass="logo-filtro-dorado" size="100px" />
             </div>
             <h2 className="gold-title" style={{ fontSize: '13px', letterSpacing: '5px', fontWeight: 200, textTransform: 'uppercase', marginBottom: '6px' }}>{t.sanctuary_title}</h2>
             <p className="gold-sub" style={{ fontSize: '11px', letterSpacing: '1px', fontWeight: 200, maxWidth: '260px', margin: '0 auto', lineHeight: 1.7 }}>{t.sanctuary_library_sub}</p>
@@ -1432,7 +1515,7 @@ const App = () => {
       <div className="fade-in-smooth" style={{ backgroundColor: '#020617', minHeight: '100vh', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', textAlign: 'center', padding: '30px', position: 'relative', overflow: 'visible' }}>
         <style>{inlineStyles}</style>
         <button onClick={() => { setShowSanctuary(false); setSanctuaryCode(''); setSanctuaryError(false); }} style={{ position: 'absolute', top: '35px', left: '30px', background: 'none', border: 'none', color: goldColor, fontSize: '40px', cursor: 'pointer', lineHeight: 1, padding: 0 }}>&#8249;</button>
-        <ADNOrb auraClass="aura-gold-santuario" filterClass="logo-filtro-dorado" size="290px" />
+        <ADNOrb auraClass="aura-gold-santuario" filterClass="logo-filtro-dorado" size="100px" />
         <h2 className="gold-title" style={{ fontSize: '13px', letterSpacing: '5px', fontWeight: 200, textTransform: 'uppercase', marginBottom: '10px' }}>{t.sanctuary_title}</h2>
         <p className="gold-sub" style={{ fontSize: '11px', maxWidth: '260px', lineHeight: 1.8, fontWeight: 200, marginBottom: '6px' }}>{t.sanctuary_micro}</p>
         <p className="gold-micro" style={{ fontSize: '10px', letterSpacing: '2px', fontWeight: 200, marginBottom: '36px' }}>{t.sanctuary_access}</p>
@@ -1587,7 +1670,7 @@ const App = () => {
         <ADNOrb
           auraClass={mainMode === 'meditaciones' ? 'aura-violet' : mainMode === 'experiencias' ? 'aura-gold' : 'aura-supernova'}
           filterClass={mainMode === 'experiencias' ? 'logo-filtro-dorado' : mainMode === 'meditaciones' ? 'logo-filtro-violeta' : 'logo-normal'}
-          size={!mainMode ? '250px' : '200px'}
+          size="100px"
         />
         {!mainMode && (
           <div className="category-stack">
