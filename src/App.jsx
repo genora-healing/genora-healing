@@ -84,7 +84,7 @@ const T = {
       "beta-elevation-integracion": "Integracion de la personalidad.",
       "beta-elevation-dolor": "Alivio de dolor cronico.",
       "beta-resonance-organos": "Audicion, oxigenacion y calcio.",
-      "beta-ascension-ascension": "Liberacion y trascendencia espiritual.",
+      "beta-asension-asension": "Liberacion y trascendencia espiritual.",
       "alpha-airis-regulacion": "Relajacion y respiracion consciente.",
       "alpha-airis-conciencia": "Relajacion y respiracion consciente.",
       "alpha-airis-rituales": "Procesos de activacion.",
@@ -371,7 +371,7 @@ const FREQ_TRACKS = {
     { id: "gaia-pulse-consciencia", name: "Gaia Pulse", hz: "9.6 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/gaia-pulse.wav" },
     { id: "pyramid-resonance", name: "Pyramid Resonance", hz: "9.41 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/pyramid-resonance.wav" },
       { id: "beta-elevation-conciencia", name: "Beta Elevation", hz: "15.0 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/beta-elevation.wav" },
-      { id: "beta-ascension-ascension", name: "Beta Ascension", hz: "16.4 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/beta-ascension.wav" },
+      { id: "beta-asension-asension", name: "Beta Asension", hz: "16.4 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/beta-ascension.wav" },
       { id: "alpha-airis-conciencia", name: "Alpha Airis", hz: "8-11 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/alpha-airis.wav" }
   ] },
   EXPERIENCIAS_G: { "RITUALES": [
