@@ -376,7 +376,7 @@ const FREQ_TRACKS = {
   ] },
   EXPERIENCIAS_G: { "RITUALES": [
       { id: "alpha-airis-rituales", name: "Alpha Airis", hz: "8-11 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/alpha-airis.wav" },
-      { id: "alpha-lucid-flow", name: "Alpha Lucid Flow", hz: "8-11 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/alpha-lucid-flow.wav" }
+      { id: "alpha-lucid-flow", name: "Alpha Lucid Flow", hz: "9-14 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/alpha-lucid-flow.wav" }
     ], "CEREMONIAS": [], "BIENESTAR_F": [
     { id: "femin-essence", name: "Feminine Essence", hz: "—", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/femin-essence.wav" }
   ] },
