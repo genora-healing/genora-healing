@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
+ 
 // Componente aislado y memoizado: el video del ADN NO debe re-renderizarse
 // cuando cambian currentTime u otros estados del reproductor. React.memo
 // evita el trabajo de reconciliacion en cada tick de reproduccion.
@@ -1396,7 +1397,7 @@ const App = () => {
             <button onClick={() => { setActiveSanctuaryTool(null); setSanctuaryPlaying(false); setSanctuaryCurrentTime(0); setSanctuaryDuration(0); }} style={{ background: 'none', border: 'none', color: goldColor, fontSize: '40px', cursor: 'pointer', lineHeight: 1, padding: 0 }}>&#8249;</button>
             <LangSwitch isGold />
           </div>
-          <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center', paddingBottom: '40px' }}>
+          <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center', paddingBottom: '190px' }}>
             <div className="templo-orb-container" style={{ width: '190px', height: '190px', marginBottom: '30px' }}>
               <svg className="templo-wave-svg" viewBox="0 0 200 200" preserveAspectRatio="xMidYMid meet">
                 <g className={`templo-wave-group${sanctuaryPlaying ? '' : ' paused'}`} style={{ animationDelay: '0s' }}>
@@ -1431,6 +1432,9 @@ const App = () => {
                 ref={sanctuaryMediaRef}
                 src={versionedUrl(tool)}
                 preload="metadata"
+                controls={false}
+                controlsList="nodownload nofullscreen noremoteplayback"
+                disableRemotePlayback
                 onCanPlay={() => setSanctuaryLoading(false)}
                 onLoadStart={() => setSanctuaryLoading(true)}
                 onTimeUpdate={() => { if (sanctuaryMediaRef.current) { setSanctuaryCurrentTime(sanctuaryMediaRef.current.currentTime || 0); setSanctuaryDuration(sanctuaryMediaRef.current.duration || 0); }}}
@@ -1445,6 +1449,10 @@ const App = () => {
                 poster={tool.thumbnail || ''}
                 preload="metadata"
                 playsInline
+                controls={false}
+                controlsList="nodownload nofullscreen noremoteplayback"
+                disableRemotePlayback
+                disablePictureInPicture
                 onCanPlay={() => setSanctuaryLoading(false)}
                 onLoadStart={() => setSanctuaryLoading(true)}
                 onTimeUpdate={() => { if (sanctuaryMediaRef.current) { setSanctuaryCurrentTime(sanctuaryMediaRef.current.currentTime || 0); setSanctuaryDuration(sanctuaryMediaRef.current.duration || 0); }}}
@@ -1453,19 +1461,19 @@ const App = () => {
                 style={{ display: 'none' }}
               />
             )}
-            <div style={{ width: '80%', maxWidth: '300px', marginBottom: '32px' }}>
+            <div style={{ position: 'fixed', bottom: '62px', left: 0, right: 0, background: '#020617', borderTop: '1px solid rgba(212,175,55,0.12)', padding: '12px 24px 12px', zIndex: 90 }}>
               <div
                 onClick={handleSanctuaryProgress}
-                style={{ width: '100%', height: '2px', background: 'rgba(212,175,55,0.15)', borderRadius: '2px', cursor: 'pointer', margin: '0 0 8px' }}
+                style={{ width: '100%', maxWidth: '340px', margin: '0 auto', height: '2px', background: 'rgba(212,175,55,0.15)', borderRadius: '2px', cursor: 'pointer' }}
               >
-                <div style={{ width: `${sanctuaryProgress}%`, height: '100%', borderRadius: '2px', background: 'linear-gradient(90deg, #c9a227, #d4af37)', transition: 'width 0.5s linear' }} />
+                <div style={{ width: `${sanctuaryProgress}%`, height: '100%', borderRadius: '2px', background: '#d4af37', transition: 'width 0.5s linear' }} />
               </div>
-              <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+              <div style={{ width: '100%', maxWidth: '340px', margin: '4px auto 0', display: 'flex', justifyContent: 'space-between' }}>
                 <span style={{ fontSize: '10px', color: 'rgba(212,175,55,0.5)', letterSpacing: '1px' }}>{formatTime(sanctuaryCurrentTime)}</span>
                 <span style={{ fontSize: '10px', color: 'rgba(212,175,55,0.5)', letterSpacing: '1px' }}>{formatTime(sanctuaryDuration)}</span>
               </div>
-              <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginTop: '18px' }}>
-                <span style={{ fontSize: '13px', color: 'rgba(212,175,55,0.6)' }}>{sanctuaryVolume === 0 ? '🔇' : '🔉'}</span>
+              <div style={{ width: '100%', maxWidth: '340px', margin: '8px auto 0', display: 'flex', alignItems: 'center', gap: '10px' }}>
+                <span style={{ fontSize: '12px', color: 'rgba(212,175,55,0.6)' }}>{sanctuaryVolume === 0 ? '🔇' : '🔉'}</span>
                 <input
                   type="range"
                   min="0"
@@ -1473,10 +1481,10 @@ const App = () => {
                   step="0.01"
                   value={sanctuaryVolume}
                   onChange={(e) => setSanctuaryVolume(parseFloat(e.target.value))}
-                  style={{ flex: 1, accentColor: '#d4af37', height: '3px', cursor: 'pointer' }}
+                  style={{ flex: 1, accentColor: '#d4af37', height: '2px', cursor: 'pointer' }}
                   aria-label="Volumen"
                 />
-                <span style={{ fontSize: '13px', color: 'rgba(212,175,55,0.6)' }}>🔊</span>
+                <span style={{ fontSize: '12px', color: 'rgba(212,175,55,0.6)' }}>🔊</span>
               </div>
             </div>
             <button
