@@ -1,3 +1,5 @@
+App.jsx
+Agregado: control de volumen interno en el reproductor del Santuario
 import React, { useState, useEffect, useRef } from 'react';
  
 // Componente aislado y memoizado: el video del ADN NO debe re-renderizarse
@@ -899,6 +901,7 @@ const App = () => {
   const [sanctuaryPlaying, setSanctuaryPlaying] = useState(false);
   const [sanctuaryCurrentTime, setSanctuaryCurrentTime] = useState(0);
   const [sanctuaryDuration, setSanctuaryDuration] = useState(0);
+  const [sanctuaryVolume, setSanctuaryVolume] = useState(1);
   // ── DRAG & DROP ───────────────────────────────────────────────────────────
   const [showSearch, setShowSearch] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
@@ -948,6 +951,9 @@ const App = () => {
   };
   const audioRef = useRef(null);
   const sanctuaryMediaRef = useRef(null);
+  useEffect(() => {
+    if (sanctuaryMediaRef.current) sanctuaryMediaRef.current.volume = sanctuaryVolume;
+  }, [sanctuaryVolume, sanctuaryPlaying]);
   const timerRef = useRef(null);
   const bannerTimerRef = useRef(null);
   const activeTabRef = useRef(activeTab);
@@ -1460,6 +1466,20 @@ const App = () => {
               <div style={{ display: 'flex', justifyContent: 'space-between' }}>
                 <span style={{ fontSize: '10px', color: 'rgba(212,175,55,0.5)', letterSpacing: '1px' }}>{formatTime(sanctuaryCurrentTime)}</span>
                 <span style={{ fontSize: '10px', color: 'rgba(212,175,55,0.5)', letterSpacing: '1px' }}>{formatTime(sanctuaryDuration)}</span>
+              </div>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginTop: '18px' }}>
+                <span style={{ fontSize: '13px', color: 'rgba(212,175,55,0.6)' }}>{sanctuaryVolume === 0 ? '🔇' : '🔉'}</span>
+                <input
+                  type="range"
+                  min="0"
+                  max="1"
+                  step="0.01"
+                  value={sanctuaryVolume}
+                  onChange={(e) => setSanctuaryVolume(parseFloat(e.target.value))}
+                  style={{ flex: 1, accentColor: '#d4af37', height: '3px', cursor: 'pointer' }}
+                  aria-label="Volumen"
+                />
+                <span style={{ fontSize: '13px', color: 'rgba(212,175,55,0.6)' }}>🔊</span>
               </div>
             </div>
             <button
