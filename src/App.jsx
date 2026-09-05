@@ -1,7 +1,4 @@
-App.jsx
-Agregado: control de volumen interno en el reproductor del Santuario
 import React, { useState, useEffect, useRef } from 'react';
- 
 // Componente aislado y memoizado: el video del ADN NO debe re-renderizarse
 // cuando cambian currentTime u otros estados del reproductor. React.memo
 // evita el trabajo de reconciliacion en cada tick de reproduccion.
