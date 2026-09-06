@@ -882,6 +882,7 @@ const App = () => {
   const [selectedTime, setSelectedTime] = useState(null);
   const [currentTime, setCurrentTime] = useState(0);
   const [duration, setDuration] = useState(0);
+  const [playerVolume, setPlayerVolume] = useState(1);
   const [activeTab, setActiveTab] = useState('catalogo');
   const [showBanner, setShowBanner] = useState(false);
   const [favorites, setFavorites] = useState(() => {
@@ -948,6 +949,9 @@ const App = () => {
     node.addEventListener('touchmove', onTouchMove, { passive: false });
   };
   const audioRef = useRef(null);
+  useEffect(() => {
+    if (audioRef.current) audioRef.current.volume = playerVolume;
+  }, [playerVolume, isPlaying]);
   const sanctuaryMediaRef = useRef(null);
   useEffect(() => {
     if (sanctuaryMediaRef.current) sanctuaryMediaRef.current.volume = sanctuaryVolume;
@@ -1294,6 +1298,9 @@ const App = () => {
         <style>{inlineStyles}</style>
         <audio ref={audioRef} src={selectedTrack.url}
           loop={selectedTime === 'inf' && activeTabRef.current !== 'favoritos'}
+          controls={false}
+          controlsList="nodownload nofullscreen noremoteplayback"
+          disableRemotePlayback
           onTimeUpdate={handleTimeUpdate}
           onLoadedMetadata={(e) => { handleTimeUpdate(); if (currentTime > 0 && e.target.duration > currentTime) e.target.currentTime = currentTime; }}
           onEnded={handleAudioEnded} />
@@ -1354,6 +1361,19 @@ const App = () => {
           <div style={{ display: 'flex', justifyContent: 'space-between' }}>
             <span style={{ fontSize: '10px', color: 'rgba(255,255,255,0.3)', letterSpacing: '1px' }}>{formatTime(currentTime)}</span>
             <span style={{ fontSize: '10px', color: 'rgba(255,255,255,0.3)', letterSpacing: '1px' }}>{formatTime(duration)}</span>
+          </div>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginTop: '14px' }}>
+            <span style={{ fontSize: '12px', color: accentColor, opacity: 0.7 }}>{playerVolume === 0 ? '🔇' : '🔉'}</span>
+            <input
+              type="range"
+              min="0"
+              max="1"
+              step="0.01"
+              value={playerVolume}
+              onChange={(e) => setPlayerVolume(parseFloat(e.target.value))}
+              style={{ flex: 1, accentColor: accentColor, height: '2px', cursor: 'pointer' }}
+              aria-label="Volumen"
+            />
           </div>
         </div>
         <div style={{ display: 'flex', gap: '12px', marginBottom: '40px' }}>
