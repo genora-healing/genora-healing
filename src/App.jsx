@@ -73,6 +73,7 @@ const T = {
     },
     tracks: {
       "alpha-integration": "Integracion y aprendizaje de informacion desde un estado de calma y enfoque.",
+      "alpha-echo-organos": "Audicion y percepcion sonora.",
       "beta-nebula-aprendizaje": "Percepcion sensorial y foco mental.",
       "beta-nebula-rendimiento": "Acompana la atencion sostenida y ayuda a mantener la mente activa frente a la fatiga mental.",
       "beta-nebula-organos": "Acompanamiento frecuencial asociado al equilibrio de sodio y potasio.",
@@ -117,6 +118,7 @@ const T = {
       "beta-elevation-integracion": "Integracion de la personalidad.",
       "beta-elevation-dolor": "Alivio de dolor cronico.",
       "beta-resonance-organos": "Audicion, oxigenacion y calcio.",
+      { id: "alpha-echo-organos", name: "Alpha Echo", hz: "10.7 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/alpha-echo.wav" },
       "beta-ascension-ascension": "Liberacion y trascendencia espiritual.",
       "alpha-airis-regulacion": "Relajacion y respiracion consciente.",
       "alpha-airis-conciencia": "Relajacion y respiracion consciente.",
