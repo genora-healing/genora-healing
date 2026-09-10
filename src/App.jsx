@@ -101,7 +101,7 @@ const T = {
       "beta-synchrony-integracion": "Sintonizacion cuerpo y mente con el campo electromagnetico de la tierra.",
       "beta-recode-organos": "Control de ansiedad, reduccion de dependencia (adicciones).",
       "beta-recode-regulacion": "Estabiliza el sistema nervioso central, mitiga la ansiedad y rompe el ciclo de desespero por abstinencia.",
-      "alpha-alignment-integracion": "Centrado y conexion mente-cuerpo.",
+      "alpha-alignment-integracion": "Centrado-conexion mente-cuerpo.",
       "alpha-alignment-vitalidad": "Equilibrio y bienestar integral.",
       "alpha-oneiris-experiencias": "Sueno consciente y exploracion onirica.",
       "alpha-catalyst-vitalidad": "Activacion fisiologica y energia vital.",
