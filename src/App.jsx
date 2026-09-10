@@ -93,14 +93,14 @@ const T = {
       "beta-zenith-experiencias": "Estimulacion audiovisual, atencion y exploracion mental.",
       "beta-harmony-regulacion": "Armonización del estado emocional y acompañamiento a una sensación de equilibrio, calma y bienestar.",
       "beta-echo-percepcion": "Exploracion de impresion de imagenes y percepcion visual.",
-      "beta-echo-regulacion": "Puede acompanar estados de inquietud o ansiedad dentro de una experiencia de escucha consciente.",
+      "beta-echo-regulacion": "acompana estados de inquietud o ansiedad dentro de una experiencia de escucha consciente.",
       "beta-astralis-experiencias": "Meditacion y exploracion de estados internos.",
       "beta-aether-percepcion": "Latido de la tierra 3 armonico, mayor actividad mental y atencion.",
       "beta-gaia-conciencia": "Sincronizacion tercer armonico de la tierra.",
       "beta-genesis-regeneracion": "Restauracion corporal y estructura osea.",
       "beta-synchrony-integracion": "Sintonizacion cuerpo y mente con el campo electromagnetico de la tierra.",
       "beta-recode-organos": "Control de ansiedad, reduccion de dependencia (adicciones).",
-      "beta-recode-regulacion": "Estabiliza el sistema nervioso central, mitiga la ansiedad y rompe el ciclo de antojo.",
+      "beta-recode-regulacion": "Estabiliza el sistema nervioso central, mitiga la ansiedad y rompe el ciclo de desespero por abstinencia.",
       "alpha-alignment-integracion": "Centrado y conexion mente-cuerpo.",
       "alpha-alignment-vitalidad": "Equilibrio y bienestar integral.",
       "alpha-oneiris-experiencias": "Sueno consciente y exploracion onirica.",
@@ -331,125 +331,125 @@ function versionedUrl(item) {
 const FREQ_TRACKS = {
   MENTE: {
     "APRENDIZAJE": [
-      { id: "alpha-integration", name: "Alpha Integration", hz: "8-10 Hz", url: "/audio/alpha-integration.mp3" },
-      { id: "beta-learning", name: "Beta Learning", hz: "12-14 Hz", url: "/audio/beta-learning.mp3" },
-      { id: "alpha-intelligence", name: "Alpha Intelligence", hz: "11.5-14.5 Hz", url: "/audio/alpha-intelligence.mp3" },
-      { id: "beta-focus", name: "Beta Focus", hz: "15-18 Hz", url: "/audio/beta-focus.mp3" },
-      { id: "beta-decision", name: "Beta Decision", hz: "13.8 Hz", url: "/audio/beta-decision.mp3" },
-      { id: "alpha-origen-aprend", name: "Alpha Origen", hz: "8 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/alpha-origen.wav" },
-      { id: "beta-nebula-aprendizaje", name: "Beta Nebula", hz: "18-22 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/beta-nebula.wav" },
-      { id: "beta-axis-aprendizaje", name: "Beta Axis", hz: "18 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/beta-axis.wav" }
+      { id: "alpha-integration", name: "Alpha Integration", hz: "8-10 Hz", url: "/audio/alpha-integration.mp3", v: 1 },
+      { id: "beta-learning", name: "Beta Learning", hz: "12-14 Hz", url: "/audio/beta-learning.mp3", v: 1 },
+      { id: "alpha-intelligence", name: "Alpha Intelligence", hz: "11.5-14.5 Hz", url: "/audio/alpha-intelligence.mp3", v: 1 },
+      { id: "beta-focus", name: "Beta Focus", hz: "15-18 Hz", url: "/audio/beta-focus.mp3", v: 1 },
+      { id: "beta-decision", name: "Beta Decision", hz: "13.8 Hz", url: "/audio/beta-decision.mp3", v: 1 },
+      { id: "alpha-origen-aprend", name: "Alpha Origen", hz: "8 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/alpha-origen.wav", v: 1 },
+      { id: "beta-nebula-aprendizaje", name: "Beta Nebula", hz: "18-22 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/beta-nebula.wav", v: 1 },
+      { id: "beta-axis-aprendizaje", name: "Beta Axis", hz: "18 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/beta-axis.wav", v: 1 }
     ],
     "CREATIVIDAD": [
-      { id: "alpha-creator", name: "Alpha Creator", hz: "8-12 Hz", url: "/audio/alpha-creator.mp3" },
-      { id: "beta-solution", name: "Beta Solution", hz: "12-36 Hz", url: "/audio/beta-solution.mp3" },
-      { id: "beta-logic", name: "Beta Logic", hz: "13-40 Hz", url: "/audio/beta-logic.mp3" },
-      { id: "beta-attention", name: "Beta Attention", hz: "12-15 Hz", url: "/audio/beta-attention.mp3" },
-      { id: "alpha-voice", name: "Alpha Voice", hz: "8.22 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/alpha-voice.wav" }
+      { id: "alpha-creator", name: "Alpha Creator", hz: "8-12 Hz", url: "/audio/alpha-creator.mp3", v: 1 },
+      { id: "beta-solution", name: "Beta Solution", hz: "12-36 Hz", url: "/audio/beta-solution.mp3", v: 1 },
+      { id: "beta-logic", name: "Beta Logic", hz: "13-40 Hz", url: "/audio/beta-logic.mp3", v: 1 },
+      { id: "beta-attention", name: "Beta Attention", hz: "12-15 Hz", url: "/audio/beta-attention.mp3", v: 1 },
+      { id: "alpha-voice", name: "Alpha Voice", hz: "8.22 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/alpha-voice.wav", v: 1 }
     ],
     "CLARIDAD": [
-      { id: "alpha-balance-mind", name: "Alpha Balance Mind", hz: "11 Hz", url: "/audio/alpha-balance-mind.mp3" },
-      { id: "alpha-center", name: "Alpha Center", hz: "12 Hz", url: "/audio/alpha-center.mp3" },
-      { id: "beta-decision-c", name: "Beta Decision", hz: "13.8 Hz", url: "/audio/beta-decision.mp3" },
-      { id: "alpha-calm-alert", name: "Alpha Calm Alert", hz: "10.6 Hz", url: "/audio/alpha-calm-alert.mp3" },
-      { id: "alpha-clarity", name: "Alpha Clarity", hz: "9.8-10.6 Hz", url: "/audio/alpha-clarity.mp3" },
-      { id: "gamma-insight", name: "Gamma Insight", hz: "40 Hz", url: "/audio/gamma-insight.mp3" },
-      { id: "alpha-gateway-mente", name: "Alpha Gateway", hz: "9.5-10 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/alpha-gateway.wav" },
-      { id: "alpha-lucent-mente", name: "Alpha Lucent", hz: "9.4 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/alpha-lucent.wav" },
-      { id: "beta-axis-claridad", name: "Beta Axis", hz: "18 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/beta-axis.wav" }
+      { id: "alpha-balance-mind", name: "Alpha Balance Mind", hz: "11 Hz", url: "/audio/alpha-balance-mind.mp3", v: 1 },
+      { id: "alpha-center", name: "Alpha Center", hz: "12 Hz", url: "/audio/alpha-center.mp3", v: 1 },
+      { id: "beta-decision-c", name: "Beta Decision", hz: "13.8 Hz", url: "/audio/beta-decision.mp3", v: 1 },
+      { id: "alpha-calm-alert", name: "Alpha Calm Alert", hz: "10.6 Hz", url: "/audio/alpha-calm-alert.mp3", v: 1 },
+      { id: "alpha-clarity", name: "Alpha Clarity", hz: "9.8-10.6 Hz", url: "/audio/alpha-clarity.mp3", v: 1 },
+      { id: "gamma-insight", name: "Gamma Insight", hz: "40 Hz", url: "/audio/gamma-insight.mp3", v: 1 },
+      { id: "alpha-gateway-mente", name: "Alpha Gateway", hz: "9.5-10 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/alpha-gateway.wav", v: 1 },
+      { id: "alpha-lucent-mente", name: "Alpha Lucent", hz: "9.4 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/alpha-lucent.wav", v: 1 },
+      { id: "beta-axis-claridad", name: "Beta Axis", hz: "18 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/beta-axis.wav", v: 1 }
     ],
     "RENDIMIENTO": [
-      { id: "beta-active-mind", name: "Beta Active Mind", hz: "13-27 Hz", url: "/audio/beta-active-mind.mp3" },
-      { id: "beta-vital-mind", name: "Beta Vital Mind", hz: "14 Hz", url: "/audio/beta-vital-mind.mp3" },
-      { id: "beta-cortex", name: "Beta Cortex", hz: "15.4 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/beta-cortex.wav" },
-      { id: "alpha-focus", name: "Alpha Focus", hz: "11-14 Hz", url: "/audio/alpha-focus.mp3" },
-      { id: "beta-matrix-rendimiento", name: "Beta Matrix", hz: "14-30 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/beta-matrix.wav" },
-      { id: "beta-nebula-rendimiento", name: "Beta Nebula", hz: "18-22 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/beta-nebula.wav" },
-      { id: "beta-axis-rendimiento", name: "Beta Axis", hz: "18 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/beta-axis.wav" },
-      { id: "beta-zenith-rendimiento", name: "Beta Zenith", hz: "22 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/beta-zenith.wav" }
+      { id: "beta-active-mind", name: "Beta Active Mind", hz: "13-27 Hz", url: "/audio/beta-active-mind.mp3", v: 1 },
+      { id: "beta-vital-mind", name: "Beta Vital Mind", hz: "14 Hz", url: "/audio/beta-vital-mind.mp3", v: 1 },
+      { id: "beta-cortex", name: "Beta Cortex", hz: "15.4 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/beta-cortex.wav", v: 1 },
+      { id: "alpha-focus", name: "Alpha Focus", hz: "11-14 Hz", url: "/audio/alpha-focus.mp3", v: 1 },
+      { id: "beta-matrix-rendimiento", name: "Beta Matrix", hz: "14-30 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/beta-matrix.wav", v: 1 },
+      { id: "beta-nebula-rendimiento", name: "Beta Nebula", hz: "18-22 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/beta-nebula.wav", v: 1 },
+      { id: "beta-axis-rendimiento", name: "Beta Axis", hz: "18 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/beta-axis.wav", v: 1 },
+      { id: "beta-zenith-rendimiento", name: "Beta Zenith", hz: "22 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/beta-zenith.wav", v: 1 }
     ]
   },
   COHERENCIA: { "REGULACION": [
-    { id: "theta-emotional-reset", name: "Theta Emotional Reset", hz: "3.5 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/theta-emotional-reset.wav" },
-      { id: "beta-euphoria-regulacion", name: "Beta Euphoria", hz: "15-24 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/beta-euphoria.wav" },
-      { id: "alpha-airis-regulacion", name: "Alpha Airis", hz: "8-11 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/alpha-airis.wav" },
-      { id: "beta-axis-regulacion", name: "Beta Axis", hz: "18 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/beta-axis.wav" },
-      { id: "beta-poise-regulacion", name: "Beta Poise", hz: "20-40 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/beta-poise.wav" },
-      { id: "beta-harmony-regulacion", name: "Beta Harmony", hz: "22.027 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/beta-harmony.wav" },
-      { id: "beta-echo-regulacion", name: "Beta Echo", hz: "25 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/beta-echo.wav" },
-      { id: "beta-recode-regulacion", name: "Beta Recode", hz: "30 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/beta-recode.wav" }
+    { id: "theta-emotional-reset", name: "Theta Emotional Reset", hz: "3.5 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/theta-emotional-reset.wav", v: 1 },
+      { id: "beta-euphoria-regulacion", name: "Beta Euphoria", hz: "15-24 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/beta-euphoria.wav", v: 1 },
+      { id: "alpha-airis-regulacion", name: "Alpha Airis", hz: "8-11 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/alpha-airis.wav", v: 2 },
+      { id: "beta-axis-regulacion", name: "Beta Axis", hz: "18 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/beta-axis.wav", v: 1 },
+      { id: "beta-poise-regulacion", name: "Beta Poise", hz: "20-40 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/beta-poise.wav", v: 2 },
+      { id: "beta-harmony-regulacion", name: "Beta Harmony", hz: "22.027 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/beta-harmony.wav", v: 1 },
+      { id: "beta-echo-regulacion", name: "Beta Echo", hz: "25 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/beta-echo.wav", v: 1 },
+      { id: "beta-recode-regulacion", name: "Beta Recode", hz: "30 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/beta-recode.wav", v: 2 }
   ], "EQUILIBRIO": [
-    { id: "alpha-eros", name: "Alpha Eros", hz: "9 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/alpha-eros.wav" }
+    { id: "alpha-eros", name: "Alpha Eros", hz: "9 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/alpha-eros.wav", v: 1 }
   ], "INTEGRACION": [
-    { id: "alpha-eros-integracion", name: "Alpha Eros", hz: "9 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/alpha-eros.wav" },
-      { id: "beta-reflex-integracion", name: "Beta Reflex", hz: "14-15 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/beta-reflex.wav" },
-      { id: "beta-elevation-integracion", name: "Beta Elevation", hz: "15.0 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/beta-elevation.wav" },
-      { id: "beta-nebula-integracion", name: "Beta Nebula", hz: "18-22 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/beta-nebula.wav" },
-      { id: "beta-synchrony-integracion", name: "Beta Synchrony", hz: "27.5 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/beta-synchrony.wav" },
-      { id: "alpha-alignment-integracion", name: "Alpha Alignment", hz: "10-12 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/alpha-alignment.wav" }
+    { id: "alpha-eros-integracion", name: "Alpha Eros", hz: "9 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/alpha-eros.wav", v: 1 },
+      { id: "beta-reflex-integracion", name: "Beta Reflex", hz: "14-15 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/beta-reflex.wav", v: 1 },
+      { id: "beta-elevation-integracion", name: "Beta Elevation", hz: "15.0 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/beta-elevation.wav", v: 1 },
+      { id: "beta-nebula-integracion", name: "Beta Nebula", hz: "18-22 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/beta-nebula.wav", v: 1 },
+      { id: "beta-synchrony-integracion", name: "Beta Synchrony", hz: "27.5 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/beta-synchrony.wav", v: 2 },
+      { id: "alpha-alignment-integracion", name: "Alpha Alignment", hz: "10-12 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/alpha-alignment.wav", v: 2 }
   ] },
   CUERPO: { "REGENERACION": [
-    { id: "alpha-origen-regen", name: "Alpha Origen", hz: "8 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/alpha-origen.wav" },
-      { id: "beta-gaia-healing-regeneracion", name: "Beta Gaia Healing", hz: "14.1 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/beta-gaia-healing.wav" },
-      { id: "beta-genesis-regeneracion", name: "Beta Genesis", hz: "27-44 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/beta-genesis.wav" }
+    { id: "alpha-origen-regen", name: "Alpha Origen", hz: "8 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/alpha-origen.wav", v: 1 },
+      { id: "beta-gaia-healing-regeneracion", name: "Beta Gaia Healing", hz: "14.1 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/beta-gaia-healing.wav", v: 1 },
+      { id: "beta-genesis-regeneracion", name: "Beta Genesis", hz: "27-44 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/beta-genesis.wav", v: 2 }
   ], "ORGANOS": [
-    { id: "alpha-lucent-cuerpo", name: "Alpha Lucent", hz: "9.4 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/alpha-lucent.wav" },
-    { id: "alpha-origen-organos", name: "Alpha Origen", hz: "8 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/alpha-origen.wav" },
-    { id: "alpha-eros-organos", name: "Alpha Eros", hz: "9 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/alpha-eros.wav" },
-      { id: "beta-resonance-organos", name: "Beta Resonance", hz: "16.0 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/beta-resonance.wav" },
-      { id: "alpha-echo-organos", name: "Alpha Echo", hz: "10.7 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/alpha-echo.wav" },
-      { id: "beta-nebula-organos", name: "Beta Nebula", hz: "18-22 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/beta-nebula.wav" },
-      { id: "beta-recode-organos", name: "Beta Recode", hz: "30 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/beta-recode.wav" },
-      { id: "alpha-breath-organos", name: "Alpha Breath", hz: "10.3 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/alpha-breath.wav" },
-      { id: "alpha-flux-organos2", name: "Alpha Flux", hz: "10.3 + 4.9 + 2 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/alpha-flux.wav" }
+    { id: "alpha-lucent-cuerpo", name: "Alpha Lucent", hz: "9.4 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/alpha-lucent.wav", v: 1 },
+    { id: "alpha-origen-organos", name: "Alpha Origen", hz: "8 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/alpha-origen.wav", v: 1 },
+    { id: "alpha-eros-organos", name: "Alpha Eros", hz: "9 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/alpha-eros.wav", v: 1 },
+      { id: "beta-resonance-organos", name: "Beta Resonance", hz: "16.0 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/beta-resonance.wav", v: 1 },
+      { id: "alpha-echo-organos", name: "Alpha Echo", hz: "10.7 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/alpha-echo.wav", v: 1 },
+      { id: "beta-nebula-organos", name: "Beta Nebula", hz: "18-22 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/beta-nebula.wav", v: 1 },
+      { id: "beta-recode-organos", name: "Beta Recode", hz: "30 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/beta-recode.wav", v: 2 },
+      { id: "alpha-breath-organos", name: "Alpha Breath", hz: "10.3 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/alpha-breath.wav", v: 2 },
+      { id: "alpha-flux-organos2", name: "Alpha Flux", hz: "10.3 + 4.9 + 2 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/alpha-flux.wav", v: 2 }
   ], "DOLOR": [
-      { id: "beta-elevation-dolor", name: "Beta Elevation", hz: "15.0 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/beta-elevation.wav" }
+      { id: "beta-elevation-dolor", name: "Beta Elevation", hz: "15.0 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/beta-elevation.wav", v: 1 }
     ], "VITALIDAD": [
-    { id: "alpha-origen-vitalidad", name: "Alpha Origen", hz: "8 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/alpha-origen.wav" },
-      { id: "alpha-alignment-vitalidad", name: "Alpha Alignment", hz: "10-12 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/alpha-alignment.wav" },
-      { id: "alpha-catalyst-vitalidad", name: "Alpha Catalyst", hz: "10.2 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/alpha-catalyst.wav" }
+    { id: "alpha-origen-vitalidad", name: "Alpha Origen", hz: "8 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/alpha-origen.wav", v: 1 },
+      { id: "alpha-alignment-vitalidad", name: "Alpha Alignment", hz: "10-12 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/alpha-alignment.wav", v: 2 },
+      { id: "alpha-catalyst-vitalidad", name: "Alpha Catalyst", hz: "10.2 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/alpha-catalyst.wav", v: 2 }
   ] },
   EXPANSION: { "MEDITACION": [
-    { id: "alpha-eros-meditacion", name: "Alpha Eros", hz: "9 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/alpha-eros.wav" },
-      { id: "beta-euphoria-meditacion", name: "Beta Euphoria", hz: "15-24 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/beta-euphoria.wav" },
-      { id: "beta-earth-meditacion", name: "Beta Earth", hz: "20.3 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/beta-earth.wav" }
+    { id: "alpha-eros-meditacion", name: "Alpha Eros", hz: "9 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/alpha-eros.wav", v: 1 },
+      { id: "beta-euphoria-meditacion", name: "Beta Euphoria", hz: "15-24 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/beta-euphoria.wav", v: 1 },
+      { id: "beta-earth-meditacion", name: "Beta Earth", hz: "20.3 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/beta-earth.wav", v: 1 }
   ], "PERCEPCION": [
-    { id: "gaia-vision", name: "Gaia Vision", hz: "8.3 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/gaia-vision.wav" },
-    { id: "alpha-harmony-perc", name: "Alpha Harmony", hz: "9.19 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/alpha-harmony.wav" },
-      { id: "beta-oculos-percepcion", name: "Beta Oculos", hz: "12.3 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/beta-oculus.wav" },
-      { id: "beta-lucent-percepcion", name: "Beta Lucent", hz: "20-30 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/beta-lucent.wav" },
-      { id: "beta-earth-percepcion", name: "Beta Earth", hz: "20.3 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/beta-earth.wav" },
-      { id: "beta-echo-percepcion", name: "Beta Echo", hz: "25 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/beta-echo.wav" },
-      { id: "beta-aether-percepcion", name: "Beta Aether", hz: "26 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/beta-aether.wav" }
+    { id: "gaia-vision", name: "Gaia Vision", hz: "8.3 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/gaia-vision.wav", v: 1 },
+    { id: "alpha-harmony-perc", name: "Alpha Harmony", hz: "9.19 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/alpha-harmony.wav", v: 1 },
+      { id: "beta-oculos-percepcion", name: "Beta Oculos", hz: "12.3 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/beta-oculus.wav", v: 1 },
+      { id: "beta-lucent-percepcion", name: "Beta Lucent", hz: "20-30 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/beta-lucent.wav", v: 1 },
+      { id: "beta-earth-percepcion", name: "Beta Earth", hz: "20.3 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/beta-earth.wav", v: 1 },
+      { id: "beta-echo-percepcion", name: "Beta Echo", hz: "25 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/beta-echo.wav", v: 1 },
+      { id: "beta-aether-percepcion", name: "Beta Aether", hz: "26 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/beta-aether.wav", v: 2 }
   ], "EXPERIENCIAS": [
-    { id: "alpha-origen-exp", name: "Alpha Origen", hz: "8 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/alpha-origen.wav" },
-    { id: "gaia-pulse-exp", name: "Gaia Pulse", hz: "9.6 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/gaia-pulse.wav" },
-      { id: "beta-somnia-experiencias", name: "Beta Somnia", hz: "14-16 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/beta-somnia.wav" },
-      { id: "beta-lucent-experiencias", name: "Beta Lucent", hz: "20-30 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/beta-lucent.wav" },
-      { id: "beta-earth-experiencias", name: "Beta Earth", hz: "20.3 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/beta-earth.wav" },
-      { id: "beta-zenith-experiencias", name: "Beta Zenith", hz: "22 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/beta-zenith.wav" },
-      { id: "beta-astralis-experiencias", name: "Beta Astralis", hz: "26-28 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/beta-astralis.wav" },
-      { id: "alpha-oneiris-experiencias", name: "Alpha Oneiris", hz: "10-14 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/alpha-oneiris.wav" }
+    { id: "alpha-origen-exp", name: "Alpha Origen", hz: "8 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/alpha-origen.wav", v: 1 },
+    { id: "gaia-pulse-exp", name: "Gaia Pulse", hz: "9.6 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/gaia-pulse.wav", v: 1 },
+      { id: "beta-somnia-experiencias", name: "Beta Somnia", hz: "14-16 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/beta-somnia.wav", v: 1 },
+      { id: "beta-lucent-experiencias", name: "Beta Lucent", hz: "20-30 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/beta-lucent.wav", v: 1 },
+      { id: "beta-earth-experiencias", name: "Beta Earth", hz: "20.3 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/beta-earth.wav", v: 1 },
+      { id: "beta-zenith-experiencias", name: "Beta Zenith", hz: "22 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/beta-zenith.wav", v: 1 },
+      { id: "beta-astralis-experiencias", name: "Beta Astralis", hz: "26-28 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/beta-astralis.wav", v: 2 },
+      { id: "alpha-oneiris-experiencias", name: "Alpha Oneiris", hz: "10-14 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/alpha-oneiris.wav", v: 1 }
   ], "CONSCIENCIA_EXP": [
-    { id: "alpha-dreambridge", name: "Alpha Dreambridge", hz: "9-13 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/alpha-dreambridge.wav" },
-    { id: "alpha-gateway-exp", name: "Alpha Gateway", hz: "9.5-10 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/alpha-gateway.wav" },
-    { id: "alpha-void", name: "Alpha Void", hz: "8-13 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/alpha-void.wav" },
-    { id: "gaia-pulse-consciencia", name: "Gaia Pulse", hz: "9.6 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/gaia-pulse.wav" },
-    { id: "pyramid-resonance", name: "Pyramid Resonance", hz: "9.41 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/pyramid-resonance.wav" },
-      { id: "beta-elevation-conciencia", name: "Beta Elevation", hz: "15.0 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/beta-elevation.wav" },
-      { id: "beta-ascension-ascension", name: "Beta Ascension", hz: "16.4 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/beta-asension.wav" },
-      { id: "alpha-airis-conciencia", name: "Alpha Airis", hz: "8-11 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/alpha-airis.wav" },
-      { id: "beta-earth-conciencia", name: "Beta Earth", hz: "20.3 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/beta-earth.wav" },
-      { id: "beta-gaia-conciencia", name: "Beta Gaia", hz: "26.4 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/beta-gaia.wav" }
+    { id: "alpha-dreambridge", name: "Alpha Dreambridge", hz: "9-13 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/alpha-dreambridge.wav", v: 1 },
+    { id: "alpha-gateway-exp", name: "Alpha Gateway", hz: "9.5-10 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/alpha-gateway.wav", v: 1 },
+    { id: "alpha-void", name: "Alpha Void", hz: "8-13 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/alpha-void.wav", v: 1 },
+    { id: "gaia-pulse-consciencia", name: "Gaia Pulse", hz: "9.6 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/gaia-pulse.wav", v: 1 },
+    { id: "pyramid-resonance", name: "Pyramid Resonance", hz: "9.41 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/pyramid-resonance.wav", v: 1 },
+      { id: "beta-elevation-conciencia", name: "Beta Elevation", hz: "15.0 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/beta-elevation.wav", v: 1 },
+      { id: "beta-ascension-ascension", name: "Beta Ascension", hz: "16.4 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/beta-asension.wav", v: 1 },
+      { id: "alpha-airis-conciencia", name: "Alpha Airis", hz: "8-11 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/alpha-airis.wav", v: 2 },
+      { id: "beta-earth-conciencia", name: "Beta Earth", hz: "20.3 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/beta-earth.wav", v: 1 },
+      { id: "beta-gaia-conciencia", name: "Beta Gaia", hz: "26.4 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/beta-gaia.wav", v: 1 }
   ] },
   EXPERIENCIAS_G: { "RITUALES": [
-      { id: "alpha-airis-rituales", name: "Alpha Airis", hz: "8-11 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/alpha-airis.wav" },
-      { id: "alpha-lucid-flow", name: "Alpha Lucid Flow", hz: "9.14 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/alpha-lucid-flow.wav" }
+      { id: "alpha-airis-rituales", name: "Alpha Airis", hz: "8-11 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/alpha-airis.wav", v: 2 },
+      { id: "alpha-lucid-flow", name: "Alpha Lucid Flow", hz: "9.14 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/alpha-lucid-flow.wav", v: 1 }
     ], "CEREMONIAS": [], "BIENESTAR_F": [
-    { id: "femin-essence", name: "Feminine Essence", hz: "—", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/femin-essence.wav" }
+    { id: "femin-essence", name: "Feminine Essence", hz: "—", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/femin-essence.wav", v: 1 }
   ] },
   ARMONIZACION: { "ADN": [], "CAMPOS": [], "CELULAR": [], "REPRODUCTOR": [
-    { id: "alpha-eros-reproductor", name: "Alpha Eros", hz: "9 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/alpha-eros.wav" }
+    { id: "alpha-eros-reproductor", name: "Alpha Eros", hz: "9 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/alpha-eros.wav", v: 1 }
   ] }
 };
 const ALL_TRACKS_FLAT = Object.values(FREQ_TRACKS).flatMap(p => Object.values(p).flat()).filter(t => t.url);
@@ -1364,7 +1364,7 @@ const App = () => {
     return (
       <div key={selectedTrack.id} className="fade-in-smooth" style={{ backgroundColor: '#020617', minHeight: '100vh', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', textAlign: 'center', position: 'relative', padding: '20px' }}>
         <style>{inlineStyles}</style>
-        <audio ref={audioRef} src={selectedTrack.url}
+        <audio ref={audioRef} src={versionedUrl(selectedTrack)}
           loop={selectedTime === 'inf' && activeTabRef.current !== 'favoritos'}
           controls={false}
           controlsList="nodownload nofullscreen noremoteplayback"
