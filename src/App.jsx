@@ -73,6 +73,26 @@ const T = {
     },
     tracks: {
       "alpha-integration": "Integracion y aprendizaje de informacion desde un estado de calma y enfoque.",
+      "delta-awakening-regeneracion": "Relajacion profunda y regulacion del sistema nervioso.",
+      "delta-restora-regeneracion": "Acompana estados de sueno profundo, descanso y recuperacion.",
+      "delta-restora-regeneracion2": "Sanacion milagrosa, recuperacion de trauma, restauracion profunda en estado de coma.",
+      "delta-soma-organos": "Equilibrio corporal en musculos y organos.",
+      "delta-morph-organos": "Equilibrio en musculos y organos.",
+      "delta-awakening-dolor": "Apoyo en dolor muscular, neuralgias y artritis.",
+      "delta-om-dolor": "Dolores de cabeza, sedante.",
+      "delta-relief-dolor": "Sanacion, alivio del dolor.",
+      "delta-soma-vitalidad": "Aumento de la funcion inmunologica.",
+      "delta-restora-vitalidad": "Rejuvenecimiento y sueno profundo.",
+      "delta-soma-meditacion": "Acceso al inconsciente.",
+      "delta-awakening-experiencias": "Despertar espiritual.",
+      "delta-om-experiencias": "OM 136.1 Hz. Frecuencia de conexion desde el Chakra del Corazon, enraizamiento, paz interior y serenidad.",
+      "delta-relief-experiencias": "Experiencia de relajacion profunda e hipnosis.",
+      "delta-noctis-conciencia": "Estados profundos de percepcion sensorial.",
+      "delta-restora-conciencia": "Intuicion, informacion desde el inconsciente.",
+      "delta-noctis-integracion": "Sueno profundo (NREM Fase 3/N3), estados de reposo celular profundo.",
+      "delta-noctis-integracion2": "Recuperacion fisica en sueno profundo.",
+      "delta-awakening-integracion": "Apoyo en experiencias postraumaticas, confusion y depresion.",
+      "delta-om-adn": "Regeneracion de ADN, rejuvenecimiento, sanaciones y restauracion profunda.",
       "alpha-echo-organos": "Audicion y percepcion sonora.",
       "beta-nebula-aprendizaje": "Percepcion sensorial y foco mental.",
       "beta-nebula-rendimiento": "Acompana la atencion sostenida y ayuda a mantener la mente activa frente a la fatiga mental.",
@@ -101,7 +121,7 @@ const T = {
       "beta-synchrony-integracion": "Sintonizacion cuerpo y mente con el campo electromagnetico de la tierra.",
       "beta-recode-organos": "Control de ansiedad, reduccion de dependencia (adicciones).",
       "beta-recode-regulacion": "Estabiliza el sistema nervioso central, mitiga la ansiedad y rompe el ciclo de desespero por abstinencia.",
-      "alpha-alignment-integracion": "Centrado-conexion mente-cuerpo.",
+      "alpha-alignment-integracion": "Centrado y conexion mente-cuerpo.",
       "alpha-alignment-vitalidad": "Equilibrio y bienestar integral.",
       "alpha-oneiris-experiencias": "Sueno consciente y exploracion onirica.",
       "alpha-catalyst-vitalidad": "Activacion fisiologica y energia vital.",
@@ -384,14 +404,21 @@ const FREQ_TRACKS = {
     { id: "alpha-eros-integracion", name: "Alpha Eros", hz: "9 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/alpha-eros.wav", v: 1 },
       { id: "beta-reflex-integracion", name: "Beta Reflex", hz: "14-15 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/beta-reflex.wav", v: 1 },
       { id: "beta-elevation-integracion", name: "Beta Elevation", hz: "15.0 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/beta-elevation.wav", v: 1 },
+      { id: "beta-attention-integracion", name: "Beta Attention", hz: "12-15 Hz", url: "/audio/beta-attention.mp3", v: 1 },
       { id: "beta-nebula-integracion", name: "Beta Nebula", hz: "18-22 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/beta-nebula.wav", v: 1 },
       { id: "beta-synchrony-integracion", name: "Beta Synchrony", hz: "27.5 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/beta-synchrony.wav", v: 2 },
-      { id: "alpha-alignment-integracion", name: "Alpha Alignment", hz: "10-12 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/alpha-alignment.wav", v: 2 }
+      { id: "alpha-alignment-integracion", name: "Alpha Alignment", hz: "10-12 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/alpha-alignment.wav", v: 2 },
+      { id: "delta-noctis-integracion", name: "Delta Noctis", hz: "0.1-2.7 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/delta-noctis.wav", v: 1 },
+      { id: "delta-noctis-integracion2", name: "Delta Noctis", hz: "0.1-2.7 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/delta-noctis.wav", v: 1 },
+      { id: "delta-awakening-integracion", name: "Delta Awakening", hz: "0.1-3 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/delta-awakening.wav", v: 1 }
   ] },
   CUERPO: { "REGENERACION": [
     { id: "alpha-origen-regen", name: "Alpha Origen", hz: "8 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/alpha-origen.wav", v: 1 },
       { id: "beta-gaia-healing-regeneracion", name: "Beta Gaia Healing", hz: "14.1 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/beta-gaia-healing.wav", v: 1 },
-      { id: "beta-genesis-regeneracion", name: "Beta Genesis", hz: "27-44 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/beta-genesis.wav", v: 2 }
+      { id: "beta-genesis-regeneracion", name: "Beta Genesis", hz: "27-44 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/beta-genesis.wav", v: 2 },
+      { id: "delta-awakening-regeneracion", name: "Delta Awakening", hz: "0.1-3 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/delta-awakening.wav", v: 1 },
+      { id: "delta-restora-regeneracion", name: "Delta Restora", hz: "0.5-4 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/delta-restora.wav", v: 1 },
+      { id: "delta-restora-regeneracion2", name: "Delta Restora", hz: "0.5-4 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/delta-restora.wav", v: 1 }
   ], "ORGANOS": [
     { id: "alpha-lucent-cuerpo", name: "Alpha Lucent", hz: "9.4 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/alpha-lucent.wav", v: 1 },
     { id: "alpha-origen-organos", name: "Alpha Origen", hz: "8 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/alpha-origen.wav", v: 1 },
@@ -401,18 +428,27 @@ const FREQ_TRACKS = {
       { id: "beta-nebula-organos", name: "Beta Nebula", hz: "18-22 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/beta-nebula.wav", v: 1 },
       { id: "beta-recode-organos", name: "Beta Recode", hz: "30 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/beta-recode.wav", v: 2 },
       { id: "alpha-breath-organos", name: "Alpha Breath", hz: "10.3 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/alpha-breath.wav", v: 2 },
-      { id: "alpha-flux-organos2", name: "Alpha Flux", hz: "10.3 + 4.9 + 2 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/alpha-flux.wav", v: 2 }
+      { id: "alpha-flux-organos2", name: "Alpha Flux", hz: "10.3 + 4.9 + 2 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/alpha-flux.wav", v: 2 },
+      { id: "delta-soma-organos", name: "Delta Soma", hz: "0.1 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/delta-soma.wav", v: 1 },
+      { id: "delta-morph-organos", name: "Delta Morph", hz: "0.1-1.0 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/delta-morph.wav", v: 1 }
   ], "DOLOR": [
-      { id: "beta-elevation-dolor", name: "Beta Elevation", hz: "15.0 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/beta-elevation.wav", v: 1 }
+      { id: "beta-elevation-dolor", name: "Beta Elevation", hz: "15.0 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/beta-elevation.wav", v: 1 },
+      { id: "delta-awakening-dolor", name: "Delta Awakening", hz: "0.1-3 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/delta-awakening.wav", v: 1 },
+      { id: "delta-om-dolor", name: "Delta OM", hz: "0.5-2.5 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/delta-om.wav", v: 1 },
+      { id: "delta-relief-dolor", name: "Delta Relief", hz: "0.5-1.5 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/delta-relief.wav", v: 1 }
     ], "VITALIDAD": [
     { id: "alpha-origen-vitalidad", name: "Alpha Origen", hz: "8 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/alpha-origen.wav", v: 1 },
       { id: "alpha-alignment-vitalidad", name: "Alpha Alignment", hz: "10-12 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/alpha-alignment.wav", v: 2 },
-      { id: "alpha-catalyst-vitalidad", name: "Alpha Catalyst", hz: "10.2 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/alpha-catalyst.wav", v: 2 }
+      { id: "alpha-catalyst-vitalidad", name: "Alpha Catalyst", hz: "10.2 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/alpha-catalyst.wav", v: 2 },
+      { id: "beta-logic-vitalidad", name: "Beta Logic", hz: "13-40 Hz", url: "/audio/beta-logic.mp3", v: 1 },
+      { id: "delta-soma-vitalidad", name: "Delta Soma", hz: "0.1 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/delta-soma.wav", v: 1 },
+      { id: "delta-restora-vitalidad", name: "Delta Restora", hz: "0.5-4 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/delta-restora.wav", v: 1 }
   ] },
   EXPANSION: { "MEDITACION": [
     { id: "alpha-eros-meditacion", name: "Alpha Eros", hz: "9 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/alpha-eros.wav", v: 1 },
       { id: "beta-euphoria-meditacion", name: "Beta Euphoria", hz: "15-24 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/beta-euphoria.wav", v: 1 },
-      { id: "beta-earth-meditacion", name: "Beta Earth", hz: "20.3 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/beta-earth.wav", v: 1 }
+      { id: "beta-earth-meditacion", name: "Beta Earth", hz: "20.3 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/beta-earth.wav", v: 1 },
+      { id: "delta-soma-meditacion", name: "Delta Soma", hz: "0.1 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/delta-soma.wav", v: 1 }
   ], "PERCEPCION": [
     { id: "gaia-vision", name: "Gaia Vision", hz: "8.3 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/gaia-vision.wav", v: 1 },
     { id: "alpha-harmony-perc", name: "Alpha Harmony", hz: "9.19 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/alpha-harmony.wav", v: 1 },
@@ -429,7 +465,10 @@ const FREQ_TRACKS = {
       { id: "beta-earth-experiencias", name: "Beta Earth", hz: "20.3 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/beta-earth.wav", v: 1 },
       { id: "beta-zenith-experiencias", name: "Beta Zenith", hz: "22 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/beta-zenith.wav", v: 1 },
       { id: "beta-astralis-experiencias", name: "Beta Astralis", hz: "26-28 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/beta-astralis.wav", v: 2 },
-      { id: "alpha-oneiris-experiencias", name: "Alpha Oneiris", hz: "10-14 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/alpha-oneiris.wav", v: 1 }
+      { id: "alpha-oneiris-experiencias", name: "Alpha Oneiris", hz: "10-14 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/alpha-oneiris.wav", v: 1 },
+      { id: "delta-awakening-experiencias", name: "Delta Awakening", hz: "0.1-3 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/delta-awakening.wav", v: 1 },
+      { id: "delta-om-experiencias", name: "Delta OM", hz: "0.5-2.5 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/delta-om.wav", v: 1 },
+      { id: "delta-relief-experiencias", name: "Delta Relief", hz: "0.5-1.5 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/delta-relief.wav", v: 1 }
   ], "CONSCIENCIA_EXP": [
     { id: "alpha-dreambridge", name: "Alpha Dreambridge", hz: "9-13 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/alpha-dreambridge.wav", v: 1 },
     { id: "alpha-gateway-exp", name: "Alpha Gateway", hz: "9.5-10 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/alpha-gateway.wav", v: 1 },
@@ -440,7 +479,9 @@ const FREQ_TRACKS = {
       { id: "beta-ascension-ascension", name: "Beta Ascension", hz: "16.4 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/beta-asension.wav", v: 1 },
       { id: "alpha-airis-conciencia", name: "Alpha Airis", hz: "8-11 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/alpha-airis.wav", v: 2 },
       { id: "beta-earth-conciencia", name: "Beta Earth", hz: "20.3 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/beta-earth.wav", v: 1 },
-      { id: "beta-gaia-conciencia", name: "Beta Gaia", hz: "26.4 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/beta-gaia.wav", v: 1 }
+      { id: "beta-gaia-conciencia", name: "Beta Gaia", hz: "26.4 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/beta-gaia.wav", v: 1 },
+      { id: "delta-noctis-conciencia", name: "Delta Noctis", hz: "0.1-2.7 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/delta-noctis.wav", v: 1 },
+      { id: "delta-restora-conciencia", name: "Delta Restora", hz: "0.5-4 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/delta-restora.wav", v: 1 }
   ] },
   EXPERIENCIAS_G: { "RITUALES": [
       { id: "alpha-airis-rituales", name: "Alpha Airis", hz: "8-11 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/alpha-airis.wav", v: 2 },
@@ -448,7 +489,9 @@ const FREQ_TRACKS = {
     ], "CEREMONIAS": [], "BIENESTAR_F": [
     { id: "femin-essence", name: "Feminine Essence", hz: "—", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/femin-essence.wav", v: 1 }
   ] },
-  ARMONIZACION: { "ADN": [], "CAMPOS": [], "CELULAR": [], "REPRODUCTOR": [
+  ARMONIZACION: { "ADN": [
+    { id: "delta-om-adn", name: "Delta OM", hz: "0.5-2.5 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/delta-om.wav", v: 1 }
+  ], "CAMPOS": [], "CELULAR": [], "REPRODUCTOR": [
     { id: "alpha-eros-reproductor", name: "Alpha Eros", hz: "9 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/alpha-eros.wav", v: 1 }
   ] }
 };
@@ -531,39 +574,37 @@ const getTimeOfDay = () => {
 };
 const inlineStyles = `
   @keyframes logo-breathe { 0%, 100% { transform: scale(1); opacity: 0.95; } 50% { transform: scale(1.05); opacity: 1; } }
+  /* ---- Capa de resplandor dedicada (equivalente a ::before) ----
+     La sombra queda FIJA; solo se anima transform/opacity de esta capa,
+     que son propiedades que la GPU compone directamente sin repintar. */
+  .orb-glow-layer {
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    z-index: 0;
+    pointer-events: none;
+    will-change: transform, opacity;
+  }
+  .orb-glow-cyan { box-shadow: 0 0 90px 10px rgba(34,211,238,0.75), 0 0 180px 20px rgba(34,211,238,0.45), 0 0 320px 40px rgba(34,211,238,0.2); }
+  .orb-glow-violet { box-shadow: 0 0 90px 10px rgba(124,92,230,0.75), 0 0 180px 20px rgba(124,92,230,0.45), 0 0 320px 40px rgba(79,61,161,0.2); }
+  .orb-glow-gold { box-shadow: 0 0 90px 10px rgba(230,205,150,0.6), 0 0 180px 20px rgba(230,205,150,0.35), 0 0 300px 40px rgba(230,205,150,0.15); }
   @keyframes aura-supernova {
-    0%, 100% {
-      transform: scale(1.0);
-      box-shadow: 0 0 50px 0 rgba(34, 211, 238, 0.4), 0 0 100px 0 rgba(34, 211, 238, 0.2);
-    }
-    50% {
-      transform: scale(1.03);
-      box-shadow: 0 0 90px 10px rgba(34, 211, 238, 0.75), 0 0 180px 20px rgba(34, 211, 238, 0.45), 0 0 320px 40px rgba(34, 211, 238, 0.2);
-    }
+    0%, 100% { transform: scale(0.8); opacity: 0.55; }
+    50% { transform: scale(1); opacity: 1; }
   }
+  .logo-normal { }
   @keyframes aura-violet {
-    0%, 100% {
-      transform: scale(1.0);
-      box-shadow: 0 0 50px 0 rgba(124, 92, 230, 0.4), 0 0 100px 0 rgba(79, 61, 161, 0.2);
-    }
-    50% {
-      transform: scale(1.03);
-      box-shadow: 0 0 90px 10px rgba(124, 92, 230, 0.75), 0 0 180px 20px rgba(124, 92, 230, 0.45), 0 0 320px 40px rgba(79, 61, 161, 0.2);
-    }
+    0%, 100% { transform: scale(0.8); opacity: 0.55; }
+    50% { transform: scale(1); opacity: 1; }
   }
+  .logo-filtro-violeta { }
   @keyframes aura-gold {
-    0%, 100% {
-      transform: scale(1.0);
-      box-shadow: 0 0 50px 0 rgba(212, 175, 55, 0.4), 0 0 100px 0 rgba(212, 175, 55, 0.2);
-    }
-    50% {
-      transform: scale(1.03);
-      box-shadow: 0 0 90px 10px rgba(212, 175, 55, 0.75), 0 0 180px 20px rgba(212, 175, 55, 0.45), 0 0 320px 40px rgba(212, 175, 55, 0.2);
-    }
+    0%, 100% { transform: scale(0.8); opacity: 0.55; }
+    50% { transform: scale(1); opacity: 1; }
   }
   @keyframes aura-gold-santuario {
-    0%, 100% { transform: scale(1); box-shadow: 0 0 50px 0 rgba(230,205,150,0.3), 0 0 100px 0 rgba(230,205,150,0.15); }
-    50% { transform: scale(1.03); box-shadow: 0 0 90px 10px rgba(230,205,150,0.6), 0 0 180px 20px rgba(230,205,150,0.35), 0 0 300px 40px rgba(230,205,150,0.15); }
+    0%, 100% { transform: scale(0.8); opacity: 0.55; }
+    50% { transform: scale(1); opacity: 1; }
   }
   @keyframes micro-orbe-breathe {
     0%, 100% { transform: scale(1); opacity: 0.7; box-shadow: 0 0 6px #d4af37; }
@@ -676,9 +717,9 @@ const inlineStyles = `
   .suggestion-badge { animation: fadeInDown 0.3s ease forwards; font-size: 9px; letter-spacing: 2px; color: rgba(34,211,238,0.75); text-transform: uppercase; font-weight: 200; }
   .coming-soon-box { text-align: center; color: rgba(255,255,255,0.2); padding: 40px 20px; font-size: 11px; letter-spacing: 3px; font-weight: 200; line-height: 2; }
   .coming-soon-icon { font-size: 28px; margin-bottom: 16px; opacity: 0.4; }
-  .logo-filtro-dorado { filter: sepia(1) hue-rotate(2deg) saturate(1.7) brightness(1.3) contrast(0.9) drop-shadow(0 0 20px rgba(230,205,150,0.5)) !important; transition: all 0.8s ease-in-out; }
-  .logo-filtro-violeta { filter: sepia(1) hue-rotate(215deg) saturate(2.5) brightness(0.75) drop-shadow(0 0 18px rgba(124,92,230,0.6)) !important; transition: all 0.8s ease-in-out; }
-  .logo-normal { filter: drop-shadow(0 0 15px #22d3ee); transition: all 0.8s ease-in-out; }
+  .logo-filtro-dorado { filter: sepia(1) hue-rotate(2deg) saturate(1.7) brightness(1.3) contrast(0.9) !important; box-shadow: 0 0 70px 8px rgba(230,205,150,0.5), 0 0 140px 16px rgba(230,205,150,0.28); transition: all 0.8s ease-in-out; }
+  .logo-filtro-violeta { filter: sepia(1) hue-rotate(215deg) saturate(2.5) brightness(0.75) !important; transition: all 0.8s ease-in-out; }
+  .logo-normal { filter: none; transition: all 0.8s ease-in-out; }
   .sanctuary-input { width: 70%; max-width: 260px; padding: 14px 20px; border-radius: 30px; background: rgba(255,255,255,0.03); border: 1px solid rgba(212,175,55,0.3); color: white; font-size: 12px; letter-spacing: 3px; text-align: center; text-transform: uppercase; outline: none; transition: all 0.3s ease; font-weight: 200; }
   .sanctuary-input:focus { border-color: rgba(212,175,55,0.7); background: rgba(212,175,55,0.05); }
   .sanctuary-input::placeholder { color: rgba(255,255,255,0.2); text-transform: none; letter-spacing: 1px; }
@@ -724,9 +765,23 @@ const inlineStyles = `
     transform: scale(1.25);
   }
   @keyframes centralPulse {
-    0%, 100% { transform: scale(1); box-shadow: 0 0 15px 5px rgba(34,211,238,0.3); }
-    50%       { transform: scale(1.06); box-shadow: 0 0 25px 10px rgba(34,211,238,0.5); }
+    0%, 100% { transform: scale(1); }
+    50%       { transform: scale(1.06); }
   }
+  .templo-glow-layer {
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    z-index: 2;
+    pointer-events: none;
+    will-change: transform, opacity;
+    box-shadow: 0 0 30px 8px rgba(34,211,238,0.5), 0 0 55px 14px rgba(34,211,238,0.3);
+  }
+  @keyframes templo-glow-pulse {
+    0%, 100% { transform: scale(0.85); opacity: 0.55; }
+    50% { transform: scale(1); opacity: 1; }
+  }
+  .templo-glow-layer.playing { animation: templo-glow-pulse 2.5s ease-in-out infinite; }
   @keyframes etherealWave {
     0%   { transform: scale(0.5) translateZ(0);   opacity: 0.85; }
     35%  { opacity: 0.6; }
@@ -737,11 +792,11 @@ const inlineStyles = `
     0%, 100% { opacity: 0; transform: scale(0); }
     50% { opacity: 1; transform: scale(1); }
   }
-  @keyframes adn-breathe-deep {
-    0%, 100% { transform: scale(1) rotate(0deg); filter: drop-shadow(0 0 12px #22d3ee); }
-    25% { transform: scale(1.06) rotate(1deg); filter: drop-shadow(0 0 22px #22d3ee); }
-    50% { transform: scale(1.1) rotate(0deg); filter: drop-shadow(0 0 30px #22d3ee) brightness(1.15); }
-    75% { transform: scale(1.06) rotate(-1deg); filter: drop-shadow(0 0 22px #22d3ee); }
+  @keyframes adn-breathe-light {
+    0%, 100% { transform: scale(1) rotate(0deg); }
+    25% { transform: scale(1.06) rotate(1deg); }
+    50% { transform: scale(1.1) rotate(0deg); }
+    75% { transform: scale(1.06) rotate(-1deg); }
   }
   @keyframes slow-rotate {
     from { transform: rotate(0deg); }
@@ -866,11 +921,7 @@ const inlineStyles = `
     animation: centralPulse 3s ease-in-out infinite;
   }
   .templo-adn-img.playing {
-    animation: centralPulse 2.5s ease-in-out infinite;
-    box-shadow: 0 0 20px 6px rgba(34,211,238,0.3);
-  }
-  .templo-adn-img.playing {
-    animation: adn-breathe-deep 4s ease-in-out infinite;
+    animation: adn-breathe-light 4s ease-in-out infinite;
   }
   .templo-rotate-ring {
     position: absolute;
@@ -1277,13 +1328,16 @@ const App = () => {
       <LangSwitch isGold={isGold} isViolet={isViolet} />
     </div>
   );
+  const ADN_GLOW_COLOR = { 'aura-supernova': 'cyan', 'aura-violet': 'violet', 'aura-gold': 'gold', 'aura-gold-santuario': 'gold' };
   const ADNOrb = ({ auraClass = 'aura-supernova', filterClass = 'logo-normal', size = '110px' }) => (
   <div style={{ width: size, height: size, display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '20px', position: 'relative' }}>
+    <div className={`orb-glow-layer orb-glow-${ADN_GLOW_COLOR[auraClass] || 'cyan'}`} style={{ animation: `${auraClass} 5s ease-in-out infinite` }} />
     <AdnVideo
       className={filterClass}
       style={{
         ...ADN_ORB_VIDEO_STYLE,
-        animation: `${auraClass} 5s ease-in-out infinite`,
+        position: 'relative',
+        zIndex: 1,
         transition: 'all 0.5s ease',
       }}
     />
@@ -1417,6 +1471,7 @@ const App = () => {
             zIndex: 2,
             pointerEvents: 'none',
           }} />
+          <div className={`templo-glow-layer ${isPlaying ? 'playing' : ''}`} />
           <AdnVideo className={`templo-adn-img ${isPlaying ? 'playing' : ''}`} style={TEMPLO_ADN_VIDEO_STYLE} />
         </div>
         <h2 style={{ fontSize: '20px', letterSpacing: '4px', textTransform: 'uppercase', fontWeight: 200 }}>{selectedTrack.name}</h2>
