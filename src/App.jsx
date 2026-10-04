@@ -74,23 +74,33 @@ const T = {
     tracks: {
       "alpha-integration": "Integracion y aprendizaje de informacion desde un estado de calma y enfoque.",
       "delta-awakening-regeneracion": "Relajacion profunda y regulacion del sistema nervioso.",
-      "delta-restora-regeneracion": "Acompana estados de sueno profundo, descanso y recuperacion.",
-      "delta-restora-regeneracion2": "Sanacion milagrosa, recuperacion de trauma, restauracion profunda en estado de coma.",
+      "delta-restora-celular": "Sanacion milagrosa, recuperacion de trauma y estados de coma.",
+      "delta-restora-regeneracion": "Sueno profundo, rejuvenecimiento, descanso y recuperacion.",
+      "delta-shield-regulacion": "Recuperacion de un evento postraumatico.",
+      "delta-euphoria-equilibrio": "Sensacion de bienestar y expansion.",
+      "delta-neurovia-dolor": "Alivio del dolor de espalda baja y dolor de cabeza.",
+      "delta-neuraxis-dolor": "Desinflamacion de neuralgias, restauracion de paralisis facial, regulacion de nervios.",
+      "delta-teeth-heal-dolor": "Sanacion de dientes y encias.",
+      "delta-neurovia-bienestar": "Estimula la reproduccion.",
+      "delta-neuraxis-celular": "Sanacion en sintomas de fibromialgia y esclerosis multiple.",
+      "delta-neurovia-regeneracion": "Equilibrio glandula tiroides.",
+      "delta-neuraxis-regeneracion": "Sanacion de trigemino y restauracion tunel del carpio.",
+      "delta-teeth-heal-regeneracion": "Acompanamiento orientado al equilibrio y recuperacion de la zona oral.",
+      "delta-euphoria-meditacion": "Expansion del ser.",
+      "delta-euphoria-experiencias": "Amplitud y percepcion integral.",
       "delta-soma-organos": "Equilibrio corporal en musculos y organos.",
       "delta-morph-organos": "Equilibrio en musculos y organos.",
       "delta-awakening-dolor": "Apoyo en dolor muscular, neuralgias y artritis.",
       "delta-om-dolor": "Dolores de cabeza, sedante.",
       "delta-relief-dolor": "Sanacion, alivio del dolor.",
       "delta-soma-vitalidad": "Aumento de la funcion inmunologica.",
-      "delta-restora-vitalidad": "Rejuvenecimiento y sueno profundo.",
       "delta-soma-meditacion": "Acceso al inconsciente.",
       "delta-awakening-experiencias": "Despertar espiritual.",
       "delta-om-experiencias": "OM 136.1 Hz. Frecuencia de conexion desde el Chakra del Corazon, enraizamiento, paz interior y serenidad.",
       "delta-relief-experiencias": "Experiencia de relajacion profunda e hipnosis.",
       "delta-noctis-conciencia": "Estados profundos de percepcion sensorial.",
       "delta-restora-conciencia": "Intuicion, informacion desde el inconsciente.",
-      "delta-noctis-integracion": "Sueno profundo (NREM Fase 3/N3), estados de reposo celular profundo.",
-      "delta-noctis-integracion2": "Recuperacion fisica en sueno profundo.",
+      "delta-noctis-integracion": "Sueno profundo, NREM Fase 3/N3, estados de reposo celular profundo.",
       "delta-awakening-integracion": "Apoyo en experiencias postraumaticas, confusion y depresion.",
       "delta-om-adn": "Regeneracion de ADN, rejuvenecimiento, sanaciones y restauracion profunda.",
       "alpha-echo-organos": "Audicion y percepcion sonora.",
@@ -397,9 +407,11 @@ const FREQ_TRACKS = {
       { id: "beta-poise-regulacion", name: "Beta Poise", hz: "20-40 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/beta-poise.wav", v: 2 },
       { id: "beta-harmony-regulacion", name: "Beta Harmony", hz: "22.027 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/beta-harmony.wav", v: 1 },
       { id: "beta-echo-regulacion", name: "Beta Echo", hz: "25 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/beta-echo.wav", v: 1 },
-      { id: "beta-recode-regulacion", name: "Beta Recode", hz: "30 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/beta-recode.wav", v: 2 }
+      { id: "beta-recode-regulacion", name: "Beta Recode", hz: "30 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/beta-recode.wav", v: 2 },
+      { id: "delta-shield-regulacion", name: "Delta Shield", hz: "0.20-1 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/delta-shield.wav", v: 1 }
   ], "EQUILIBRIO": [
-    { id: "alpha-eros", name: "Alpha Eros", hz: "9 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/alpha-eros.wav", v: 1 }
+    { id: "alpha-eros", name: "Alpha Eros", hz: "9 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/alpha-eros.wav", v: 1 },
+      { id: "delta-euphoria-equilibrio", name: "Delta Euphoria", hz: "0.9 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/delta-euphoria.wav", v: 1 }
   ], "INTEGRACION": [
     { id: "alpha-eros-integracion", name: "Alpha Eros", hz: "9 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/alpha-eros.wav", v: 1 },
       { id: "beta-reflex-integracion", name: "Beta Reflex", hz: "14-15 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/beta-reflex.wav", v: 1 },
@@ -409,7 +421,6 @@ const FREQ_TRACKS = {
       { id: "beta-synchrony-integracion", name: "Beta Synchrony", hz: "27.5 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/beta-synchrony.wav", v: 2 },
       { id: "alpha-alignment-integracion", name: "Alpha Alignment", hz: "10-12 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/alpha-alignment.wav", v: 2 },
       { id: "delta-noctis-integracion", name: "Delta Noctis", hz: "0.1-2.7 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/delta-noctis.wav", v: 1 },
-      { id: "delta-noctis-integracion2", name: "Delta Noctis", hz: "0.1-2.7 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/delta-noctis.wav", v: 1 },
       { id: "delta-awakening-integracion", name: "Delta Awakening", hz: "0.1-3 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/delta-awakening.wav", v: 1 }
   ] },
   CUERPO: { "REGENERACION": [
@@ -418,7 +429,9 @@ const FREQ_TRACKS = {
       { id: "beta-genesis-regeneracion", name: "Beta Genesis", hz: "27-44 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/beta-genesis.wav", v: 2 },
       { id: "delta-awakening-regeneracion", name: "Delta Awakening", hz: "0.1-3 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/delta-awakening.wav", v: 1 },
       { id: "delta-restora-regeneracion", name: "Delta Restora", hz: "0.5-4 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/delta-restora.wav", v: 1 },
-      { id: "delta-restora-regeneracion2", name: "Delta Restora", hz: "0.5-4 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/delta-restora.wav", v: 1 }
+      { id: "delta-neurovia-regeneracion", name: "Delta Neurovia", hz: "0.5 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/delta-neurovia.wav", v: 1 },
+      { id: "delta-neuraxis-regeneracion", name: "Delta Neuraxis", hz: "0.16-1 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/delta-neuraxis.wav", v: 1 },
+      { id: "delta-teeth-heal-regeneracion", name: "Delta Teeth Heal", hz: "0.20-0.26 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/delta-teeth-heal.wav", v: 1 }
   ], "ORGANOS": [
     { id: "alpha-lucent-cuerpo", name: "Alpha Lucent", hz: "9.4 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/alpha-lucent.wav", v: 1 },
     { id: "alpha-origen-organos", name: "Alpha Origen", hz: "8 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/alpha-origen.wav", v: 1 },
@@ -435,20 +448,23 @@ const FREQ_TRACKS = {
       { id: "beta-elevation-dolor", name: "Beta Elevation", hz: "15.0 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/beta-elevation.wav", v: 1 },
       { id: "delta-awakening-dolor", name: "Delta Awakening", hz: "0.1-3 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/delta-awakening.wav", v: 1 },
       { id: "delta-om-dolor", name: "Delta OM", hz: "0.5-2.5 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/delta-om.wav", v: 1 },
-      { id: "delta-relief-dolor", name: "Delta Relief", hz: "0.5-1.5 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/delta-relief.wav", v: 1 }
+      { id: "delta-relief-dolor", name: "Delta Relief", hz: "0.5-1.5 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/delta-relief.wav", v: 1 },
+      { id: "delta-neurovia-dolor", name: "Delta Neurovia", hz: "0.5 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/delta-neurovia.wav", v: 1 },
+      { id: "delta-neuraxis-dolor", name: "Delta Neuraxis", hz: "0.16-1 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/delta-neuraxis.wav", v: 1 },
+      { id: "delta-teeth-heal-dolor", name: "Delta Teeth Heal", hz: "0.20-0.26 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/delta-teeth-heal.wav", v: 1 }
     ], "VITALIDAD": [
     { id: "alpha-origen-vitalidad", name: "Alpha Origen", hz: "8 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/alpha-origen.wav", v: 1 },
       { id: "alpha-alignment-vitalidad", name: "Alpha Alignment", hz: "10-12 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/alpha-alignment.wav", v: 2 },
       { id: "alpha-catalyst-vitalidad", name: "Alpha Catalyst", hz: "10.2 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/alpha-catalyst.wav", v: 2 },
       { id: "beta-logic-vitalidad", name: "Beta Logic", hz: "13-40 Hz", url: "/audio/beta-logic.mp3", v: 1 },
       { id: "delta-soma-vitalidad", name: "Delta Soma", hz: "0.1 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/delta-soma.wav", v: 1 },
-      { id: "delta-restora-vitalidad", name: "Delta Restora", hz: "0.5-4 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/delta-restora.wav", v: 1 }
   ] },
   EXPANSION: { "MEDITACION": [
     { id: "alpha-eros-meditacion", name: "Alpha Eros", hz: "9 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/alpha-eros.wav", v: 1 },
       { id: "beta-euphoria-meditacion", name: "Beta Euphoria", hz: "15-24 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/beta-euphoria.wav", v: 1 },
       { id: "beta-earth-meditacion", name: "Beta Earth", hz: "20.3 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/beta-earth.wav", v: 1 },
-      { id: "delta-soma-meditacion", name: "Delta Soma", hz: "0.1 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/delta-soma.wav", v: 1 }
+      { id: "delta-soma-meditacion", name: "Delta Soma", hz: "0.1 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/delta-soma.wav", v: 1 },
+      { id: "delta-euphoria-meditacion", name: "Delta Euphoria", hz: "0.9 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/delta-euphoria.wav", v: 1 }
   ], "PERCEPCION": [
     { id: "gaia-vision", name: "Gaia Vision", hz: "8.3 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/gaia-vision.wav", v: 1 },
     { id: "alpha-harmony-perc", name: "Alpha Harmony", hz: "9.19 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/alpha-harmony.wav", v: 1 },
@@ -459,6 +475,7 @@ const FREQ_TRACKS = {
       { id: "beta-aether-percepcion", name: "Beta Aether", hz: "26 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/beta-aether.wav", v: 2 }
   ], "EXPERIENCIAS": [
     { id: "alpha-origen-exp", name: "Alpha Origen", hz: "8 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/alpha-origen.wav", v: 1 },
+    { id: "delta-euphoria-experiencias", name: "Delta Euphoria", hz: "0.9 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/delta-euphoria.wav", v: 1 },
     { id: "gaia-pulse-exp", name: "Gaia Pulse", hz: "9.6 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/gaia-pulse.wav", v: 1 },
       { id: "beta-somnia-experiencias", name: "Beta Somnia", hz: "14-16 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/beta-somnia.wav", v: 1 },
       { id: "beta-lucent-experiencias", name: "Beta Lucent", hz: "20-30 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/beta-lucent.wav", v: 1 },
@@ -487,11 +504,15 @@ const FREQ_TRACKS = {
       { id: "alpha-airis-rituales", name: "Alpha Airis", hz: "8-11 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/alpha-airis.wav", v: 2 },
       { id: "alpha-lucid-flow", name: "Alpha Lucid Flow", hz: "9.14 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/alpha-lucid-flow.wav", v: 1 }
     ], "CEREMONIAS": [], "BIENESTAR_F": [
-    { id: "femin-essence", name: "Feminine Essence", hz: "—", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/femin-essence.wav", v: 1 }
+    { id: "femin-essence", name: "Feminine Essence", hz: "—", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/femin-essence.wav", v: 1 },
+    { id: "delta-neurovia-bienestar", name: "Delta Neurovia", hz: "0.5 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/delta-neurovia.wav", v: 1 }
   ] },
   ARMONIZACION: { "ADN": [
     { id: "delta-om-adn", name: "Delta OM", hz: "0.5-2.5 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/delta-om.wav", v: 1 }
-  ], "CAMPOS": [], "CELULAR": [], "REPRODUCTOR": [
+  ], "CAMPOS": [], "CELULAR": [
+    { id: "delta-restora-celular", name: "Delta Restora", hz: "0.5-4 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/delta-restora.wav", v: 1 },
+    { id: "delta-neuraxis-celular", name: "Delta Neuraxis", hz: "0.16-1 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/delta-neuraxis.wav", v: 1 }
+  ], "REPRODUCTOR": [
     { id: "alpha-eros-reproductor", name: "Alpha Eros", hz: "9 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/alpha-eros.wav", v: 1 }
   ] }
 };
