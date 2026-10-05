@@ -737,6 +737,41 @@ const inlineStyles = `
   .alineacion-banner { animation: fadeInDown 0.4s ease forwards; margin: 0 auto 12px; width: 85%; max-width: 340px; padding: 10px 16px; border-radius: 20px; background: rgba(34,211,238,0.05); border: 1px solid rgba(34,211,238,0.15); text-align: center; }
   .suggestion-badge { animation: fadeInDown 0.3s ease forwards; font-size: 9px; letter-spacing: 2px; color: rgba(34,211,238,0.75); text-transform: uppercase; font-weight: 200; }
   .coming-soon-box { text-align: center; color: rgba(255,255,255,0.2); padding: 40px 20px; font-size: 11px; letter-spacing: 3px; font-weight: 200; line-height: 2; }
+  .az-carousel-row {
+    display: flex; flex-wrap: nowrap; overflow-x: auto; gap: 10px;
+    width: 100%; max-width: 360px; padding: 10px 4px 14px;
+    scrollbar-width: none;
+  }
+  .az-carousel-row::-webkit-scrollbar { display: none; }
+  @keyframes az-orb-float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-4px); }
+  }
+  .az-orb {
+    flex-shrink: 0;
+    width: 38px; height: 38px;
+    border-radius: 50%;
+    border: 1px solid;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 13px; font-weight: 300;
+    cursor: pointer;
+    transition: all 0.25s ease;
+    animation: az-orb-float 3.5s ease-in-out infinite;
+  }
+  .az-orb.empty { opacity: 0.25; cursor: default; animation: none; }
+  .az-orb.active { transform: scale(1.12); box-shadow: 0 0 18px 2px currentColor; }
+  .az-glass-card {
+    display: flex; align-items: center; justify-content: space-between;
+    width: 100%; max-width: 340px; margin: 0 auto 10px;
+    padding: 14px 18px;
+    border-radius: 20px;
+    border: 1px solid;
+    background: rgba(255,255,255,0.04);
+    backdrop-filter: blur(10px);
+    cursor: pointer;
+    transition: all 0.25s ease;
+  }
+  .az-glass-card:hover { background: rgba(255,255,255,0.08); }
   .coming-soon-icon { font-size: 28px; margin-bottom: 16px; opacity: 0.4; }
   .logo-filtro-dorado { filter: sepia(1) hue-rotate(2deg) saturate(1.7) brightness(1.3) contrast(0.9) !important; box-shadow: 0 0 70px 8px rgba(230,205,150,0.5), 0 0 140px 16px rgba(230,205,150,0.28); transition: all 0.8s ease-in-out; }
   .logo-filtro-violeta { filter: sepia(1) hue-rotate(215deg) saturate(2.5) brightness(0.75) !important; transition: all 0.8s ease-in-out; }
@@ -1101,6 +1136,10 @@ const App = () => {
   const activeTabRef = useRef(activeTab);
   const favoritesRef = useRef(favorites);
   const selectedTrackRef = useRef(selectedTrack);
+  const [playlistQueue, setPlaylistQueue] = useState(null); // array de track ids de la subcategoria en "Sonar Todo", o null
+  const playlistQueueRef = useRef(null);
+  const [azLetter, setAzLetter] = useState(null);
+  const [azSearch, setAzSearch] = useState('');
   const t = T[lang];
   useEffect(() => { activeTabRef.current = activeTab; }, [activeTab]);
   // Reanudar audio cuando el usuario vuelve a la pantalla
@@ -1115,6 +1154,7 @@ const App = () => {
   }, [isPlaying]);
   useEffect(() => { favoritesRef.current = favorites; }, [favorites]);
   useEffect(() => { selectedTrackRef.current = selectedTrack; }, [selectedTrack]);
+  useEffect(() => { playlistQueueRef.current = playlistQueue; }, [playlistQueue]);
   useEffect(() => { favOrderRef.current = favOrder; }, [favOrder]);
   useEffect(() => {
     setFavOrder(prev => {
@@ -1198,6 +1238,20 @@ const App = () => {
     try { localStorage.removeItem('genora_last_time'); } catch {}
     const currentFavs = favoritesRef.current;
     const currentTrack = selectedTrackRef.current;
+    const queue = playlistQueueRef.current;
+    if (queue && queue.length > 0) {
+      const idx = queue.indexOf(currentTrack?.id);
+      if (idx >= 0 && idx < queue.length - 1) {
+        const nextTrack = ALL_TRACKS_FLAT.find(tr => tr.id === queue[idx + 1]);
+        if (nextTrack) {
+          setIsSuggestion(false); setSelectedTrack(nextTrack); setCurrentTime(0);
+          setTimeout(() => { if (audioRef.current) { audioRef.current.src = nextTrack.url; audioRef.current.play().catch(() => {}); } }, 100);
+          return;
+        }
+      }
+      setPlaylistQueue(null); setIsPlaying(false);
+      return;
+    }
     if (activeTabRef.current === 'favoritos') {
       // Usar favOrderRef para respetar el orden personalizado del usuario
       const orderedIds = favOrderRef.current.length > 0 ? favOrderRef.current : currentFavs;
@@ -1262,8 +1316,14 @@ const App = () => {
     const rect = e.currentTarget.getBoundingClientRect();
     audioRef.current.currentTime = ((e.clientX - rect.left) / rect.width) * duration;
   };
-  const playTrack = (track, suggestion = false) => {
+  const playTrack = (track, suggestion = false, fromQueue = false) => {
     setSelectedTrack(track); setIsSuggestion(suggestion); setIsPlaying(true);
+    if (!fromQueue) setPlaylistQueue(null);
+  };
+  const playAllInSubcategory = (tracks) => {
+    if (!tracks || tracks.length === 0) return;
+    setPlaylistQueue(tracks.map(tr => tr.id));
+    playTrack(tracks[0], false, true);
   };
   const getReminderText = () => {
     if (reminderTime === 'manana') return t.reminder_set_morning;
@@ -1334,6 +1394,62 @@ const App = () => {
       {t.coming_soon}
     </div>
   );
+  const ALPHABET = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('');
+  const AZCarousel = ({ tracks, accent = '#22d3ee' }) => {
+    const lettersWithContent = new Set(tracks.map(tr => tr.name.trim()[0]?.toUpperCase()).filter(Boolean));
+    const searchActive = azSearch.trim().length > 0;
+    const filtered = searchActive
+      ? tracks.filter(tr => tr.name.toLowerCase().includes(azSearch.trim().toLowerCase()))
+      : azLetter
+        ? tracks.filter(tr => tr.name.trim()[0]?.toUpperCase() === azLetter)
+        : [];
+    return (
+      <div style={{ width: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+        <input
+          type="text"
+          value={azSearch}
+          onChange={(e) => { setAzSearch(e.target.value); if (e.target.value.trim()) setAzLetter(null); }}
+          placeholder={lang === 'es' ? 'Buscar por nombre (A-Z)...' : 'Search by name (A-Z)...'}
+          style={{ width: '90%', maxWidth: '320px', marginBottom: '16px', background: `${accent}0f`, border: `1px solid ${accent}4d`, borderRadius: '24px', padding: '10px 18px', color: '#fff', fontSize: '13px', outline: 'none', letterSpacing: '0.3px' }}
+        />
+        {!searchActive && (
+          <div className="az-carousel-row">
+            {ALPHABET.map(letter => {
+              const hasContent = lettersWithContent.has(letter);
+              const active = azLetter === letter;
+              return (
+                <button
+                  key={letter}
+                  onClick={() => hasContent && setAzLetter(active ? null : letter)}
+                  className={`az-orb ${active ? 'active' : ''} ${hasContent ? 'has-content' : 'empty'}`}
+                  style={{ borderColor: `${accent}66`, color: active ? '#020617' : accent, background: active ? accent : `${accent}14` }}
+                >
+                  {letter}
+                </button>
+              );
+            })}
+          </div>
+        )}
+        <div style={{ width: '100%', marginTop: '18px' }}>
+          {(searchActive || azLetter) ? (
+            filtered.length === 0
+              ? <p style={{ color: 'rgba(255,255,255,0.4)', fontSize: '13px', textAlign: 'center', marginTop: '10px' }}>{lang === 'es' ? 'No se encontraron resultados.' : 'No results found.'}</p>
+              : filtered.map(track => <div key={track.id} className="az-glass-card" style={{ borderColor: `${accent}33` }} onClick={() => playTrack(track)}>
+                  <div style={{ textAlign: 'left' }}>
+                    <div style={{ fontSize: '14px', color: 'white', fontWeight: 300 }}>{track.name}</div>
+                    <div style={{ fontSize: '10px', color: accent, opacity: 0.7, marginTop: '4px' }}>{track.hz}</div>
+                  </div>
+                  <span style={{ color: accent, fontSize: '18px' }}>▶</span>
+                </div>)
+          ) : (
+            <p style={{ color: 'rgba(255,255,255,0.35)', fontSize: '12px', textAlign: 'center', fontWeight: 200, letterSpacing: '0.5px' }}>
+              {lang === 'es' ? 'Toca una letra para explorar esta biblioteca.' : 'Tap a letter to explore this library.'}
+            </p>
+          )}
+        </div>
+      </div>
+    );
+  };
   const PageHeader = ({ isGold = false, isViolet = false }) => (
     <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '16px', paddingTop: '10px' }}>
       {mainMode ? (
@@ -1882,8 +1998,20 @@ const App = () => {
           <div className="category-stack">
             <p style={{ fontSize: '10px', letterSpacing: '4px', color: '#22d3ee', textAlign: 'center', marginBottom: '16px', fontWeight: 200 }}>{t.freq_pillars[freqPillar]}</p>
             {Object.keys(t.pillars[freqPillar]?.subs || {}).map(sub => (
-              <div key={sub} className="pillar-card" onClick={() => setFreqSub(sub)}>{t.pillars[freqPillar].subs[sub]}</div>
+              <div key={sub} className="pillar-card" onClick={() => { setFreqSub(sub); setAzLetter(null); setAzSearch(''); }}>{t.pillars[freqPillar].subs[sub]}</div>
             ))}
+            {freqPillar === 'ARMONIZACION' && (
+              <div style={{ marginTop: '22px', padding: '16px 18px', border: '1px solid rgba(34,211,238,0.2)', borderRadius: '16px', background: 'rgba(34,211,238,0.03)', maxWidth: '320px' }}>
+                <p style={{ fontSize: '11px', letterSpacing: '1px', color: '#22d3ee', fontWeight: 300, marginBottom: '6px' }}>
+                  {lang === 'es' ? '✦ Acompañamiento Integrativo' : '✦ Integrative Support'}
+                </p>
+                <p style={{ fontSize: '10.5px', color: 'rgba(255,255,255,0.45)', fontWeight: 200, lineHeight: 1.6, letterSpacing: '0.2px' }}>
+                  {lang === 'es'
+                    ? 'Las frecuencias de GENORA están diseñadas como un soporte vibracional y bioenergético para acompañar tu proceso de transformación y bienestar. No reemplazan el diagnóstico, tratamiento ni cuidado médico convencional. Te sugerimos sostener siempre tus protocolos clínicos y consultar con tu profesional de la salud.'
+                    : 'GENORA frequencies are designed as a vibrational and bioenergetic support to accompany your wellness journey. They do not replace conventional medical diagnosis, treatment, or care. We encourage you to maintain your clinical protocols and consult your healthcare professional.'}
+                </p>
+              </div>
+            )}
           </div>
         )}
         {mainMode === 'frecuencias' && freqPillar && freqSub && (
@@ -1894,9 +2022,21 @@ const App = () => {
                 {MICROCOPYS[lang][freqSub]}
               </p>
             )}
-            {(FREQ_TRACKS[freqPillar]?.[freqSub] || []).length === 0
+            {(freqPillar === 'ARMONIZACION' && (freqSub === 'CAMPOS' || freqSub === 'CELULAR')) ? (
+              <AZCarousel tracks={FREQ_TRACKS[freqPillar]?.[freqSub] || []} accent="#22d3ee" />
+            ) : (FREQ_TRACKS[freqPillar]?.[freqSub] || []).length === 0
               ? <ComingSoon accent="#22d3ee" />
-              : FREQ_TRACKS[freqPillar][freqSub].map(track => <TrackCard key={track.id} track={track} onSelect={playTrack} />)
+              : (
+                <>
+                  <button
+                    onClick={() => playAllInSubcategory(FREQ_TRACKS[freqPillar][freqSub])}
+                    style={{ background: 'rgba(34,211,238,0.08)', border: '1px solid rgba(34,211,238,0.35)', borderRadius: '24px', padding: '9px 20px', color: '#22d3ee', fontSize: '11px', letterSpacing: '1.5px', textTransform: 'uppercase', cursor: 'pointer', marginBottom: '18px', fontWeight: 300 }}
+                  >
+                    ▶ {lang === 'es' ? 'Sonar Todo' : 'Play All'}
+                  </button>
+                  {FREQ_TRACKS[freqPillar][freqSub].map(track => <TrackCard key={track.id} track={track} onSelect={playTrack} />)}
+                </>
+              )
             }
           </div>
         )}
