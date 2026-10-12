@@ -150,8 +150,6 @@ const T = {
  
       "delta-awakening-regeneracion": "Relajacion profunda y regulacion del sistema nervioso.",
  
-      "delta-restora-celular": "Sanacion milagrosa, recuperacion de trauma y estados de coma.",
- 
       "delta-restora-regeneracion": "Sueno profundo, rejuvenecimiento, descanso y recuperacion.",
  
       "delta-shield-regulacion": "Recuperacion de un evento postraumatico.",
@@ -231,8 +229,6 @@ const T = {
       "delta-teeth-heal-dolor": "Sanacion de dientes y encias.",
  
       "delta-neurovia-bienestar": "Estimula la reproduccion.",
- 
-      "delta-neuraxis-celular": "Sanacion en sintomas de fibromialgia y esclerosis multiple.",
  
       "delta-neurovia-regeneracion": "Equilibrio glandula tiroides.",
  
@@ -1218,13 +1214,9 @@ const FREQ_TRACKS = {
  
   ], "CAMPOS": [
  
-    { id: "vertigo-mareos-campos", name: "Vertigo-Mareos (Rife)", hz: "—", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/vertigo-mareos.wav", v: 1 }
+    { id: "vertigo-mareos-campos", name: "Vertigo-Mareos", hz: "—", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/vertigo-mareos.wav", v: 1 }
  
   ], "CELULAR": [
- 
-    { id: "delta-restora-celular", name: "Delta Restora", hz: "0.5-4 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/delta-restora.wav", v: 1 },
- 
-    { id: "delta-neuraxis-celular", name: "Delta Neuraxis", hz: "0.16-1 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/delta-neuraxis.wav", v: 1 }
  
   ], "REPRODUCTOR": [
  
