@@ -282,11 +282,11 @@ const T = {
  
       "beta-axis-rendimiento": "Estado de alerta, vigilancia y atencion dirigida.",
  
-      "beta-axis-claridad": "Asociada a estados de alerta, vigilancia y atencion dirigida.",
+      "beta-axis-claridad": "Estados de alerta, vigilancia y atencion dirigida.",
  
-      "beta-axis-aprendizaje": "Acompana procesos de memoria, lectura, lenguaje y tareas cognitivas.",
+      "beta-axis-aprendizaje": "Procesos de memoria, lectura, lenguaje y tareas cognitivas.",
  
-      "beta-axis-regulacion": "Puede utilizarse como acompanamiento sonoro en momentos de tension o inquietud.",
+      "beta-axis-regulacion": "Acompanamiento sonoro en momentos de tension o inquietud.",
  
       "beta-lucent-percepcion": "Exploracion de experiencias luminosas y percepcion visual.",
  
