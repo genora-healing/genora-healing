@@ -384,6 +384,8 @@ const T = {
  
       "beta-attention": "Atencion consciente y respuesta mental agil.",
  
+      "beta-attention-integracion": "Ritmo sensoriomotor.",
+ 
       "alpha-balance-mind": "Reduce la tension y mejora la estabilidad mental.",
  
       "alpha-center": "Centracion, claridad y expresion consciente.",
@@ -395,6 +397,60 @@ const T = {
       "alpha-clarity": "Purificacion de pensamientos y vision nitida.",
  
       "gamma-insight": "Destellos de comprension profunda y epifanias.",
+ 
+      "gamma-decision-rendimiento": "Claridad mental en momentos de tensión y miedo profundo.",
+ 
+      "gamma-decision-regulacion": "Serenidad y equilibrio emocional, relajación de los músculos.",
+ 
+      "gamma-lumbar-dolor": "Estabilización en la zona lumbar y el bienestar corporal.",
+ 
+      "gamma-vitalis-organos": "Estimula la glándula pituitaria, regula el crecimiento, el sistema endocrino y sus funciones.",
+ 
+      "gamma-vitalis-vitalidad": "Estimula el desarrollo muscular y recupera lesiones.",
+ 
+      "gamma-vigil-rendimiento": "Atención, estado de alerta y vigilancia.",
+ 
+      "gamma-vigil-dolor": "Reduce la sensibilidad al dolor físico. Relaja el sistema nervioso.",
+ 
+      "gamma-kristos-meditacion": "Campo de consciencia de Dios.",
+ 
+      "gamma-kristos-conciencia": "Hipersensibilidad y percepción interna.",
+ 
+      "gamma-osteon-regeneracion": "Bienestar durante procesos de recuperación física.",
+ 
+      "gamma-arthron-dolor": "Estimula los estados regenerativos causados por la artritis.",
+ 
+      "gamma-arthron-regeneracion": "Equilibrio en el líquido sinovial.",
+ 
+      "gamma-swirls-meditacion": "Activación de vórtices energéticos.",
+ 
+      "gamma-swirls-conciencia": "Equilibrio y regulación de chakras medios.",
+ 
+      "gamma-nexus-regeneracion": "Activación y regulación olfativa.",
+ 
+      "gamma-nexus-rendimiento": "Alto nivel de procesamiento simultáneo de información.",
+ 
+      "gamma-endora-regulacion": "Estados de placer, calma y euforia, disminuye el cortisol.",
+ 
+      "gamma-schumann-conciencia": "Quinto armónico.",
+ 
+      "gamma-serene-regulacion": "Estabiliza estados de ansiedad.",
+ 
+      "gamma-serene-meditacion": "Momento de pausa, relajación interior.",
+ 
+      "gamma-insight-creatividad": "Enfoque para la solución de problemas.",
+ 
+      "gamma-insight-rituales": "Curación psíquica, experiencia fuera del cuerpo.",
+ 
+      "gamma-psyche-ceremonias": "Estado alterado sensorial, viaje astral y sanación psíquica.",
+ 
+      "gamma-onco-regeneracion": "Acompañamiento en procesos oncológicos de carcinomatosis y cáncer invasivo.",
+ 
+      "gamma-resonance-integracion": "Sexto armónico.",
+ 
+      "gamma-motoris-vitalidad": "Actividad y vitalidad corporal.",
+ 
+      "gamma-kundara-conciencia": "Activación de la energía vital y liberación espiritual Kundalini.",
  
       "beta-active-mind": "Aumenta la atencion externa y actividad mental.",
  
@@ -690,6 +746,8 @@ const T = {
  
       "beta-attention": "Conscious attention and agile mental response.",
  
+      "beta-attention-integracion": "Sensorimotor rhythm.",
+ 
       "alpha-balance-mind": "Reduces tension and improves mental stability.",
  
       "alpha-center": "Centering, clarity and conscious expression.",
@@ -701,6 +759,60 @@ const T = {
       "alpha-clarity": "Purification of thoughts and clear vision.",
  
       "gamma-insight": "Flashes of deep understanding and epiphanies.",
+ 
+      "gamma-decision-rendimiento": "Mental clarity in moments of tension and deep fear.",
+ 
+      "gamma-decision-regulacion": "Serenity and emotional balance, muscle relaxation.",
+ 
+      "gamma-lumbar-dolor": "Stabilizes the lower back and supports bodily wellbeing.",
+ 
+      "gamma-vitalis-organos": "Stimulates the pituitary gland, regulating growth, the endocrine system and its functions.",
+ 
+      "gamma-vitalis-vitalidad": "Stimulates muscle development and aids injury recovery.",
+ 
+      "gamma-vigil-rendimiento": "Attention, alertness and vigilance.",
+ 
+      "gamma-vigil-dolor": "Reduces sensitivity to physical pain. Relaxes the nervous system.",
+ 
+      "gamma-kristos-meditacion": "A field of divine consciousness.",
+ 
+      "gamma-kristos-conciencia": "Heightened sensitivity and inner perception.",
+ 
+      "gamma-osteon-regeneracion": "Supports wellbeing during physical recovery processes.",
+ 
+      "gamma-arthron-dolor": "Stimulates regenerative states for arthritis.",
+ 
+      "gamma-arthron-regeneracion": "Balances synovial fluid.",
+ 
+      "gamma-swirls-meditacion": "Activates energetic vortices.",
+ 
+      "gamma-swirls-conciencia": "Balances and regulates the middle chakras.",
+ 
+      "gamma-nexus-regeneracion": "Activates and regulates the sense of smell.",
+ 
+      "gamma-nexus-rendimiento": "High-level simultaneous information processing.",
+ 
+      "gamma-endora-regulacion": "States of pleasure, calm and euphoria; lowers cortisol.",
+ 
+      "gamma-schumann-conciencia": "Fifth harmonic.",
+ 
+      "gamma-serene-regulacion": "Stabilizes states of anxiety.",
+ 
+      "gamma-serene-meditacion": "A moment of pause, inner relaxation.",
+ 
+      "gamma-insight-creatividad": "Focus for problem-solving.",
+ 
+      "gamma-insight-rituales": "Psychic healing, out-of-body experience.",
+ 
+      "gamma-psyche-ceremonias": "Altered sensory state, astral travel and psychic healing.",
+ 
+      "gamma-onco-regeneracion": "Support through oncological processes of carcinomatosis and invasive cancer.",
+ 
+      "gamma-resonance-integracion": "Sixth harmonic.",
+ 
+      "gamma-motoris-vitalidad": "Bodily activity and vitality.",
+ 
+      "gamma-kundara-conciencia": "Activates vital energy and Kundalini spiritual release.",
  
       "beta-active-mind": "Increases external attention and mental activity.",
  
@@ -880,7 +992,9 @@ const FREQ_TRACKS = {
  
       { id: "beta-attention", name: "Beta Attention", hz: "12-15 Hz", url: "/audio/beta-attention.mp3", v: 1 },
  
-      { id: "alpha-voice", name: "Alpha Voice", hz: "8.22 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/alpha-voice.wav", v: 1 }
+      { id: "alpha-voice", name: "Alpha Voice", hz: "8.22 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/alpha-voice.wav", v: 1 },
+ 
+      { id: "gamma-insight-creatividad", name: "Gamma Insight", hz: "40 Hz", url: "/audio/gamma-insight.mp3", v: 1 }
  
     ],
  
@@ -922,7 +1036,13 @@ const FREQ_TRACKS = {
  
       { id: "beta-axis-rendimiento", name: "Beta Axis", hz: "18 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/beta-axis.wav", v: 1 },
  
-      { id: "beta-zenith-rendimiento", name: "Beta Zenith", hz: "22 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/beta-zenith.wav", v: 1 }
+      { id: "beta-zenith-rendimiento", name: "Beta Zenith", hz: "22 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/beta-zenith.wav", v: 1 },
+ 
+      { id: "gamma-decision-rendimiento", name: "Gamma Decision", hz: "30-60 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/gamma-decision.wav", v: 1 },
+ 
+      { id: "gamma-vigil-rendimiento", name: "Gamma Vigil", hz: "32 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/gamma-vigil.wav", v: 1 },
+ 
+      { id: "gamma-nexus-rendimiento", name: "Gamma Nexus", hz: "36-44 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/gamma-nexus.wav", v: 1 }
  
     ]
  
@@ -950,7 +1070,13 @@ const FREQ_TRACKS = {
  
       { id: "delta-release-regulacion", name: "Delta Release", hz: "0.28-2.15 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/delta-release.wav", v: 1 },
  
-      { id: "delta-slumber-regulacion", name: "Delta Slumber", hz: "1-3 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/delta-slumber.wav", v: 1 }
+      { id: "delta-slumber-regulacion", name: "Delta Slumber", hz: "1-3 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/delta-slumber.wav", v: 1 },
+ 
+      { id: "gamma-decision-regulacion", name: "Gamma Decision", hz: "30-60 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/gamma-decision.wav", v: 1 },
+ 
+      { id: "gamma-endora-regulacion", name: "Gamma Endora", hz: "38 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/gamma-endora.wav", v: 1 },
+ 
+      { id: "gamma-serene-regulacion", name: "Gamma Serene", hz: "40-60 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/gamma-serene.wav", v: 1 }
  
   ], "EQUILIBRIO": [
  
@@ -984,7 +1110,9 @@ const FREQ_TRACKS = {
  
       { id: "delta-awakening-integracion", name: "Delta Awakening", hz: "0.1-3 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/delta-awakening.wav", v: 1 },
  
-      { id: "delta-harmonis-integracion", name: "Delta Harmonis", hz: "2.15-10 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/delta-harmonis.wav", v: 1 }
+      { id: "delta-harmonis-integracion", name: "Delta Harmonis", hz: "2.15-10 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/delta-harmonis.wav", v: 1 },
+ 
+      { id: "gamma-resonance-integracion", name: "Gamma Resonance", hz: "45 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/gamma-resonance.wav", v: 1 }
  
   ] },
  
@@ -1005,6 +1133,14 @@ const FREQ_TRACKS = {
       { id: "delta-neuraxis-regeneracion", name: "Delta Neuraxis", hz: "0.16-1 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/delta-neuraxis.wav", v: 1 },
  
       { id: "delta-teeth-heal-regeneracion", name: "Delta Teeth Heal", hz: "0.20-0.26 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/delta-teeth-heal.wav", v: 1 },
+ 
+      { id: "gamma-osteon-regeneracion", name: "Gamma Osteon", hz: "35-150 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/gamma-osteon.wav", v: 1 },
+ 
+      { id: "gamma-arthron-regeneracion", name: "Gamma Arthron", hz: "35-193 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/gamma-arthron.wav", v: 1 },
+ 
+      { id: "gamma-nexus-regeneracion", name: "Gamma Nexus", hz: "36-44 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/gamma-nexus.wav", v: 1 },
+ 
+      { id: "gamma-onco-regeneracion", name: "Gamma Onco", hz: "43-193 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/gamma-onco.wav", v: 1 },
  
       { id: "delta-release-regeneracion", name: "Delta Release", hz: "0.28-2.15 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/delta-release.wav", v: 1 },
  
@@ -1050,6 +1186,8 @@ const FREQ_TRACKS = {
  
       { id: "delta-morph-organos", name: "Delta Morph", hz: "0.1-1.0 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/delta-morph.wav", v: 1 },
  
+      { id: "gamma-vitalis-organos", name: "Gamma Vitalis", hz: "31.32 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/gamma-vitalis.wav", v: 1 },
+ 
       { id: "delta-harmony-organos", name: "Delta Harmony", hz: "1 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/delta-harmony.wav", v: 1 },
  
       { id: "delta-sinus-organos", name: "Delta Sinus", hz: "1.8 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/delta-sinus.wav", v: 1 },
@@ -1072,6 +1210,12 @@ const FREQ_TRACKS = {
  
       { id: "delta-teeth-heal-dolor", name: "Delta Teeth Heal", hz: "0.20-0.26 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/delta-teeth-heal.wav", v: 1 },
  
+      { id: "gamma-lumbar-dolor", name: "Gamma Lumbar", hz: "30-190 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/gamma-lumbar.wav", v: 1 },
+ 
+      { id: "gamma-vigil-dolor", name: "Gamma Vigil", hz: "32 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/gamma-vigil.wav", v: 1 },
+ 
+      { id: "gamma-arthron-dolor", name: "Gamma Arthron", hz: "35-193 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/gamma-arthron.wav", v: 1 },
+ 
       { id: "delta-joint-dolor", name: "Delta Joint", hz: "0.28-10 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/delta-joint.wav", v: 1 },
  
       { id: "delta-movaris-dolor", name: "Delta Movaris", hz: "0.45-1 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/delta-movaris.wav", v: 1 },
@@ -1092,7 +1236,11 @@ const FREQ_TRACKS = {
  
       { id: "delta-soma-vitalidad", name: "Delta Soma", hz: "0.1 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/delta-soma.wav", v: 1 },
  
-      { id: "delta-pretty-vitalidad", name: "Delta Pretty", hz: "1.05 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/delta-pretty.wav", v: 1 }
+      { id: "delta-pretty-vitalidad", name: "Delta Pretty", hz: "1.05 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/delta-pretty.wav", v: 1 },
+ 
+      { id: "gamma-vitalis-vitalidad", name: "Gamma Vitalis", hz: "31.32 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/gamma-vitalis.wav", v: 1 },
+ 
+      { id: "gamma-motoris-vitalidad", name: "Gamma Motoris", hz: "50 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/gamma-motoris.wav", v: 1 }
  
   ] },
  
@@ -1107,6 +1255,12 @@ const FREQ_TRACKS = {
       { id: "delta-soma-meditacion", name: "Delta Soma", hz: "0.1 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/delta-soma.wav", v: 1 },
  
       { id: "delta-euphoria-meditacion", name: "Delta Euphoria", hz: "0.9 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/delta-euphoria.wav", v: 1 },
+ 
+      { id: "gamma-kristos-meditacion", name: "Gamma Kristos", hz: "33 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/gamma-kristos.wav", v: 1 },
+ 
+      { id: "gamma-swirls-meditacion", name: "Gamma Swirls", hz: "35 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/gamma-swirls.wav", v: 1 },
+ 
+      { id: "gamma-serene-meditacion", name: "Gamma Serene", hz: "40-60 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/gamma-serene.wav", v: 1 },
  
       { id: "delta-slumber-meditacion", name: "Delta Slumber", hz: "1-3 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/delta-slumber.wav", v: 1 },
  
@@ -1180,7 +1334,15 @@ const FREQ_TRACKS = {
  
       { id: "delta-noctis-conciencia", name: "Delta Noctis", hz: "0.1-2.7 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/delta-noctis.wav", v: 1 },
  
-      { id: "delta-restora-conciencia", name: "Delta Restora", hz: "0.5-4 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/delta-restora.wav", v: 1 }
+      { id: "delta-restora-conciencia", name: "Delta Restora", hz: "0.5-4 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/delta-restora.wav", v: 1 },
+ 
+      { id: "gamma-kristos-conciencia", name: "Gamma Kristos", hz: "33 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/gamma-kristos.wav", v: 1 },
+ 
+      { id: "gamma-swirls-conciencia", name: "Gamma Swirls", hz: "35 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/gamma-swirls.wav", v: 1 },
+ 
+      { id: "gamma-schumann-conciencia", name: "Gamma Schumann", hz: "39 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/gamma-schumann.wav", v: 1 },
+ 
+      { id: "gamma-kundara-conciencia", name: "Gamma Kundara", hz: "55 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/gamma-kundara.wav", v: 1 }
  
   ] },
  
@@ -1188,9 +1350,15 @@ const FREQ_TRACKS = {
  
       { id: "alpha-airis-rituales", name: "Alpha Airis", hz: "8-11 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/alpha-airis.wav", v: 2 },
  
-      { id: "alpha-lucid-flow", name: "Alpha Lucid Flow", hz: "9.14 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/alpha-lucid-flow.wav", v: 1 }
+      { id: "alpha-lucid-flow", name: "Alpha Lucid Flow", hz: "9.14 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/alpha-lucid-flow.wav", v: 1 },
  
-    ], "CEREMONIAS": [], "BIENESTAR_F": [
+      { id: "gamma-insight-rituales", name: "Gamma Insight", hz: "40 Hz", url: "/audio/gamma-insight.mp3", v: 1 }
+ 
+    ], "CEREMONIAS": [
+ 
+    { id: "gamma-psyche-ceremonias", name: "Gamma Psyche", hz: "40 + 22 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/gamma-psyche.wav", v: 1 }
+ 
+    ], "BIENESTAR_F": [
  
     { id: "femin-essence", name: "Feminine Essence", hz: "—", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/femin-essence.wav", v: 1 },
  
