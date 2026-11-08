@@ -53,6 +53,18 @@ const T = {
     catalog: "CATALOGO",
  
     my_alignment: "MI ALINEACION",
+    ghost_label: "✦ Frecuencia Sugerida para Ti",
+    ghost_label_b: "✦ Sintonía No Descubierta",
+    ghost_label_new: "✦ NUEVA SINTONÍA",
+    ghost_reveal: "Revelar Otra",
+    ghost_play: "Escuchar",
+    ghost_save: "Guardar",
+    ghost_saved: "Guardada",
+    ghost_note_armonizacion: "Acompañamiento integrativo: las frecuencias GENORA no reemplazan el diagnóstico, tratamiento ni cuidado médico.",
+    clear_alignment: "Vaciar Alineación",
+    restore_alignment: "Restaurar última alineación",
+    alignment_cleared: "Alineación vaciada.",
+    undo: "Deshacer",
  
     my_field: "MI CAMPO DE RESONANCIA",
  
@@ -282,11 +294,11 @@ const T = {
  
       "beta-axis-rendimiento": "Estado de alerta, vigilancia y atencion dirigida.",
  
-      "beta-axis-claridad": "Estados de alerta, vigilancia y atencion dirigida.",
+      "beta-axis-claridad": "Asociada a estados de alerta, vigilancia y atencion dirigida.",
  
-      "beta-axis-aprendizaje": "Procesos de memoria, lectura, lenguaje y tareas cognitivas.",
+      "beta-axis-aprendizaje": "Acompana procesos de memoria, lectura, lenguaje y tareas cognitivas.",
  
-      "beta-axis-regulacion": "Acompanamiento sonoro en momentos de tension o inquietud.",
+      "beta-axis-regulacion": "Puede utilizarse como acompanamiento sonoro en momentos de tension o inquietud.",
  
       "beta-lucent-percepcion": "Exploracion de experiencias luminosas y percepcion visual.",
  
@@ -539,6 +551,18 @@ const T = {
     catalog: "CATALOG",
  
     my_alignment: "MY ALIGNMENT",
+    ghost_label: "✦ Suggested Frequency for You",
+    ghost_label_b: "✦ Undiscovered Tuning",
+    ghost_label_new: "✦ NEW TUNING",
+    ghost_reveal: "Reveal Another",
+    ghost_play: "Listen",
+    ghost_save: "Save",
+    ghost_saved: "Saved",
+    ghost_note_armonizacion: "Integrative support: GENORA frequencies do not replace medical diagnosis, treatment or care.",
+    clear_alignment: "Clear Alignment",
+    restore_alignment: "Restore last alignment",
+    alignment_cleared: "Alignment cleared.",
+    undo: "Undo",
  
     my_field: "MY RESONANCE FIELD",
  
@@ -1396,6 +1420,29 @@ const FREQ_TRACKS = {
  
 const ALL_TRACKS_FLAT = Object.values(FREQ_TRACKS).flatMap(p => Object.values(p).flat()).filter(t => t.url);
  
+// ── Frecuencia Fantasma (sistema de descubrimiento) ─────────────────────────
+// Candidatas: una por archivo de audio (sin repetir la misma frecuencia guardada
+// en varias subcategorías). Armonización Biológica NO entra al azar: solo aparece
+// cuando una frecuencia se marca con  nuevo: true  (anuncio de lanzamiento).
+const NEW_TRACK_URLS = new Set(ALL_TRACKS_FLAT.filter(tr => tr.nuevo).map(tr => tr.url));
+const GHOST_PILLARS = ['MENTE', 'COHERENCIA', 'CUERPO', 'EXPANSION', 'EXPERIENCIAS_G', 'ARMONIZACION'];
+const GHOST_CANDIDATES = (() => {
+  const seen = new Set();
+  const out = [];
+  GHOST_PILLARS.forEach(p => {
+    Object.values(FREQ_TRACKS[p] || {}).forEach(list => {
+      if (!Array.isArray(list)) return;
+      list.forEach(tr => {
+        if (!tr.url || seen.has(tr.url)) return;
+        if (p === 'ARMONIZACION' && !tr.nuevo) return;
+        seen.add(tr.url);
+        out.push({ ...tr, pillar: p });
+      });
+    });
+  });
+  return out;
+})();
+ 
 const MED_DATA = {
  
   LINAJE: { sessions: [
@@ -1906,6 +1953,26 @@ const inlineStyles = `
  
   .az-glass-card:hover { background: rgba(255,255,255,0.08); }
  
+  .ghost-card { position: relative; width: 100%; max-width: 320px; margin: 24px auto 0; border-radius: 22px; padding: 16px 18px; background: rgba(255,255,255,0.035); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); text-align: left; box-sizing: border-box; }
+  .ghost-glow { position: absolute; inset: 0; border-radius: 22px; pointer-events: none; border: 1px solid rgba(34,211,238,0.55); box-shadow: 0 0 18px rgba(34,211,238,0.35), inset 0 0 14px rgba(34,211,238,0.12); opacity: 0.3; animation: ghost-breathe 4.5s ease-in-out infinite; will-change: opacity; }
+  .ghost-card.gold .ghost-glow { border-color: rgba(212,175,55,0.6); box-shadow: 0 0 18px rgba(212,175,55,0.35), inset 0 0 14px rgba(212,175,55,0.12); }
+  @keyframes ghost-breathe { 0%, 100% { opacity: 0.3; } 50% { opacity: 1; } }
+  .ghost-inner { position: relative; }
+  .ghost-fade { animation: ghost-fade-in 0.6s ease both; }
+  @keyframes ghost-fade-in { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
+  .ghost-label { font-size: 10px; letter-spacing: 2px; color: #22d3ee; font-weight: 300; margin-bottom: 8px; }
+  .ghost-card.gold .ghost-label { color: #d4af37; }
+  .ghost-actions { display: flex; gap: 8px; margin-top: 14px; }
+  .ghost-btn { flex: 1; min-width: 0; padding: 9px 8px; border-radius: 14px; border: 1px solid rgba(34,211,238,0.35); background: rgba(34,211,238,0.06); color: #22d3ee; font-size: 11px; letter-spacing: 1px; font-weight: 300; cursor: pointer; font-family: inherit; }
+  .ghost-btn:disabled { opacity: 0.7; cursor: default; }
+  .ghost-card.gold .ghost-btn { border-color: rgba(212,175,55,0.4); background: rgba(212,175,55,0.06); color: #d4af37; }
+  .ghost-reveal { display: block; margin: 12px auto 0; background: transparent; border: none; color: rgba(255,255,255,0.5); font-size: 10.5px; letter-spacing: 2px; font-weight: 200; cursor: pointer; font-family: inherit; padding: 4px 8px; }
+  .align-actions { display: flex; justify-content: center; gap: 10px; flex-wrap: wrap; margin-bottom: 16px; }
+  .align-action-btn { background: transparent; border: 1px solid rgba(255,255,255,0.15); color: rgba(255,255,255,0.55); border-radius: 14px; padding: 7px 14px; font-size: 10.5px; letter-spacing: 1px; font-weight: 200; cursor: pointer; font-family: inherit; }
+  .align-action-btn.restore { border-color: rgba(34,211,238,0.4); color: #22d3ee; }
+  .undo-toast { position: fixed; left: 50%; bottom: 84px; transform: translateX(-50%); z-index: 9999; display: flex; align-items: center; gap: 14px; padding: 12px 18px; border-radius: 18px; background: rgba(15,23,42,0.82); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); border: 1px solid rgba(34,211,238,0.3); color: rgba(255,255,255,0.85); font-size: 12px; font-weight: 200; letter-spacing: 0.5px; white-space: nowrap; animation: toast-in 0.35s ease both; }
+  .undo-toast button { background: transparent; border: none; color: #22d3ee; font-size: 12px; font-weight: 300; letter-spacing: 1px; cursor: pointer; font-family: inherit; padding: 2px 4px; }
+  @keyframes toast-in { from { opacity: 0; transform: translate(-50%, 12px); } to { opacity: 1; transform: translate(-50%, 0); } }
   .coming-soon-icon { font-size: 28px; margin-bottom: 16px; opacity: 0.4; }
  
   .logo-filtro-dorado { filter: sepia(1) hue-rotate(2deg) saturate(1.7) brightness(1.3) contrast(0.9) !important; box-shadow: 0 0 70px 8px rgba(230,205,150,0.5), 0 0 140px 16px rgba(230,205,150,0.28); transition: all 0.8s ease-in-out; }
@@ -2524,6 +2591,29 @@ const App = () => {
  
   const [favOrder, setFavOrder] = useState([]);
  
+  const [ghostId, setGhostId] = useState(null);
+ 
+  const [ghostSeen, setGhostSeen] = useState([]);
+ 
+  const [ghostSavedId, setGhostSavedId] = useState(null);
+ 
+  const [newSeen, setNewSeen] = useState(() => {
+    try { const raw = JSON.parse(localStorage.getItem('genora_new_seen')); return Array.isArray(raw) ? raw : []; } catch { return []; }
+  });
+ 
+  const newSeenRef = useRef(newSeen);
+ 
+  const [playlistBackup, setPlaylistBackup] = useState(() => {
+    try {
+      const raw = JSON.parse(localStorage.getItem('genora_playlist_backup'));
+      return raw && Array.isArray(raw.favorites) && raw.favorites.length > 0 ? raw : null;
+    } catch { return null; }
+  });
+ 
+  const [undoToast, setUndoToast] = useState(false);
+ 
+  const undoTimerRef = useRef(null);
+ 
   const [draggingId, setDraggingId] = useState(null);
  
   const [overIdx, setOverIdx] = useState(null);
@@ -2917,6 +3007,134 @@ const App = () => {
     if (isSuggestion && selectedTrack?.id === trackId) setIsSuggestion(false);
  
   };
+ 
+  // ── Frecuencia Fantasma ────────────────────────────────────────────────────
+  const pickGhost = (seen, currentId) => {
+    const favUrls = new Set(
+      favoritesRef.current.map(id => ALL_TRACKS_FLAT.find(tr => tr.id === id)?.url).filter(Boolean)
+    );
+    const seenNew = newSeenRef.current;
+    const pool = GHOST_CANDIDATES.filter(tr =>
+      !favUrls.has(tr.url) && !(tr.pillar === 'ARMONIZACION' && seenNew.includes(tr.url))
+    );
+    if (pool.length === 0) return null;
+    let baseSeen = seen;
+    let fresh = pool.filter(tr => !baseSeen.includes(tr.id));
+    if (fresh.length === 0) {
+      baseSeen = [];
+      fresh = pool.length > 1 ? pool.filter(tr => tr.id !== currentId) : pool;
+    }
+    const launches = fresh.filter(tr => tr.nuevo && !seenNew.includes(tr.url));
+    const from = launches.length > 0 ? launches : fresh;
+    const pick = from[Math.floor(Math.random() * from.length)];
+    return { pick, seen: [...baseSeen, pick.id] };
+  };
+ 
+  const revealAnotherGhost = () => {
+    const r = pickGhost(ghostSeen, ghostId);
+    if (r) { setGhostId(r.pick.id); setGhostSeen(r.seen); }
+  };
+ 
+  useEffect(() => {
+    if (ghostSavedId && ghostSavedId === ghostId) return;
+    const favUrls = new Set(
+      favorites.map(id => ALL_TRACKS_FLAT.find(tr => tr.id === id)?.url).filter(Boolean)
+    );
+    const cur = GHOST_CANDIDATES.find(cn => cn.id === ghostId);
+    const stale = cur && cur.pillar === 'ARMONIZACION' && newSeen.includes(cur.url);
+    if (!cur || favUrls.has(cur.url) || stale) revealAnotherGhost();
+  }, [favorites, ghostId, newSeen]);
+ 
+  // Al dar play a una frecuencia "nueva", deja de anunciarse para esta persona
+  useEffect(() => {
+    newSeenRef.current = newSeen;
+  }, [newSeen]);
+ 
+  useEffect(() => {
+    if (!isPlaying || !selectedTrack || !NEW_TRACK_URLS.has(selectedTrack.url)) return;
+    if (newSeenRef.current.includes(selectedTrack.url)) return;
+    const next = [...newSeenRef.current, selectedTrack.url];
+    newSeenRef.current = next;
+    setNewSeen(next);
+    try { localStorage.setItem('genora_new_seen', JSON.stringify(next)); } catch {}
+  }, [isPlaying, selectedTrack]);
+ 
+  const saveGhostToAlignment = (track) => {
+    setFavorites(prev => prev.includes(track.id) ? prev : [...prev, track.id]);
+    setGhostSavedId(track.id);
+    setTimeout(() => { setGhostSavedId(null); revealAnotherGhost(); }, 1100);
+  };
+ 
+  // ── Vaciar / restaurar Mi Alineación ───────────────────────────────────────
+  const handleClearAlignment = () => {
+    if (favoritesRef.current.length === 0) return;
+    const backup = { favorites: [...favoritesRef.current], order: [...favOrderRef.current], at: Date.now() };
+    setPlaylistBackup(backup);
+    try { localStorage.setItem('genora_playlist_backup', JSON.stringify(backup)); } catch {}
+    setFavorites([]);
+    setFavOrder([]);
+    setUndoToast(true);
+    clearTimeout(undoTimerRef.current);
+    undoTimerRef.current = setTimeout(() => setUndoToast(false), 8000);
+  };
+ 
+  const handleRestoreAlignment = () => {
+    if (!playlistBackup) return;
+    const current = favoritesRef.current;
+    const restored = [...playlistBackup.favorites, ...current.filter(id => !playlistBackup.favorites.includes(id))];
+    const baseOrder = (playlistBackup.order && playlistBackup.order.length > 0 ? playlistBackup.order : playlistBackup.favorites)
+      .filter(id => restored.includes(id));
+    const order = [...baseOrder, ...restored.filter(id => !baseOrder.includes(id))];
+    setFavorites(restored);
+    setFavOrder(order);
+    setPlaylistBackup(null);
+    try { localStorage.removeItem('genora_playlist_backup'); } catch {}
+    clearTimeout(undoTimerRef.current);
+    setUndoToast(false);
+    setListMountKey(k => k + 1);
+  };
+ 
+  const renderGhostCard = (variant = 'cyan') => {
+    const gt = GHOST_CANDIDATES.find(cn => cn.id === ghostId);
+    if (!gt) return null;
+    const isNew = !!gt.nuevo && !newSeen.includes(gt.url);
+    const saved = ghostSavedId === gt.id;
+    const label = isNew ? t.ghost_label_new : (variant === 'gold' ? t.ghost_label_b : t.ghost_label);
+    return (
+      <div className={`ghost-card ${variant === 'gold' ? 'gold' : ''}`}>
+        <div className="ghost-glow" />
+        <div className="ghost-inner ghost-fade" key={gt.id}>
+          <div className="ghost-label">{label}</div>
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', gap: '10px' }}>
+            <div style={{ fontSize: '15px', color: 'white', fontWeight: 300 }}>{gt.name}</div>
+            <div style={{ fontSize: '9px', color: variant === 'gold' ? '#d4af37' : '#22d3ee', opacity: 0.7, whiteSpace: 'nowrap' }}>{gt.hz}</div>
+          </div>
+          <div style={{ fontSize: '11px', color: '#fdfcf5', opacity: 0.6, marginTop: '6px', fontWeight: 200, letterSpacing: '0.5px', lineHeight: 1.5 }}>
+            {t.tracks[gt.id] || ''}
+          </div>
+          {gt.pillar === 'ARMONIZACION' && (
+            <div style={{ fontSize: '9.5px', color: 'rgba(255,255,255,0.4)', marginTop: '10px', fontWeight: 200, lineHeight: 1.5 }}>
+              {t.ghost_note_armonizacion}
+            </div>
+          )}
+          <div className="ghost-actions">
+            <button className="ghost-btn" onClick={() => playTrack(gt, false)}>▶ {t.ghost_play}</button>
+            <button className="ghost-btn" onClick={() => saveGhostToAlignment(gt)} disabled={saved}>
+              {saved ? `✓ ${t.ghost_saved}` : `+ ♡ ${t.ghost_save}`}
+            </button>
+          </div>
+          <button className="ghost-reveal" onClick={revealAnotherGhost}>✦ {t.ghost_reveal}</button>
+        </div>
+      </div>
+    );
+  };
+ 
+  const undoToastEl = undoToast ? (
+    <div className="undo-toast">
+      <span>{t.alignment_cleared}</span>
+      <button onClick={handleRestoreAlignment}>↺ {t.undo}</button>
+    </div>
+  ) : null;
  
   const handleReminderSelect = (key) => {
  
@@ -4152,6 +4370,22 @@ const App = () => {
  
         </p>
  
+        {(orderedTracks.length > 0 || playlistBackup) && (
+ 
+          <div className="align-actions">
+ 
+            {orderedTracks.length > 0 && (
+              <button className="align-action-btn" onClick={handleClearAlignment}>🗑️ {t.clear_alignment}</button>
+            )}
+ 
+            {playlistBackup && (
+              <button className="align-action-btn restore" onClick={handleRestoreAlignment}>↺ {t.restore_alignment}</button>
+            )}
+ 
+          </div>
+ 
+        )}
+ 
         <ReminderSection />
  
         {orderedTracks.length === 0 ? (
@@ -4278,6 +4512,10 @@ const App = () => {
  
         )}
  
+        {renderGhostCard('gold')}
+ 
+        {undoToastEl}
+ 
         <BottomBar />
  
       </div>
@@ -4333,6 +4571,8 @@ const App = () => {
           </div>
  
         )}
+ 
+        {!mainMode && renderGhostCard('cyan')}
  
         {mainMode === 'frecuencias' && !freqPillar && (
  
@@ -4561,6 +4801,8 @@ const App = () => {
         )}
  
       </div>
+ 
+      {undoToastEl}
  
       <BottomBar />
  
