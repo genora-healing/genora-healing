@@ -56,6 +56,10 @@ const T = {
     ghost_label: "✦ Frecuencia Sugerida para Ti",
     ghost_label_b: "✦ Sintonía No Descubierta",
     ghost_label_new: "✦ NUEVA SINTONÍA",
+    ghost_ov_label: "✦ REVELACIÓN DE RESONANCIA ✦",
+    ghost_ov_label_new: "✦ NUEVA SINTONÍA ✦",
+    ghost_ov_hint: "✦ Toca la pantalla para sintonizar esta sugerencia",
+    ghost_ov_back: "Regresar a mi selección",
     ghost_reveal: "Revelar Otra",
     ghost_play: "Escuchar",
     ghost_save: "Guardar",
@@ -554,6 +558,10 @@ const T = {
     ghost_label: "✦ Suggested Frequency for You",
     ghost_label_b: "✦ Undiscovered Tuning",
     ghost_label_new: "✦ NEW TUNING",
+    ghost_ov_label: "✦ RESONANCE REVEALED ✦",
+    ghost_ov_label_new: "✦ NEW TUNING ✦",
+    ghost_ov_hint: "✦ Tap the screen to tune into this suggestion",
+    ghost_ov_back: "Back to my selection",
     ghost_reveal: "Reveal Another",
     ghost_play: "Listen",
     ghost_save: "Save",
@@ -1967,6 +1975,16 @@ const inlineStyles = `
   .ghost-btn:disabled { opacity: 0.7; cursor: default; }
   .ghost-card.gold .ghost-btn { border-color: rgba(212,175,55,0.4); background: rgba(212,175,55,0.06); color: #d4af37; }
   .ghost-reveal { display: block; margin: 12px auto 0; background: transparent; border: none; color: rgba(255,255,255,0.5); font-size: 10.5px; letter-spacing: 2px; font-weight: 200; cursor: pointer; font-family: inherit; padding: 4px 8px; }
+  .ghost-overlay { position: fixed; inset: 0; z-index: 150; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 30px 28px; background: rgba(2,6,23,0.4); backdrop-filter: blur(5px); -webkit-backdrop-filter: blur(5px); cursor: pointer; animation: ghost-overlay-in 0.8s ease both; }
+  .ghost-overlay.leaving { animation: ghost-overlay-out 0.6s ease forwards; pointer-events: none; }
+  @keyframes ghost-overlay-in { from { opacity: 0; } to { opacity: 1; } }
+  @keyframes ghost-overlay-out { from { opacity: 1; } to { opacity: 0; } }
+  .ghost-ov-label { font-size: 11px; letter-spacing: 4px; color: #d4af37; font-weight: 300; margin-bottom: 18px; text-shadow: 0 0 12px rgba(212,175,55,0.35); }
+  .ghost-ov-name { font-size: 26px; letter-spacing: 3px; color: #22d3ee; font-weight: 200; margin-bottom: 10px; text-shadow: 0 0 18px rgba(34,211,238,0.4); }
+  .ghost-ov-sub { font-size: 13px; color: rgba(253,252,245,0.75); font-weight: 200; letter-spacing: 1px; line-height: 1.6; max-width: 300px; }
+  .ghost-ov-hint { margin-top: 38px; font-size: 11px; letter-spacing: 3px; color: #22d3ee; font-weight: 200; animation: ghost-hint 2.8s ease-in-out infinite; max-width: 280px; line-height: 1.7; }
+  @keyframes ghost-hint { 0%, 100% { opacity: 0.35; } 50% { opacity: 1; } }
+  .ghost-ov-back { position: absolute; bottom: 38px; left: 50%; transform: translateX(-50%); background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.2); color: rgba(255,255,255,0.7); border-radius: 18px; padding: 10px 22px; font-size: 11px; letter-spacing: 2px; font-weight: 200; cursor: pointer; font-family: inherit; white-space: nowrap; }
   .align-actions { display: flex; justify-content: center; gap: 10px; flex-wrap: wrap; margin-bottom: 16px; }
   .align-action-btn { background: transparent; border: 1px solid rgba(255,255,255,0.15); color: rgba(255,255,255,0.55); border-radius: 14px; padding: 7px 14px; font-size: 10.5px; letter-spacing: 1px; font-weight: 200; cursor: pointer; font-family: inherit; }
   .align-action-btn.restore { border-color: rgba(34,211,238,0.4); color: #22d3ee; }
@@ -2597,6 +2615,10 @@ const App = () => {
  
   const [ghostSavedId, setGhostSavedId] = useState(null);
  
+  const [ghostOverlayOpen, setGhostOverlayOpen] = useState(false);
+ 
+  const [ghostLeaving, setGhostLeaving] = useState(false);
+ 
   const [newSeen, setNewSeen] = useState(() => {
     try { const raw = JSON.parse(localStorage.getItem('genora_new_seen')); return Array.isArray(raw) ? raw : []; } catch { return []; }
   });
@@ -3092,6 +3114,48 @@ const App = () => {
     clearTimeout(undoTimerRef.current);
     setUndoToast(false);
     setListMountKey(k => k + 1);
+  };
+ 
+  // ── Pantalla fantasma (overlay al entrar a Frecuencias) ───────────────────
+  const openGhostOverlay = () => {
+    const r = pickGhost(ghostSeen, ghostId);
+    if (!r) return;
+    setGhostId(r.pick.id);
+    setGhostSeen(r.seen);
+    setGhostOverlayOpen(true);
+  };
+ 
+  const startGhostFromOverlay = () => {
+    const gt = GHOST_CANDIDATES.find(cn => cn.id === ghostId);
+    if (!gt) { setGhostOverlayOpen(false); return; }
+    setGhostOverlayOpen(false);
+    setGhostLeaving(true);
+    playTrack(gt, true);
+    setTimeout(() => setGhostLeaving(false), 700);
+  };
+ 
+  const renderGhostOverlay = (leaving = false) => {
+    const gt = GHOST_CANDIDATES.find(cn => cn.id === ghostId);
+    if (!gt) return null;
+    const isNew = !!gt.nuevo && !newSeen.includes(gt.url);
+    return (
+      <div className={`ghost-overlay ${leaving ? 'leaving' : ''}`} onClick={leaving ? undefined : startGhostFromOverlay}>
+        <div className="ghost-ov-label">{isNew ? t.ghost_ov_label_new : t.ghost_ov_label}</div>
+        <div className="ghost-ov-name">{gt.name}</div>
+        <div className="ghost-ov-sub">{gt.hz} · {t.tracks[gt.id] || ''}</div>
+        {gt.pillar === 'ARMONIZACION' && (
+          <div style={{ fontSize: '10px', color: 'rgba(255,255,255,0.4)', marginTop: '18px', fontWeight: 200, lineHeight: 1.5, maxWidth: '280px' }}>
+            {t.ghost_note_armonizacion}
+          </div>
+        )}
+        <div className="ghost-ov-hint">{t.ghost_ov_hint}</div>
+        {!leaving && (
+          <button className="ghost-ov-back" onClick={(e) => { e.stopPropagation(); setGhostOverlayOpen(false); }}>
+            ← {t.ghost_ov_back}
+          </button>
+        )}
+      </div>
+    );
   };
  
   const renderGhostCard = (variant = 'cyan') => {
@@ -3687,6 +3751,8 @@ const App = () => {
     return (
  
       <div key={selectedTrack.id} className="fade-in-smooth" style={{ backgroundColor: '#020617', minHeight: '100vh', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', textAlign: 'center', position: 'relative', padding: '20px' }}>
+ 
+        {ghostLeaving && renderGhostOverlay(true)}
  
         <style>{inlineStyles}</style>
  
@@ -4538,6 +4604,8 @@ const App = () => {
  
       <style>{inlineStyles}</style>
  
+      {ghostOverlayOpen && renderGhostOverlay(false)}
+ 
       {showBanner && <div className="alineacion-banner" style={{ marginTop: '10px' }}><p style={{ fontSize: '11px', letterSpacing: '2px', color: '#22d3ee', margin: 0, fontWeight: 200 }}>{t.banner}</p></div>}
  
       <PageHeader isGold={mainMode === 'experiencias'} isViolet={mainMode === 'meditaciones'} />
@@ -4560,7 +4628,7 @@ const App = () => {
  
             <h2 style={{ fontSize: '9px', letterSpacing: '5px', color: '#22d3ee', marginBottom: '10px', fontWeight: 200 }}>{t.choose_path}</h2>
  
-            <button className="home-btn" onClick={() => setMainMode('frecuencias')}>{t.home_buttons.frequencies}</button>
+            <button className="home-btn" onClick={() => { setMainMode('frecuencias'); openGhostOverlay(); }}>{t.home_buttons.frequencies}</button>
  
             <button className="home-btn violet" onClick={() => setMainMode('meditaciones')}>{t.home_buttons.meditations}</button>
  
@@ -4571,8 +4639,6 @@ const App = () => {
           </div>
  
         )}
- 
-        {!mainMode && renderGhostCard('cyan')}
  
         {mainMode === 'frecuencias' && !freqPillar && (
  
