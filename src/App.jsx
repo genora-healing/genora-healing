@@ -3814,7 +3814,7 @@ const App = () => {
  
         <div style={{ position: 'absolute', top: '35px', left: '30px', right: '30px', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
  
-          <span style={{ width: '24px' }} aria-hidden="true" />
+          <button aria-label="Volver" onClick={() => { setIsPlaying(false); setSelectedTrack(null); setCurrentTime(0); setDuration(0); setListMountKey(k => k + 1); }} style={{ background: 'none', border: 'none', color: temploAccent, fontSize: '40px', cursor: 'pointer', lineHeight: 1, padding: 0 }}>&#8249;</button>
  
           {isSuggestion && <div className="suggestion-badge">✦ {t.suggestion_label}</div>}
  
@@ -3985,15 +3985,14 @@ const App = () => {
         })()}
  
         <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '22px' }}>
-          <button aria-label="Anterior" onClick={() => navigateTrack(-1)} style={{ background: 'none', border: 'none', color: temploAccent, opacity: 0.6, fontSize: '26px', cursor: 'pointer', padding: '10px', lineHeight: 1 }}>&#9198;</button>
+          <button aria-label="Anterior" onClick={() => navigateTrack(-1)} style={{ background: 'none', border: 'none', color: temploAccent, opacity: 0.85, fontSize: '40px', fontWeight: 200, cursor: 'pointer', padding: '10px 14px', lineHeight: 1 }}>&#8249;</button>
         <button onClick={() => setIsPlaying(!isPlaying)} style={{ width: '85px', height: '85px', borderRadius: '50%', border: `1px solid ${accentColor}`, background: 'none', display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer' }}>
  
           <span style={{ fontSize: '30px', color: 'white' }}>{isPlaying ? '||' : '▶'}</span>
  
         </button>
-          <button aria-label="Siguiente" onClick={() => navigateTrack(1)} style={{ background: 'none', border: 'none', color: temploAccent, opacity: 0.6, fontSize: '26px', cursor: 'pointer', padding: '10px', lineHeight: 1 }}>&#9197;</button>
+          <button aria-label="Siguiente" onClick={() => navigateTrack(1)} style={{ background: 'none', border: 'none', color: temploAccent, opacity: 0.85, fontSize: '40px', fontWeight: 200, cursor: 'pointer', padding: '10px 14px', lineHeight: 1 }}>&#8250;</button>
         </div>
-        <button aria-label="Volver" onClick={() => { setIsPlaying(false); setSelectedTrack(null); setCurrentTime(0); setDuration(0); setListMountKey(k => k + 1); }} style={{ background: 'none', border: 'none', color: temploAccent, opacity: 0.45, fontSize: '22px', cursor: 'pointer', marginTop: '14px', lineHeight: 1, padding: '6px 20px' }}>&#8964;</button>
  
       </div>
  
