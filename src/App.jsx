@@ -1424,6 +1424,14 @@ const FREQ_TRACKS = {
  
 };
  
+// Cada pista conserva de dónde viene (categoría y subcategoría) para mostrarlo en el reproductor
+Object.keys(FREQ_TRACKS).forEach(cat => {
+  Object.keys(FREQ_TRACKS[cat] || {}).forEach(sub => {
+    const list = FREQ_TRACKS[cat][sub];
+    if (Array.isArray(list)) list.forEach(tr => { tr.category = cat; tr.subcategory = sub; });
+  });
+});
+ 
 const ALL_TRACKS_FLAT = Object.values(FREQ_TRACKS).flatMap(p => Object.values(p).flat()).filter(t => t.url);
  
 // ── Frecuencia Fantasma (sistema de descubrimiento) ─────────────────────────
@@ -3938,7 +3946,7 @@ const App = () => {
  
         </div>
  
-        <div style={{ display: 'flex', gap: '12px', marginBottom: '40px' }}>
+        <div style={{ display: 'flex', gap: '12px', marginBottom: '16px' }}>
  
           {[15, 30, 60, 'inf'].map((time) => (
  
@@ -3951,6 +3959,18 @@ const App = () => {
           ))}
  
         </div>
+ 
+        {(() => {
+          const origin = ALL_TRACKS_FLAT.find(tr => tr.id === selectedTrack.id);
+          const catLabel = origin && t.pillars[origin.category]?.label;
+          const subLabel = origin && t.pillars[origin.category]?.subs[origin.subcategory];
+          if (!catLabel || !subLabel) return null;
+          return (
+            <div style={{ fontSize: '11px', fontWeight: 300, letterSpacing: '1px', color: '#d4af37', opacity: 0.75, textAlign: 'center', maxWidth: '300px', lineHeight: 1.6, marginBottom: '28px' }}>
+              ✦ {catLabel} · {subLabel}
+            </div>
+          );
+        })()}
  
         <button onClick={() => setIsPlaying(!isPlaying)} style={{ width: '85px', height: '85px', borderRadius: '50%', border: `1px solid ${accentColor}`, background: 'none', display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer' }}>
  
@@ -4464,17 +4484,17 @@ const App = () => {
           const isNewG = !!gt.nuevo && !newSeen.includes(gt.url);
           return (
             <div style={{ display: 'flex', justifyContent: 'center' }}>
-              <div className="track-card suggestion" style={{ borderLeft: `4px solid ${accentColor}`, display: 'flex', justifyContent: 'space-between', alignItems: 'center', margin: '0 0 12px', position: 'relative' }}>
+              <div className="track-card suggestion" style={{ borderLeft: '4px solid #d4af37', borderTopColor: 'rgba(212,175,55,0.35)', borderRightColor: 'rgba(212,175,55,0.35)', borderBottomColor: 'rgba(212,175,55,0.35)', background: 'rgba(212,175,55,0.05)', display: 'flex', justifyContent: 'space-between', alignItems: 'center', margin: '0 0 12px', position: 'relative' }}>
                 <div style={{ textAlign: 'left', flex: 1, minWidth: 0, marginRight: '8px' }}>
-                  <div className="suggestion-badge">{isNewG ? t.ghost_label_new : t.ghost_label_b}</div>
+                  <div className="suggestion-badge" style={{ color: 'rgba(212,175,55,0.9)' }}>{isNewG ? t.ghost_label_new : t.ghost_label_b}</div>
                   <div style={{ fontSize: '14px', color: 'white', fontWeight: 300, marginTop: '2px' }}>{gt.name}</div>
                   <div style={{ fontSize: '10px', color: '#fdfcf5', opacity: 0.6, marginTop: '4px', fontWeight: 200, letterSpacing: '1px' }}>{t.tracks[gt.id] || ''}</div>
                 </div>
                 <div style={{ display: 'flex', alignItems: 'center', gap: '2px' }}>
                   <button className="heart-btn" onClick={() => saveGhostFromStrip(gt)} aria-label="Guardar" style={{ color: '#ff6b9d' }}>♡</button>
                   <div style={{ textAlign: 'right', minWidth: '34px' }}>
-                    <div style={{ fontSize: '9px', color: accentColor, opacity: 0.6 }}>{gt.hz}</div>
-                    <span style={{ color: accentColor, fontSize: '18px', cursor: 'pointer' }} onClick={() => playTrack(gt, true)}>▶</span>
+                    <div style={{ fontSize: '9px', color: '#d4af37', opacity: 0.75 }}>{gt.hz}</div>
+                    <span style={{ color: '#d4af37', fontSize: '18px', cursor: 'pointer' }} onClick={() => playTrack(gt, true)}>▶</span>
                   </div>
                   <button className="heart-btn" onClick={dismissAlignStrip} aria-label="Cerrar" style={{ color: 'rgba(255,255,255,0.35)', fontSize: '14px' }}>✕</button>
                 </div>
