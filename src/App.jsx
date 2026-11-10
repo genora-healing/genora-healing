@@ -59,7 +59,6 @@ const T = {
     ghost_ov_label: "✦ REVELACIÓN DE RESONANCIA ✦",
     ghost_ov_label_new: "✦ NUEVA SINTONÍA ✦",
     ghost_ov_hint: "✦ Toca la pantalla para sintonizar esta sugerencia",
-    ghost_ov_back: "Regresar a mi selección",
     ghost_reveal: "Revelar Otra",
     ghost_play: "Escuchar",
     ghost_save: "Guardar",
@@ -561,7 +560,6 @@ const T = {
     ghost_ov_label: "✦ RESONANCE REVEALED ✦",
     ghost_ov_label_new: "✦ NEW TUNING ✦",
     ghost_ov_hint: "✦ Tap the screen to tune into this suggestion",
-    ghost_ov_back: "Back to my selection",
     ghost_reveal: "Reveal Another",
     ghost_play: "Listen",
     ghost_save: "Save",
@@ -1884,6 +1882,7 @@ const inlineStyles = `
   .reminder-btn { padding: 8px 16px; border-radius: 30px; border: 1px solid rgba(34,211,238,0.25); background: none; color: rgba(255,255,255,0.4); font-size: 10px; letter-spacing: 2px; cursor: pointer; transition: all 0.3s ease; text-transform: uppercase; font-weight: 200; }
  
   .reminder-btn.active { border-color: #22d3ee; color: #22d3ee; background: rgba(34,211,238,0.08); }
+  .reminder-btn.thin { padding: 4px 11px; font-size: 9px; letter-spacing: 1.5px; white-space: nowrap; }
  
   .alineacion-banner { animation: fadeInDown 0.4s ease forwards; margin: 0 auto 12px; width: 85%; max-width: 340px; padding: 10px 16px; border-radius: 20px; background: rgba(34,211,238,0.05); border: 1px solid rgba(34,211,238,0.15); text-align: center; }
  
@@ -1984,7 +1983,7 @@ const inlineStyles = `
   .ghost-ov-sub { font-size: 13px; color: rgba(253,252,245,0.75); font-weight: 200; letter-spacing: 1px; line-height: 1.6; max-width: 300px; }
   .ghost-ov-hint { margin-top: 38px; font-size: 11px; letter-spacing: 3px; color: #22d3ee; font-weight: 200; animation: ghost-hint 2.8s ease-in-out infinite; max-width: 280px; line-height: 1.7; }
   @keyframes ghost-hint { 0%, 100% { opacity: 0.35; } 50% { opacity: 1; } }
-  .ghost-ov-back { position: absolute; bottom: 38px; left: 50%; transform: translateX(-50%); background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.2); color: rgba(255,255,255,0.7); border-radius: 18px; padding: 10px 22px; font-size: 11px; letter-spacing: 2px; font-weight: 200; cursor: pointer; font-family: inherit; white-space: nowrap; }
+  .ghost-ov-close { position: absolute; top: 20px; right: 20px; width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; background: rgba(255,255,255,0.06); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); border: 1px solid rgba(212,175,55,0.5); color: #d4af37; font-size: 15px; font-weight: 300; cursor: pointer; font-family: inherit; padding: 0; }
   .align-actions { display: flex; justify-content: center; gap: 10px; flex-wrap: wrap; margin-bottom: 16px; }
   .align-action-btn { background: transparent; border: 1px solid rgba(255,255,255,0.15); color: rgba(255,255,255,0.55); border-radius: 14px; padding: 7px 14px; font-size: 10.5px; letter-spacing: 1px; font-weight: 200; cursor: pointer; font-family: inherit; }
   .align-action-btn.restore { border-color: rgba(34,211,238,0.4); color: #22d3ee; }
@@ -2619,6 +2618,8 @@ const App = () => {
  
   const [ghostLeaving, setGhostLeaving] = useState(false);
  
+  const [alignStripOpen, setAlignStripOpen] = useState(true);
+ 
   const [newSeen, setNewSeen] = useState(() => {
     try { const raw = JSON.parse(localStorage.getItem('genora_new_seen')); return Array.isArray(raw) ? raw : []; } catch { return []; }
   });
@@ -2746,6 +2747,10 @@ const App = () => {
  
   const selectedTrackRef = useRef(selectedTrack);
  
+  const isPlayingRef = useRef(false);
+ 
+  const handleEndedRef = useRef(() => {});
+ 
   const [playlistQueue, setPlaylistQueue] = useState(null); // array de track ids de la subcategoria en "Sonar Todo", o null
  
   const playlistQueueRef = useRef(null);
@@ -2757,6 +2762,20 @@ const App = () => {
   const t = T[lang];
  
   useEffect(() => { activeTabRef.current = activeTab; }, [activeTab]);
+ 
+  useEffect(() => { isPlayingRef.current = isPlaying; }, [isPlaying]);
+ 
+  // Carga la fuente en el MISMO elemento <audio> (sin recrearlo). Evita recargas dobles
+  // y permite avanzar de pista con la pantalla bloqueada.
+  const loadAudioSrc = (track) => {
+    const a = audioRef.current;
+    if (!a || !track) return;
+    const u = versionedUrl(track);
+    if (a.dataset.loadedSrc !== u) {
+      a.dataset.loadedSrc = u;
+      a.src = u;
+    }
+  };
  
   // Reanudar audio cuando el usuario vuelve a la pantalla
  
@@ -2794,7 +2813,7 @@ const App = () => {
  
       const added = favorites.filter(id => !kept.includes(id));
  
-      return [...kept, ...added];
+      return [...added, ...kept];
  
     });
  
@@ -2858,6 +2877,8 @@ const App = () => {
  
     if (audioRef.current) {
  
+      loadAudioSrc(selectedTrack);
+ 
       if (isPlaying) {
  
         audioRef.current.play().catch(() => console.log('Verificar audio en /public/audio/'));
@@ -2872,9 +2893,13 @@ const App = () => {
  
             artist: 'GENORA',
  
-            album: `${selectedTrack.hz || ''} Hz`,
+            album: selectedTrack.hz ? `${selectedTrack.hz}` : 'GENORA Healing',
+ 
+            artwork: [{ src: 'https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/genora-logo-white.png', sizes: '512x512', type: 'image/png' }],
  
           });
+ 
+          navigator.mediaSession.playbackState = 'playing';
  
           navigator.mediaSession.setActionHandler('play', () => {
  
@@ -2892,6 +2917,14 @@ const App = () => {
  
           });
  
+          try {
+ 
+            navigator.mediaSession.setActionHandler('nexttrack', () => { handleEndedRef.current(); });
+ 
+            navigator.mediaSession.setActionHandler('previoustrack', () => { if (audioRef.current) audioRef.current.currentTime = 0; });
+ 
+          } catch {}
+ 
         }
  
         if (selectedTime && selectedTime !== 'inf') {
@@ -2905,6 +2938,8 @@ const App = () => {
       } else {
  
         audioRef.current.pause();
+ 
+        if ('mediaSession' in navigator) { try { navigator.mediaSession.playbackState = 'paused'; } catch {} }
  
         if (timerRef.current) clearTimeout(timerRef.current);
  
@@ -2964,7 +2999,7 @@ const App = () => {
  
           setIsSuggestion(false); setSelectedTrack(nextTrack); setCurrentTime(0);
  
-          setTimeout(() => { if (audioRef.current) { audioRef.current.src = nextTrack.url; audioRef.current.play().catch(() => {}); } }, 100);
+          loadAudioSrc(nextTrack); audioRef.current?.play().catch(() => {});
  
           return;
  
@@ -2998,7 +3033,7 @@ const App = () => {
  
         setIsSuggestion(false); setSelectedTrack(next); setCurrentTime(0);
  
-        setTimeout(() => { if (audioRef.current) { audioRef.current.src = next.url; audioRef.current.play().catch(() => {}); } }, 100);
+        loadAudioSrc(next); audioRef.current?.play().catch(() => {});
  
       } else {
  
@@ -3010,7 +3045,7 @@ const App = () => {
  
           setIsSuggestion(true); setSelectedTrack(rand); setCurrentTime(0);
  
-          setTimeout(() => { if (audioRef.current) { audioRef.current.src = rand.url; audioRef.current.play().catch(() => {}); } }, 100);
+          loadAudioSrc(rand); audioRef.current?.play().catch(() => {});
  
         } else { setIsPlaying(false); setIsSuggestion(false); }
  
@@ -3020,11 +3055,13 @@ const App = () => {
  
   };
  
+  handleEndedRef.current = handleAudioEnded;
+ 
   const toggleFavorite = (e, trackId) => {
  
     e.stopPropagation();
  
-    setFavorites(prev => prev.includes(trackId) ? prev.filter(id => id !== trackId) : [...prev, trackId]);
+    setFavorites(prev => prev.includes(trackId) ? prev.filter(id => id !== trackId) : [trackId, ...prev]);
  
     if (isSuggestion && selectedTrack?.id === trackId) setIsSuggestion(false);
  
@@ -3081,12 +3118,6 @@ const App = () => {
     try { localStorage.setItem('genora_new_seen', JSON.stringify(next)); } catch {}
   }, [isPlaying, selectedTrack]);
  
-  const saveGhostToAlignment = (track) => {
-    setFavorites(prev => prev.includes(track.id) ? prev : [...prev, track.id]);
-    setGhostSavedId(track.id);
-    setTimeout(() => { setGhostSavedId(null); revealAnotherGhost(); }, 1100);
-  };
- 
   // ── Vaciar / restaurar Mi Alineación ───────────────────────────────────────
   const handleClearAlignment = () => {
     if (favoritesRef.current.length === 0) return;
@@ -3103,10 +3134,11 @@ const App = () => {
   const handleRestoreAlignment = () => {
     if (!playlistBackup) return;
     const current = favoritesRef.current;
-    const restored = [...playlistBackup.favorites, ...current.filter(id => !playlistBackup.favorites.includes(id))];
+    const addedSince = current.filter(id => !playlistBackup.favorites.includes(id));
+    const restored = [...addedSince, ...playlistBackup.favorites];
     const baseOrder = (playlistBackup.order && playlistBackup.order.length > 0 ? playlistBackup.order : playlistBackup.favorites)
       .filter(id => restored.includes(id));
-    const order = [...baseOrder, ...restored.filter(id => !baseOrder.includes(id))];
+    const order = [...addedSince, ...baseOrder.filter(id => !addedSince.includes(id)), ...restored.filter(id => !addedSince.includes(id) && !baseOrder.includes(id))];
     setFavorites(restored);
     setFavOrder(order);
     setPlaylistBackup(null);
@@ -3150,47 +3182,22 @@ const App = () => {
         )}
         <div className="ghost-ov-hint">{t.ghost_ov_hint}</div>
         {!leaving && (
-          <button className="ghost-ov-back" onClick={(e) => { e.stopPropagation(); setGhostOverlayOpen(false); }}>
-            ← {t.ghost_ov_back}
+          <button className="ghost-ov-close" aria-label="Cerrar" onClick={(e) => { e.stopPropagation(); setGhostOverlayOpen(false); }}>
+            ✕
           </button>
         )}
       </div>
     );
   };
  
-  const renderGhostCard = (variant = 'cyan') => {
-    const gt = GHOST_CANDIDATES.find(cn => cn.id === ghostId);
-    if (!gt) return null;
-    const isNew = !!gt.nuevo && !newSeen.includes(gt.url);
-    const saved = ghostSavedId === gt.id;
-    const label = isNew ? t.ghost_label_new : (variant === 'gold' ? t.ghost_label_b : t.ghost_label);
-    return (
-      <div className={`ghost-card ${variant === 'gold' ? 'gold' : ''}`}>
-        <div className="ghost-glow" />
-        <div className="ghost-inner ghost-fade" key={gt.id}>
-          <div className="ghost-label">{label}</div>
-          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', gap: '10px' }}>
-            <div style={{ fontSize: '15px', color: 'white', fontWeight: 300 }}>{gt.name}</div>
-            <div style={{ fontSize: '9px', color: variant === 'gold' ? '#d4af37' : '#22d3ee', opacity: 0.7, whiteSpace: 'nowrap' }}>{gt.hz}</div>
-          </div>
-          <div style={{ fontSize: '11px', color: '#fdfcf5', opacity: 0.6, marginTop: '6px', fontWeight: 200, letterSpacing: '0.5px', lineHeight: 1.5 }}>
-            {t.tracks[gt.id] || ''}
-          </div>
-          {gt.pillar === 'ARMONIZACION' && (
-            <div style={{ fontSize: '9.5px', color: 'rgba(255,255,255,0.4)', marginTop: '10px', fontWeight: 200, lineHeight: 1.5 }}>
-              {t.ghost_note_armonizacion}
-            </div>
-          )}
-          <div className="ghost-actions">
-            <button className="ghost-btn" onClick={() => playTrack(gt, false)}>▶ {t.ghost_play}</button>
-            <button className="ghost-btn" onClick={() => saveGhostToAlignment(gt)} disabled={saved}>
-              {saved ? `✓ ${t.ghost_saved}` : `+ ♡ ${t.ghost_save}`}
-            </button>
-          </div>
-          <button className="ghost-reveal" onClick={revealAnotherGhost}>✦ {t.ghost_reveal}</button>
-        </div>
-      </div>
-    );
+  const saveGhostFromStrip = (track) => {
+    setFavorites(prev => prev.includes(track.id) ? prev : [track.id, ...prev]);
+    setAlignStripOpen(false);
+  };
+ 
+  const dismissAlignStrip = () => {
+    setAlignStripOpen(false);
+    revealAnotherGhost();
   };
  
   const undoToastEl = undoToast ? (
@@ -3326,7 +3333,7 @@ const App = () => {
  
       </button>
  
-      <button className={`bar-tab ${activeTab === 'favoritos' ? 'active' : ''}`} onClick={() => { setActiveTab('favoritos'); setShowSanctuary(false); setListMountKey(k => k + 1); }}>
+      <button className={`bar-tab ${activeTab === 'favoritos' ? 'active' : ''}`} onClick={() => { setActiveTab('favoritos'); setShowSanctuary(false); setListMountKey(k => k + 1); setAlignStripOpen(true); }}>
  
         <span className="bar-tab-icon">{favorites.length > 0 ? '♥' : '♡'}</span>
  
@@ -3340,15 +3347,15 @@ const App = () => {
  
   const ReminderSection = () => (
  
-    <div style={{ width: '85%', maxWidth: '340px', margin: '0 auto 24px', padding: '18px', borderRadius: '24px', background: 'rgba(255,255,255,0.02)', border: '1px solid rgba(255,255,255,0.06)' }}>
+    <div style={{ width: '85%', maxWidth: '340px', margin: '0 auto 12px' }}>
  
-      <p style={{ fontSize: '10px', letterSpacing: '3px', color: 'rgba(255,255,255,0.3)', textAlign: 'center', marginBottom: '14px', fontWeight: 200 }}>{t.reminder_title}</p>
+      <div style={{ display: 'flex', gap: '6px', justifyContent: 'center', alignItems: 'center', flexWrap: 'nowrap' }}>
  
-      <div style={{ display: 'flex', gap: '8px', justifyContent: 'center', flexWrap: 'wrap' }}>
+        <span style={{ fontSize: '11px', opacity: 0.4 }} aria-hidden="true">🔔</span>
  
         {[{ key: 'manana', label: t.reminder_morning, icon: '☀' }, { key: 'tarde', label: t.reminder_afternoon, icon: '◐' }, { key: 'noche', label: t.reminder_night, icon: '☽' }].map(opt => (
  
-          <button key={opt.key} className={`reminder-btn ${reminderTime === opt.key ? 'active' : ''}`} onClick={() => handleReminderSelect(opt.key)}>
+          <button key={opt.key} className={`reminder-btn thin ${reminderTime === opt.key ? 'active' : ''}`} onClick={() => handleReminderSelect(opt.key)}>
  
             {opt.icon} {opt.label}
  
@@ -3358,7 +3365,7 @@ const App = () => {
  
       </div>
  
-      {reminderTime && <p style={{ fontSize: '10px', color: 'rgba(34,211,238,0.5)', textAlign: 'center', marginTop: '10px', letterSpacing: '1px', fontWeight: 200 }}>{getReminderText()}</p>}
+      {reminderTime && <p style={{ fontSize: '9px', color: 'rgba(34,211,238,0.5)', textAlign: 'center', marginTop: '6px', letterSpacing: '1px', fontWeight: 200 }}>{getReminderText()}</p>}
  
     </div>
  
@@ -3750,17 +3757,15 @@ const App = () => {
  
     return (
  
-      <div key={selectedTrack.id} className="fade-in-smooth" style={{ backgroundColor: '#020617', minHeight: '100vh', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', textAlign: 'center', position: 'relative', padding: '20px' }}>
+      <>
  
-        {ghostLeaving && renderGhostOverlay(true)}
- 
-        <style>{inlineStyles}</style>
- 
-        <audio ref={audioRef} src={versionedUrl(selectedTrack)}
+      <audio ref={audioRef}
  
           loop={selectedTime === 'inf' && activeTabRef.current !== 'favoritos'}
  
           controls={false}
+ 
+          preload="auto"
  
           controlsList="nodownload nofullscreen noremoteplayback"
  
@@ -3770,7 +3775,22 @@ const App = () => {
  
           onLoadedMetadata={(e) => { handleTimeUpdate(); if (currentTime > 0 && e.target.duration > currentTime) e.target.currentTime = currentTime; }}
  
+          onCanPlay={() => { if (isPlayingRef.current && audioRef.current && audioRef.current.paused) audioRef.current.play().catch(() => {}); }}
+ 
+          onPause={() => {
+            const a = audioRef.current;
+            if (a && isPlayingRef.current && !a.ended && document.visibilityState === 'hidden') {
+              setTimeout(() => { const b = audioRef.current; if (b && isPlayingRef.current && b.paused && !b.ended) b.play().catch(() => {}); }, 500);
+            }
+          }}
+ 
           onEnded={handleAudioEnded} />
+ 
+      <div key={selectedTrack.id} className="fade-in-smooth" style={{ backgroundColor: '#020617', minHeight: '100vh', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', textAlign: 'center', position: 'relative', padding: '20px' }}>
+ 
+        {ghostLeaving && renderGhostOverlay(true)}
+ 
+        <style>{inlineStyles}</style>
  
         <div style={{ position: 'absolute', top: '35px', left: '30px', right: '30px', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
  
@@ -3939,6 +3959,8 @@ const App = () => {
         </button>
  
       </div>
+ 
+      </>
  
     );
  
@@ -4436,21 +4458,30 @@ const App = () => {
  
         </p>
  
-        {(orderedTracks.length > 0 || playlistBackup) && (
- 
-          <div className="align-actions">
- 
-            {orderedTracks.length > 0 && (
-              <button className="align-action-btn" onClick={handleClearAlignment}>🗑️ {t.clear_alignment}</button>
-            )}
- 
-            {playlistBackup && (
-              <button className="align-action-btn restore" onClick={handleRestoreAlignment}>↺ {t.restore_alignment}</button>
-            )}
- 
-          </div>
- 
-        )}
+        {alignStripOpen && (() => {
+          const gt = GHOST_CANDIDATES.find(cn => cn.id === ghostId);
+          if (!gt) return null;
+          const isNewG = !!gt.nuevo && !newSeen.includes(gt.url);
+          return (
+            <div style={{ display: 'flex', justifyContent: 'center' }}>
+              <div className="track-card suggestion" style={{ borderLeft: `4px solid ${accentColor}`, display: 'flex', justifyContent: 'space-between', alignItems: 'center', margin: '0 0 12px', position: 'relative' }}>
+                <div style={{ textAlign: 'left', flex: 1, minWidth: 0, marginRight: '8px' }}>
+                  <div className="suggestion-badge">{isNewG ? t.ghost_label_new : t.ghost_label_b}</div>
+                  <div style={{ fontSize: '14px', color: 'white', fontWeight: 300, marginTop: '2px' }}>{gt.name}</div>
+                  <div style={{ fontSize: '10px', color: '#fdfcf5', opacity: 0.6, marginTop: '4px', fontWeight: 200, letterSpacing: '1px' }}>{t.tracks[gt.id] || ''}</div>
+                </div>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '2px' }}>
+                  <button className="heart-btn" onClick={() => saveGhostFromStrip(gt)} aria-label="Guardar" style={{ color: '#ff6b9d' }}>♡</button>
+                  <div style={{ textAlign: 'right', minWidth: '34px' }}>
+                    <div style={{ fontSize: '9px', color: accentColor, opacity: 0.6 }}>{gt.hz}</div>
+                    <span style={{ color: accentColor, fontSize: '18px', cursor: 'pointer' }} onClick={() => playTrack(gt, true)}>▶</span>
+                  </div>
+                  <button className="heart-btn" onClick={dismissAlignStrip} aria-label="Cerrar" style={{ color: 'rgba(255,255,255,0.35)', fontSize: '14px' }}>✕</button>
+                </div>
+              </div>
+            </div>
+          );
+        })()}
  
         <ReminderSection />
  
@@ -4578,7 +4609,21 @@ const App = () => {
  
         )}
  
-        {renderGhostCard('gold')}
+        {(orderedTracks.length > 0 || playlistBackup) && (
+ 
+          <div className="align-actions" style={{ marginTop: '24px', marginBottom: '8px' }}>
+ 
+            {orderedTracks.length > 0 && (
+              <button className="align-action-btn" onClick={handleClearAlignment}>🗑️ {t.clear_alignment}</button>
+            )}
+ 
+            {playlistBackup && (
+              <button className="align-action-btn restore" onClick={handleRestoreAlignment}>↺ {t.restore_alignment}</button>
+            )}
+ 
+          </div>
+ 
+        )}
  
         {undoToastEl}
  
