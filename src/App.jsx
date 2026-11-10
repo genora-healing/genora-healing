@@ -529,9 +529,7 @@ const T = {
  
       "alpha-eros-integracion": "Consciencia del origen de los desequilibrios.",
  
-      "alpha-eros-meditacion": "Observacion interior y autoconocimiento.",
- 
-      "alpha-eros-reproductor": "Equilibrio del sistema reproductor."
+      "alpha-eros-bienestar": "Equilibrio del sistema reproductor."
  
     }
  
@@ -906,9 +904,7 @@ const T = {
  
       "alpha-eros-integracion": "Awareness of the origin of imbalances.",
  
-      "alpha-eros-meditacion": "Inner observation and self-knowledge.",
- 
-      "alpha-eros-reproductor": "Balance of the reproductive system."
+      "alpha-eros-bienestar": "Balance of the reproductive system."
  
     }
  
@@ -1276,8 +1272,6 @@ const FREQ_TRACKS = {
  
   EXPANSION: { "MEDITACION": [
  
-    { id: "alpha-eros-meditacion", name: "Alpha Eros", hz: "9 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/alpha-eros.wav", v: 1 },
- 
       { id: "beta-euphoria-meditacion", name: "Beta Euphoria", hz: "15-24 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/beta-euphoria.wav", v: 1 },
  
       { id: "beta-earth-meditacion", name: "Beta Earth", hz: "20.3 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/beta-earth.wav", v: 1 },
@@ -1390,6 +1384,8 @@ const FREQ_TRACKS = {
  
     ], "BIENESTAR_F": [
  
+    { id: "alpha-eros-bienestar", name: "Alpha Eros", hz: "9 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/alpha-eros.wav", v: 1 },
+ 
     { id: "femin-essence", name: "Feminine Essence", hz: "—", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/femin-essence.wav", v: 1 },
  
     { id: "delta-neurovia-bienestar", name: "Delta Neurovia", hz: "0.5 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/delta-neurovia.wav", v: 1 },
@@ -1415,10 +1411,6 @@ const FREQ_TRACKS = {
     { id: "vertigo-mareos-campos", name: "Vertigo-Mareos", hz: "—", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/vertigo-mareos.wav", v: 1 }
  
   ], "CELULAR": [
- 
-  ], "REPRODUCTOR": [
- 
-    { id: "alpha-eros-reproductor", name: "Alpha Eros", hz: "9 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/alpha-eros.wav", v: 1 }
  
   ] }
  
@@ -2484,8 +2476,6 @@ const MICROCOPYS = {
  
     CELULAR: "Frecuencias para acompanar procesos de regeneracion y vitalidad celular.",
  
-    REPRODUCTOR: "Frecuencias orientadas al equilibrio y bienestar del sistema reproductor.",
- 
   },
  
   en: {
@@ -2531,8 +2521,6 @@ const MICROCOPYS = {
     CAMPOS: "Vibrational support for balance and coherence of bioenergetic fields.",
  
     CELULAR: "Frequencies to accompany processes of regeneration and cellular vitality.",
- 
-    REPRODUCTOR: "Frequencies oriented to the balance and wellbeing of the reproductive system.",
  
   }
  
@@ -2927,9 +2915,9 @@ const App = () => {
  
           try {
  
-            navigator.mediaSession.setActionHandler('nexttrack', () => { handleEndedRef.current(); });
+            navigator.mediaSession.setActionHandler('nexttrack', () => { navigateRef.current(1); });
  
-            navigator.mediaSession.setActionHandler('previoustrack', () => { if (audioRef.current) audioRef.current.currentTime = 0; });
+            navigator.mediaSession.setActionHandler('previoustrack', () => { navigateRef.current(-1); });
  
           } catch {}
  
@@ -3064,6 +3052,30 @@ const App = () => {
   };
  
   handleEndedRef.current = handleAudioEnded;
+ 
+  const navigateTrack = (dir) => {
+    const cur = selectedTrackRef.current;
+    if (!cur) return;
+    let ids = [];
+    const q = playlistQueueRef.current;
+    if (q && q.length > 0) ids = q;
+    else if (activeTabRef.current === 'favoritos') ids = favOrderRef.current.length > 0 ? favOrderRef.current : favoritesRef.current;
+    else {
+      const origin = ALL_TRACKS_FLAT.find(tr => tr.id === cur.id);
+      const list = origin ? (FREQ_TRACKS[origin.category]?.[origin.subcategory] || []) : [];
+      ids = list.map(tr => tr.id);
+    }
+    const tracks = ids.map(id => ALL_TRACKS_FLAT.find(tr => tr.id === id)).filter(Boolean);
+    if (tracks.length < 2) return;
+    const idx = tracks.findIndex(tr => tr.id === cur.id);
+    const next = tracks[idx < 0 ? 0 : (idx + dir + tracks.length) % tracks.length];
+    if (!next) return;
+    setIsSuggestion(false); setSelectedTrack(next); setCurrentTime(0); setIsPlaying(true);
+    loadAudioSrc(next); audioRef.current?.play().catch(() => {});
+  };
+  const navigateRef = useRef(() => {});
+  navigateRef.current = navigateTrack;
+ 
  
   const toggleFavorite = (e, trackId) => {
  
@@ -3373,7 +3385,7 @@ const App = () => {
  
       </div>
  
-      {reminderTime && <p style={{ fontSize: '9px', color: 'rgba(34,211,238,0.5)', textAlign: 'center', marginTop: '6px', letterSpacing: '1px', fontWeight: 200 }}>{getReminderText()}</p>}
+      {reminderTime && <p style={{ fontSize: '10px', color: '#FFFFFF', textAlign: 'center', marginTop: '6px', letterSpacing: '1px', fontWeight: 300 }}>{getReminderText()}</p>}
  
     </div>
  
@@ -3802,7 +3814,7 @@ const App = () => {
  
         <div style={{ position: 'absolute', top: '35px', left: '30px', right: '30px', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
  
-          <button onClick={() => { setIsPlaying(false); setSelectedTrack(null); setCurrentTime(0); setDuration(0); setListMountKey(k => k + 1); }} style={{ background: 'none', border: 'none', color: temploAccent, fontSize: '40px', cursor: 'pointer', lineHeight: 1, padding: 0 }}>&#8249;</button>
+          <span style={{ width: '24px' }} aria-hidden="true" />
  
           {isSuggestion && <div className="suggestion-badge">✦ {t.suggestion_label}</div>}
  
@@ -3972,11 +3984,16 @@ const App = () => {
           );
         })()}
  
+        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '22px' }}>
+          <button aria-label="Anterior" onClick={() => navigateTrack(-1)} style={{ background: 'none', border: 'none', color: temploAccent, opacity: 0.6, fontSize: '26px', cursor: 'pointer', padding: '10px', lineHeight: 1 }}>&#9198;</button>
         <button onClick={() => setIsPlaying(!isPlaying)} style={{ width: '85px', height: '85px', borderRadius: '50%', border: `1px solid ${accentColor}`, background: 'none', display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer' }}>
  
           <span style={{ fontSize: '30px', color: 'white' }}>{isPlaying ? '||' : '▶'}</span>
  
         </button>
+          <button aria-label="Siguiente" onClick={() => navigateTrack(1)} style={{ background: 'none', border: 'none', color: temploAccent, opacity: 0.6, fontSize: '26px', cursor: 'pointer', padding: '10px', lineHeight: 1 }}>&#9197;</button>
+        </div>
+        <button aria-label="Volver" onClick={() => { setIsPlaying(false); setSelectedTrack(null); setCurrentTime(0); setDuration(0); setListMountKey(k => k + 1); }} style={{ background: 'none', border: 'none', color: temploAccent, opacity: 0.45, fontSize: '22px', cursor: 'pointer', marginTop: '14px', lineHeight: 1, padding: '6px 20px' }}>&#8964;</button>
  
       </div>
  
@@ -4484,19 +4501,19 @@ const App = () => {
           const isNewG = !!gt.nuevo && !newSeen.includes(gt.url);
           return (
             <div style={{ display: 'flex', justifyContent: 'center' }}>
-              <div className="track-card suggestion" style={{ borderLeft: '4px solid #d4af37', borderTopColor: 'rgba(212,175,55,0.35)', borderRightColor: 'rgba(212,175,55,0.35)', borderBottomColor: 'rgba(212,175,55,0.35)', background: 'rgba(212,175,55,0.05)', display: 'flex', justifyContent: 'space-between', alignItems: 'center', margin: '0 0 12px', position: 'relative' }}>
+              <div className="track-card suggestion" onClick={() => playTrack(gt, true)} style={{ borderLeft: '4px solid #d4af37', borderTopColor: 'rgba(212,175,55,0.35)', borderRightColor: 'rgba(212,175,55,0.35)', borderBottomColor: 'rgba(212,175,55,0.35)', background: 'rgba(212,175,55,0.05)', display: 'flex', justifyContent: 'space-between', alignItems: 'center', margin: '0 0 12px', position: 'relative' }}>
                 <div style={{ textAlign: 'left', flex: 1, minWidth: 0, marginRight: '8px' }}>
                   <div className="suggestion-badge" style={{ color: 'rgba(212,175,55,0.9)' }}>{isNewG ? t.ghost_label_new : t.ghost_label_b}</div>
                   <div style={{ fontSize: '14px', color: 'white', fontWeight: 300, marginTop: '2px' }}>{gt.name}</div>
                   <div style={{ fontSize: '10px', color: '#fdfcf5', opacity: 0.6, marginTop: '4px', fontWeight: 200, letterSpacing: '1px' }}>{t.tracks[gt.id] || ''}</div>
                 </div>
                 <div style={{ display: 'flex', alignItems: 'center', gap: '2px' }}>
-                  <button className="heart-btn" onClick={() => saveGhostFromStrip(gt)} aria-label="Guardar" style={{ color: '#ff6b9d' }}>♡</button>
+                  <button className="heart-btn" onClick={(e) => { e.stopPropagation(); saveGhostFromStrip(gt); }} aria-label="Guardar" style={{ color: '#ff6b9d' }}>♡</button>
                   <div style={{ textAlign: 'right', minWidth: '34px' }}>
                     <div style={{ fontSize: '9px', color: '#d4af37', opacity: 0.75 }}>{gt.hz}</div>
-                    <span style={{ color: '#d4af37', fontSize: '18px', cursor: 'pointer' }} onClick={() => playTrack(gt, true)}>▶</span>
+                    <span style={{ color: '#d4af37', fontSize: '18px', cursor: 'pointer' }}>▶</span>
                   </div>
-                  <button className="heart-btn" onClick={dismissAlignStrip} aria-label="Cerrar" style={{ color: 'rgba(255,255,255,0.35)', fontSize: '14px' }}>✕</button>
+                  <button className="heart-btn" onClick={(e) => { e.stopPropagation(); dismissAlignStrip(); }} aria-label="Cerrar" style={{ color: 'rgba(255,255,255,0.35)', fontSize: '14px' }}>✕</button>
                 </div>
               </div>
             </div>
@@ -4539,6 +4556,7 @@ const App = () => {
  
                   data-card
  
+                  onClick={() => { if (!draggingId) playTrack(track, false); }}
                   style={{
  
                     borderLeft: isDragging ? '4px solid rgba(212,175,55,0.7)' : `4px solid ${accentColor}`,
@@ -4562,6 +4580,7 @@ const App = () => {
                     className={['mi-al-handle', isDragging ? 'is-grabbing' : ''].filter(Boolean).join(' ')}
  
                     aria-hidden="true"
+                    onClick={(e) => e.stopPropagation()}
  
                     style={{ touchAction: 'none' }}
  
@@ -4613,7 +4632,7 @@ const App = () => {
  
                       <div style={{ fontSize: '9px', color: accentColor, opacity: 0.6 }}>{track.hz}</div>
  
-                      <span style={{ color: accentColor, fontSize: '18px', cursor: 'pointer' }} onClick={() => playTrack(track, false)}>▶</span>
+                      <span style={{ color: accentColor, fontSize: '18px', cursor: 'pointer' }}>▶</span>
  
                     </div>
  
