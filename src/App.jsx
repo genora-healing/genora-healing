@@ -531,7 +531,93 @@ const T = {
  
       "alpha-eros-bienestar": "Equilibrio del sistema reproductor.",
  
-      "beta-logic-vitalidad": "Energía para la acción."
+      "beta-logic-vitalidad": "Energía para la acción.",
+ 
+      "lambda-omnia-creatividad": "Visión amplia de una situación y exploración de distintas perspectivas.",
+ 
+      "lambda-omnia-rendimiento": "Organización de la información y evaluación de posibilidades.",
+ 
+      "lambda-aegis-organos": "Mejora el buen funcionamiento de los riñones.",
+ 
+      "lambda-aegis-vitalidad": "Activa el efecto de fuerza.",
+ 
+      "lambda-aegis-regeneracion": "Afecciones dermatológicas.",
+ 
+      "lambda-orvita-aprendizaje": "Orvita de Mercurio, mejora el intelecto, la inteligencia y la comunicación.",
+ 
+      "lambda-orvita-creatividad": "Orvita de Mercurio, armonización del chakra de la garganta. Mejora la expresión verbal y la comunicación.",
+ 
+      "lambda-aeris-regeneracion": "Desinflamación de senos paranasales, ayuda en el estado de resfriado.",
+ 
+      "lambda-seraph-organos": "Rápido alivio de la infección de senos paranasales.",
+ 
+      "lambda-seraph-dolor": "Rápido alivio del dolor de cabeza y resfriado.",
+ 
+      "lambda-vespara-organos": "Estabiliza la función de la vesícula biliar.",
+ 
+      "lambda-airena-regeneracion": "Desinflamación de los senos paranasales, mejora el resfriado.",
+ 
+      "lambda-lunaris-meditacion": "Culminación del ciclo lunar.",
+ 
+      "lambda-equinox-organos": "Estabilidad y equilibrio físico.",
+ 
+      "lambda-equinox-vitalidad": "Vitalidad y vida a alto nivel.",
+ 
+      "lambda-equinox-regeneracion": "Equilibrio en los pulmones.",
+ 
+      "lambda-selene-meditacion": "Conexión con los ciclos lunares.",
+ 
+      "lambda-elaria-vitalidad": "Aumento de vitalidad.",
+ 
+      "lambda-radia-meditacion": "Emanación de canales energéticos para la activación de la energía vital.",
+ 
+      "lambda-veridia-creatividad": "Mejora la expresión verbal y la creatividad.",
+ 
+      "lambda-veridia-regeneracion": "Riñones y efecto de fuerza.",
+ 
+      "lambda-mercura-meditacion": "Órbita de Mercurio. Abundancia, creatividad y comunicación asertiva.",
+ 
+      "lambda-polaris-meditacion": "Órbita de Marte, estabiliza la polaridad del ego y da un impulso a la acción.",
+ 
+      "lambda-aresia-meditacion": "Órbita de Marte, equilibra los flujos energéticos masculino y femenino dentro del cuerpo.",
+ 
+      "lambda-aresia-experiencias": "Órbita de Marte. Permite que la energía instintiva y activa se canalice de manera constructiva.",
+ 
+      "lambda-kronia-meditacion": "Acompaña los procesos asociados al chakra no identificado y la órbita de Saturno.",
+ 
+      "lambda-kronos-meditacion": "Órbita de Saturno, resolución de bloqueos kármicos profundos.",
+ 
+      "lambda-metavya-vitalidad": "Estimula el metabolismo celular y la pérdida de peso.",
+ 
+      "lambda-cerevia-rendimiento": "Equilibrio de hemisferios cerebrales.",
+ 
+      "lambda-cerevia-aprendizaje": "Atención y enfoque.",
+ 
+      "lambda-hepyra-organos": "Equilibra la función del hígado.",
+ 
+      "lambda-movaris-vitalidad": "Vitalidad muscular.",
+ 
+      "lambda-movaris-dolor": "Bienestar muscular.",
+ 
+      "lambda-auralis-organos": "Desinflamación de senos paranasales, mejora el resfriado.",
+ 
+      "lambda-jovara-experiencias": "Órbita de Júpiter. Expansión de la abundancia.",
+ 
+      "lambda-serenis-regulacion": "Desactivación de miedo y culpa.",
+ 
+      "lambda-ostevia-vitalidad": "Recuperación y vitalidad en el sistema musculoesquelético.",
+ 
+      "lambda-urania-meditacion": "Órbita de Urano. Rompe con viejos patrones y limitaciones, renovación personal y desapegos.",
+ 
+      "lambda-amaris-regulacion": "Estimula la sensibilidad del amor y la creatividad femenina.",
+ 
+      "lambda-amaris-experiencias": "Conexión con estados del alma.",
+ 
+      "lambda-lunara-meditacion": "Órbita lunar y revolución de Mercurio. Unión entre la lógica y la intuición en alineación para la manifestación.",
+ 
+      "lambda-ilyra-vitalidad": "Reduce el ritmo cardíaco y el cortisol, mejora la fatiga y la vitalidad.",
+ 
+      "lambda-ilyra-organos": "Efecto de relajación profunda."
  
     }
  
@@ -1032,7 +1118,93 @@ const T = {
  
       "delta-om-adn": "DNA regeneration, rejuvenation, healing and deep restoration.",
  
-      "beta-logic-vitalidad": "Energy for action."
+      "beta-logic-vitalidad": "Energy for action.",
+ 
+      "lambda-omnia-creatividad": "Broad view of a situation and exploration of different perspectives.",
+ 
+      "lambda-omnia-rendimiento": "Organization of information and evaluation of possibilities.",
+ 
+      "lambda-aegis-organos": "Supports healthy kidney function.",
+ 
+      "lambda-aegis-vitalidad": "Activates the strength effect.",
+ 
+      "lambda-aegis-regeneracion": "Dermatological conditions.",
+ 
+      "lambda-orvita-aprendizaje": "Orbit of Mercury, enhances intellect, intelligence and communication.",
+ 
+      "lambda-orvita-creatividad": "Orbit of Mercury, harmonization of the throat chakra. Improves verbal expression and communication.",
+ 
+      "lambda-aeris-regeneracion": "Reduces sinus inflammation, helps with the common cold.",
+ 
+      "lambda-seraph-organos": "Fast relief from sinus infection.",
+ 
+      "lambda-seraph-dolor": "Fast relief from headache and the common cold.",
+ 
+      "lambda-vespara-organos": "Stabilizes gallbladder function.",
+ 
+      "lambda-airena-regeneracion": "Reduces sinus inflammation, eases the common cold.",
+ 
+      "lambda-lunaris-meditacion": "Culmination of the lunar cycle.",
+ 
+      "lambda-equinox-organos": "Physical stability and balance.",
+ 
+      "lambda-equinox-vitalidad": "Vitality and high-level living.",
+ 
+      "lambda-equinox-regeneracion": "Balance in the lungs.",
+ 
+      "lambda-selene-meditacion": "Connection with the lunar cycles.",
+ 
+      "lambda-elaria-vitalidad": "Increased vitality.",
+ 
+      "lambda-radia-meditacion": "Emanation of energy channels for the activation of vital energy.",
+ 
+      "lambda-veridia-creatividad": "Improves verbal expression and creativity.",
+ 
+      "lambda-veridia-regeneracion": "Kidneys and the strength effect.",
+ 
+      "lambda-mercura-meditacion": "Orbit of Mercury. Abundance, creativity and assertive communication.",
+ 
+      "lambda-polaris-meditacion": "Orbit of Mars, stabilizes the polarity of the ego and gives an impulse to action.",
+ 
+      "lambda-aresia-meditacion": "Orbit of Mars, balances the masculine and feminine energy flows within the body.",
+ 
+      "lambda-aresia-experiencias": "Orbit of Mars. Allows instinctive, active energy to be channeled constructively.",
+ 
+      "lambda-kronia-meditacion": "Supports the processes associated with the unidentified chakra and the orbit of Saturn.",
+ 
+      "lambda-kronos-meditacion": "Orbit of Saturn, resolution of deep karmic blockages.",
+ 
+      "lambda-metavya-vitalidad": "Stimulates cellular metabolism and weight loss.",
+ 
+      "lambda-cerevia-rendimiento": "Balance of the brain hemispheres.",
+ 
+      "lambda-cerevia-aprendizaje": "Attention and focus.",
+ 
+      "lambda-hepyra-organos": "Balances liver function.",
+ 
+      "lambda-movaris-vitalidad": "Muscular vitality.",
+ 
+      "lambda-movaris-dolor": "Muscular wellbeing.",
+ 
+      "lambda-auralis-organos": "Reduces sinus inflammation, eases the common cold.",
+ 
+      "lambda-jovara-experiencias": "Orbit of Jupiter. Expansion of abundance.",
+ 
+      "lambda-serenis-regulacion": "Release of fear and guilt.",
+ 
+      "lambda-ostevia-vitalidad": "Recovery and vitality of the musculoskeletal system.",
+ 
+      "lambda-urania-meditacion": "Orbit of Uranus. Breaks old patterns and limitations; personal renewal and detachment.",
+ 
+      "lambda-amaris-regulacion": "Stimulates the sensitivity of love and feminine creativity.",
+ 
+      "lambda-amaris-experiencias": "Connection with states of the soul.",
+ 
+      "lambda-lunara-meditacion": "Lunar orbit and revolution of Mercury. Union of logic and intuition, aligned for manifestation.",
+ 
+      "lambda-ilyra-vitalidad": "Lowers heart rate and cortisol, eases fatigue and improves vitality.",
+ 
+      "lambda-ilyra-organos": "Deep relaxation effect."
  
     }
  
@@ -1132,9 +1304,13 @@ const FREQ_TRACKS = {
  
       { id: "beta-nebula-aprendizaje", name: "Beta Nebula", hz: "18-22 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/beta-nebula.wav", v: 1 },
  
-      { id: "beta-axis-aprendizaje", name: "Beta Axis", hz: "18 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/beta-axis.wav", v: 1 }
+      { id: "beta-axis-aprendizaje", name: "Beta Axis", hz: "18 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/beta-axis.wav", v: 1 },
  
-    ],
+      { id: "lambda-orvita-aprendizaje", name: "Lambda Orvita", hz: "141.27 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/lambda-orvita.wav", v: 1 },
+ 
+      { id: "lambda-cerevia-aprendizaje", name: "Lambda Cerevia", hz: "315.8 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/lambda-cerevia.wav", v: 1 }
+ 
+  ],
  
     "CREATIVIDAD": [
  
@@ -1148,9 +1324,15 @@ const FREQ_TRACKS = {
  
       { id: "alpha-voice", name: "Alpha Voice", hz: "8.22 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/alpha-voice.wav", v: 1 },
  
-      { id: "gamma-insight-creatividad", name: "Gamma Insight", hz: "40 Hz", url: "/audio/gamma-insight.mp3", v: 1 }
+      { id: "gamma-insight-creatividad", name: "Gamma Insight", hz: "40 Hz", url: "/audio/gamma-insight.mp3", v: 1 },
  
-    ],
+      { id: "lambda-omnia-creatividad", name: "Lambda Omnia", hz: "105 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/lambda-omnia.wav", v: 1 },
+ 
+      { id: "lambda-orvita-creatividad", name: "Lambda Orvita", hz: "141.27 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/lambda-orvita.wav", v: 1 },
+ 
+      { id: "lambda-veridia-creatividad", name: "Lambda Veridia", hz: "263 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/lambda-veridia.wav", v: 1 }
+ 
+  ],
  
     "CLARIDAD": [
  
@@ -1196,9 +1378,13 @@ const FREQ_TRACKS = {
  
       { id: "gamma-vigil-rendimiento", name: "Gamma Vigil", hz: "32 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/gamma-vigil.wav", v: 1 },
  
-      { id: "gamma-nexus-rendimiento", name: "Gamma Nexus", hz: "36-44 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/gamma-nexus.wav", v: 1 }
+      { id: "gamma-nexus-rendimiento", name: "Gamma Nexus", hz: "36-44 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/gamma-nexus.wav", v: 1 },
  
-    ]
+      { id: "lambda-omnia-rendimiento", name: "Lambda Omnia", hz: "105 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/lambda-omnia.wav", v: 1 },
+ 
+      { id: "lambda-cerevia-rendimiento", name: "Lambda Cerevia", hz: "315.8 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/lambda-cerevia.wav", v: 1 }
+ 
+  ]
  
   },
  
@@ -1230,7 +1416,11 @@ const FREQ_TRACKS = {
  
       { id: "gamma-endora-regulacion", name: "Gamma Endora", hz: "38 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/gamma-endora.wav", v: 1 },
  
-      { id: "gamma-serene-regulacion", name: "Gamma Serene", hz: "40-60 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/gamma-serene.wav", v: 1 }
+      { id: "gamma-serene-regulacion", name: "Gamma Serene", hz: "40-60 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/gamma-serene.wav", v: 1 },
+ 
+      { id: "lambda-serenis-regulacion", name: "Lambda Serenis", hz: "396 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/lambda-serenis.wav", v: 1 },
+ 
+      { id: "lambda-amaris-regulacion", name: "Lambda Amaris", hz: "420.82 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/lambda-amaris.wav", v: 1 }
  
   ], "EQUILIBRIO": [
  
@@ -1314,7 +1504,17 @@ const FREQ_TRACKS = {
  
       { id: "delta-calm-regeneracion", name: "Delta Calm", hz: "2.5 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/delta-calm.wav", v: 1 },
  
-      { id: "delta-urovia-regeneracion", name: "Delta Urovia", hz: "2.57 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/delta-urovia.wav", v: 1 }
+      { id: "delta-urovia-regeneracion", name: "Delta Urovia", hz: "2.57 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/delta-urovia.wav", v: 1 },
+ 
+      { id: "lambda-aegis-regeneracion", name: "Lambda Aegis", hz: "132 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/lambda-aegis.wav", v: 1 },
+ 
+      { id: "lambda-aeris-regeneracion", name: "Lambda Aeris", hz: "146 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/lambda-aeris.wav", v: 1 },
+ 
+      { id: "lambda-airena-regeneracion", name: "Lambda Airena", hz: "185 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/lambda-airena.wav", v: 1 },
+ 
+      { id: "lambda-equinox-regeneracion", name: "Lambda Equinox", hz: "220 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/lambda-equinox.wav", v: 1 },
+ 
+      { id: "lambda-veridia-regeneracion", name: "Lambda Veridia", hz: "263 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/lambda-veridia.wav", v: 1 }
  
   ], "ORGANOS": [
  
@@ -1346,7 +1546,21 @@ const FREQ_TRACKS = {
  
       { id: "delta-sinus-organos", name: "Delta Sinus", hz: "1.8 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/delta-sinus.wav", v: 1 },
  
-      { id: "delta-intestine-organos", name: "Delta Intestine", hz: "2.6 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/delta-intestine.wav", v: 1 }
+      { id: "delta-intestine-organos", name: "Delta Intestine", hz: "2.6 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/delta-intestine.wav", v: 1 },
+ 
+      { id: "lambda-aegis-organos", name: "Lambda Aegis", hz: "132 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/lambda-aegis.wav", v: 1 },
+ 
+      { id: "lambda-seraph-organos", name: "Lambda Seraph", hz: "160 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/lambda-seraph.wav", v: 1 },
+ 
+      { id: "lambda-vespara-organos", name: "Lambda Vespara", hz: "164.3 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/lambda-vespara.wav", v: 1 },
+ 
+      { id: "lambda-equinox-organos", name: "Lambda Equinox", hz: "220 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/lambda-equinox.wav", v: 1 },
+ 
+      { id: "lambda-hepyra-organos", name: "Lambda Hepyra", hz: "317.83 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/lambda-hepyra.wav", v: 1 },
+ 
+      { id: "lambda-auralis-organos", name: "Lambda Auralis", hz: "367 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/lambda-auralis.wav", v: 1 },
+ 
+      { id: "lambda-ilyra-organos", name: "Lambda Ilyra", hz: "424 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/lambda-ilyra.wav", v: 1 }
  
   ], "DOLOR": [
  
@@ -1376,9 +1590,13 @@ const FREQ_TRACKS = {
  
       { id: "delta-headache-dolor", name: "Delta Headache", hz: "1.2 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/delta-headache.wav", v: 1 },
  
-      { id: "delta-calm-dolor", name: "Delta Calm", hz: "2.5 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/delta-calm.wav", v: 1 }
+      { id: "delta-calm-dolor", name: "Delta Calm", hz: "2.5 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/delta-calm.wav", v: 1 },
  
-    ], "VITALIDAD": [
+      { id: "lambda-seraph-dolor", name: "Lambda Seraph", hz: "160 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/lambda-seraph.wav", v: 1 },
+ 
+      { id: "lambda-movaris-dolor", name: "Lambda Movaris", hz: "324 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/lambda-movaris.wav", v: 1 }
+ 
+  ], "VITALIDAD": [
  
     { id: "alpha-origen-vitalidad", name: "Alpha Origen", hz: "8 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/alpha-origen.wav", v: 1 },
  
@@ -1394,7 +1612,21 @@ const FREQ_TRACKS = {
  
       { id: "gamma-vitalis-vitalidad", name: "Gamma Vitalis", hz: "31.32 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/gamma-vitalis.wav", v: 1 },
  
-      { id: "gamma-motoris-vitalidad", name: "Gamma Motoris", hz: "50 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/gamma-motoris.wav", v: 1 }
+      { id: "gamma-motoris-vitalidad", name: "Gamma Motoris", hz: "50 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/gamma-motoris.wav", v: 1 },
+ 
+      { id: "lambda-aegis-vitalidad", name: "Lambda Aegis", hz: "132 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/lambda-aegis.wav", v: 1 },
+ 
+      { id: "lambda-equinox-vitalidad", name: "Lambda Equinox", hz: "220 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/lambda-equinox.wav", v: 1 },
+ 
+      { id: "lambda-elaria-vitalidad", name: "Lambda Elaria", hz: "250 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/lambda-elaria.wav", v: 1 },
+ 
+      { id: "lambda-metavya-vitalidad", name: "Lambda Metavya", hz: "295.8 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/lambda-metavya.wav", v: 1 },
+ 
+      { id: "lambda-movaris-vitalidad", name: "Lambda Movaris", hz: "324 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/lambda-movaris.wav", v: 1 },
+ 
+      { id: "lambda-ostevia-vitalidad", name: "Lambda Ostevia", hz: "412 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/lambda-ostevia.wav", v: 1 },
+ 
+      { id: "lambda-ilyra-vitalidad", name: "Lambda Ilyra", hz: "424 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/lambda-ilyra.wav", v: 1 }
  
   ] },
  
@@ -1418,7 +1650,27 @@ const FREQ_TRACKS = {
  
       { id: "delta-harmony-meditacion", name: "Delta Harmony", hz: "1 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/delta-harmony.wav", v: 1 },
  
-      { id: "delta-muladhara-meditacion", name: "Delta Muladhara", hz: "2.06 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/delta-muladhara.wav", v: 1 }
+      { id: "delta-muladhara-meditacion", name: "Delta Muladhara", hz: "2.06 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/delta-muladhara.wav", v: 1 },
+ 
+      { id: "lambda-lunaris-meditacion", name: "Lambda Lunaris", hz: "187.61 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/lambda-lunaris.wav", v: 1 },
+ 
+      { id: "lambda-selene-meditacion", name: "Lambda Selene", hz: "227.43 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/lambda-selene.wav", v: 1 },
+ 
+      { id: "lambda-radia-meditacion", name: "Lambda Radia", hz: "256 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/lambda-radia.wav", v: 1 },
+ 
+      { id: "lambda-mercura-meditacion", name: "Lambda Mercura", hz: "282.4 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/lambda-mercura.wav", v: 1 },
+ 
+      { id: "lambda-polaris-meditacion", name: "Lambda Polaris", hz: "288 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/lambda-polaris.wav", v: 1 },
+ 
+      { id: "lambda-aresia-meditacion", name: "Lambda Aresia", hz: "289.4 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/lambda-aresia.wav", v: 1 },
+ 
+      { id: "lambda-kronia-meditacion", name: "Lambda Kronia", hz: "293 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/lambda-kronia.wav", v: 1 },
+ 
+      { id: "lambda-kronos-meditacion", name: "Lambda Kronos", hz: "295.7 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/lambda-kronos.wav", v: 1 },
+ 
+      { id: "lambda-urania-meditacion", name: "Lambda Urania", hz: "414.7 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/lambda-urania.wav", v: 1 },
+ 
+      { id: "lambda-lunara-meditacion", name: "Lambda Lunara", hz: "421.3 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/lambda-lunara.wav", v: 1 }
  
   ], "PERCEPCION": [
  
@@ -1460,7 +1712,13 @@ const FREQ_TRACKS = {
  
       { id: "delta-om-experiencias", name: "Delta OM", hz: "0.5-2.5 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/delta-om.wav", v: 1 },
  
-      { id: "delta-relief-experiencias", name: "Delta Relief", hz: "0.5-1.5 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/delta-relief.wav", v: 1 }
+      { id: "delta-relief-experiencias", name: "Delta Relief", hz: "0.5-1.5 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/delta-relief.wav", v: 1 },
+ 
+      { id: "lambda-aresia-experiencias", name: "Lambda Aresia", hz: "289.4 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/lambda-aresia.wav", v: 1 },
+ 
+      { id: "lambda-jovara-experiencias", name: "Lambda Jovara", hz: "367.2 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/lambda-jovara.wav", v: 1 },
+ 
+      { id: "lambda-amaris-experiencias", name: "Lambda Amaris", hz: "420.82 Hz", url: "https://genora-global-frecuencias.s3.us-east-2.amazonaws.com/lambda-amaris.wav", v: 1 }
  
   ], "CONSCIENCIA_EXP": [
  
