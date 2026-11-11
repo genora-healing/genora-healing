@@ -395,7 +395,7 @@ const T = {
  
       "beta-solution": "Resolucion analitica y toma de decisiones.",
  
-      "beta-logic": "Potencia el pensamiento logico y analitico.",
+      "beta-logic": "Estimula el análisis lógico, cálculos mentales y funciones cognitivas complejas.",
  
       "beta-attention": "Atencion consciente y respuesta mental agil.",
  
@@ -529,7 +529,9 @@ const T = {
  
       "alpha-eros-integracion": "Consciencia del origen de los desequilibrios.",
  
-      "alpha-eros-bienestar": "Equilibrio del sistema reproductor."
+      "alpha-eros-bienestar": "Equilibrio del sistema reproductor.",
+ 
+      "beta-logic-vitalidad": "Energía para la acción."
  
     }
  
@@ -770,7 +772,7 @@ const T = {
  
       "beta-solution": "Analytical resolution and decision making.",
  
-      "beta-logic": "Enhances logical and analytical thinking.",
+      "beta-logic": "Stimulates logical analysis, mental calculation and complex cognitive functions.",
  
       "beta-attention": "Conscious attention and agile mental response.",
  
@@ -904,7 +906,133 @@ const T = {
  
       "alpha-eros-integracion": "Awareness of the origin of imbalances.",
  
-      "alpha-eros-bienestar": "Balance of the reproductive system."
+      "alpha-eros-bienestar": "Balance of the reproductive system.",
+ 
+      "beta-nebula-aprendizaje": "Sensory perception and mental focus.",
+ 
+      "beta-axis-aprendizaje": "Supports memory, reading, language and cognitive tasks.",
+ 
+      "beta-axis-claridad": "Associated with states of alertness, vigilance and directed attention.",
+ 
+      "beta-nebula-rendimiento": "Supports sustained attention and helps keep the mind active in the face of mental fatigue.",
+ 
+      "beta-axis-rendimiento": "State of alertness, vigilance and directed attention.",
+ 
+      "beta-zenith-rendimiento": "Audiovisual stimulation, attention and mental exploration.",
+ 
+      "beta-axis-regulacion": "Can be used as sound support during moments of tension or restlessness.",
+ 
+      "beta-poise-regulacion": "Meditation aimed at stress relief and release.",
+ 
+      "beta-harmony-regulacion": "Harmonizes the emotional state and supports a sense of balance, calm and wellbeing.",
+ 
+      "beta-echo-regulacion": "Supports states of restlessness or anxiety within a conscious listening experience.",
+ 
+      "beta-recode-regulacion": "Stabilizes the central nervous system, eases anxiety and breaks the cycle of withdrawal-related despair.",
+ 
+      "delta-shield-regulacion": "Recovery from a post-traumatic event.",
+ 
+      "delta-euphoria-equilibrio": "Sense of wellbeing and expansion.",
+ 
+      "beta-nebula-integracion": "Promotes bodily relaxation while maintaining mental focus.",
+ 
+      "beta-synchrony-integracion": "Attunes body and mind with the Earth's electromagnetic field.",
+ 
+      "alpha-alignment-integracion": "Centering and mind-body connection.",
+ 
+      "delta-noctis-integracion": "Deep sleep, NREM Stage 3/N3, states of deep cellular rest.",
+ 
+      "delta-awakening-integracion": "Support in post-traumatic experiences, confusion and depression.",
+ 
+      "beta-genesis-regeneracion": "Body restoration and bone structure.",
+ 
+      "delta-awakening-regeneracion": "Deep relaxation and nervous system regulation.",
+ 
+      "delta-restora-regeneracion": "Deep sleep, rejuvenation, rest and recovery.",
+ 
+      "delta-neurovia-regeneracion": "Thyroid gland balance.",
+ 
+      "delta-neuraxis-regeneracion": "Healing of the trigeminal nerve and carpal tunnel restoration.",
+ 
+      "delta-teeth-heal-regeneracion": "Support aimed at the balance and recovery of the oral area.",
+ 
+      "alpha-echo-organos": "Hearing and sound perception.",
+ 
+      "beta-nebula-organos": "Frequency support associated with sodium and potassium balance.",
+ 
+      "beta-recode-organos": "Anxiety control, reduced dependency (addictions).",
+ 
+      "alpha-breath-organos": "Breathing and sensory perception.",
+ 
+      "alpha-flux-organos2": "Deep breathing and relaxation.",
+ 
+      "delta-soma-organos": "Body balance in muscles and organs.",
+ 
+      "delta-morph-organos": "Balance in muscles and organs.",
+ 
+      "delta-awakening-dolor": "Support for muscle pain, neuralgia and arthritis.",
+ 
+      "delta-om-dolor": "Headaches, sedative.",
+ 
+      "delta-relief-dolor": "Healing, pain relief.",
+ 
+      "delta-neurovia-dolor": "Relief of lower back pain and headaches.",
+ 
+      "delta-neuraxis-dolor": "Reduces inflammation of neuralgia, restoration of facial paralysis, nerve regulation.",
+ 
+      "delta-teeth-heal-dolor": "Healing of teeth and gums.",
+ 
+      "alpha-alignment-vitalidad": "Balance and overall wellbeing.",
+ 
+      "alpha-catalyst-vitalidad": "Physiological activation and vital energy.",
+ 
+      "delta-soma-vitalidad": "Increased immune function.",
+ 
+      "beta-earth-meditacion": "Sound experience inspired by the Earth's resonance.",
+ 
+      "delta-soma-meditacion": "Access to the unconscious.",
+ 
+      "delta-euphoria-meditacion": "Expansion of the self.",
+ 
+      "beta-lucent-percepcion": "Exploration of luminous experiences and visual perception.",
+ 
+      "beta-earth-percepcion": "Sound experience inspired by the Earth's resonance.",
+ 
+      "beta-echo-percepcion": "Exploration of image impressions and visual perception.",
+ 
+      "beta-aether-percepcion": "Earth's heartbeat, 3rd harmonic, heightened mental activity and attention.",
+ 
+      "delta-euphoria-experiencias": "Breadth and integral perception.",
+ 
+      "beta-lucent-experiencias": "Supports the exploration of luminous and sensory experiences.",
+ 
+      "beta-earth-experiencias": "Sound experience inspired by the Earth's resonance.",
+ 
+      "beta-zenith-experiencias": "Audiovisual stimulation, attention and mental exploration.",
+ 
+      "beta-astralis-experiencias": "Meditation and exploration of inner states.",
+ 
+      "alpha-oneiris-experiencias": "Conscious dreaming and dream exploration.",
+ 
+      "delta-awakening-experiencias": "Spiritual awakening.",
+ 
+      "delta-om-experiencias": "OM 136.1 Hz. Frequency of connection from the Heart Chakra, grounding, inner peace and serenity.",
+ 
+      "delta-relief-experiencias": "Deep relaxation and hypnosis experience.",
+ 
+      "beta-earth-conciencia": "Sound experience inspired by the Earth's resonance.",
+ 
+      "beta-gaia-conciencia": "Synchronization with the Earth's third harmonic.",
+ 
+      "delta-noctis-conciencia": "Deep states of sensory perception.",
+ 
+      "delta-restora-conciencia": "Intuition, information from the unconscious.",
+ 
+      "delta-neurovia-bienestar": "Stimulates reproduction.",
+ 
+      "delta-om-adn": "DNA regeneration, rejuvenation, healing and deep restoration.",
+ 
+      "beta-logic-vitalidad": "Energy for action."
  
     }
  
